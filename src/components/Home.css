@@ -1,37 +1,41 @@
 .home-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.username, .currency, .stats, .coins, .points, .footer {
-  margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    background-color: #282c34;
+    color: white;
 }
 
 .main-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    margin-top: 20px;
+}
+
+.stats, .coins, .points {
+    margin: 10px 0;
 }
 
 .wild-boar {
-  width: 150px;
-}
-
-.points {
-  font-size: 24px;
-  color: red;
+    width: 200px;
+    height: auto;
 }
 
 .footer {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.footer button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
 }
