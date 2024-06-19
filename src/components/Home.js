@@ -1,37 +1,32 @@
-// frontend/src/components/Home.js
-
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import './Home.css';
 
 const Home = () => {
-    const [userInfo, setUserInfo] = useState({});
-
-    useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const { data } = await axios.get('/api/users/profile', { withCredentials: true });
-                setUserInfo(data);
-            } catch (error) {
-                console.error('Error fetching user data', error);
-            }
-        };
-
-        fetchUser();
-    }, []);
-
-    const handleAddFriends = () => {
-        const referralLink = `https://fastidious-zuccutto-1ef5e6.netlify.app/register?ref=${userInfo.username}`;
-        navigator.clipboard.writeText(referralLink);
-        alert(`Referral link copied to clipboard: ${referralLink}`);
-    };
-
-    return (
-        <div>
-            <h1>Welcome, {userInfo.username}</h1>
-            <button onClick={handleAddFriends}>Add Friends</button>
-            {/* Додайте тут інший контент вашого головного екрану гри */}
-        </div>
-    );
+  return (
+    <div className="home-container">
+      <div className="header">
+        <div className="username">Максим (Trainer)</div>
+        <div className="currency">Binance</div>
+      </div>
+      <div className="stats">
+        <div>Дохід за тап: +15</div>
+        <div>Рівень акаунту: 7</div>
+        <div>Дохід в годину: +992,27K</div>
+      </div>
+      <div className="coins">
+        <div>24 160 678</div>
+      </div>
+      <div className="main-content">
+        <img src="wild_boar.png" alt="Wild Boar" className="wild-boar"/>
+        <div className="points">+15 +15 +15 +15 +15</div>
+      </div>
+      <div className="footer">
+        <Link to="/info">Інформація</Link>
+        <Link to="/heroes">Герої</Link>
+        <Link to="/settings">Налаштування</Link>
+      </div>
+    </div>
+  );
 };
 
 export default Home;
