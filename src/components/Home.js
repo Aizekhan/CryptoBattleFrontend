@@ -1,5 +1,6 @@
 import React from 'react';
 import './Home.css';  // Додайте цей імпорт
+import boarImage from '../assets/images/boar.png';
 
 const Home = () => {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -14,7 +15,7 @@ const Home = () => {
                 <div className="stats">Дохід за тап: +15</div>
                 <div className="stats">Рівень аккаунту: 7</div>
                 <div className="coins">Дохід в годину: +992,27K</div>
-                <img src="../images/WildBoar.png" alt="Wild Boar" className="wild-boar" />
+                 <img src={boarImage} alt="Boar" className="boar-image" />
                 <div className="points">+15</div>
             </div>
             <div className="footer">
