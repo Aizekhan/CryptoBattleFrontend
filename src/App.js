@@ -1,24 +1,35 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Register from './components/Register';
+// frontend/src/App.js
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import Home from './components/Home';
 import Login from './components/Login';
 import Profile from './components/Profile';
-import CreateHero from './components/CreateHero';
-import HeroList from './components/HeroList';
-import PrivateRoute from './components/PrivateRoute';
 
 const App = () => {
+    const [username, setUsername] = useState(null);
+    const location = useLocation();
+
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const token = params.get('token');
+        if (token) {
+            localStorage.setItem('token', token);
+            const decodedToken = JSON.parse(atob(token.split('.')[1]));
+            setUsername(decodedToken.username);
+        }
+    }, [location.search]);
+
     return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
-                <Route path="/create-hero" element={<PrivateRoute><CreateHero /></PrivateRoute>} />
-                <Route path="/hero-list" element={<PrivateRoute><HeroList /></PrivateRoute>} />
-            </Routes>
-        </Router>
+        <div>
+            {username && <div style={{ position: 'absolute', top: 0, left: 0 }}>{username}</div>}
+            <Router>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/profile" element={<Profile />} />
+                </Routes>
+            </Router>
+        </div>
     );
 };
 
