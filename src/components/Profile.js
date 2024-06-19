@@ -1,31 +1,19 @@
-// frontend/src/components/Profile.js
-
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import jwt_decode from 'jwt-decode';
 
 const Profile = () => {
-    const [userInfo, setUserInfo] = useState({});
+    const token = localStorage.getItem('token');
+    const user = token ? jwt_decode(token) : null;
 
-    useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const { data } = await axios.get('/api/users/profile', { withCredentials: true });
-                setUserInfo(data);
-            } catch (error) {
-                console.error('Error fetching user data', error);
-            }
-        };
-
-        fetchUser();
-    }, []);
+    if (!user) {
+        return <p>Please log in.</p>;
+    }
 
     return (
         <div>
-            <h1>Welcome, {userInfo.username}</h1>
-            <p>Email: {userInfo.email}</p>
-            <p>Referral Code: {userInfo.referralCode}</p>
-            <p>Token: {userInfo.token}</p>
-            {/* Інші елементи профілю */}
+            <h1>Welcome, {user.username}</h1>
+            <p>Email: {user.email}</p>
+            <p>Token: {token}</p>
         </div>
     );
 };
