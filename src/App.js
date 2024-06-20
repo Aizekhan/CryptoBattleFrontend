@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react'; // Видалено useEffect
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home';
@@ -6,7 +6,7 @@ import TopBar from './components/TopBar';
 import NavigationBar from './components/NavigationBar';
 
 function App() {
-    const [userInfo, setUserInfo] = useState({
+    const [userInfo] = useState({
         username: 'Максим',
         level: 7,
         tapIncome: '+15',
