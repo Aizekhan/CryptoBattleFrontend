@@ -31,3 +31,7 @@
     height: 50px;
     margin-right: 10px;
 }
+.secondary-bar .nav-button .nav-text {
+    margin-top: 5px; /* Додає відступ між іконкою і текстом */
+    font-size: 12px; /* Розмір тексту */
+}
