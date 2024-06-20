@@ -1,6 +1,6 @@
 // src/App.js
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Farm from './components/Pages/Farm';
 import Mines from './components/Pages/Mines';
 import Battle from './components/Pages/Battle';
