@@ -1,0 +1,31 @@
+/* src/components/Pages/Mines.css */
+
+.mines-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.mines-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.mine-item {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    width: 100px;
+}
+
+.mine-item img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.mine-cost, .mine-income {
+    margin-top: 5px;
+}
