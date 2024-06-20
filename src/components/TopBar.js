@@ -1,16 +1,36 @@
 import React from 'react';
-import './TopBar.css'; // підключимо файл стилів
+import './TopBar.css';
+import userIcon from '../assets/images/user-icon.png';
+import binanceIcon from '../assets/images/binance-icon.png';
 
-const TopBar = ({ username, walletConnected }) => {
+const TopBar = ({ username, level, tapIncome, hourlyIncome, balance }) => {
     return (
         <div className="top-bar">
             <div className="user-info">
-                <img src="/path/to/user-icon.png" alt="User" />
-                <span>{username}</span>
+                <img src={userIcon} alt="User" className="user-icon" />
+                <span>{username} (Trainer)</span>
             </div>
-            <div className="wallet-info">
-                <img src="/path/to/wallet-icon.png" alt="Wallet" />
-                <span>{walletConnected ? "Connected" : "Not Connected"}</span>
+            <div className="stats">
+                <div className="stat">
+                    <span>Дохід за тап</span>
+                    <span className="value">{tapIncome}</span>
+                </div>
+                <div className="stat">
+                    <span>Рівень акаунту</span>
+                    <span className="value">{level}</span>
+                </div>
+                <div className="stat">
+                    <span>Дохід в годину</span>
+                    <span className="value">{hourlyIncome}</span>
+                </div>
+            </div>
+            <div className="balance">
+                <span className="balance-icon">💰</span>
+                <span>{balance}</span>
+            </div>
+            <div className="binance-info">
+                <img src={binanceIcon} alt="Binance" className="binance-icon" />
+                <span>Binance</span>
             </div>
         </div>
     );
