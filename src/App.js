@@ -1,3 +1,4 @@
+// src/App.js
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Farm from './components/Pages/Farm';
@@ -5,13 +6,13 @@ import Mines from './components/Pages/Mines';
 import Battle from './components/Pages/Battle';
 import Quests from './components/Pages/Quests';
 import Hero from './components/Pages/Hero';
-import Home from './components/Pages/Home';
-import Friends from './components/Pages/Friends';
+import Home from './components/Pages/Home'; 
+import Friends from './components/Pages/Friends'; 
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import TopBar from './components/TopBar';
-import SecondaryBar from './components/SecondaryBar';
 import NavigationBar from './components/NavigationBar';
+import SecondaryBar from './components/SecondaryBar';
 import './App.css';
 
 function App() {
@@ -36,10 +37,8 @@ function App() {
                 username: decoded.username
             }));
 
-            // Збереження токену в localStorage для подальшого використання
             localStorage.setItem('authToken', token);
 
-            // Отримання додаткових даних користувача з бекенду
             axios.get(`/api/users/${decoded.id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
