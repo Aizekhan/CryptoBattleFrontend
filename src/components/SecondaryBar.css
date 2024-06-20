@@ -3,14 +3,16 @@
     justify-content: space-between;
     align-items: center;
     background-color: #444;
-    padding: 10px;
     color: white;
+    padding: 10px;
     position: fixed;
-    top: 50px; /* adjust based on the height of the top-bar */
+    top: 50px; /* Adjust this if necessary */
     width: 100%;
     z-index: 999;
+    box-sizing: border-box; /* Додаємо це, щоб врахувати padding в ширину */
 }
-.secondary-bar .nav-icon {
-    width: 32px;
-    height: 32px;
+
+.secondary-bar img {
+    width: 24px;
+    height: 24px;
 }
