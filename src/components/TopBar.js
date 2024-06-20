@@ -1,38 +1,57 @@
-import React from 'react';
-import './TopBar.css';
-import userIcon from '../assets/images/user-icon.png';
-import binanceIcon from '../assets/images/binance-icon.png';
-import walletIcon from '../assets/images/wallet-icon.png'; // Оновлений шлях до іконки
+.top-bar {
+    display: flex;
+    flex-direction: column;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
 
-const TopBar = ({ username, tapIncome, level, hourlyIncome }) => {
-    return (
-        <div className="top-bar">
-            <div className="top-row">
-                <div className="user-info">
-                    <img src={userIcon} alt="User" className="user-icon" />
-                    <span className="username">{username}</span>
-                </div>
-                <div className="icon-bar">
-                    <img src={binanceIcon} alt="Binance" className="binance-icon" />
-                    <img src={walletIcon} alt="Wallet" className="wallet-icon" />
-                </div>
-            </div>
-            <div className="stats-bar">
-                <div className="stat">
-                    <span>Дохід за тап</span>
-                    <span className="value">{tapIncome}</span>
-                </div>
-                <div className="stat">
-                    <span>Рівень акаунту</span>
-                    <span className="value">{level}</span>
-                </div>
-                <div className="stat">
-                    <span>Дохід в годину</span>
-                    <span className="value">{hourlyIncome}</span>
-                </div>
-            </div>
-        </div>
-    );
-};
+.top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
 
-export default TopBar;
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.icon-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.binance-icon, .wallet-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.stats-bar {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    background-color: #444;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.value {
+    font-weight: bold;
+}
