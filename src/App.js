@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
-import TopBar from './components/TopBar';
+import CombinedBar from './components/CombinedBar';
 import NavigationBar from './components/NavigationBar';
-import StatsBar from './components/StatsBar';
 
 function App() {
     const [userInfo] = useState({
@@ -18,8 +17,8 @@ function App() {
     return (
         <Router>
             <div className="app-container">
-                <TopBar username={userInfo.username} />
-                <StatsBar 
+                <CombinedBar 
+                    username={userInfo.username}
                     tapIncome={userInfo.tapIncome}
                     level={userInfo.level}
                     hourlyIncome={userInfo.hourlyIncome}
