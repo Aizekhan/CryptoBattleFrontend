@@ -11,17 +11,19 @@
     z-index: 1000;
 }
 
-.user-info, .icon-bar {
+.user-info {
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
-.user-icon, .binance-icon, .wallet-icon, .home-icon {
+.user-icon, .level-icon, .binance-icon, .wallet-icon {
     width: 24px;
     height: 24px;
-    margin-right: 10px;
 }
 
-.username {
-    font-size: 1.2em;
+.icon-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }

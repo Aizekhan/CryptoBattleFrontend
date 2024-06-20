@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Farm from './components/Pages/Farm';
@@ -11,6 +10,7 @@ import Friends from './components/Pages/Friends'; // Імпорт для Friends
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import TopBar from './components/TopBar';
+import SecondaryBar from './components/SecondaryBar';
 import NavigationBar from './components/NavigationBar';
 import './App.css';
 
@@ -68,6 +68,7 @@ function App() {
                     username={userInfo.username}
                     level={userInfo.level}
                 />
+                <SecondaryBar />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/farm" element={<Farm />} />
