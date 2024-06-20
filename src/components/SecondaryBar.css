@@ -7,28 +7,22 @@
     padding: 10px;
     position: fixed;
     top: 50px; /* Adjust this if necessary */
-    width: calc(100% - 20px); /* Відняти padding з обох боків */
+    width: calc(100% - 20px); /* Adjusted width to consider left and right padding */
     z-index: 999;
-    box-sizing: border-box; /* Додаємо це, щоб врахувати padding в ширину */
-    margin: 0 10px; /* Встановити відступ зліва і справа */
+    margin-left: 10px; /* Add left margin */
+    margin-right: 10px; /* Add right margin */
+    box-sizing: border-box; /* Ensure padding is included in the width */
 }
 
 .secondary-bar img {
     width: 30px;
     height: 30px;
-    margin-bottom: 5px;
-    margin-left: 5px;  /* Відступ з лівого боку */
-    margin-right: 5px; /* Відступ з правого боку */
 }
 
 .secondary-bar .home-icon {
-    width: 30px;
-    height: 30px;
     margin-left: 10px;
 }
 
 .secondary-bar .friends-icon {
-    width: 30px;
-    height: 30px;
     margin-right: 10px;
 }
