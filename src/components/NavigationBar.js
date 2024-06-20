@@ -4,7 +4,7 @@ import homeIcon from '../assets/images/home.png';
 import minesIcon from '../assets/images/mines.png';
 import battleIcon from '../assets/images/battle.png';
 import questsIcon from '../assets/images/quests.png';
-import heroIcon from '../assets/images/store.png';
+import heroIcon from '../assets/images/hero.png';
 
 const NavigationBar = () => {
     return (
