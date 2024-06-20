@@ -4,6 +4,7 @@ import Home from './components/Home';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import TopBar from './components/TopBar';
+import NavigationBar from './components/NavigationBar';
 import './App.css';
 
 function App() {
@@ -72,6 +73,7 @@ function App() {
                     <Route path="/profile" element={<div>Profile Page</div>} />  {/* Замініть на ваш компонент профілю */}
                     <Route path="/about" element={<div>About Page</div>} />  {/* Замініть на ваш компонент про додаток */}
                 </Routes>
+                <NavigationBar />
             </div>
         </Router>
     );
