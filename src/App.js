@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import TopBar from './components/TopBar';
+import NavigationBar from './components/NavigationBar';
 import './App.css';
 
 function App() {
@@ -62,16 +63,16 @@ function App() {
                     level={userInfo.level}
                     hourlyIncome={userInfo.hourlyIncome}
                 />
-                <nav className="nav-bar">
-                    <Link to="/">Home</Link>
-                    <Link to="/profile">Profile</Link>
-                    <Link to="/about">About</Link>
-                </nav>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/profile" element={<div>Profile Page</div>} />  {/* Замініть на ваш компонент профілю */}
                     <Route path="/about" element={<div>About Page</div>} />  {/* Замініть на ваш компонент про додаток */}
+                    <Route path="/mines" element={<div>Mines Page</div>} />  {/* Замініть на ваш компонент Mines */}
+                    <Route path="/battle" element={<div>Battle Page</div>} />  {/* Замініть на ваш компонент Battle */}
+                    <Route path="/quests" element={<div>Quests Page</div>} />  {/* Замініть на ваш компонент Quests */}
+                    <Route path="/hero" element={<div>Hero Page</div>} />  {/* Замініть на ваш компонент Hero */}
                 </Routes>
+                <NavigationBar /> {/* Додайте NavigationBar у кінці */}
             </div>
         </Router>
     );
