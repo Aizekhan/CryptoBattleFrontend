@@ -1,3 +1,5 @@
+/* src/components/SecondaryBar.css */
+
 .secondary-bar {
     display: flex;
     justify-content: space-between;
@@ -7,15 +9,21 @@
     padding: 10px;
     position: fixed;
     top: 50px; /* Adjust this if necessary */
-    width: 120%;
+    left: 0;  /* Ensure it starts from the left edge */
+    right: 0;  /* Ensure it stretches to the right edge */
+    width: calc(100% - 20px); /* Adjust this if necessary */
     z-index: 999;
     box-sizing: border-box; /* Додаємо це, щоб врахувати padding в ширину */
 }
 
-.secondary-bar img {
+.nav-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-icon {
     width: 30px;
     height: 30px;
-margin-bottom: 5px;
- margin-left: 5px;  /* Відступ з лівого боку */
-    margin-right: 5px; /* Відступ з правого боку */
+    margin: 0 5px;  /* Відступи з обох боків */
 }

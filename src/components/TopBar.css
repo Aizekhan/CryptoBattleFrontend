@@ -38,6 +38,7 @@ box-sizing: border-box; /* Додаємо це, щоб врахувати paddin
 .wallet-icon {
     width: 24px;
     height: 24px;
+margin-right: 5px;
 }
 
 
