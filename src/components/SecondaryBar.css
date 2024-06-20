@@ -7,7 +7,7 @@
     padding: 10px;
     position: fixed;
     top: 50px; /* Adjust this if necessary */
-    width: 100%;
+    width: 120%;
     z-index: 999;
     box-sizing: border-box; /* Додаємо це, щоб врахувати padding в ширину */
 }
