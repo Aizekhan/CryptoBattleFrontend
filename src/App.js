@@ -5,8 +5,8 @@ import Mines from './components/Pages/Mines';
 import Battle from './components/Pages/Battle';
 import Quests from './components/Pages/Quests';
 import Hero from './components/Pages/Hero';
-import Home from './components/Pages/Home'; // Імпорт для Home
-import Friends from './components/Pages/Friends'; // Імпорт для Friends
+import Home from './components/Pages/Home';
+import Friends from './components/Pages/Friends';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import TopBar from './components/TopBar';
@@ -76,7 +76,7 @@ function App() {
                     <Route path="/battle" element={<Battle />} />
                     <Route path="/quests" element={<Quests />} />
                     <Route path="/hero" element={<Hero />} />
-                    <Route path="/friends" element={<Friends />} /> {/* Новий маршрут */}
+                    <Route path="/friends" element={<Friends />} />
                 </Routes>
                 <NavigationBar />
             </div>

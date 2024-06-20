@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './TopBar.css';
 import userIcon from '../assets/images/user-icon.png';
 import binanceIcon from '../assets/images/binance-icon.png';
