@@ -1,28 +1,33 @@
 import React from 'react';
-import './NavigationBar.css'; // підключимо файл стилів
+import './NavigationBar.css'; // Підключимо файл стилів
+import homeIcon from '../assets/images/home.png';
+import minesIcon from '../assets/images/mines.png';
+import battleIcon from '../assets/images/battle.png';
+import questsIcon from '../assets/images/quests.png';
+import heroIcon from '../assets/images/store.png';
 
 const NavigationBar = () => {
     return (
         <div className="navigation-bar">
             <button className="nav-button">
-                <img src="/path/to/exchange-icon.png" alt="Exchange" />
-                Exchange
+                <img src={homeIcon} alt="Home" />
+                Home
             </button>
             <button className="nav-button">
-                <img src="/path/to/mine-icon.png" alt="Mine" />
-                Mine
+                <img src={minesIcon} alt="Mines" />
+                Mines
             </button>
             <button className="nav-button">
-                <img src="/path/to/friends-icon.png" alt="Friends" />
-                Friends
+                <img src={battleIcon} alt="Battle" />
+                Battle
             </button>
             <button className="nav-button">
-                <img src="/path/to/earn-icon.png" alt="Earn" />
-                Earn
+                <img src={questsIcon} alt="Quests" />
+                Quests
             </button>
             <button className="nav-button">
-                <img src="/path/to/airdrop-icon.png" alt="Airdrop" />
-                Airdrop
+                <img src={heroIcon} alt="Hero" />
+                Hero
             </button>
         </div>
     );

@@ -2,25 +2,28 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home';
-import TopBar from './components/TopBar'; // Імпорт верхньої панелі
-import NavigationBar from './components/NavigationBar'; // Імпорт нижньої панелі
+import TopBar from './components/TopBar';
+import NavigationBar from './components/NavigationBar';
 
 function App() {
-    const [userInfo, setUserInfo] = useState(null);
-    const [walletConnected, setWalletConnected] = useState(false);
-
-    useEffect(() => {
-        // Логіка для отримання нікнейму користувача з Telegram акаунту
-        const storedUserInfo = JSON.parse(localStorage.getItem('userInfo'));
-        setUserInfo(storedUserInfo);
-        // Логіка для перевірки підключення криптогаманця
-        setWalletConnected(true);
-    }, []);
+    const [userInfo, setUserInfo] = useState({
+        username: 'Максим',
+        level: 7,
+        tapIncome: '+15',
+        hourlyIncome: '+992,27K',
+        balance: '24 160 678'
+    });
 
     return (
         <Router>
             <div className="app-container">
-                <TopBar username={userInfo?.username} walletConnected={walletConnected} />
+                <TopBar 
+                    username={userInfo.username}
+                    level={userInfo.level}
+                    tapIncome={userInfo.tapIncome}
+                    hourlyIncome={userInfo.hourlyIncome}
+                    balance={userInfo.balance}
+                />
                 <nav className="nav-bar">
                     <Link to="/">Home</Link>
                     <Link to="/profile">Profile</Link>
@@ -28,8 +31,8 @@ function App() {
                 </nav>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/profile" element={<div>Profile Page</div>} />  {/* Замініть на ваш компонент профілю */}
-                    <Route path="/about" element={<div>About Page</div>} />  {/* Замініть на ваш компонент про додаток */}
+                    <Route path="/profile" element={<div>Profile Page</div>} />
+                    <Route path="/about" element={<div>About Page</div>} />
                 </Routes>
                 <NavigationBar />
             </div>
