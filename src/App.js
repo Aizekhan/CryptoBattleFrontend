@@ -1,4 +1,5 @@
 // src/App.js
+
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Farm from './components/Pages/Farm';
@@ -11,17 +12,18 @@ import Friends from './components/Pages/Friends';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import TopBar from './components/TopBar';
-import SecondaryBar from './components/SecondaryBar';
 import NavigationBar from './components/NavigationBar';
+import SecondaryBar from './components/SecondaryBar';
+import UserStats from './components/UserStats';
 import './App.css';
 
 function App() {
     const [userInfo, setUserInfo] = useState({
         username: '',
-        level: 0,
+        level: 1,
         tapIncome: 0,
         hourlyIncome: 0,
-        balance: 0,
+        balance: 1000,
         heroes: [],
         currentHero: null,
         mines: []
@@ -37,10 +39,8 @@ function App() {
                 username: decoded.username
             }));
 
-            // Збереження токену в localStorage для подальшого використання
             localStorage.setItem('authToken', token);
 
-            // Отримання додаткових даних користувача з бекенду
             axios.get(`/api/users/${decoded.id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -65,15 +65,18 @@ function App() {
     return (
         <Router>
             <div className="app-container">
-                <TopBar 
+                <TopBar />
+                <UserStats 
                     username={userInfo.username}
                     level={userInfo.level}
+                    hourlyIncome={userInfo.hourlyIncome}
+                    balance={userInfo.balance}
                 />
                 <SecondaryBar />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/farm" element={<Farm />} />
-                    <Route path="/mines" element={<Mines />} />
+                    <Route path="/mines" element={<Mines balance={userInfo.balance} setBalance={(newBalance) => setUserInfo(prevState => ({ ...prevState, balance: newBalance }))} />} />
                     <Route path="/battle" element={<Battle />} />
                     <Route path="/quests" element={<Quests />} />
                     <Route path="/hero" element={<Hero />} />

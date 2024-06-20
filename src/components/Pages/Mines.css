@@ -1,31 +1,56 @@
 /* src/components/Pages/Mines.css */
 
 .mines-container {
-    text-align: center;
     padding: 20px;
+    text-align: center;
 }
 
 .mines-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
 }
 
 .mine-item {
-    background-color: #333;
-    color: white;
-    padding: 10px;
+    background-color: #444;
+    border: 1px solid #333;
     border-radius: 10px;
-    text-align: center;
+    padding: 10px;
+    margin: 10px;
     width: 100px;
+    text-align: center;
+    cursor: pointer;
 }
 
 .mine-item img {
-    width: 100%;
-    border-radius: 5px;
+    width: 50px;
+    height: 50px;
 }
 
-.mine-cost, .mine-income {
+.mine-cost, .mine-income, .mine-level {
     margin-top: 5px;
+    color: white;
+}
+
+.upgrade-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #222;
+    padding: 20px;
+    border: 1px solid #333;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.upgrade-panel img {
+    width: 100px;
+    height: 100px;
+}
+
+.upgrade-panel button {
+    margin: 10px;
+    padding: 10px;
+    cursor: pointer;
 }

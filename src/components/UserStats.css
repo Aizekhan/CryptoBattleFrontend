@@ -1,0 +1,23 @@
+/* src/components/UserStats.css */
+
+.user-stats {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #444;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.user-info, .user-level, .user-income, .user-balance {
+    display: flex;
+    align-items: center;
+}
+
+.user-icon, .level-icon, .wallet-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+}
