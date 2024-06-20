@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import TopBar from './components/TopBar';
 import NavigationBar from './components/NavigationBar';
@@ -24,11 +24,10 @@ function App() {
                     level={userInfo.level}
                     hourlyIncome={userInfo.hourlyIncome}
                 />
-                <nav className="nav-bar">
-                    <Link to="/">Home</Link>
-                    <Link to="/profile">Profile</Link>
-                    <Link to="/about">About</Link>
-                </nav>
+                <div className="balance">
+                    <span className="balance-icon">💰</span>
+                    <span>{userInfo.balance}</span>
+                </div>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/profile" element={<div>Profile Page</div>} />
