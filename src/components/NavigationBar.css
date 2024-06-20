@@ -3,13 +3,11 @@
     justify-content: space-around;
     position: fixed;
     bottom: 0;
-    width: calc(100% - 20px); /* Adjusted width to consider left and right padding */
+    width: calc(100% - 20px); /* Відняти padding з обох боків */
     background-color: #333;
-    padding: 10px 10px; /* Add left and right padding */
+    padding: 10px 0;
     z-index: 1000;
-    margin-left: 10px; /* Add left margin */
-    margin-right: 10px; /* Add right margin */
-    box-sizing: border-box; /* Ensure padding is included in the width */
+    margin: 10 10px; /* Встановити відступ зліва і справа */
 }
 
 .nav-button {
