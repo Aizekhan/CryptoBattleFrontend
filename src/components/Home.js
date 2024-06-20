@@ -1,5 +1,5 @@
 import React from 'react';
-import './Home.css';  // Додайте цей імпорт
+import './Home.css';  // Підключення CSS файлу
 import boarImage from '../assets/images/boar.png';
 
 const Home = () => {
@@ -15,7 +15,7 @@ const Home = () => {
                 <div className="stats">Дохід за тап: +15</div>
                 <div className="stats">Рівень аккаунту: 7</div>
                 <div className="coins">Дохід в годину: +992,27K</div>
-                 <img src={boarImage} alt="Boar" className="boar-image" />
+                <img src={boarImage} alt="Boar" className="boar-image" />
                 <div className="points">+15</div>
             </div>
             <div className="footer">
