@@ -1,12 +1,13 @@
 // src/App.js
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Farm from './components/Pages/Farm'; // Оновлено шлях
+import Farm from './components/Pages/Farm';
 import Mines from './components/Pages/Mines';
 import Battle from './components/Pages/Battle';
 import Quests from './components/Pages/Quests';
 import Hero from './components/Pages/Hero';
-import Home from './components/Pages/Home'; // Новий імпорт
+import Home from './components/Pages/Home'; // Імпорт для Home
+import Friends from './components/Pages/Friends'; // Імпорт для Friends
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import TopBar from './components/TopBar';
@@ -65,17 +66,16 @@ function App() {
             <div className="app-container">
                 <TopBar 
                     username={userInfo.username}
-                    tapIncome={userInfo.tapIncome}
                     level={userInfo.level}
-                    hourlyIncome={userInfo.hourlyIncome}
                 />
                 <Routes>
-                    <Route path="/" element={<Home />} /> {/* Додано маршрут для Home */}
-                    <Route path="/farm" element={<Farm />} /> {/* Оновлено маршрут для Farm */}
+                    <Route path="/" element={<Home />} />
+                    <Route path="/farm" element={<Farm />} />
                     <Route path="/mines" element={<Mines />} />
                     <Route path="/battle" element={<Battle />} />
                     <Route path="/quests" element={<Quests />} />
                     <Route path="/hero" element={<Hero />} />
+                    <Route path="/friends" element={<Friends />} /> {/* Новий маршрут */}
                 </Routes>
                 <NavigationBar />
             </div>
