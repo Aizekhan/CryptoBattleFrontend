@@ -1,6 +1,5 @@
 // src/components/TopBar.js
 import React from 'react';
-import { Link } from 'react-router-dom';
 import userIcon from '../assets/images/user-icon.png';
 import levelIcon from '../assets/images/level.png';
 import walletIcon from '../assets/images/wallet-icon.png';
