@@ -65,7 +65,11 @@ function App() {
     return (
         <Router>
             <div className="app-container">
-                <TopBar />
+                <TopBar 
+                    username={userInfo.username}
+                    level={userInfo.level}
+                    balance={userInfo.balance}
+                />
                 <UserStats 
                     username={userInfo.username}
                     level={userInfo.level}
