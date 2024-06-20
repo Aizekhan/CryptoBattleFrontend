@@ -1,4 +1,5 @@
-.home-container {
+/* src/components/Pages/Farm.css */
+.farm-container {
     display: flex;
     flex-direction: column;
     align-items: center;

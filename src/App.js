@@ -1,45 +1,86 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Home from './components/Home';
-import Mines from './components/Mines';
-import Hero from './components/Hero';
+// src/App.js
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Farm from './components/Pages/Farm'; // Оновлено шлях
+import Mines from './components/Pages/Mines';
+import Battle from './components/Pages/Battle';
+import Quests from './components/Pages/Quests';
+import Hero from './components/Pages/Hero';
+import Home from './components/Pages/Home'; // Новий імпорт
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 import TopBar from './components/TopBar';
 import NavigationBar from './components/NavigationBar';
 import './App.css';
 
 function App() {
-    const location = useLocation();
+    const [userInfo, setUserInfo] = useState({
+        username: '',
+        level: 0,
+        tapIncome: 0,
+        hourlyIncome: 0,
+        balance: 0,
+        heroes: [],
+        currentHero: null,
+        mines: []
+    });
 
-    const getTitle = () => {
-        switch (location.pathname) {
-            case '/mines':
-                return 'Дохід в годину';
-            case '/hero':
-                return 'Магазин';
-            default:
-                return 'Дохід за тап';
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+        if (token) {
+            const decoded = jwt_decode(token);
+            setUserInfo(prevState => ({
+                ...prevState,
+                username: decoded.username
+            }));
+
+            // Збереження токену в localStorage для подальшого використання
+            localStorage.setItem('authToken', token);
+
+            // Отримання додаткових даних користувача з бекенду
+            axios.get(`/api/users/${decoded.id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(response => {
+                setUserInfo(prevState => ({
+                    ...prevState,
+                    level: response.data.level,
+                    tapIncome: response.data.tapIncome,
+                    hourlyIncome: response.data.hourlyIncome,
+                    balance: response.data.balance,
+                    heroes: response.data.heroes,
+                    currentHero: response.data.currentHero,
+                    mines: response.data.mines
+                }));
+            }).catch(error => {
+                console.error('Error fetching user data:', error);
+            });
         }
-    };
+    }, []);
 
-    return (
-        <div className="app-container">
-            <TopBar title={getTitle()} />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/mines" element={<Mines />} />
-                <Route path="/hero" element={<Hero />} />
-            </Routes>
-            <NavigationBar />
-        </div>
-    );
-}
-
-function AppWrapper() {
     return (
         <Router>
-            <App />
+            <div className="app-container">
+                <TopBar 
+                    username={userInfo.username}
+                    tapIncome={userInfo.tapIncome}
+                    level={userInfo.level}
+                    hourlyIncome={userInfo.hourlyIncome}
+                />
+                <Routes>
+                    <Route path="/" element={<Home />} /> {/* Додано маршрут для Home */}
+                    <Route path="/farm" element={<Farm />} /> {/* Оновлено маршрут для Farm */}
+                    <Route path="/mines" element={<Mines />} />
+                    <Route path="/battle" element={<Battle />} />
+                    <Route path="/quests" element={<Quests />} />
+                    <Route path="/hero" element={<Hero />} />
+                </Routes>
+                <NavigationBar />
+            </div>
         </Router>
     );
 }
 
-export default AppWrapper;
+export default App;

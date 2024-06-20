@@ -1,10 +1,11 @@
+// src/components/Pages/Farm.js
 import React from 'react';
-import './Home.css'; 
-import boarImage from '../assets/images/boar.png';
+import './Farm.css'; 
+import boarImage from '../../assets/images/boar.png';
 
-const Home = () => {
+const Farm = () => {
     return (
-        <div className="home-container">
+        <div className="farm-container">
             <div className="main-content">
                 <img src={boarImage} alt="Boar" className="boar-image" />
                 <div className="points">+15</div>
@@ -18,4 +19,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Farm;
