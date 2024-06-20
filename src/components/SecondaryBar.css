@@ -1,4 +1,4 @@
-/* src/components/SecondaryBar.css */
+/* SecondaryBar.css */
 
 .secondary-bar {
     display: flex;
@@ -9,21 +9,21 @@
     padding: 10px;
     position: fixed;
     top: 50px; /* Adjust this if necessary */
-    left: 0;  /* Ensure it starts from the left edge */
-    right: 0;  /* Ensure it stretches to the right edge */
-    width: calc(100% - 20px); /* Adjust this if necessary */
+    width: 100%;
     z-index: 999;
     box-sizing: border-box; /* Додаємо це, щоб врахувати padding в ширину */
+    left: 0; /* Встановити відступ зліва */
+    right: 0; /* Встановити відступ справа */
 }
 
-.nav-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.nav-icon {
+.secondary-bar .home-icon {
     width: 30px;
     height: 30px;
-    margin: 0 5px;  /* Відступи з обох боків */
+    margin-left: 10px;
+}
+
+.secondary-bar .friends-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
 }
