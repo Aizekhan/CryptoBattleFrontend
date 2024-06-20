@@ -11,12 +11,12 @@
     z-index: 1000;
 }
 
-.user-info, .wallet-info {
+.user-info, .binance-info, .friends-info {
     display: flex;
     align-items: center;
 }
 
-.user-info img, .wallet-info img {
+.user-icon, .binance-icon, .wallet-icon, .friends-icon {
     width: 24px;
     height: 24px;
     margin-right: 10px;

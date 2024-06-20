@@ -1,9 +1,10 @@
-import React, { useState } from 'react'; // Видалено useEffect
+import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home';
 import TopBar from './components/TopBar';
 import NavigationBar from './components/NavigationBar';
+import StatsBar from './components/StatsBar';
 
 function App() {
     const [userInfo] = useState({
@@ -17,12 +18,11 @@ function App() {
     return (
         <Router>
             <div className="app-container">
-                <TopBar 
-                    username={userInfo.username}
-                    level={userInfo.level}
+                <TopBar username={userInfo.username} />
+                <StatsBar 
                     tapIncome={userInfo.tapIncome}
+                    level={userInfo.level}
                     hourlyIncome={userInfo.hourlyIncome}
-                    balance={userInfo.balance}
                 />
                 <nav className="nav-bar">
                     <Link to="/">Home</Link>

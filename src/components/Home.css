@@ -25,7 +25,18 @@
 .boar-image {
     width: 200px;
     height: auto;
-    /* Інші стилі */
+}
+
+.balance {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 1.5em;
+    color: #444;
+}
+
+.balance-icon {
+    margin-right: 5px;
 }
 
 .footer {
