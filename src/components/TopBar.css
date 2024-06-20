@@ -1,10 +1,11 @@
+/* TopBar.css */
 .top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #333;
-    padding: 10px;
     color: white;
+    padding: 10px;
     position: fixed;
     top: 0;
     width: 100%;
@@ -16,23 +17,23 @@
     align-items: center;
 }
 
-.user-icon {
+.user-info img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.level {
+    display: flex;
+    align-items: center;
+}
+
+.level img {
     width: 24px;
     height: 24px;
     margin-right: 5px;
 }
 
-.username {
-    font-size: 1.2em;
-}
-
-.icon-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.icon-bar img {
+.wallet-icon {
     width: 24px;
-    height: 24px;
-}
+    height: 24px
