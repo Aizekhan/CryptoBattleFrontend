@@ -1,3 +1,4 @@
+/* TopBar.css */
 .top-bar {
     display: flex;
     flex-direction: column;
@@ -31,22 +32,6 @@
     font-size: 1.2em;
 }
 
-.level-info {
-    display: flex;
-    align-items: center;
-    margin-left: 10px;
-}
-
-.level-icon {
-    width: 24px;
-    height: 24px;
-    margin-right: 5px;
-}
-
-.level {
-    font-size: 1.2em;
-}
-
 .icon-bar {
     display: flex;
     align-items: center;
@@ -72,12 +57,11 @@
     margin: 0 10px;
 }
 
-.friends-icon {
-    width: 24px;
-    height: 24px;
-    margin-bottom: 5px;
-}
-
 .value {
     font-weight: bold;
+}
+
+.level-icon, .friends-icon {
+    width: 48px; /* Adjusting to twice the original size */
+    height: 48px; /* Adjusting to twice the original size */
 }
