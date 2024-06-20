@@ -13,6 +13,9 @@
 }
 
 .secondary-bar img {
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
+margin-bottom: 5px;
+ margin-left: 5px;  /* Відступ з лівого боку */
+    margin-right: 5px; /* Відступ з правого боку */
 }
