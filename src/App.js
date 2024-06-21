@@ -5,7 +5,7 @@ import jwt_decode from 'jwt-decode';
 import MainLayout from './components/Panels/MainLayout';
 import './App.css';
 import { useUserStats, UserStatsProvider } from './components/UserStatsContext';
-import Login from './components/Pages/Login'; // Імпорт компонента Login
+import Login from './components/Login'; // Оновлений імпорт
 
 import Farm from './components/Pages/Farm';
 import Mines from './components/Pages/Mines';
