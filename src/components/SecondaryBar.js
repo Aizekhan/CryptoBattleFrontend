@@ -10,11 +10,11 @@ const SecondaryBar = () => {
         <div className="secondary-bar">
             <Link to="/home" className="nav-button">
                 <img src={homeIcon} alt="Home" className="nav-icon" />
-                <div>Home</div>
+                <span>Home</span>
             </Link>
             <Link to="/friends" className="nav-button">
                 <img src={friendsIcon} alt="Friends" className="nav-icon" />
-                <div>Friends</div>
+                <span>Friends</span>
             </Link>
         </div>
     );
