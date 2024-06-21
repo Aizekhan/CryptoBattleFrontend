@@ -1,9 +1,8 @@
-// src/components/Panels/SecondaryBar.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 import homeIcon from '../../assets/images/home-icon.png';
-import friendsIcon from '../../assets/images/friends.png';
-import pickaxeIcon from '../../assets/images/pickaxe-icon.png'; // Імпорт зображення кірки
+import friendsIcon from '../../assets/images/friends-icon.png';
+import pickaxeIcon from '../../assets/images/pickaxe-icon.png';
 import { useUserStats } from '../UserStatsContext';
 import './SecondaryBar.css';
 
