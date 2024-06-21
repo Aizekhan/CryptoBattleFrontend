@@ -1,11 +1,11 @@
 // src/components/Panels/NavigationBar.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import farmIcon from '../assets/images/farm-icon.png';
-import minesIcon from '../assets/images/mines-icon.png';
-import battleIcon from '../assets/images/battle-icon.png';
-import questsIcon from '../assets/images/quests-icon.png';
-import heroIcon from '../assets/images/hero-icon.png';
+import farmIcon from '../../assets/images/farm-icon.png';
+import minesIcon from '../../assets/images/mines-icon.png';
+import battleIcon from '../../assets/images/battle-icon.png';
+import questsIcon from '../../assets/images/quests-icon.png';
+import heroIcon from '../../assets/images/hero-icon.png';
 import './NavigationBar.css';
 
 const NavigationBar = () => {

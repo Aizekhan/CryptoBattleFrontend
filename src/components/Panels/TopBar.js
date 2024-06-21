@@ -1,8 +1,8 @@
 // src/components/Panels/TopBar.js
 import React from 'react';
-import userIcon from '../assets/images/user-icon.png';
-import levelIcon from '../assets/images/level-icon.png';
-import walletIcon from '../assets/images/wallet-icon.png';
+import userIcon from '../../assets/images/user-icon.png';
+import levelIcon from '../../assets/images/level-icon.png';
+import walletIcon from '../../assets/images/wallet-icon.png';
 import { useUserStats } from '../UserStatsContext';
 import './TopBar.css';
 
