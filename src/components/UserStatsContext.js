@@ -11,9 +11,9 @@ export const UserStatsProvider = ({ children }) => {
     const [userStats, setUserStats] = useState({
         username: '',
         level: 0,
-        tapIncome: 0,
-        hourlyIncome: 0,
-        balance: 0,
+        tapIncome: 1,
+        hourlyIncome: 10000,
+        balance: 1000000,
     });
 
     const updateUserStats = (stats) => {
