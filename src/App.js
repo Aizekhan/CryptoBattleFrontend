@@ -1,6 +1,6 @@
 // src/App.js
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Farm from './components/Pages/Farm';
 import Mines from './components/Pages/Mines';
@@ -13,25 +13,19 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import MainLayout from './components/Panels/MainLayout';
 import './App.css';
+import { useUserStats } from './components/UserStatsContext';
 
 function App() {
-    const [userStats, setUserStats] = useState({
-        username: '',
-        level: 0,
-        tapIncome: 0,
-        hourlyIncome: 0,
-        balance: 0,
-    });
+    const { updateUserStats } = useUserStats();
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const token = urlParams.get('token');
         if (token) {
             const decoded = jwt_decode(token);
-            setUserStats((prevState) => ({
-                ...prevState,
-                username: decoded.username,
-            }));
+            updateUserStats({
+                username: decoded.username
+            });
 
             localStorage.setItem('authToken', token);
 
@@ -42,19 +36,18 @@ function App() {
                     },
                 })
                 .then((response) => {
-                    setUserStats((prevState) => ({
-                        ...prevState,
+                    updateUserStats({
                         level: response.data.level,
                         tapIncome: response.data.tapIncome,
                         hourlyIncome: response.data.hourlyIncome,
                         balance: response.data.balance,
-                    }));
+                    });
                 })
                 .catch((error) => {
                     console.error('Error fetching user data:', error);
                 });
         }
-    }, []);
+    }, [updateUserStats]);
 
     return (
         <Router>

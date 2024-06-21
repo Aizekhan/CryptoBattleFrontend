@@ -1,4 +1,5 @@
 // src/components/Panels/MainLayout.js
+
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import TopBar from './TopBar';
@@ -11,12 +12,18 @@ const MainLayout = () => {
     return (
         <UserStatsProvider>
             <div className="main-layout">
-                <TopBar />
-                <SecondaryBar />
+                <div className="top-bar">
+                    <TopBar />
+                </div>
+                <div className="secondary-bar">
+                    <SecondaryBar />
+                </div>
                 <div className="content">
                     <Outlet />
                 </div>
-                <NavigationBar />
+                <div className="navigation-bar">
+                    <NavigationBar />
+                </div>
             </div>
         </UserStatsProvider>
     );
