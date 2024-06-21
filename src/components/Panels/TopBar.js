@@ -3,11 +3,15 @@ import userIcon from '../../assets/images/user-icon.png';
 import walletIcon from '../../assets/images/wallet-icon.png';
 import coinImage from '../../assets/images/coin.png';
 import { useUserStats } from '../UserStatsContext';
-import './MainLayout.css'; // Оновлення стилів, щоб використовувати MainLayout.css
+import './MainLayout.css';
 
 const TopBar = () => {
     const { userStats } = useUserStats();
     const [balance, setBalance] = useState(userStats.balance);
+
+    useEffect(() => {
+        setBalance(userStats.balance);
+    }, [userStats.balance]);
 
     useEffect(() => {
         const interval = setInterval(() => {

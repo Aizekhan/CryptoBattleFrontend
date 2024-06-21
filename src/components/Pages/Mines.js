@@ -23,11 +23,10 @@ const Mines = () => {
             if (userStats.balance >= selectedMineData.cost) {
                 updateUserStats({
                     ...userStats,
-                    balance: userStats.balance - selectedMineData.cost,
                     hourlyIncome: userStats.hourlyIncome + selectedMineData.income,
                 });
-                selectedMineData.locked = false; // Розблокування шахти після покупки
                 spendBalance(selectedMineData.cost); // Віднімання вартості шахти від балансу
+                selectedMineData.locked = false; // Розблокування шахти після покупки
             } else {
                 alert('Недостатньо золота для покупки шахти!');
             }
@@ -41,9 +40,9 @@ const Mines = () => {
         if (userStats.balance >= selectedMineData.upgradeCost) {
             updateUserStats({
                 ...userStats,
-                balance: userStats.balance - selectedMineData.upgradeCost,
                 hourlyIncome: userStats.hourlyIncome + selectedMineData.income,
             });
+            spendBalance(selectedMineData.upgradeCost); // Віднімання вартості апгрейду від балансу
             selectedMineData.level += 1; // Збільшення рівня шахти
             selectedMineData.income += selectedMineData.income; // Оновлення доходу шахти
             selectedMineData.cost += selectedMineData.upgradeCost; // Оновлення вартості шахти
@@ -53,7 +52,6 @@ const Mines = () => {
                 minesData[selectedMine + 1].locked = false; // Розблокування наступної шахти
             }
 
-            spendBalance(selectedMineData.upgradeCost); // Віднімання вартості апгрейду від балансу
             setSelectedMine(null); // Закрити панель після апгрейду
         } else {
             alert('Недостатньо золота для апгрейду!');
