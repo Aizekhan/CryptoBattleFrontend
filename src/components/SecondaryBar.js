@@ -1,5 +1,3 @@
-// src/components/SecondaryBar.js
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import homeIcon from '../assets/images/home-icon.png';
@@ -10,12 +8,12 @@ const SecondaryBar = () => {
     return (
         <div className="secondary-bar">
             <Link to="/home" className="nav-button">
-                <img src={homeIcon} alt="Home" className="nav-icon" />
-                <span>Home</span>
+                <img src={homeIcon} alt="Home" className="home-icon" />
+                <div>Home</div>
             </Link>
             <Link to="/friends" className="nav-button">
-                <img src={friendsIcon} alt="Friends" className="nav-icon" />
-                <span>Friends</span>
+                <img src={friendsIcon} alt="Friends" className="friends-icon" />
+                <div>Friends</div>
             </Link>
         </div>
     );
