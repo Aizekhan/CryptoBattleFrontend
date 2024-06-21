@@ -1,3 +1,5 @@
+// src/components/Panels/UpgradePanel.js
+
 import React from 'react';
 import './UpgradePanel.css';
 

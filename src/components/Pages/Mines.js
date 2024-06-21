@@ -24,8 +24,8 @@ const Mines = () => {
         }
     };
 
-    const handleUpgrade = () => {
-        const selectedMineData = minesData[selectedMine];
+    const handleUpgrade = (mineIndex) => {
+        const selectedMineData = minesData[mineIndex];
         if (userStats.balance >= selectedMineData.upgradeCost) {
             updateUserStats({
                 ...userStats,
@@ -43,7 +43,7 @@ const Mines = () => {
             <h1>Mines Page</h1>
             <div className="mines-grid">
                 {minesData.map((mine, index) => (
-                    <div key={index} className={`mine-item ${mine.locked ? 'locked' : ''}`} onClick={() => handleBuyMine(index)}>
+                    <div key={index} className={`mine-item ${mine.locked ? 'locked' : ''}`} onClick={() => !mine.locked ? handleBuyMine(index) : setSelectedMine(index)}>
                         <img src={mine.locked ? lockImage : mine.img} alt={`Mine ${mine.id}`} />
                         <div className="mine-cost">Вартість: {mine.cost} золота</div>
                         <div className="mine-income">+{mine.income} золота/год</div>
@@ -55,7 +55,7 @@ const Mines = () => {
             {selectedMine !== null && (
                 <UpgradePanel 
                     mine={minesData[selectedMine]} 
-                    onUpgrade={handleUpgrade} 
+                    onUpgrade={() => handleUpgrade(selectedMine)} 
                     onClose={() => setSelectedMine(null)} 
                 />
             )}
