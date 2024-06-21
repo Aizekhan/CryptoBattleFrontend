@@ -12,7 +12,6 @@ import Battle from './components/Pages/Battle';
 import Quests from './components/Pages/Quests';
 import Hero from './components/Pages/Hero';
 import Friends from './components/Pages/Friends';
-import Login from './components/Login'; // Додайте компонент Login, якщо у вас є
 
 const App = () => {
     const { updateUserStats } = useUserStats();
@@ -61,7 +60,6 @@ const App = () => {
                     <Route path="hero" element={<Hero />} />
                     <Route path="friends" element={<Friends />} />
                 </Route>
-                <Route path="login" element={<Login />} />
             </Routes>
         </Router>
     );
