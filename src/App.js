@@ -1,13 +1,12 @@
-// src/App.js
-
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
-import './App.css';
-
-import { useUserStats } from './components/UserStatsContext';
 import MainLayout from './components/Panels/MainLayout';
+import './App.css';
+import { useUserStats, UserStatsProvider } from './components/UserStatsContext';
+import Login from './components/Login'; // Імпорт компонента Login
+
 import Farm from './components/Pages/Farm';
 import Mines from './components/Pages/Mines';
 import Battle from './components/Pages/Battle';
@@ -16,18 +15,12 @@ import Hero from './components/Pages/Hero';
 import Home from './components/Pages/Home';
 import Friends from './components/Pages/Friends';
 
-
-
-
-
-
-
 function App() {
     const { updateUserStats } = useUserStats();
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get('token');
+        const token = urlParams.get('token') || localStorage.getItem('authToken');
         if (token) {
             const decoded = jwt_decode(token);
             updateUserStats({
@@ -59,7 +52,8 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<MainLayout />}>
+                <Route path="/login" element={<Login />} /> {/* Використання компонента Login */}
+                <Route path="/" element={token ? <MainLayout /> : <Login />}>
                     <Route index element={<Home />} />
                     <Route path="farm" element={<Farm />} />
                     <Route path="mines" element={<Mines />} />
@@ -73,4 +67,10 @@ function App() {
     );
 }
 
-export default App;
+export default function AppWrapper() {
+    return (
+        <UserStatsProvider>
+            <App />
+        </UserStatsProvider>
+    );
+}
