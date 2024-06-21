@@ -1,8 +1,8 @@
 // src/components/Panels/TopBar.js
 import React from 'react';
 import userIcon from '../../assets/images/user-icon.png';
-import levelIcon from '../../assets/images/level-icon.png';
 import walletIcon from '../../assets/images/wallet-icon.png';
+import coinImage from '../../assets/coin.png'; // Імпорт зображення монети
 import { useUserStats } from '../UserStatsContext';
 import './TopBar.css';
 
@@ -15,13 +15,12 @@ const TopBar = () => {
                 <img src={userIcon} alt="User" />
                 <span>{userStats.username}</span>
             </div>
-            <div className="level-info">
-                <img src={levelIcon} alt="Level" />
-                <span>Level: {userStats.level}</span>
-            </div>
             <div className="balance-info">
+                <img src={coinImage} alt="Coin" className="coin-icon" />
+                <span>{Math.floor(userStats.balance)} gold</span>
+            </div>
+            <div className="wallet-info">
                 <img src={walletIcon} alt="Wallet" />
-                <span>{userStats.balance} gold</span>
             </div>
         </div>
     );

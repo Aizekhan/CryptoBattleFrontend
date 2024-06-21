@@ -1,32 +1,21 @@
-// src/components/Panels/MainLayout.js
-
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import TopBar from './TopBar';
-import NavigationBar from './NavigationBar';
 import SecondaryBar from './SecondaryBar';
-import { UserStatsProvider } from '../UserStatsContext';
+import NavigationBar from './NavigationBar';
 import './MainLayout.css';
 
 const MainLayout = () => {
     return (
-        <UserStatsProvider>
-            <div className="main-layout">
-                <div className="top-bar">
-                    <TopBar />
-                </div>
-                <div className="secondary-bar">
-                    <SecondaryBar />
-                </div>
-                <div className="content">
-                    <Outlet />
-                </div>
-                <div className="navigation-bar">
-                    <NavigationBar />
-                </div>
+        <div className="main-layout">
+            <TopBar />
+            <SecondaryBar />
+            <div className="content">
+                <Outlet />
             </div>
-        </UserStatsProvider>
+            <NavigationBar />
+        </div>
     );
-}
+};
 
 export default MainLayout;

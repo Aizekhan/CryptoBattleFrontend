@@ -1,24 +1,52 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
+// Створення контексту
 const UserStatsContext = createContext();
 
+// Експорт функції для використання контексту
+export const useUserStats = () => useContext(UserStatsContext);
+
+// Провайдер контексту
 export const UserStatsProvider = ({ children }) => {
     const [userStats, setUserStats] = useState({
-        username: 'User',
+        username: '',
         level: 0,
+        tapIncome: 0,
+        hourlyIncome: 0,
         balance: 0,
-        hourlyIncome: 10
     });
 
-    const updateUserStats = (newStats) => {
-        setUserStats((prevStats) => ({ ...prevStats, ...newStats }));
+    const updateUserStats = (stats) => {
+        setUserStats((prevStats) => ({
+            ...prevStats,
+            ...stats,
+        }));
     };
 
+    const incrementBalance = () => {
+        setUserStats((prevStats) => ({
+            ...prevStats,
+            balance: prevStats.balance + prevStats.hourlyIncome / 3600
+        }));
+    };
+
+    const spendBalance = (amount) => {
+        setUserStats((prevStats) => ({
+            ...prevStats,
+            balance: prevStats.balance - amount
+        }));
+    };
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            incrementBalance();
+        }, 1000);
+        return () => clearInterval(interval);
+    }, []);
+
     return (
-        <UserStatsContext.Provider value={{ userStats, updateUserStats }}>
+        <UserStatsContext.Provider value={{ userStats, updateUserStats, spendBalance }}>
             {children}
         </UserStatsContext.Provider>
     );
 };
-
-export const useUserStats = () => useContext(UserStatsContext);

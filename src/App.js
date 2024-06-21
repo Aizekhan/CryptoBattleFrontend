@@ -2,6 +2,12 @@
 
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
+import './App.css';
+
+import { useUserStats } from './components/UserStatsContext';
+import MainLayout from './components/Panels/MainLayout';
 import Farm from './components/Pages/Farm';
 import Mines from './components/Pages/Mines';
 import Battle from './components/Pages/Battle';
@@ -9,11 +15,12 @@ import Quests from './components/Pages/Quests';
 import Hero from './components/Pages/Hero';
 import Home from './components/Pages/Home';
 import Friends from './components/Pages/Friends';
-import axios from 'axios';
-import jwt_decode from 'jwt-decode';
-import MainLayout from './components/Panels/MainLayout';
-import './App.css';
-import { useUserStats } from './components/UserStatsContext';
+
+
+
+
+
+
 
 function App() {
     const { updateUserStats } = useUserStats();
