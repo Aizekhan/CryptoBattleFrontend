@@ -5,7 +5,7 @@ import { useUserStats } from '../UserStatsContext';
 import UpgradePanel from '../Panels/UpgradePanel';
 
 const Mines = () => {
-    const { userStats, updateUserStats } = useUserStats();
+    const { userStats, updateUserStats, spendBalance } = useUserStats();
     const [selectedMine, setSelectedMine] = useState(null);
 
     const handleMineClick = (mineIndex) => {
@@ -27,6 +27,7 @@ const Mines = () => {
                     hourlyIncome: userStats.hourlyIncome + selectedMineData.income,
                 });
                 selectedMineData.locked = false; // Розблокування шахти після покупки
+                spendBalance(selectedMineData.cost); // Віднімання вартості шахти від балансу
             } else {
                 alert('Недостатньо золота для покупки шахти!');
             }
@@ -52,6 +53,7 @@ const Mines = () => {
                 minesData[selectedMine + 1].locked = false; // Розблокування наступної шахти
             }
 
+            spendBalance(selectedMineData.upgradeCost); // Віднімання вартості апгрейду від балансу
             setSelectedMine(null); // Закрити панель після апгрейду
         } else {
             alert('Недостатньо золота для апгрейду!');
