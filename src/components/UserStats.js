@@ -1,4 +1,3 @@
-// src/components/UserStats.js
 import React from 'react';
 import './UserStats.css';
 import levelIcon from '../assets/images/level-icon.png';
@@ -7,15 +6,15 @@ import walletIcon from '../assets/images/wallet-icon.png';
 const UserStats = ({ level, balance, hourlyIncome }) => {
     return (
         <div className="user-stats">
-            <div className="stat-item">
-                <img src={levelIcon} alt="Level" />
+            <div className="level">
+                <img src={levelIcon} alt="Level Icon" />
                 <span>Level: {level}</span>
             </div>
-            <div className="stat-item">
-                <img src={walletIcon} alt="Balance" />
+            <div className="balance">
+                <img src={walletIcon} alt="Wallet Icon" />
                 <span>{balance} gold</span>
             </div>
-            <div className="stat-item">
+            <div className="income">
                 <span>Income: {hourlyIncome} gold/hour</span>
             </div>
         </div>

@@ -2,14 +2,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
-    padding: 10px;
-    position: fixed;
-    top: 0;
-    width: calc(100% - 20px); /* Відняти padding з обох боків */
+    background-color: #444;
+    color: white;
+    padding: 5px; /* Зменшити padding */
+    width: 100%;
     z-index: 1000;
-    box-sizing: border-box; /* Додаємо це, щоб врахувати padding в ширину */
-    margin: 10 10px; /* Встановити відступ зліва і справа */
+    box-sizing: border-box;
 }
 
 .user-info {
