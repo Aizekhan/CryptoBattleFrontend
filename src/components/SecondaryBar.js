@@ -1,4 +1,5 @@
 // src/components/SecondaryBar.js
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import homeIcon from '../assets/images/home-icon.png';

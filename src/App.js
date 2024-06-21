@@ -12,21 +12,17 @@ import Friends from './components/Pages/Friends';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import TopBar from './components/TopBar';
-import NavigationBar from './components/NavigationBar';
 import SecondaryBar from './components/SecondaryBar';
-import UserStats from './components/UserStats';
+import NavigationBar from './components/NavigationBar';
 import './App.css';
 
 function App() {
-    const [userInfo, setUserInfo] = useState({
+    const [userStats, setUserStats] = useState({
         username: '',
-        level: 1,
+        level: 0,
         tapIncome: 0,
         hourlyIncome: 0,
-        balance: 1000,
-        heroes: [],
-        currentHero: null,
-        mines: []
+        balance: 0,
     });
 
     useEffect(() => {
@@ -34,53 +30,43 @@ function App() {
         const token = urlParams.get('token');
         if (token) {
             const decoded = jwt_decode(token);
-            setUserInfo(prevState => ({
+            setUserStats((prevState) => ({
                 ...prevState,
-                username: decoded.username
+                username: decoded.username,
             }));
 
             localStorage.setItem('authToken', token);
 
-            axios.get(`/api/users/${decoded.id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            }).then(response => {
-                setUserInfo(prevState => ({
-                    ...prevState,
-                    level: response.data.level,
-                    tapIncome: response.data.tapIncome,
-                    hourlyIncome: response.data.hourlyIncome,
-                    balance: response.data.balance,
-                    heroes: response.data.heroes,
-                    currentHero: response.data.currentHero,
-                    mines: response.data.mines
-                }));
-            }).catch(error => {
-                console.error('Error fetching user data:', error);
-            });
+            axios
+                .get(`/api/users/${decoded.id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+                .then((response) => {
+                    setUserStats((prevState) => ({
+                        ...prevState,
+                        level: response.data.level,
+                        tapIncome: response.data.tapIncome,
+                        hourlyIncome: response.data.hourlyIncome,
+                        balance: response.data.balance,
+                    }));
+                })
+                .catch((error) => {
+                    console.error('Error fetching user data:', error);
+                });
         }
     }, []);
 
     return (
         <Router>
             <div className="app-container">
-                <TopBar 
-                    username={userInfo.username}
-                    level={userInfo.level}
-                    balance={userInfo.balance}
-                />
-                <UserStats 
-                    username={userInfo.username}
-                    level={userInfo.level}
-                    hourlyIncome={userInfo.hourlyIncome}
-                    balance={userInfo.balance}
-                />
+                <TopBar userStats={userStats} />
                 <SecondaryBar />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/farm" element={<Farm />} />
-                    <Route path="/mines" element={<Mines balance={userInfo.balance} setBalance={(newBalance) => setUserInfo(prevState => ({ ...prevState, balance: newBalance }))} />} />
+                    <Route path="/mines" element={<Mines />} />
                     <Route path="/battle" element={<Battle />} />
                     <Route path="/quests" element={<Quests />} />
                     <Route path="/hero" element={<Hero />} />

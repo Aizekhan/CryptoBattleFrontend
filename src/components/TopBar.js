@@ -1,17 +1,26 @@
 // src/components/TopBar.js
-import React from 'react';
-import './TopBar.css';
-import UserStats from './UserStats'; // Імпортуємо UserStats
-import userIcon from '../assets/images/user-icon.png';
 
-const TopBar = ({ username, level, balance, hourlyIncome }) => {
+import React from 'react';
+import userIcon from '../assets/images/user-icon.png';
+import levelIcon from '../assets/images/level-icon.png';
+import walletIcon from '../assets/images/wallet-icon.png';
+import './TopBar.css';
+
+const TopBar = ({ userStats }) => {
     return (
         <div className="top-bar">
             <div className="user-info">
                 <img src={userIcon} alt="User" />
-                <span>{username}</span>
+                <span>{userStats.username}</span>
             </div>
-            <UserStats level={level} balance={balance} hourlyIncome={hourlyIncome} /> {/* Використовуємо UserStats */}
+            <div className="level-info">
+                <img src={levelIcon} alt="Level" />
+                <span>Level: {userStats.level}</span>
+            </div>
+            <div className="balance-info">
+                <img src={walletIcon} alt="Wallet" />
+                <span>{userStats.balance} gold</span>
+            </div>
         </div>
     );
 };
