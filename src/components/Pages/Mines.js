@@ -10,13 +10,28 @@ const Mines = () => {
     const { userStats, updateUserStats } = useUserStats();
     const [selectedMine, setSelectedMine] = useState(null);
 
+    const handleBuyMine = (mineIndex) => {
+        const selectedMineData = minesData[mineIndex];
+        if (userStats.balance >= selectedMineData.cost) {
+            updateUserStats({
+                ...userStats,
+                balance: userStats.balance - selectedMineData.cost,
+                hourlyIncome: userStats.hourlyIncome + selectedMineData.income, // Додавання доходу від шахти
+            });
+            minesData[mineIndex].locked = false; // Розблокування шахти після покупки
+        } else {
+            alert('Недостатньо золота для покупки шахти!');
+        }
+    };
+
     const handleUpgrade = () => {
         const selectedMineData = minesData[selectedMine];
         if (userStats.balance >= selectedMineData.upgradeCost) {
             updateUserStats({
-                balance: userStats.balance - selectedMineData.upgradeCost
+                ...userStats,
+                balance: userStats.balance - selectedMineData.upgradeCost,
+                hourlyIncome: userStats.hourlyIncome + selectedMineData.income, // Додавання доходу від шахти
             });
-            // Ваш функціонал для апгрейду шахти тут
             setSelectedMine(null); // Закрити панель після апгрейду
         } else {
             alert('Недостатньо золота для апгрейду!');
@@ -28,10 +43,10 @@ const Mines = () => {
             <h1>Mines Page</h1>
             <div className="mines-grid">
                 {minesData.map((mine, index) => (
-                    <div key={index} className={`mine-item ${mine.locked ? 'locked' : ''}`} onClick={() => !mine.locked && setSelectedMine(index)}>
+                    <div key={index} className={`mine-item ${mine.locked ? 'locked' : ''}`} onClick={() => !mine.locked && handleBuyMine(index)}>
                         <img src={mine.locked ? lockImage : mine.img} alt={`Mine ${mine.id}`} />
-                        <div className="mine-cost">Cost: {mine.cost} gold</div>
-                        <div className="mine-income">+{mine.income} gold/hour</div>
+                        <div className="mine-cost">Вартість: {mine.cost} золота</div>
+                        <div className="mine-income">+{mine.income} золота/год</div>
                         <div className="mine-level">lvl: {mine.level}</div>
                     </div>
                 ))}
