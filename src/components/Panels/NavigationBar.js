@@ -5,7 +5,6 @@ import minesIcon from '../../assets/images/mines-icon.png';
 import battleIcon from '../../assets/images/battle-icon.png';
 import questsIcon from '../../assets/images/quests-icon.png';
 import heroIcon from '../../assets/images/hero-icon.png';
-import './NavigationBar.css';
 
 const NavigationBar = () => {
     return (

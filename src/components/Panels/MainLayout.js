@@ -1,3 +1,4 @@
+// src/components/Panels/MainLayout.js
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import TopBar from './TopBar';

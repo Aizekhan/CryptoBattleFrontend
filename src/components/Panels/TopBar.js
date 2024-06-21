@@ -3,7 +3,6 @@ import userIcon from '../../assets/images/user-icon.png';
 import walletIcon from '../../assets/images/wallet-icon.png';
 import coinImage from '../../assets/images/coin.png';
 import { useUserStats } from '../UserStatsContext';
-import './TopBar.css';
 
 const TopBar = () => {
     const { userStats } = useUserStats();
