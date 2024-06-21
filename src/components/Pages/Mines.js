@@ -1,3 +1,5 @@
+// src/components/Pages/Mines.js
+
 import React, { useState } from 'react';
 import './Mines.css';
 import { minesData, lockImage } from '../../data/minesData';
@@ -41,7 +43,7 @@ const Mines = () => {
             <h1>Mines Page</h1>
             <div className="mines-grid">
                 {minesData.map((mine, index) => (
-                    <div key={index} className={`mine-item ${mine.locked ? 'locked' : ''}`} onClick={() => !mine.locked && setSelectedMine(index)}>
+                    <div key={index} className={`mine-item ${mine.locked ? 'locked' : ''}`} onClick={() => handleBuyMine(index)}>
                         <img src={mine.locked ? lockImage : mine.img} alt={`Mine ${mine.id}`} />
                         <div className="mine-cost">Вартість: {mine.cost} золота</div>
                         <div className="mine-income">+{mine.income} золота/год</div>
