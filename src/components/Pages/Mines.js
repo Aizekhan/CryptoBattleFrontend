@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import './Mines.css';
 import { minesData, lockImage } from '../../data/minesData';
 import { useUserStats } from '../UserStatsContext';
-import UpgradePanel from '../../Panels/UpgradePanel';
+import UpgradePanel from '../Panels/UpgradePanel';
 
 const Mines = () => {
     const { userStats, updateUserStats } = useUserStats();
