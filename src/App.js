@@ -1,24 +1,26 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import MainLayout from './components/Panels/MainLayout';
-import { useUserStats } from './components/UserStatsContext';
-import jwt_decode from 'jwt-decode';
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
+import MainLayout from './components/Panels/MainLayout';
+import './App.css';
+import { useUserStats, UserStatsProvider } from './components/UserStatsContext';
+import Login from './components/Login';
 
-import Home from './components/Pages/Home';
 import Farm from './components/Pages/Farm';
 import Mines from './components/Pages/Mines';
 import Battle from './components/Pages/Battle';
 import Quests from './components/Pages/Quests';
 import Hero from './components/Pages/Hero';
+import Home from './components/Pages/Home';
 import Friends from './components/Pages/Friends';
 
-const App = () => {
+function App() {
     const { updateUserStats } = useUserStats();
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get('token');
+        const token = urlParams.get('token') || localStorage.getItem('authToken');
         if (token) {
             const decoded = jwt_decode(token);
             updateUserStats({
@@ -50,8 +52,10 @@ const App = () => {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<MainLayout />}>
+                <Route path="/login" element={<Login />} />
+                <Route path="/" element={localStorage.getItem('authToken') ? <MainLayout /> : <Login />}>
                     <Route index element={<Home />} />
+                    <Route path="home" element={<Home />} />
                     <Route path="farm" element={<Farm />} />
                     <Route path="mines" element={<Mines />} />
                     <Route path="battle" element={<Battle />} />
@@ -62,6 +66,12 @@ const App = () => {
             </Routes>
         </Router>
     );
-};
+}
 
-export default App;
+export default function AppWrapper() {
+    return (
+        <UserStatsProvider>
+            <App />
+        </UserStatsProvider>
+    );
+}
