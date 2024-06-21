@@ -52,7 +52,6 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<MainLayout />}>
                     <Route index element={<Home />} />
-                    <Route path="home" element={<Home />} />
                     <Route path="farm" element={<Farm />} />
                     <Route path="mines" element={<Mines />} />
                     <Route path="battle" element={<Battle />} />
