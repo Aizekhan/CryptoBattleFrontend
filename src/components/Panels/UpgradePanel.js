@@ -11,6 +11,7 @@ const UpgradePanel = ({ mine, onUpgrade, onClose }) => {
                 <img src={mine.img} alt={`Mine ${mine.id}`} />
                 <div>Вартість апгрейду: {mine.upgradeCost} золота</div>
                 <div>Дохід: +{mine.income} золота/год</div>
+                <div>Поточний рівень: {mine.level}</div>
             </div>
             <button onClick={onUpgrade}>Upgrade</button>
             <button onClick={onClose}>Close</button>

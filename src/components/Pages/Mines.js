@@ -24,14 +24,17 @@ const Mines = () => {
         }
     };
 
-    const handleUpgrade = (mineIndex) => {
-        const selectedMineData = minesData[mineIndex];
+    const handleUpgrade = () => {
+        const selectedMineData = minesData[selectedMine];
         if (userStats.balance >= selectedMineData.upgradeCost) {
             updateUserStats({
                 ...userStats,
                 balance: userStats.balance - selectedMineData.upgradeCost,
                 hourlyIncome: userStats.hourlyIncome + selectedMineData.income,
             });
+            minesData[selectedMine].level += 1; // Збільшення рівня шахти
+            minesData[selectedMine].income += selectedMineData.income; // Оновлення доходу шахти
+            minesData[selectedMine].cost += selectedMineData.upgradeCost; // Оновлення вартості шахти
             setSelectedMine(null); // Закрити панель після апгрейду
         } else {
             alert('Недостатньо золота для апгрейду!');
@@ -43,7 +46,7 @@ const Mines = () => {
             <h1>Mines Page</h1>
             <div className="mines-grid">
                 {minesData.map((mine, index) => (
-                    <div key={index} className={`mine-item ${mine.locked ? 'locked' : ''}`} onClick={() => !mine.locked ? handleBuyMine(index) : setSelectedMine(index)}>
+                    <div key={index} className={`mine-item ${mine.locked ? 'locked' : ''}`} onClick={() => !mine.locked && setSelectedMine(index)}>
                         <img src={mine.locked ? lockImage : mine.img} alt={`Mine ${mine.id}`} />
                         <div className="mine-cost">Вартість: {mine.cost} золота</div>
                         <div className="mine-income">+{mine.income} золота/год</div>
@@ -55,7 +58,7 @@ const Mines = () => {
             {selectedMine !== null && (
                 <UpgradePanel 
                     mine={minesData[selectedMine]} 
-                    onUpgrade={() => handleUpgrade(selectedMine)} 
+                    onUpgrade={handleUpgrade} 
                     onClose={() => setSelectedMine(null)} 
                 />
             )}
