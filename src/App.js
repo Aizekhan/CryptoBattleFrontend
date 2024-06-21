@@ -1,26 +1,25 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import axios from 'axios';
-import jwt_decode from 'jwt-decode';
 import MainLayout from './components/Panels/MainLayout';
-import './App.css';
-import { useUserStats, UserStatsProvider } from './components/UserStatsContext';
-import Login from './components/Login'; // Оновлений імпорт
+import { useUserStats } from './components/UserStatsContext';
+import jwt_decode from 'jwt-decode';
+import axios from 'axios';
 
+import Home from './components/Pages/Home';
 import Farm from './components/Pages/Farm';
 import Mines from './components/Pages/Mines';
 import Battle from './components/Pages/Battle';
 import Quests from './components/Pages/Quests';
 import Hero from './components/Pages/Hero';
-import Home from './components/Pages/Home';
 import Friends from './components/Pages/Friends';
+import Login from './components/Login'; // Додайте компонент Login, якщо у вас є
 
-function App() {
+const App = () => {
     const { updateUserStats } = useUserStats();
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get('token') || localStorage.getItem('authToken'); // Оголошення token
+        const token = urlParams.get('token');
         if (token) {
             const decoded = jwt_decode(token);
             updateUserStats({
@@ -52,9 +51,9 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/login" element={<Login />} /> {/* Використання компонента Login */}
-                <Route path="/" element={localStorage.getItem('authToken') ? <MainLayout /> : <Login />}> {/* Перевірка токена */}
+                <Route path="/" element={<MainLayout />}>
                     <Route index element={<Home />} />
+                    <Route path="home" element={<Home />} />
                     <Route path="farm" element={<Farm />} />
                     <Route path="mines" element={<Mines />} />
                     <Route path="battle" element={<Battle />} />
@@ -62,15 +61,10 @@ function App() {
                     <Route path="hero" element={<Hero />} />
                     <Route path="friends" element={<Friends />} />
                 </Route>
+                <Route path="login" element={<Login />} />
             </Routes>
         </Router>
     );
-}
+};
 
-export default function AppWrapper() {
-    return (
-        <UserStatsProvider>
-            <App />
-        </UserStatsProvider>
-    );
-}
+export default App;
