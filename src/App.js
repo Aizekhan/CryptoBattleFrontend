@@ -5,7 +5,7 @@ import jwt_decode from 'jwt-decode';
 import MainLayout from './components/Panels/MainLayout';
 import './App.css';
 import { useUserStats, UserStatsProvider } from './components/UserStatsContext';
-import Login from './components/Login'; // Імпорт компонента Login
+import Login from './components/Pages/Login'; // Імпорт компонента Login
 
 import Farm from './components/Pages/Farm';
 import Mines from './components/Pages/Mines';
@@ -20,7 +20,7 @@ function App() {
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get('token') || localStorage.getItem('authToken');
+        const token = urlParams.get('token') || localStorage.getItem('authToken'); // Оголошення token
         if (token) {
             const decoded = jwt_decode(token);
             updateUserStats({
@@ -53,7 +53,7 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/login" element={<Login />} /> {/* Використання компонента Login */}
-                <Route path="/" element={token ? <MainLayout /> : <Login />}>
+                <Route path="/" element={localStorage.getItem('authToken') ? <MainLayout /> : <Login />}> {/* Перевірка токена */}
                     <Route index element={<Home />} />
                     <Route path="farm" element={<Farm />} />
                     <Route path="mines" element={<Mines />} />
