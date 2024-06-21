@@ -1,5 +1,3 @@
-// src/components/Pages/Mines.js
-
 import React, { useState } from 'react';
 import './Mines.css';
 import { minesData, lockImage } from '../../data/minesData';
@@ -10,17 +8,30 @@ const Mines = () => {
     const { userStats, updateUserStats } = useUserStats();
     const [selectedMine, setSelectedMine] = useState(null);
 
-    const handleBuyMine = (mineIndex) => {
+    const handleMineClick = (mineIndex) => {
         const selectedMineData = minesData[mineIndex];
-        if (userStats.balance >= selectedMineData.cost) {
-            updateUserStats({
-                ...userStats,
-                balance: userStats.balance - selectedMineData.cost,
-                hourlyIncome: userStats.hourlyIncome + selectedMineData.income,
-            });
-            minesData[mineIndex].locked = false; // Розблокування шахти після покупки
+        
+        if (mineIndex > 0) {
+            const previousMineData = minesData[mineIndex - 1];
+            if (previousMineData.level < 3) {
+                alert('Попередня шахта повинна бути прокачана до 3 рівня перед відкриттям цієї шахти!');
+                return;
+            }
+        }
+
+        if (selectedMineData.locked) {
+            if (userStats.balance >= selectedMineData.cost) {
+                updateUserStats({
+                    ...userStats,
+                    balance: userStats.balance - selectedMineData.cost,
+                    hourlyIncome: userStats.hourlyIncome + selectedMineData.income,
+                });
+                selectedMineData.locked = false; // Розблокування шахти після покупки
+            } else {
+                alert('Недостатньо золота для покупки шахти!');
+            }
         } else {
-            alert('Недостатньо золота для покупки шахти!');
+            setSelectedMine(mineIndex); // Відкрити панель апгрейду
         }
     };
 
@@ -32,9 +43,9 @@ const Mines = () => {
                 balance: userStats.balance - selectedMineData.upgradeCost,
                 hourlyIncome: userStats.hourlyIncome + selectedMineData.income,
             });
-            minesData[selectedMine].level += 1; // Збільшення рівня шахти
-            minesData[selectedMine].income += selectedMineData.income; // Оновлення доходу шахти
-            minesData[selectedMine].cost += selectedMineData.upgradeCost; // Оновлення вартості шахти
+            selectedMineData.level += 1; // Збільшення рівня шахти
+            selectedMineData.income += selectedMineData.income; // Оновлення доходу шахти
+            selectedMineData.cost += selectedMineData.upgradeCost; // Оновлення вартості шахти
             setSelectedMine(null); // Закрити панель після апгрейду
         } else {
             alert('Недостатньо золота для апгрейду!');
@@ -46,7 +57,7 @@ const Mines = () => {
             <h1>Mines Page</h1>
             <div className="mines-grid">
                 {minesData.map((mine, index) => (
-                    <div key={index} className={`mine-item ${mine.locked ? 'locked' : ''}`} onClick={() => !mine.locked && setSelectedMine(index)}>
+                    <div key={index} className={`mine-item ${mine.locked ? 'locked' : ''}`} onClick={() => handleMineClick(index)}>
                         <img src={mine.locked ? lockImage : mine.img} alt={`Mine ${mine.id}`} />
                         <div className="mine-cost">Вартість: {mine.cost} золота</div>
                         <div className="mine-income">+{mine.income} золота/год</div>
