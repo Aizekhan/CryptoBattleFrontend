@@ -46,6 +46,12 @@ const Mines = () => {
             selectedMineData.level += 1; // Збільшення рівня шахти
             selectedMineData.income += selectedMineData.income; // Оновлення доходу шахти
             selectedMineData.cost += selectedMineData.upgradeCost; // Оновлення вартості шахти
+
+            // Перевірка рівня шахти для автоматичного розблокування наступної шахти
+            if (selectedMineData.level >= 3 && selectedMine < minesData.length - 1) {
+                minesData[selectedMine + 1].locked = false; // Розблокування наступної шахти
+            }
+
             setSelectedMine(null); // Закрити панель після апгрейду
         } else {
             alert('Недостатньо золота для апгрейду!');
