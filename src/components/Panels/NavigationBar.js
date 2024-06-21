@@ -1,4 +1,4 @@
-// src/components/NavigationBar.js
+// src/components/Panels/NavigationBar.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 import farmIcon from '../assets/images/farm-icon.png';

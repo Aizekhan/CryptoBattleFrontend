@@ -11,9 +11,7 @@ import Home from './components/Pages/Home';
 import Friends from './components/Pages/Friends';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
-import TopBar from './components/TopBar';
-import SecondaryBar from './components/SecondaryBar';
-import NavigationBar from './components/NavigationBar';
+import MainLayout from './components/Panels/MainLayout';
 import './App.css';
 
 function App() {
@@ -60,20 +58,17 @@ function App() {
 
     return (
         <Router>
-            <div className="app-container">
-                <TopBar userStats={userStats} />
-                <SecondaryBar />
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/farm" element={<Farm />} />
-                    <Route path="/mines" element={<Mines />} />
-                    <Route path="/battle" element={<Battle />} />
-                    <Route path="/quests" element={<Quests />} />
-                    <Route path="/hero" element={<Hero />} />
-                    <Route path="/friends" element={<Friends />} />
-                </Routes>
-                <NavigationBar />
-            </div>
+            <Routes>
+                <Route path="/" element={<MainLayout />}>
+                    <Route index element={<Home />} />
+                    <Route path="farm" element={<Farm />} />
+                    <Route path="mines" element={<Mines />} />
+                    <Route path="battle" element={<Battle />} />
+                    <Route path="quests" element={<Quests />} />
+                    <Route path="hero" element={<Hero />} />
+                    <Route path="friends" element={<Friends />} />
+                </Route>
+            </Routes>
         </Router>
     );
 }

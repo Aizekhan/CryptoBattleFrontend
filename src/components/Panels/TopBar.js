@@ -1,12 +1,14 @@
-// src/components/TopBar.js
-
+// src/components/Panels/TopBar.js
 import React from 'react';
 import userIcon from '../assets/images/user-icon.png';
 import levelIcon from '../assets/images/level-icon.png';
 import walletIcon from '../assets/images/wallet-icon.png';
+import { useUserStats } from '../UserStatsContext';
 import './TopBar.css';
 
-const TopBar = ({ userStats }) => {
+const TopBar = () => {
+    const { userStats } = useUserStats();
+
     return (
         <div className="top-bar">
             <div className="user-info">

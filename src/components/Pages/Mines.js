@@ -3,13 +3,20 @@
 import React, { useState } from 'react';
 import './Mines.css';
 import { minesData, lockImage } from '../../data/minesData';
+import { useUserStats } from '../UserStatsContext';
+import UpgradePanel from '../../Panels/UpgradePanel';
 
-const Mines = ({ userGold, upgradeMine, mines }) => {
+const Mines = () => {
+    const { userStats, updateUserStats } = useUserStats();
     const [selectedMine, setSelectedMine] = useState(null);
 
     const handleUpgrade = () => {
-        if (userGold >= mines[selectedMine].upgradeCost) {
-            upgradeMine(selectedMine);
+        const selectedMineData = minesData[selectedMine];
+        if (userStats.balance >= selectedMineData.upgradeCost) {
+            updateUserStats({
+                balance: userStats.balance - selectedMineData.upgradeCost
+            });
+            // Ваш функціонал для апгрейду шахти тут
             setSelectedMine(null); // Закрити панель після апгрейду
         } else {
             alert('Недостатньо золота для апгрейду!');
@@ -31,15 +38,11 @@ const Mines = ({ userGold, upgradeMine, mines }) => {
             </div>
 
             {selectedMine !== null && (
-                <div className="mine-upgrade-panel">
-                    <h2>Mine {mines[selectedMine].id}</h2>
-                    <img src={mines[selectedMine].img} alt={`Mine ${mines[selectedMine].id}`} />
-                    <div>Current Income: {mines[selectedMine].income} gold/hour</div>
-                    <div>Upgrade Cost: {mines[selectedMine].upgradeCost} gold</div>
-                    <div>Level: {mines[selectedMine].level}</div>
-                    <button onClick={handleUpgrade}>Upgrade</button>
-                    <button onClick={() => setSelectedMine(null)}>Close</button>
-                </div>
+                <UpgradePanel 
+                    mine={minesData[selectedMine]} 
+                    onUpgrade={handleUpgrade} 
+                    onClose={() => setSelectedMine(null)} 
+                />
             )}
         </div>
     );
