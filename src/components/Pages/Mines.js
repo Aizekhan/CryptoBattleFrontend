@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useUserStats } from '../UserStatsContext';
 import UpgradePanel from '../Panels/UpgradePanel';
+import { minesData, lockImage } from '../../data/minesData'; // Додаємо lockImage
 import './Mines.css';
 
 const Mines = () => {
@@ -21,9 +22,9 @@ const Mines = () => {
         <div className="mines-container">
             <h1>Mines Page</h1>
             <div className="mines-grid">
-                {userStats.mines.map((mine, index) => (
+                {userStats.mines.map((mine) => (
                     <div key={mine.id} className={`mine-item ${mine.locked ? 'locked' : ''}`} onClick={() => handleUpgradeClick(mine)}>
-                        <img src={mine.locked ? lockImg : mine.img} alt={`Mine ${mine.id}`} />
+                        <img src={mine.locked ? lockImage : mine.img} alt={`Mine ${mine.id}`} />
                         <div className="mine-cost">Вартість: {mine.cost} золота</div>
                         <div className="mine-income">+{mine.income} золота/год</div>
                         <div className="mine-level">lvl: {mine.currentLevel}</div>
