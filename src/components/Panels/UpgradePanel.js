@@ -3,7 +3,7 @@ import './UpgradePanel.css';
 import { useUserStats } from '../UserStatsContext';
 
 const UpgradePanel = ({ mine, onClose, onUpgrade }) => {
-    const { userStats, spendBalance } = useUserStats();
+    const { spendBalance } = useUserStats();
 
     const handleUpgrade = () => {
         const upgradeCost = mine.cost * (2 ** mine.currentLevel);
