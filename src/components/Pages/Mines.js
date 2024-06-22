@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useUserStats } from '../UserStatsContext';
 import UpgradePanel from '../Panels/UpgradePanel';
-import { minesData, lockImage } from '../../data/minesData'; // Додаємо lockImage
+import { minesData, lockImage } from '../../data/minesData';
 import './Mines.css';
 
 const Mines = () => {

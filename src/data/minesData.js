@@ -1,13 +1,13 @@
-import img1 from '../assets/images/MinesPageImages/1.webp';
-import img2 from '../assets/images/MinesPageImages/2.webp';
-import img3 from '../assets/images/MinesPageImages/3.webp';
-import img4 from '../assets/images/MinesPageImages/4.webp';
-import img5 from '../assets/images/MinesPageImages/5.webp';
-import img6 from '../assets/images/MinesPageImages/6.webp';
-import img7 from '../assets/images/MinesPageImages/7.webp';
-import img8 from '../assets/images/MinesPageImages/8.webp';
-import img9 from '../assets/images/MinesPageImages/9.webp';
-import lockImg from '../assets/images/lock.webp';
+import img1 from '../assets/images/MinesPageImages/1.png';
+import img2 from '../assets/images/MinesPageImages/2.png';
+import img3 from '../assets/images/MinesPageImages/3.png';
+import img4 from '../assets/images/MinesPageImages/4.png';
+import img5 from '../assets/images/MinesPageImages/5.png';
+import img6 from '../assets/images/MinesPageImages/6.png';
+import img7 from '../assets/images/MinesPageImages/7.png';
+import img8 from '../assets/images/MinesPageImages/8.png';
+import img9 from '../assets/images/MinesPageImages/9.png';
+import lockImg from '../assets/images/lock.png';
 
 export const minesData = [
     { id: 1, cost: 100, income: 10, upgradeCost: 50, img: img1, locked: false, level: 0 },
