@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useUserStats } from '../UserStatsContext';
 import UpgradePanel from '../Panels/UpgradePanel';
-import { minesData } from '../../data/minesData';
+
 import lockImg from '../../assets/images/lock.png';
 import './Mines.css';
 
