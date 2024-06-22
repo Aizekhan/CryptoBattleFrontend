@@ -35,52 +35,47 @@ export const UserStatsProvider = ({ children }) => {
     };
 
     const spendBalance = (amount) => {
-        setUserStats((prevStats) => ({
-            ...prevStats,
-            balance: prevStats.balance - amount,
-        }));
+        setUserStats((prevStats) => {
+            if (prevStats.balance < amount) {
+                return prevStats; // Якщо баланс недостатній, нічого не змінюємо
+            }
+            return {
+                ...prevStats,
+                balance: prevStats.balance - amount,
+            };
+        });
     };
 
-const upgradeMine = (mineId) => {
-    setUserStats((prevStats) => {
-        const updatedMines = prevStats.mines.map((mine, index) => {
-            if (mine.id === mineId) {
-                // Перевірка чи попередня шахта досягла третього рівня
-                if (index > 0 && prevStats.mines[index - 1].currentLevel < 3) {
-                    return mine; // Якщо попередня шахта не прокачана до третього рівня, нічого не змінюємо
+    const upgradeMine = (mineId) => {
+        setUserStats((prevStats) => {
+            const updatedMines = prevStats.mines.map((mine, index) => {
+                if (mine.id === mineId) {
+                    // Перевірка чи попередня шахта досягла третього рівня
+                    if (index > 0 && prevStats.mines[index - 1].currentLevel < 3) {
+                        return mine; // Якщо попередня шахта не прокачана до третього рівня, нічого не змінюємо
+                    }
+                    const upgradeCost = mine.currentLevel === 0 ? mine.cost : mine.previousCost * 2;
+                    if (prevStats.balance < upgradeCost) {
+                        return mine; // Якщо баланс недостатній, нічого не змінюємо
+                    }
+                    return {
+                        ...mine,
+                        currentLevel: mine.currentLevel + 1,
+                        income: mine.income * 2,
+                        cost: upgradeCost,
+                        previousCost: upgradeCost,
+                    };
                 }
-                const upgradeCost = mine.currentLevel === 0 ? mine.cost : mine.previousCost * 2;
-                if (prevStats.balance < upgradeCost) {
-                    return mine; // Якщо баланс недостатній, нічого не змінюємо
-                }
-                return {
-                    ...mine,
-                    currentLevel: mine.currentLevel + 1,
-                    income: mine.income * 2,
-                    cost: upgradeCost,
-                    previousCost: upgradeCost,
-                };
-            }
-            return mine;
-        });
+                return mine;
+            });
 
-        const unlockedMines = updatedMines.map((mine, index) => {
-            if (index > 0 && updatedMines[index - 1].currentLevel >= 3) {
-                return {
-                    ...mine,
-                    locked: false,
-                };
-            }
-            return mine;
+            return {
+                ...prevStats,
+                mines: updatedMines,
+                balance: prevStats.balance - (updatedMines.find(mine => mine.id === mineId).previousCost * 2),
+            };
         });
-
-        return {
-            ...prevStats,
-            mines: updatedMines,
-            balance: prevStats.balance - (updatedMines.find(mine => mine.id === mineId).previousCost * 2),
-        };
-    });
-};
+    };
 
     useEffect(() => {
         const interval = setInterval(() => {

@@ -3,7 +3,7 @@ import './UpgradePanel.css';
 import { useUserStats } from '../UserStatsContext';
 
 const UpgradePanel = ({ mine, onClose }) => {
-    const { userStats, upgradeMine } = useUserStats();
+    const { upgradeMine } = useUserStats();
 
     const handleUpgrade = () => {
         upgradeMine(mine.id);
