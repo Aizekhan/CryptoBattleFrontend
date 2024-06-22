@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useUserStats } from '../UserStatsContext';
 import UpgradePanel from '../Panels/UpgradePanel';
 
-import lockImg from '../../assets/images/lock.png';
+import lockImg from '../../assets/images/lock.svg';
 import './Mines.css';
 
 const Mines = () => {
