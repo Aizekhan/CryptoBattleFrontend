@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useUserStats } from '../UserStatsContext';
 import UpgradePanel from '../Panels/UpgradePanel';
-import { minesData, lockImage } from '../../data/minesData';
+import { minesData } from '../../data/minesData';
+import lockImg from '../../assets/images/lock.png';
 import './Mines.css';
 
 const Mines = () => {
     const { userStats, upgradeMine } = useUserStats();
     const [selectedMine, setSelectedMine] = useState(null);
 
-    const handleUpgradeClick = (mine) => {
-        if (!mine.locked) {
-            setSelectedMine(mine);
-        }
-    };
-
-    const handleClosePanel = () => {
+    const handleUpgrade = (mineId) => {
+        upgradeMine(mineId);
         setSelectedMine(null);
     };
 
@@ -22,20 +18,20 @@ const Mines = () => {
         <div className="mines-container">
             <h1>Mines Page</h1>
             <div className="mines-grid">
-                {userStats.mines.map((mine) => (
-                    <div key={mine.id} className={`mine-item ${mine.locked ? 'locked' : ''}`} onClick={() => handleUpgradeClick(mine)}>
-                        <img src={mine.locked ? lockImage : mine.img} alt={`Mine ${mine.id}`} />
-                        <div className="mine-cost">Вартість: {mine.cost} золота</div>
-                        <div className="mine-income">+{mine.income} золота/год</div>
-                        <div className="mine-level">lvl: {mine.currentLevel}</div>
+                {userStats.mines.map(mine => (
+                    <div key={mine.id} className="mine-item" onClick={() => setSelectedMine(mine)}>
+                        <img src={mine.locked ? lockImg : mine.img} alt={`Mine ${mine.id}`} />
+                        <div className="mine-cost">Cost: {mine.cost} gold</div>
+                        <div className="mine-income">+{mine.income} gold/hour</div>
+                        <div className="mine-level">lvl {mine.currentLevel}</div>
                     </div>
                 ))}
             </div>
             {selectedMine && (
-                <UpgradePanel
-                    mine={selectedMine}
-                    onClose={handleClosePanel}
-                    onUpgrade={upgradeMine}
+                <UpgradePanel 
+                    mine={selectedMine} 
+                    onClose={() => setSelectedMine(null)} 
+                    onUpgrade={handleUpgrade} 
                 />
             )}
         </div>
