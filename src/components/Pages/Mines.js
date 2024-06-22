@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { minesData } from '../../data/minesData';
-import { useUserStats } from '../../context/UserStatsContext';
+import { useUserStats } from '../UserStatsContext';
 import UpgradePanel from '../Panels/UpgradePanel';
 import './Mines.css';
 
