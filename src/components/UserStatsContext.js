@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { minesData } from '../data/minesData'; // Виправлений шлях до minesData
 
 const UserStatsContext = createContext();
 
@@ -11,6 +12,7 @@ export const UserStatsProvider = ({ children }) => {
         tapIncome: 1,
         hourlyIncome: 10000,
         balance: 1000000,
+        mines: minesData.map(mine => ({ ...mine, currentLevel: 1 })),
     });
 
     const updateUserStats = (stats) => {
@@ -34,6 +36,29 @@ export const UserStatsProvider = ({ children }) => {
         }));
     };
 
+    const upgradeMine = (mineId) => {
+        setUserStats((prevStats) => {
+            const updatedMines = prevStats.mines.map(mine => {
+                if (mine.id === mineId) {
+                    const upgradeCost = mine.cost * 2 ** (mine.currentLevel - 1);
+                    if (prevStats.balance >= upgradeCost) {
+                        return {
+                            ...mine,
+                            currentLevel: mine.currentLevel + 1,
+                            income: mine.income * 2,
+                            cost: upgradeCost * 2,
+                        };
+                    }
+                }
+                return mine;
+            });
+            return {
+                ...prevStats,
+                mines: updatedMines,
+            };
+        });
+    };
+
     useEffect(() => {
         const interval = setInterval(() => {
             incrementBalance();
@@ -42,7 +67,7 @@ export const UserStatsProvider = ({ children }) => {
     }, []);
 
     return (
-        <UserStatsContext.Provider value={{ userStats, updateUserStats, spendBalance }}>
+        <UserStatsContext.Provider value={{ userStats, updateUserStats, spendBalance, upgradeMine }}>
             {children}
         </UserStatsContext.Provider>
     );

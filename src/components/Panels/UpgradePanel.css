@@ -1,13 +1,14 @@
-/* src/components/Panels/UpgradePanel.css */
-.upgrade-panel {
+.mine-upgrade-panel {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #fff;
+    background-color: #2f2f2f; /* Графітовий колір */
+    color: white;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    z-index: 10000; /* Високий z-index для перекриття інших елементів */
+    border-radius: 10px;
+    text-align: center;
+    z-index: 10000;
 }
 
 .mine-info {
@@ -23,15 +24,16 @@
     margin-bottom: 10px;
 }
 
-button {
-    margin: 10px;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    cursor: pointer;
+.upgrade-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
 }
 
-button:hover {
-    background-color: #555;
+.upgrade-buttons button {
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
 }
