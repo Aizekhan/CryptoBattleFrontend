@@ -1,49 +1,22 @@
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
+// src/components/Panels/UpgradePanel.js
 
-.mine-upgrade-panel {
-    background-color: #2f2f2f; /* Графітовий колір */
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    z-index: 1001;
-}
+import React from 'react';
+import './UpgradePanel.css';
 
-.mine-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-}
+const UpgradePanel = ({ mine, onClose, onUpgrade }) => {
+    return (
+        <div className="upgrade-panel">
+            <h2>Upgrade Mine</h2>
+            <img src={mine.img} alt={`Mine ${mine.id}`} />
+            <div className="mine-upgrade-cost">Вартість апгрейду: {mine.upgradeCost} золота</div>
+            <div className="mine-income">Дохід: +{mine.income} золота/год</div>
+            <div className="mine-level">Поточний рівень: {mine.level}</div>
+            <div className="upgrade-buttons">
+                <button onClick={onUpgrade}>Upgrade</button>
+                <button onClick={onClose}>Close</button>
+            </div>
+        </div>
+    );
+};
 
-.mine-info img {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 10px;
-}
-
-.upgrade-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-}
-
-.upgrade-buttons button {
-    background-color: #444;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin: 0 10px;
-}
+export default UpgradePanel;
