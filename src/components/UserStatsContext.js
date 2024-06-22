@@ -1,3 +1,10 @@
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { minesData } from './data/minesData';
+
+const UserStatsContext = createContext();
+
+export const useUserStats = () => useContext(UserStatsContext);
+
 export const UserStatsProvider = ({ children }) => {
     const [userStats, setUserStats] = useState({
         username: '',
