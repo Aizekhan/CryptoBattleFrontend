@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useUserStats } from '../UserStatsContext';
-import { minesData } from '../../data/minesData';
 import './Mines.css';
 import UpgradePanel from '../Panels/UpgradePanel';
 

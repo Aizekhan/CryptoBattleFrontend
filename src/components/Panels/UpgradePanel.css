@@ -1,48 +1,36 @@
 .upgrade-panel {
+    background-color: #333; /* графітовий фон */
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.upgrade-panel img {
-    display: block;
-    margin: 0 auto 10px;
-    width: 100px;
-    height: 100px;
+.upgrade-info {
+    margin: 10px 0;
 }
 
-.upgrade-panel h2 {
-    text-align: center;
-    margin-bottom: 10px;
+.upgrade-buttons {
+    display: flex;
+    justify-content: space-between;
 }
 
-.upgrade-panel .upgrade-cost,
-.upgrade-panel .current-income,
-.upgrade-panel .current-level {
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.upgrade-panel .upgrade-button,
-.upgrade-panel .close-button {
-    display: inline-block;
-    margin: 5px;
+.upgrade-buttons button {
     padding: 10px 20px;
-    background-color: #444;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    margin: 5px;
     cursor: pointer;
+    background-color: #555;
+    border: none;
+    color: white;
+    border-radius: 5px;
 }
 
-.upgrade-panel .upgrade-button:hover,
-.upgrade-panel .close-button:hover {
-    background-color: #555;
+.upgrade-buttons button:hover {
+    background-color: #777;
 }

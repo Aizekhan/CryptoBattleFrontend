@@ -3,19 +3,26 @@ import './UpgradePanel.css';
 import { useUserStats } from '../UserStatsContext';
 
 const UpgradePanel = ({ mine, onClose, onUpgrade }) => {
-    const { userStats } = useUserStats();
-    const upgradeCost = mine.cost * 2 ** (mine.currentLevel - 1);
+    const { spendBalance } = useUserStats();
+
+    const handleUpgrade = () => {
+        const upgradeCost = mine.cost * 2 ** (mine.currentLevel - 1);
+        spendBalance(upgradeCost);
+        onUpgrade(mine.id);
+    };
 
     return (
         <div className="upgrade-panel">
             <h2>Upgrade Mine</h2>
             <img src={mine.img} alt={`Mine ${mine.id}`} />
-            <div className="upgrade-cost">Вартість апгрейду: {upgradeCost} золота</div>
-            <div className="current-income">Дохід: +{mine.income} золота/год</div>
-            <div className="current-level">Поточний рівень: {mine.currentLevel}</div>
-            <div className="button-container">
-                <button className="upgrade-button" onClick={() => onUpgrade(mine.id)}>Upgrade</button>
-                <button className="close-button" onClick={onClose}>Close</button>
+            <div className="upgrade-info">
+                <p>Вартість апгрейду: {mine.cost * 2 ** (mine.currentLevel - 1)} золота</p>
+                <p>Дохід: +{mine.income} золота/год</p>
+                <p>Поточний рівень: {mine.currentLevel}</p>
+            </div>
+            <div className="upgrade-buttons">
+                <button onClick={handleUpgrade}>Upgrade</button>
+                <button onClick={onClose}>Close</button>
             </div>
         </div>
     );
