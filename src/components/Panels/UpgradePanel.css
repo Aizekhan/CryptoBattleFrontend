@@ -1,34 +1,42 @@
+/* UpgradePanel.css */
+
 .upgrade-panel {
-    background-color: #333; /* графітовий фон */
-    padding: 20px;
-    border-radius: 10px;
-    color: white;
-    text-align: center;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
     z-index: 1000;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 300px;
+    box-sizing: border-box;
 }
 
-.upgrade-info {
+.upgrade-panel img {
+    width: 100px;
+    height: 100px;
+}
+
+.upgrade-info p {
     margin: 10px 0;
 }
 
 .upgrade-buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    margin-top: 20px;
 }
 
 .upgrade-buttons button {
-    padding: 10px 20px;
-    margin: 5px;
-    cursor: pointer;
     background-color: #555;
-    border: none;
     color: white;
+    border: none;
+    padding: 10px 20px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .upgrade-buttons button:hover {
