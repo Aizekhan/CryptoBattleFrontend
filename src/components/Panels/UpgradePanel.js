@@ -2,13 +2,12 @@ import React from 'react';
 import './UpgradePanel.css';
 import { useUserStats } from '../UserStatsContext';
 
-const UpgradePanel = ({ mine, onClose, onUpgrade }) => {
-    const { spendBalance } = useUserStats();
+const UpgradePanel = ({ mine, onClose }) => {
+    const { userStats, upgradeMine } = useUserStats();
 
     const handleUpgrade = () => {
-        const upgradeCost = mine.cost * (2 ** mine.currentLevel);
-        spendBalance(upgradeCost);
-        onUpgrade(mine.id);
+        upgradeMine(mine.id);
+        onClose();
     };
 
     return (
@@ -16,7 +15,7 @@ const UpgradePanel = ({ mine, onClose, onUpgrade }) => {
             <h2>Upgrade Mine</h2>
             <img src={mine.img} alt={`Mine ${mine.id}`} />
             <div className="upgrade-info">
-                <p>Вартість апгрейду: {mine.cost * (2 ** mine.currentLevel)} золота</p>
+                <p>Вартість апгрейду: {mine.cost} золота</p>
                 <p>Дохід: +{mine.income} золота/год</p>
                 <p>Поточний рівень: {mine.currentLevel}</p>
             </div>
