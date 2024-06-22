@@ -1,0 +1,46 @@
+.upgrade-card {
+    border: 1px solid #ccc;
+    padding: 16px;
+    margin: 16px;
+    text-align: center;
+    background-color: #2f2f2f; /* Графітовий колір */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white; /* Текст білий для кращої читабельності */
+}
+
+.upgrade-card img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 16px;
+}
+
+.card-info {
+    margin-top: 8px;
+}
+
+.card-info p {
+    margin: 4px 0;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Розташування кнопок на одному рівні по горизонталі */
+    margin-top: 16px;
+}
+
+button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    flex: 1; /* Забезпечує рівний розмір кнопок */
+    margin: 0 4px;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
