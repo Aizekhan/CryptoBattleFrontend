@@ -1,22 +1,48 @@
-// src/components/Panels/UpgradePanel.js
+.upgrade-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
 
-import React from 'react';
-import './UpgradePanel.css';
+.upgrade-panel img {
+    display: block;
+    margin: 0 auto 10px;
+    width: 100px;
+    height: 100px;
+}
 
-const UpgradePanel = ({ mine, onClose, onUpgrade }) => {
-    return (
-        <div className="upgrade-panel">
-            <h2>Upgrade Mine</h2>
-            <img src={mine.img} alt={`Mine ${mine.id}`} />
-            <div className="mine-upgrade-cost">Вартість апгрейду: {mine.upgradeCost} золота</div>
-            <div className="mine-income">Дохід: +{mine.income} золота/год</div>
-            <div className="mine-level">Поточний рівень: {mine.level}</div>
-            <div className="upgrade-buttons">
-                <button onClick={onUpgrade}>Upgrade</button>
-                <button onClick={onClose}>Close</button>
-            </div>
-        </div>
-    );
-};
+.upgrade-panel h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
 
-export default UpgradePanel;
+.upgrade-panel .upgrade-cost,
+.upgrade-panel .current-income,
+.upgrade-panel .current-level {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.upgrade-panel .upgrade-button,
+.upgrade-panel .close-button {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.upgrade-panel .upgrade-button:hover,
+.upgrade-panel .close-button:hover {
+    background-color: #555;
+}
