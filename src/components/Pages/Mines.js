@@ -19,7 +19,7 @@ const Mines = () => {
                 {userStats.mines.map(mine => (
                     <div key={mine.id} className="mine-item">
                         <img
-                            src={mine.locked ? '/assets/images/lock.png' : mine.img}
+                            src={mine.locked ? lockImg : mine.img}
                             alt={`Mine ${mine.id}`}
                             onClick={() => !mine.locked && setSelectedMine(mine)}
                         />
