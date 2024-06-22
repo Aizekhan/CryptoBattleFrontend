@@ -6,7 +6,7 @@ const UpgradePanel = ({ mine, onClose, onUpgrade }) => {
     const { spendBalance } = useUserStats();
 
     const handleUpgrade = () => {
-        const upgradeCost = mine.cost * 2 ** (mine.currentLevel - 1);
+        const upgradeCost = mine.upgradeCost;
         spendBalance(upgradeCost);
         onUpgrade(mine.id);
     };
@@ -16,7 +16,7 @@ const UpgradePanel = ({ mine, onClose, onUpgrade }) => {
             <h2>Upgrade Mine</h2>
             <img src={mine.img} alt={`Mine ${mine.id}`} />
             <div className="upgrade-info">
-                <p>Вартість апгрейду: {mine.cost * 2 ** (mine.currentLevel - 1)} золота</p>
+                <p>Вартість апгрейду: {mine.upgradeCost} золота</p>
                 <p>Дохід: +{mine.income} золота/год</p>
                 <p>Поточний рівень: {mine.currentLevel}</p>
             </div>

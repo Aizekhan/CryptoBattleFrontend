@@ -23,7 +23,7 @@ const Mines = () => {
                 {userStats.mines.map(mine => (
                     <div key={mine.id} className="mine-item" onClick={() => setSelectedMine(mine)}>
                         <img src={mine.img} alt={`Mine ${mine.id}`} />
-                        <div className="mine-cost">Вартість: {mine.cost} золота</div>
+                        <div className="mine-cost">Вартість: {mine.upgradeCost} золота</div>
                         <div className="mine-income">+{mine.income} золота/год</div>
                         <div className="mine-level">lvl: {mine.currentLevel}</div>
                     </div>

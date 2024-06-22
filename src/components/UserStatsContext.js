@@ -12,7 +12,7 @@ export const UserStatsProvider = ({ children }) => {
         tapIncome: 1,
         hourlyIncome: 10000,
         balance: 1000000,
-        mines: minesData.map(mine => ({ ...mine, currentLevel: 1 })),
+        mines: minesData.map(mine => ({ ...mine, currentLevel: 1, upgradeCost: mine.cost })),
     });
 
     const updateUserStats = (stats) => {
@@ -40,13 +40,14 @@ export const UserStatsProvider = ({ children }) => {
         setUserStats((prevStats) => {
             const updatedMines = prevStats.mines.map(mine => {
                 if (mine.id === mineId) {
-                    const upgradeCost = mine.cost * 2 ** (mine.currentLevel - 1);
-                    if (prevStats.balance >= upgradeCost) {
+                    const newUpgradeCost = mine.upgradeCost * 2;
+                    if (prevStats.balance >= mine.upgradeCost) {
                         return {
                             ...mine,
                             currentLevel: mine.currentLevel + 1,
                             income: mine.income * 2,
-                            cost: upgradeCost * 2,
+                            cost: newUpgradeCost,
+                            upgradeCost: newUpgradeCost,
                         };
                     }
                 }
