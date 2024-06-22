@@ -22,8 +22,12 @@
 }
 
 .mine-item img {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100px; /* Максимальна ширина зображення */
+    max-height: 100px; /* Максимальна висота зображення */
+    margin: 0 auto;
 }
 
 .mine-cost,
