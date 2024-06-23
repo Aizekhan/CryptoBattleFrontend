@@ -1,68 +1,42 @@
 .mines-container {
-    padding: 20px;
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .mines-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     gap: 20px;
 }
 
 .mine-item {
-    position: relative;
-    width: calc(50% - 20px); /* Забезпечити дві шахти в ряд */
+    width: calc(50% - 20px);
     background-color: #333;
     padding: 10px;
-    border-radius: 8px;
+    border-radius: 10px;
     text-align: center;
-    cursor: pointer;
 }
 
-.mine-item img.mine-image {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-}
-
-.lock-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
+.mine-item img {
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: auto;
+    border-radius: 10px;
 }
 
-.lock-overlay img {
-    width: 50px;
-    height: 50px;
+.locked {
+    position: relative;
 }
 
-.mine-info {
-    margin-top: 10px;
-    color: #fff;
+.locked img {
+    opacity: 0.5;
 }
 
-.upgrade-card {
-    position: fixed;
+.locked::after {
+    content: url('../../assets/images/lock.png'); /* Замість lock.png вкажіть шлях до зображення замка */
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #333;
-    padding: 20px;
-    border-radius: 8px;
-    color: #fff;
-    z-index: 1000;
-}
-
-.upgrade-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
 }
