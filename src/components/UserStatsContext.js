@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { minesData } from '../data/minesData'; // Переконайтеся, що цей шлях правильний
+import { minesData } from '../data/minesData';
 
 const UserStatsContext = createContext();
 
@@ -9,6 +9,7 @@ export const UserStatsProvider = ({ children }) => {
     const [userStats, setUserStats] = useState({
         username: '',
         balance: 1000000,
+        hourlyIncome: 1000, // Встановіть початковий дохід на годину
         cards: [
             ...minesData.map(card => ({
                 ...card,
@@ -48,15 +49,20 @@ export const UserStatsProvider = ({ children }) => {
                         currentLevel: card.currentLevel + 1,
                         cost: upgradeCost,
                         previousCost: upgradeCost,
+                        income: card.income * 2, // Збільшуємо дохід карти
                     };
                 }
                 return card;
             });
 
+            // Перерахунок загального доходу на годину
+            const totalHourlyIncome = updatedCards.reduce((total, card) => total + card.income, 0);
+
             return {
                 ...prevStats,
                 cards: updatedCards,
                 balance: prevStats.balance - updatedCards.find(card => card.id === cardId).previousCost,
+                hourlyIncome: totalHourlyIncome,
             };
         });
     };
