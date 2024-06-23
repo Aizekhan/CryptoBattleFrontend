@@ -17,7 +17,7 @@ const Mines = () => {
         <div className="mines-container">
             <h1>Mines Page</h1>
             <div className="mines-grid">
-                {userStats.mines.map(mine => (
+                {userStats.mines.map((mine, index) => (
                     <div key={mine.id} className="mine-item" onClick={() => !mine.locked && setSelectedMine(mine)}>
                         <img src={mine.img} alt={`Mine ${mine.id}`} className="mine-image" />
                         {mine.locked && <img src={lockImage} alt="Locked" className="lock-overlay" />}

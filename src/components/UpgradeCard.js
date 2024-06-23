@@ -1,29 +1,31 @@
 import React from 'react';
 import './UpgradeCard.css';
-import { useUserStats } from './UserStatsContext';
+import { useUserStats } from '../UserStatsContext';
 
-const UpgradeCard = ({ card }) => {
-    const { userStats, upgradeCard } = useUserStats();
+const UpgradeCard = ({ mine, onClose }) => {
+    const { spendBalance, upgradeMine, userStats } = useUserStats();
 
     const handleUpgrade = () => {
-        upgradeCard(card.id);
+        const upgradeCost = mine.upgradeCost;
+        if (userStats.balance >= upgradeCost) {
+            spendBalance(upgradeCost);
+            upgradeMine(mine.id);
+            onClose();
+        }
     };
 
     return (
         <div className="upgrade-card">
-            <h2>{card.name}</h2>
-            <img src={card.img} alt={card.name} />
-            <div className="card-info">
-                <p>Вартість апгрейду: {card.cost.toFixed(2)} золота</p>
-                <p>Поточний рівень: {card.currentLevel}</p>
-                <p>Дохід: {card.income.toFixed(2)} золота в годину</p>
+            <h2>Upgrade Mine</h2>
+            <img src={mine.img} alt={`Mine ${mine.id}`} />
+            <div className="upgrade-info">
+                <p>Вартість апгрейду: {mine.upgradeCost} золота</p>
+                <p>Дохід: +{mine.income} золота/год</p>
+                <p>Поточний рівень: {mine.currentLevel}</p>
             </div>
-            <div className="button-container">
-                <button 
-                    onClick={handleUpgrade} 
-                    disabled={userStats.balance < card.cost}>
-                    Upgrade
-                </button>
+            <div className="upgrade-buttons">
+                <button onClick={handleUpgrade}>Upgrade</button>
+                <button onClick={onClose}>Close</button>
             </div>
         </div>
     );

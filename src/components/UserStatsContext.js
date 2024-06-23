@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { minesData } from '../data/minesData';
+import { minesData } from './data/minesData';
 
 const UserStatsContext = createContext();
 
@@ -8,67 +8,59 @@ export const useUserStats = () => useContext(UserStatsContext);
 export const UserStatsProvider = ({ children }) => {
     const [userStats, setUserStats] = useState({
         username: '',
+        level: 0,
+        tapIncome: 1,
+        hourlyIncome: 1000,
         balance: 1000000,
-        hourlyIncome: 1000, // Встановіть початковий дохід на годину
-        cards: [
-            ...minesData.map(card => ({
-                ...card,
-                type: 'mine',
-                currentLevel: 0,
-                cost: card.cost,
-                previousCost: card.cost
-            })),
-        ],
+        mines: minesData.map(mine => ({ ...mine })),
     });
 
     const updateUserStats = (stats) => {
-        setUserStats(prevStats => ({
+        setUserStats((prevStats) => ({
             ...prevStats,
             ...stats,
         }));
     };
 
     const incrementBalance = () => {
-        setUserStats(prevStats => ({
+        setUserStats((prevStats) => ({
             ...prevStats,
             balance: prevStats.balance + prevStats.hourlyIncome / 3600,
         }));
     };
 
-    const upgradeCard = (cardId) => {
-        setUserStats(prevStats => {
-            const cardIndex = prevStats.cards.findIndex(card => card.id === cardId);
-            const card = prevStats.cards[cardIndex];
-            const upgradeCost = card.previousCost * card.scale;
+    const spendBalance = (amount) => {
+        setUserStats((prevStats) => ({
+            ...prevStats,
+            balance: prevStats.balance - amount,
+        }));
+    };
 
-            // Перевірка, чи можна апгрейдити карту
-            if (prevStats.balance < upgradeCost) {
-                return prevStats; // Якщо баланс недостатній, нічого не змінюємо
-            }
-            if (cardIndex > 0 && prevStats.cards[cardIndex - 1].currentLevel < 3) {
-                return prevStats; // Якщо попередня карта не досягла 3 рівня, нічого не змінюємо
-            }
+    const upgradeMine = (mineId) => {
+        setUserStats((prevStats) => {
+            const updatedMines = prevStats.mines.map(mine => {
+                if (mine.id === mineId && prevStats.balance >= mine.upgradeCost) {
+                    const newLevel = mine.currentLevel + 1;
+                    const newIncome = mine.income * 2;
+                    const newUpgradeCost = mine.upgradeCost * 2;
+                    return {
+                        ...mine,
+                        currentLevel: newLevel,
+                        income: newIncome,
+                        upgradeCost: newUpgradeCost,
+                    };
+                }
+                return mine;
+            });
 
-            // Виконання апгрейду
-            const updatedCard = {
-                ...card,
-                currentLevel: card.currentLevel + 1,
-                cost: upgradeCost,
-                previousCost: upgradeCost,
-                income: card.income * 2, // Збільшуємо дохід карти
-            };
-
-            const updatedCards = [...prevStats.cards];
-            updatedCards[cardIndex] = updatedCard;
-
-            // Перерахунок загального доходу на годину
-            const totalHourlyIncome = updatedCards.reduce((total, card) => total + card.income, 0);
+            const newHourlyIncome = updatedMines.reduce((total, mine) => {
+                return total + (mine.currentLevel > 0 ? mine.income : 0);
+            }, 0);
 
             return {
                 ...prevStats,
-                cards: updatedCards,
-                balance: prevStats.balance - upgradeCost,
-                hourlyIncome: totalHourlyIncome,
+                mines: updatedMines,
+                hourlyIncome: newHourlyIncome,
             };
         });
     };
@@ -81,7 +73,7 @@ export const UserStatsProvider = ({ children }) => {
     }, []);
 
     return (
-        <UserStatsContext.Provider value={{ userStats, updateUserStats, upgradeCard }}>
+        <UserStatsContext.Provider value={{ userStats, updateUserStats, spendBalance, upgradeMine }}>
             {children}
         </UserStatsContext.Provider>
     );
