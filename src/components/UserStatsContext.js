@@ -37,26 +37,29 @@ export const UserStatsProvider = ({ children }) => {
 
     const upgradeCard = (cardId) => {
         setUserStats(prevStats => {
-            const updatedCards = prevStats.cards.map((card, index) => {
-                if (card.id === cardId) {
-                    const upgradeCost = card.previousCost * card.scale;
-                    // Перевірка, чи можна апгрейдити карту
-                    if (prevStats.balance < upgradeCost) {
-                        return card; // Якщо баланс недостатній, нічого не змінюємо
-                    }
-                    if (index > 0 && prevStats.cards[index - 1].currentLevel < 3) {
-                        return card; // Якщо попередня карта не досягла 3 рівня, нічого не змінюємо
-                    }
-                    return {
-                        ...card,
-                        currentLevel: card.currentLevel + 1,
-                        cost: upgradeCost,
-                        previousCost: upgradeCost,
-                        income: card.income * 2, // Збільшуємо дохід карти
-                    };
-                }
-                return card;
-            });
+            const cardIndex = prevStats.cards.findIndex(card => card.id === cardId);
+            const card = prevStats.cards[cardIndex];
+            const upgradeCost = card.previousCost * card.scale;
+
+            // Перевірка, чи можна апгрейдити карту
+            if (prevStats.balance < upgradeCost) {
+                return prevStats; // Якщо баланс недостатній, нічого не змінюємо
+            }
+            if (cardIndex > 0 && prevStats.cards[cardIndex - 1].currentLevel < 3) {
+                return prevStats; // Якщо попередня карта не досягла 3 рівня, нічого не змінюємо
+            }
+
+            // Виконання апгрейду
+            const updatedCard = {
+                ...card,
+                currentLevel: card.currentLevel + 1,
+                cost: upgradeCost,
+                previousCost: upgradeCost,
+                income: card.income * 2, // Збільшуємо дохід карти
+            };
+
+            const updatedCards = [...prevStats.cards];
+            updatedCards[cardIndex] = updatedCard;
 
             // Перерахунок загального доходу на годину
             const totalHourlyIncome = updatedCards.reduce((total, card) => total + card.income, 0);
@@ -64,7 +67,7 @@ export const UserStatsProvider = ({ children }) => {
             return {
                 ...prevStats,
                 cards: updatedCards,
-                balance: prevStats.balance - updatedCards.find(card => card.id === cardId).previousCost,
+                balance: prevStats.balance - upgradeCost,
                 hourlyIncome: totalHourlyIncome,
             };
         });
