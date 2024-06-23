@@ -12,6 +12,7 @@
 }
 
 .mine-item {
+    position: relative; /* Додано для позиціонування замка відносно шахти */
     width: calc(50% - 20px);
     background-color: #333;
     padding: 10px;
@@ -26,7 +27,7 @@
 }
 
 .locked {
-    position: relative;
+    position: relative; /* Додано для позиціонування замка відносно шахти */
 }
 
 .locked img {
@@ -34,9 +35,14 @@
 }
 
 .locked::after {
-    content: url('../../assets/images/lock.png'); /* Замість lock.png вкажіть шлях до зображення замка */
+    content: '';
+    background-image: url('../../assets/images/lock.png'); /* Замість lock.png вкажіть правильний шлях до зображення замка */
+    background-size: contain;
+    background-repeat: no-repeat;
     position: absolute;
     top: 50%;
     left: 50%;
+    width: 20%; /* Розмір замка, можна коригувати за потреби */
+    height: 20%; /* Розмір замка, можна коригувати за потреби */
     transform: translate(-50%, -50%);
 }
