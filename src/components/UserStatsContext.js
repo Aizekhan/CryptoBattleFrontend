@@ -18,7 +18,6 @@ export const UserStatsProvider = ({ children }) => {
                 cost: card.cost,
                 previousCost: card.cost
             })),
-            // Видаліть або додайте інші типи карток тут
         ],
     });
 
@@ -41,8 +40,12 @@ export const UserStatsProvider = ({ children }) => {
             const updatedCards = prevStats.cards.map((card, index) => {
                 if (card.id === cardId) {
                     const upgradeCost = card.previousCost * card.scale;
+                    // Перевірка, чи можна апгрейдити карту
                     if (prevStats.balance < upgradeCost) {
                         return card; // Якщо баланс недостатній, нічого не змінюємо
+                    }
+                    if (index > 0 && prevStats.cards[index - 1].currentLevel < 3) {
+                        return card; // Якщо попередня карта не досягла 3 рівня, нічого не змінюємо
                     }
                     return {
                         ...card,
