@@ -1,6 +1,6 @@
 import React from 'react';
-import { useUserStats } from './UserStatsContext'; // Зміна шляху імпорту
-import UpgradeCard from './UpgradeCard';
+import { useUserStats } from '../UserStatsContext'; // Зміна шляху імпорту
+import UpgradeCard from '../UpgradeCard';
 import './Mines.css';
 
 const Mines = () => {
