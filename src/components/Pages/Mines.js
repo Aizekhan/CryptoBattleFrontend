@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Mines.css';
 import { useUserStats } from '../UserStatsContext';
-import { minesData, lockImage } from '../../data/minesData';
+import { minesData } from '../data/minesData';
 
 const Mines = () => {
     const { userStats, upgradeMine } = useUserStats();
