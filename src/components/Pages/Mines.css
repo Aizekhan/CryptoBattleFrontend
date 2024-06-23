@@ -2,16 +2,17 @@
 
 .mines-container {
     display: flex;
-    flex-wrap: wrap; /* Дозволяє карткам переноситись на наступний рядок */
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
 }
+
 .mines-grid {
     display: flex;
-    flex-wrap: wrap; /* Дозволяє карткам переноситись на наступний рядок */
-    gap: 5px; /* Відступи між картками */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
 }
-
 .mine-item {
     background-color: #333;
     border-radius: 10px;

@@ -1,20 +1,20 @@
 .upgrade-card {
     border: 1px solid #ccc;
     padding: 16px;
-    margin: 5px; /* Відступ 5 пікселів зі всіх сторін */
+    margin: 5px;
     text-align: center;
-    background-color: #2f2f2f; /* Графітовий колір */
+    background-color: #2f2f2f;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: white; /* Текст білий для кращої читабельності */
-    flex: 1; /* Забезпечує рівний розмір карток */
-    max-width: 200px; /* Максимальна ширина картки */
+    color: white;
+    flex: 1 1 calc(50% - 10px); /* Дозволяє карткам займати 50% ширини контейнера, з урахуванням відступів */
+    max-width: calc(50% - 10px); /* Максимальна ширина картки */
 }
 
 .upgrade-card img {
     width: 100%;
-    height: auto; /* Пропорційне зменшення */
-    max-width: 150px; /* Максимальна ширина зображення */
+    height: auto;
+    max-width: 150px;
     margin-bottom: 16px;
 }
 
@@ -28,7 +28,7 @@
 
 .button-container {
     display: flex;
-    justify-content: space-between; /* Розташування кнопок на одному рівні по горизонталі */
+    justify-content: space-between;
     margin-top: 16px;
 }
 
@@ -39,7 +39,7 @@ button {
     color: white;
     border-radius: 4px;
     cursor: pointer;
-    flex: 1; /* Забезпечує рівний розмір кнопок */
+    flex: 1;
     margin: 0 4px;
 }
 

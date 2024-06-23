@@ -16,15 +16,13 @@ const UpgradeCard = ({ card }) => {
             <div className="card-info">
                 <p>Вартість апгрейду: {card.cost.toFixed(2)} золота</p>
                 <p>Поточний рівень: {card.currentLevel}</p>
+                <p>Дохід: {card.income.toFixed(2)} золота в годину</p>
             </div>
             <div className="button-container">
                 <button 
                     onClick={handleUpgrade} 
                     disabled={userStats.balance < card.cost}>
                     Upgrade
-                </button>
-                <button onClick={() => {}}>
-                    Close
                 </button>
             </div>
         </div>
