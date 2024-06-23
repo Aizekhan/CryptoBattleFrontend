@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { minesData } from '../data/minesData';
-import { farmsData } from '../data/farmsData';
+import { minesData } from '../data/minesData'; // Переконайтеся, що цей шлях правильний
 
 const UserStatsContext = createContext();
 
@@ -18,14 +17,7 @@ export const UserStatsProvider = ({ children }) => {
                 cost: card.cost,
                 previousCost: card.cost
             })),
-            ...farmsData.map(card => ({
-                ...card,
-                type: 'farm',
-                currentLevel: 0,
-                cost: card.cost,
-                previousCost: card.cost
-            })),
-            // Додайте інші типи карток тут
+            // Видаліть або додайте інші типи карток тут
         ],
     });
 
