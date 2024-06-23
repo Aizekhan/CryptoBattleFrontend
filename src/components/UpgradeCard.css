@@ -1,17 +1,20 @@
 .upgrade-card {
     border: 1px solid #ccc;
     padding: 16px;
-    margin: 16px;
+    margin: 5px; /* Відступ 5 пікселів зі всіх сторін */
     text-align: center;
     background-color: #2f2f2f; /* Графітовий колір */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: white; /* Текст білий для кращої читабельності */
+    flex: 1; /* Забезпечує рівний розмір карток */
+    max-width: 200px; /* Максимальна ширина картки */
 }
 
 .upgrade-card img {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: auto; /* Пропорційне зменшення */
+    max-width: 150px; /* Максимальна ширина зображення */
     margin-bottom: 16px;
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import { useUserStats } from '../UserStatsContext'; // Піднятись на рівень вище, потім перейти до UserStatsContext.js
-import UpgradeCard from '../UpgradeCard'; // Піднятись на рівень вище, потім перейти до UpgradeCard.js
+import { useUserStats } from '../UserStatsContext';
+import UpgradeCard from '../UpgradeCard';
 import './Mines.css';
 
 const Mines = () => {
