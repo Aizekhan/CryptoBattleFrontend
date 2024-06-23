@@ -53,6 +53,7 @@ export const UserStatsProvider = ({ children }) => {
                 return mine;
             });
 
+            // Оновлюємо загальний дохід на основі нового рівня шахт
             const newHourlyIncome = updatedMines.reduce((total, mine) => {
                 return total + (mine.currentLevel > 0 ? mine.income : 0);
             }, 0);
