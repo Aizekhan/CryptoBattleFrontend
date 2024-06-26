@@ -32,7 +32,8 @@ function App() {
                 .get(`${process.env.REACT_APP_BACKEND_URL}/api/user/${decoded.id}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
-                        "Content-Type": 'application/json'
+                        "Content-Type": 'application/json',
+                        "Access-Control-Allow-Origin": "*"
                     },
                 })
                 .then((response) => {
