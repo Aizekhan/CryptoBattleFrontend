@@ -1,35 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import userIcon from '../../assets/images/user-icon.png';
 import walletIcon from '../../assets/images/wallet-icon.png';
 import coinImage from '../../assets/images/coin.png';
-import { useUserStats } from '../../context/UserStatsContext';
 import './MainLayout.css';
 
 const TopBar = () => {
-    const { userStats } = useUserStats();
-    const [balance, setBalance] = useState(userStats.balance);
-
-    useEffect(() => {
-        setBalance(userStats.balance);
-    }, [userStats.balance]);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setBalance(prevBalance => prevBalance + userStats.hourlyIncome / 3600);
-        }, 1000);
-
-        return () => clearInterval(interval);
-    }, [userStats.hourlyIncome]);
-
     return (
         <div className="top-bar">
             <div className="user-info">
                 <img src={userIcon} alt="User" />
-                <span>{userStats.username}</span>
+                <span>Username</span>
             </div>
             <div className="balance-info">
                 <img src={coinImage} alt="Coin" className="coin-icon" />
-                <span>{Math.floor(balance)}</span>
+                <span>1000000</span>
             </div>
             <div className="wallet-info">
                 <img src={walletIcon} alt="Wallet" />
