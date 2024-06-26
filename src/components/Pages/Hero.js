@@ -1,9 +1,19 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
+import SubNavigation from '../Panels/SubNavigation';
 
 const Hero = () => {
+    const subPages = [
+        { path: 'stats', name: 'Stats' },
+        { path: 'skills', name: 'Skills' },
+        { path: 'equip', name: 'Equip' },
+        { path: 'story', name: 'Story' },
+    ];
+
     return (
         <div>
-            <h1>Hero Page</h1>
+            <SubNavigation basePath="/hero" subPages={subPages} />
+            <Outlet />
         </div>
     );
 };

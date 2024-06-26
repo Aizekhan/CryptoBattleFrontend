@@ -1,11 +1,19 @@
-// src/components/Pages/Friends.js
 import React from 'react';
+import { Outlet } from 'react-router-dom';
+import SubNavigation from '../Panels/SubNavigation';
 
 const Friends = () => {
+    const subPages = [
+        { path: 'sub1', name: 'All Friends' },
+        { path: 'sub2', name: 'Requests' },
+        { path: 'sub3', name: 'Blocked' },
+        { path: 'sub4', name: 'Suggestions' },
+    ];
+
     return (
-        <div className="friends-container">
-            <h1>Friends Page</h1>
-            <p>Send referral links to your friends!</p>
+        <div>
+            <SubNavigation basePath="/friends" subPages={subPages} />
+            <Outlet />
         </div>
     );
 };

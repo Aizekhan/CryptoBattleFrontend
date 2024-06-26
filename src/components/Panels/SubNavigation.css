@@ -1,0 +1,18 @@
+.sub-navigation {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.sub-navigation a {
+    text-decoration: none;
+    color: #000;
+    padding: 10px 20px;
+}
+
+.sub-navigation a.active {
+    background-color: #ddd;
+    border-radius: 5px;
+}

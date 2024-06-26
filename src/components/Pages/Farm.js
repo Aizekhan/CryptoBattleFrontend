@@ -1,20 +1,19 @@
-// src/components/Pages/Farm.js
 import React from 'react';
-import './Farm.css'; 
-import boarImage from '../../assets/images/boar.png';
+import { Outlet } from 'react-router-dom';
+import SubNavigation from '../Panels/SubNavigation';
 
 const Farm = () => {
+    const subPages = [
+        { path: 'sub1', name: 'Overview' },
+        { path: 'sub2', name: 'Crops' },
+        { path: 'sub3', name: 'Animals' },
+        { path: 'sub4', name: 'Market' },
+    ];
+
     return (
-        <div className="farm-container">
-            <div className="main-content">
-                <img src={boarImage} alt="Boar" className="boar-image" />
-                <div className="points">+15</div>
-            </div>
-            <div className="footer">
-                <button>Бій</button>
-                <button>Мапа</button>
-                <button>Інформація</button>
-            </div>
+        <div>
+            <SubNavigation basePath="/farm" subPages={subPages} />
+            <Outlet />
         </div>
     );
 };
