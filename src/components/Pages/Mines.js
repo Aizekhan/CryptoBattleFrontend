@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
 import './Mines.css';
 import { useUserStats } from '../UserStatsContext';
-
+import UpgradeCard from '../Panels/UpgradeCard';
 
 const Mines = () => {
-    const { userStats, upgradeMine } = useUserStats();
+    const { userStats } = useUserStats();
     const [selectedMine, setSelectedMine] = useState(null);
 
-    const handleUpgrade = (mine) => {
-        if (mine.locked) return;
+    const openUpgradeCard = (mine) => {
         setSelectedMine(mine);
     };
 
-    const closeUpgradePanel = () => {
+    const closeUpgradeCard = () => {
         setSelectedMine(null);
+    };
+
+    const handleUpgrade = (mineId) => {
+        // Логіка апгрейду
+        closeUpgradeCard();
     };
 
     return (
@@ -21,30 +25,23 @@ const Mines = () => {
             <h1>Mines Page</h1>
             <div className="mines-grid">
                 {userStats.mines.map(mine => (
-                    <div key={mine.id} className={`mine-item ${mine.locked ? 'locked' : ''}`} onClick={() => handleUpgrade(mine)}>
+                    <div key={mine.id} className={`mine-item ${mine.locked ? 'locked' : ''}`}>
                         <img src={mine.img} alt={`Mine ${mine.id}`} />
-                        <div className="mine-info">
-                            <p>Вартість: {mine.upgradeCost} золота</p>
-                            <p>+{mine.income} золота/год</p>
-                            <p>lvl: {mine.currentLevel}</p>
-                        </div>
+                        <div className="mine-cost">Вартість: {mine.cost} золота</div>
+                        <div className="mine-income">+{mine.income} золота/год</div>
+                        <div className="mine-level">lvl: {mine.currentLevel}</div>
+                        {!mine.locked && (
+                            <button className="upgrade-button" onClick={() => openUpgradeCard(mine)}>Прокачати</button>
+                        )}
                     </div>
                 ))}
             </div>
             {selectedMine && (
-                <div className="upgrade-panel">
-                    <h2>Upgrade Mine</h2>
-                    <img src={selectedMine.img} alt={`Mine ${selectedMine.id}`} />
-                    <div className="upgrade-info">
-                        <p>Вартість апгрейду: {selectedMine.upgradeCost} золота</p>
-                        <p>Дохід: +{selectedMine.income} золота/год</p>
-                        <p>Поточний рівень: {selectedMine.currentLevel}</p>
-                    </div>
-                    <div className="upgrade-buttons">
-                        <button onClick={() => { upgradeMine(selectedMine.id); closeUpgradePanel(); }}>Upgrade</button>
-                        <button onClick={closeUpgradePanel}>Close</button>
-                    </div>
-                </div>
+                <UpgradeCard 
+                    mine={selectedMine} 
+                    onClose={closeUpgradeCard} 
+                    onUpgrade={handleUpgrade} 
+                />
             )}
         </div>
     );
