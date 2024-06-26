@@ -9,7 +9,7 @@ import Battle from './components/Pages/Battle';
 import Quests from './components/Pages/Quests';
 import Hero from './components/Pages/Hero';
 import Friends from './components/Pages/Friends';
-import Login from './components/Pages/Login';
+import Login from './components/Login';
 
 function App() {
     return (
