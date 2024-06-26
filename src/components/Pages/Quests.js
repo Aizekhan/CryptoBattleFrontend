@@ -4,10 +4,10 @@ import SubNavigation from '../Panels/SubNavigation';
 
 const Quests = () => {
     const subPages = [
-        { path: 'sub1', name: 'Available' },
-        { path: 'sub2', name: 'Completed' },
-        { path: 'sub3', name: 'Failed' },
-        { path: 'sub4', name: 'Rewards' },
+        { path: 'sub1', name: 'Now' },
+        { path: 'sub2', name: 'Done' },
+        { path: 'sub3', name: 'Daily' },
+        { path: 'sub4', name: 'Mision' },
     ];
 
     return (

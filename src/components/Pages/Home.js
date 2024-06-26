@@ -4,9 +4,9 @@ import SubNavigation from '../Panels/SubNavigation';
 
 const Home = () => {
     const subPages = [
-        { path: 'sub1', name: 'Overview' },
+        { path: 'sub1', name: 'Hero' },
         { path: 'sub2', name: 'News' },
-        { path: 'sub3', name: 'Updates' },
+        { path: 'sub3', name: 'NFT' },
         { path: 'sub4', name: 'Contact' },
     ];
 

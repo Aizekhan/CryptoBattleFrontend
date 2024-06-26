@@ -4,10 +4,10 @@ import SubNavigation from '../Panels/SubNavigation';
 
 const Mines = () => {
     const subPages = [
-        { path: 'sub1', name: 'Overview' },
-        { path: 'sub2', name: 'Resources' },
-        { path: 'sub3', name: 'Workers' },
-        { path: 'sub4', name: 'Statistics' },
+        { path: 'sub1', name: 'Gold' },
+        { path: 'sub2', name: 'Res' },
+        { path: 'sub3', name: 'Skills' },
+        { path: 'sub4', name: 'Crystal' },
     ];
 
     return (
