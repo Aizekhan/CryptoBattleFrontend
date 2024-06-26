@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import userIcon from '../../assets/images/user-icon.png';
 import walletIcon from '../../assets/images/wallet-icon.png';
 import coinImage from '../../assets/images/coin.png';
-import { useUserStats } from '../UserStatsContext';
+import { useUserStats } from '../../context/UserStatsContext';
 import './MainLayout.css';
 
 const TopBar = () => {
