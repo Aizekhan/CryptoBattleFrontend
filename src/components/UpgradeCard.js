@@ -1,6 +1,6 @@
 import React from 'react';
 import './UpgradeCard.css';
-import { useUserStats } from '../UserStatsContext';
+import { useUserStats } from './UserStatsContext';
 
 const UpgradeCard = ({ mine, onClose, onUpgrade }) => {
     const { spendBalance } = useUserStats();
