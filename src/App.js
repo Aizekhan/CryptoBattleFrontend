@@ -29,7 +29,7 @@ function App() {
             localStorage.setItem('authToken', token);
 
             axios
-                .get(`${process.env.BACKEND_URL}/api/user/${decoded.id}`, {
+                .get(`${process.env.REACT_APP_BACKEND_URL}/api/user/${decoded.id}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
