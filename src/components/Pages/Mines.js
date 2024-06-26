@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Mines.css';
 import { useUserStats } from '../UserStatsContext';
-import UpgradeCard from '../Panels/UpgradeCard';
+import UpgradeCard from '../UpgradeCard';
 
 const Mines = () => {
     const { userStats } = useUserStats();
