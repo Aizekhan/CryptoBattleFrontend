@@ -1,47 +1,53 @@
-import React, { useState } from 'react';
-import './Mines.css';
-import { useUserStats } from '../UserStatsContext';
-import UpgradeCard from '../UpgradeCard';
+import React, { useState, useEffect } from 'react';
+import { useUserStats } from '../../context/UserStatsContext';
+import { minesData } from '../../data/minesData';
+import CardList from '../Cards/CardList';
+import UpgradeCard from '../Cards/UpgradeCard';
 
 const Mines = () => {
-    const { userStats } = useUserStats();
-    const [selectedMine, setSelectedMine] = useState(null);
+    const { userStats, updateUserStats } = useUserStats();
+    const [selectedCard, setSelectedCard] = useState(null);
 
-    const openUpgradeCard = (mine) => {
-        setSelectedMine(mine);
+    useEffect(() => {
+        if (userStats.mines.length === 0) {
+            updateUserStats({ mines: minesData });
+        }
+    }, [userStats.mines, updateUserStats]);
+
+    const handleCardClick = (card) => {
+        setSelectedCard(card);
     };
 
-    const closeUpgradeCard = () => {
-        setSelectedMine(null);
-    };
+    const updateCard = (id, newLevel, newIncome, newUpgradeCost) => {
+        const updatedMines = userStats.mines.map(mine => {
+            if (mine.id === id) {
+                return {
+                    ...mine,
+                    currentLevel: newLevel,
+                    income: newIncome,
+                    upgradeCost: newUpgradeCost,
+                };
+            }
+            return mine;
+        });
 
-    const handleUpgrade = (mineId) => {
-        // Логіка апгрейду
-        closeUpgradeCard();
+        const newHourlyIncome = updatedMines.reduce((total, mine) => {
+            return total + (mine.currentLevel > 0 ? mine.income : 0);
+        }, 0);
+
+        updateUserStats({
+            mines: updatedMines,
+            hourlyIncome: newHourlyIncome,
+        });
     };
 
     return (
-        <div className="mines-container">
-            <h1>Mines Page</h1>
-            <div className="mines-grid">
-                {userStats.mines.map(mine => (
-                    <div key={mine.id} className={`mine-item ${mine.locked ? 'locked' : ''}`}>
-                        <img src={mine.img} alt={`Mine ${mine.id}`} />
-                        <div className="mine-cost">Вартість: {mine.cost} золота</div>
-                        <div className="mine-income">+{mine.income} золота/год</div>
-                        <div className="mine-level">lvl: {mine.currentLevel}</div>
-                        {!mine.locked && (
-                            <button className="upgrade-button" onClick={() => openUpgradeCard(mine)}>Прокачати</button>
-                        )}
-                    </div>
-                ))}
-            </div>
-            {selectedMine && (
-                <UpgradeCard 
-                    mine={selectedMine} 
-                    onClose={closeUpgradeCard} 
-                    onUpgrade={handleUpgrade} 
-                />
+        <div>
+            <h2>Mines</h2>
+            {selectedCard ? (
+                <UpgradeCard card={selectedCard} updateCard={updateCard} />
+            ) : (
+                <CardList cards={userStats.mines} onCardClick={handleCardClick} />
             )}
         </div>
     );

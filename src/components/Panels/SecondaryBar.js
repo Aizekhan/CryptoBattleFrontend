@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import homeIcon from '../../assets/images/home-icon.png';
 import friendsIcon from '../../assets/images/friends-icon.png';
 import pickaxeIcon from '../../assets/images/pickaxe-icon.png';
-import { useUserStats } from '../UserStatsContext';
+import { useUserStats } from '../../context/UserStatsContext';
 import './MainLayout.css'; // Оновлення стилів, щоб використовувати MainLayout.css
 
 const SecondaryBar = () => {

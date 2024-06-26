@@ -4,9 +4,8 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import MainLayout from './components/Panels/MainLayout';
 import './App.css';
-import { useUserStats, UserStatsProvider } from './components/UserStatsContext';
+import { useUserStats, UserStatsProvider } from './context/UserStatsContext';
 import Login from './components/Login';
-
 import Farm from './components/Pages/Farm';
 import Mines from './components/Pages/Mines';
 import Battle from './components/Pages/Battle';
