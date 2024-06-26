@@ -47,6 +47,9 @@ function App() {
                     console.error('Error fetching user data:', error);
                 });
         }
+        else {
+            console.error('Decoded token does not contain user ID');
+        }
     }, [updateUserStats]);
 
     return (
