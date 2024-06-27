@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-// import axios from 'axios';
-// import jwt_decode from 'jwt-decode';
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 import MainLayout from './components/Panels/MainLayout';
 import './App.css';
 import { useUserStats, UserStatsProvider } from './context/UserStatsContext';
