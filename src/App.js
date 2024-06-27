@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import MainLayout from './components/Panels/MainLayout';
-import './App.css'; // Імпорт стилів
+import './App.css';
 import { useUserStats, UserStatsProvider } from './context/UserStatsContext';
 import Login from './components/Login';
 import Farm from './components/Pages/Farm/Farm';
@@ -67,7 +67,7 @@ function App() {
                     <Route path="home" element={<Home />} />
                     <Route path="farm" element={<Farm />} />
                     <Route path="mines" element={<Mines />}>
-                        <Route index element={<Navigate to="gold" />} /> {/* Redirect to MinesGold by default */}
+                        <Route index element={<Navigate to="mines/gold" />} /> {/* Redirect to MinesGold by default */}
                         <Route path="gold" element={<MinesGold />} />
                         <Route path="res" element={<MinesRes />} />
                         <Route path="skills" element={<MinesSkills />} />

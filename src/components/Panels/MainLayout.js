@@ -11,7 +11,7 @@ const MainLayout = () => {
             <TopBar />
             <SecondaryBar />
             <div className="content">
-                <Outlet />
+                <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
             </div>
             <NavigationBar />
         </div>

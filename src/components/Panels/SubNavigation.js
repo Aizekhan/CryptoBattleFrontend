@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './SubNavigation.css'; // Додамо стилі для SubNavigation
+import './SubNavigation.css';
 
 const SubNavigation = ({ basePath, subPages }) => {
     return (

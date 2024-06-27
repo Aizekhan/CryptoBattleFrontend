@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import SubNavigation from '../../Panels/SubNavigation';
-import './Mines.css'; // Додамо стилі для Mines
+import './Mines.css';
 
 const Mines = () => {
     const subPages = [
