@@ -50,6 +50,8 @@ const Card = ({ card }) => {
         buttonClass = 'locked';
     } else if (!hasEnoughBalance) {
         buttonClass = 'no-balance';
+    } else {
+        buttonClass = 'can-upgrade';
     }
 
     return (
