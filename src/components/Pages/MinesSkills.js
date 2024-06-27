@@ -5,7 +5,7 @@ import image5 from '../../assets/images/MinesPageImages/5.png';
 import image6 from '../../assets/images/MinesPageImages/6.png';
 
 
-
+const MinesSkills = () => {
     const skillsCards = userStats.mines
         .filter(mine => mine.name.includes('Skill'))
         .map(mine => ({
