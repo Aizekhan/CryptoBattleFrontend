@@ -1,65 +1,68 @@
 .card {
-    border: 1px solid black;
-    margin: 10px;
-    padding: 10px;
-    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
     text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    position: relative; /* Для позиціонування замка */
-    flex: 1 1 calc(50% - 20px); /* Дві картки в рядку */
-    box-sizing: border-box;
-}
-
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
 }
 
 .card-img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    margin-bottom: 10px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
 }
 
-.card-name {
-    font-weight: bold;
+.card h3 {
+    font-size: 1.2em;
+    margin: 8px 0;
 }
 
-.card-level,
-.card-effect {
-    margin: 5px 0;
+.card p {
+    font-size: 1em;
+    margin: 4px 0;
+}
+
+.card button {
+    background-color: #f0ad4e;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.card button.locked {
+    background-color: #d9534f;
+    cursor: not-allowed;
+}
+
+.card button.no-balance {
+    background-color: #d9534f;
+    cursor: not-allowed;
+}
+
+.card button.can-upgrade {
+    background-color: #5cb85c;
+}
+
+.card button:hover:not([disabled]) {
+    background-color: #ec971f;
 }
 
 .lock-icon {
     width: 20px;
     height: 20px;
     vertical-align: middle;
-    margin-right: 5px;
 }
 
-button {
-    padding: 5px 10px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:disabled {
-    cursor: not-allowed;
-}
-
-button.locked {
-    background-color: #ccc;
-    color: #fff;
-}
-
-button.no-balance {
-    background-color: #f8d7da;
-    color: #721c24;
-}
-
-button.can-upgrade {
-    background-color: #ff9800; /* Помаранчевий колір для доступного апгрейду */
-    color: #fff;
+.prerequisites {
+    font-size: 0.9em;
+    color: #d9534f;
+    margin-top: 8px;
 }

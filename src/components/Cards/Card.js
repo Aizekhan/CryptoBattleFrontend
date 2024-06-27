@@ -21,6 +21,7 @@ const Card = ({ card }) => {
             );
 
             updateUserStats({
+                ...userStats,
                 balance: userStats.balance - card.upgradeCost,
                 mines: updatedMines
             });
