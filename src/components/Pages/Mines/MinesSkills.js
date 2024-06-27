@@ -1,7 +1,7 @@
 import React from 'react';
-import CardList from '../Cards/CardList';
-import image5 from '../../assets/images/MinesPageImages/5.png';
-import image6 from '../../assets/images/MinesPageImages/6.png';
+import CardList from '../../Cards/CardList';
+import image5 from '../../../assets/images/MinesPageImages/5.png';
+import image6 from '../../../assets/images/MinesPageImages/6.png';
 
 const MinesSkills = () => {
     const skillsCards = [

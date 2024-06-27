@@ -2,21 +2,21 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
-import MainLayout from './components/Panels/MainLayout';
-import './App.css';
-import { useUserStats, UserStatsProvider } from './context/UserStatsContext';
-import Login from './components/Login';
-import Farm from './components/Pages/Farm';
-import Mines from './components/Pages/Mines';
-import MinesGold from './components/Pages/MinesGold';
-import MinesRes from './components/Pages/MinesRes';
-import MinesSkills from './components/Pages/MinesSkills';
-import MinesCrystal from './components/Pages/MinesCrystal';
-import Battle from './components/Pages/Battle';
-import Quests from './components/Pages/Quests';
-import Hero from './components/Pages/Hero';
-import Home from './components/Pages/Home';
-import Friends from './components/Pages/Friends';
+import MainLayout from '../Panels/MainLayout';
+import '../App.css';
+import { useUserStats, UserStatsProvider } from '../../context/UserStatsContext';
+import Login from '../Login';
+import Farm from '../Pages/Farm/Farm';
+import Mines from '../Pages/Mines/Mines';
+import MinesGold from '../Pages/Mines/MinesGold';
+import MinesRes from '../Pages/Mines/MinesRes';
+import MinesSkills from '../Pages/Mines/MinesSkills';
+import MinesCrystal from '../Pages/Mines/MinesCrystal';
+import Battle from '../Pages/Battle/Battle';
+import Quests from '../Pages/Quests/Quests';
+import Hero from '../Pages/Hero/Hero';
+import Home from '../Pages/Home/Home';
+import Friends from '../Pages/Friends/Friends';
 
 function App() {
     const { updateUserStats } = useUserStats();
@@ -67,7 +67,7 @@ function App() {
                     <Route path="home" element={<Home />} />
                     <Route path="farm" element={<Farm />} />
                     <Route path="mines" element={<Mines />}>
-                        <Route index element={<Navigate to="gold" />} />  {/* Redirect to Gold by default */}
+                        <Route index element={<Navigate to="gold" />} /> {/* Redirect to MinesGold by default */}
                         <Route path="gold" element={<MinesGold />} />
                         <Route path="res" element={<MinesRes />} />
                         <Route path="skills" element={<MinesSkills />} />
