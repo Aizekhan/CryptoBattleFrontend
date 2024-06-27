@@ -9,8 +9,7 @@ const Card = ({ card, onUpgrade }) => {
     // Логіка перевірки умов прокачки
     const prerequisitesMet = card.prerequisites.every(prereq => {
         const prereqCard = userStats.mines ? userStats.mines.find(c => c.id === prereq.id) : [];
-        return prereqCard && false;
-        // return prereqCard && prereqCard.level >= prereq.level;
+        return prereqCard && prereqCard.level >= prereq.level;
     });
 
     const hasEnoughBalance = userStats.balance >= card.upgradeCost;
@@ -23,7 +22,7 @@ const Card = ({ card, onUpgrade }) => {
     if (!prerequisitesMet) {
         buttonContent = (
             <>
-                <img src={lockIcon} alt="Locked" />
+                <img src={lockIcon} alt="Locked" className="lock-icon" />
                 <div className="prerequisites">
                     {card.prerequisites.map(prereq => {
                         const prereqCard = userStats.mines.find(c => c.id === prereq.id);
@@ -42,15 +41,14 @@ const Card = ({ card, onUpgrade }) => {
     }
 
     return (
-        <div className="card">
+        <div className={`card ${buttonClass}`}>
             <img src={card.img} alt={card.name} className="card-img" />
-            <h3>{card.name}</h3>
-            <p>Level: {card.level}</p>
-            <p>Effect: {card.effect}</p>
+            <h3 className="card-name">{card.name}</h3>
+            <p className="card-level">Level: {card.level}</p>
+            <p className="card-effect">Effect: {card.effect}</p>
             <button 
                 onClick={canUpgrade ? onUpgrade : null}
                 disabled={!canUpgrade}
-                className={buttonClass}
             >
                 {buttonContent}
             </button>
