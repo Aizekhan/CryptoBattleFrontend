@@ -9,9 +9,9 @@ import Login from './components/Login';
 import Farm from './components/Pages/Farm/Farm';
 import Mines from './components/Pages/Mines/Mines';
 import MinesGold from './components/Pages/Mines/MinesGold';
-import MinesRes from './components/Pages/Mines/MinesRes';
+
 import MinesSkills from './components/Pages/Mines/MinesSkills';
-import MinesCrystal from './components/Pages/Mines/MinesCrystal';
+
 import Battle from './components/Pages/Battle/Battle';
 import Quests from './components/Pages/Quests/Quests';
 import Hero from './components/Pages/Hero/Hero';
@@ -69,9 +69,7 @@ function App() {
                     <Route path="mines" element={<Mines />}>
                         <Route index element={<Navigate to="/mines/gold" />} /> {/* Redirect to MinesGold by default */}
                         <Route path="gold" element={<MinesGold />} />
-                        <Route path="res" element={<MinesRes />} />
                         <Route path="skills" element={<MinesSkills />} />
-                        <Route path="crystal" element={<MinesCrystal />} />
                     </Route>
                     <Route path="battle" element={<Battle />} />
                     <Route path="quests" element={<Quests />} />

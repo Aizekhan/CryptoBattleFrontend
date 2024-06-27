@@ -1,14 +1,11 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import SubNavigation from '../../Panels/SubNavigation';
-import './Mines.css';
 
 const Mines = () => {
     const subPages = [
-        { path: 'gold', name: 'Gold' },
-        { path: 'res', name: 'Resources' },
+        { path: 'gold', name: 'Mines' },
         { path: 'skills', name: 'Skills' },
-        { path: 'crystal', name: 'Crystals' },
     ];
 
     return (
