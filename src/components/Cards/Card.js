@@ -33,7 +33,7 @@ const Card = ({ card }) => {
     if (!prerequisitesMet) {
         buttonContent = (
             <>
-                <img src={lockIcon} alt="Locked" />
+                <img src={lockIcon} alt="Locked" className="lock-icon" />
                 <div className="prerequisites">
                     {card.prerequisites.map(prereq => {
                         const prereqCard = userStats.mines.find(c => c.id === prereq.id);
