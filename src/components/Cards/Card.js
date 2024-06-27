@@ -6,6 +6,8 @@ import { useUserStats } from '../../context/UserStatsContext';
 const Card = ({ card }) => {
     const { userStats, updateUserStats } = useUserStats();
 
+    console.log('Rendering card:', card); // Додаємо логування
+
     const prerequisitesMet = card.prerequisites.every(prereq => {
         const prereqCard = userStats.mines.find(c => c.id === prereq.id);
         return prereqCard && prereqCard.level >= prereq.level;
@@ -16,7 +18,6 @@ const Card = ({ card }) => {
 
     const handleUpgrade = () => {
         if (canUpgrade) {
-            // Логіка апгрейду картки
             updateUserStats({
                 ...userStats,
                 balance: userStats.balance - card.upgradeCost,
@@ -24,6 +25,7 @@ const Card = ({ card }) => {
                     c.id === card.id ? { ...c, level: c.level + 1 } : c
                 )
             });
+            console.log('Card upgraded:', card); // Додаємо логування
         }
     };
 

@@ -20,6 +20,7 @@ export const UserStatsProvider = ({ children }) => {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/user-stats`);
                 setUserStats(response.data);
+                console.log('Fetched user stats:', response.data); // Додаємо логування
             } catch (error) {
                 console.error('Error fetching user stats:', error);
             }
@@ -29,7 +30,10 @@ export const UserStatsProvider = ({ children }) => {
     }, []);
 
     const updateUserStats = (newStats) => {
-        setUserStats(newStats);
+        setUserStats(prevStats => ({
+            ...prevStats,
+            ...newStats
+        }));
     };
 
     return (
