@@ -56,7 +56,7 @@ function App() {
     //     } else {
     //         console.error('Decoded token does not contain user ID');
     //     }
-    // }, [updateUserStats]);
+       }, [updateUserStats]);
 
     return (
         <Router>
