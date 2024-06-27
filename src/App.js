@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import MainLayout from '../Panels/MainLayout';
-import '../App.css';
+import './App.css';
 import { useUserStats, UserStatsProvider } from '../../context/UserStatsContext';
 import Login from '../Login';
 import Farm from '../Pages/Farm/Farm';
