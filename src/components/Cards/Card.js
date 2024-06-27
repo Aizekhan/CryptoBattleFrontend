@@ -3,20 +3,31 @@ import lockIcon from '../../assets/images/lock.png';
 import './Card.css';
 import { useUserStats } from '../../context/UserStatsContext';
 
-const Card = ({ card, onUpgrade }) => {
-    const { userStats } = useUserStats();
+const Card = ({ card }) => {
+    const { userStats, updateUserStats } = useUserStats();
 
-    // Логіка перевірки умов прокачки
     const prerequisitesMet = card.prerequisites.every(prereq => {
         const prereqCard = userStats.mines.find(c => c.id === prereq.id);
         return prereqCard && prereqCard.level >= prereq.level;
     });
 
     const hasEnoughBalance = userStats.balance >= card.upgradeCost;
-
     const canUpgrade = prerequisitesMet && hasEnoughBalance;
 
-    let buttonContent = 'Upgrade';
+    const handleUpgrade = () => {
+        if (canUpgrade) {
+            // Логіка апгрейду картки
+            updateUserStats({
+                ...userStats,
+                balance: userStats.balance - card.upgradeCost,
+                mines: userStats.mines.map(c => 
+                    c.id === card.id ? { ...c, level: c.level + 1 } : c
+                )
+            });
+        }
+    };
+
+    let buttonContent = `Upgrade (${card.upgradeCost})`;
     let buttonClass = '';
 
     if (!prerequisitesMet) {
@@ -49,11 +60,11 @@ const Card = ({ card, onUpgrade }) => {
             <p>Level: {card.level}</p>
             <p>Effect: {card.effect}</p>
             <button 
-                onClick={canUpgrade ? () => onUpgrade(card) : null}
+                onClick={handleUpgrade}
                 disabled={!canUpgrade}
                 className={buttonClass}
             >
-                {buttonContent} ({card.upgradeCost})
+                {buttonContent}
             </button>
         </div>
     );
