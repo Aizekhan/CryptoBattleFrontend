@@ -67,7 +67,7 @@ function App() {
                     <Route path="home" element={<Home />} />
                     <Route path="farm" element={<Farm />} />
                     <Route path="mines" element={<Mines />}>
-                        <Route index element={<Navigate to="mines/gold" />} /> {/* Redirect to MinesGold by default */}
+                        <Route index element={<Navigate to="/mines/gold" />} /> {/* Redirect to MinesGold by default */}
                         <Route path="gold" element={<MinesGold />} />
                         <Route path="res" element={<MinesRes />} />
                         <Route path="skills" element={<MinesSkills />} />

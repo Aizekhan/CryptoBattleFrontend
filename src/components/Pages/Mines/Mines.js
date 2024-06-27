@@ -14,7 +14,7 @@ const Mines = () => {
     return (
         <div className="mines">
             <SubNavigation basePath="/mines" subPages={subPages} />
-            <Outlet />
+            <Outlet /> {/* Тут відображається вміст дочірніх маршрутів Mines */}
         </div>
     );
 };
