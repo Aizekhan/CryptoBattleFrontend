@@ -8,8 +8,9 @@ const Card = ({ card, onUpgrade }) => {
 
     // Логіка перевірки умов прокачки
     const prerequisitesMet = card.prerequisites.every(prereq => {
-        const prereqCard = userStats.mines.find(c => c.id === prereq.id);
-        return prereqCard && prereqCard.level >= prereq.level;
+        const prereqCard = userStats.mines ? userStats.mines.find(c => c.id === prereq.id) : [];
+        return prereqCard && false;
+        // return prereqCard && prereqCard.level >= prereq.level;
     });
 
     const hasEnoughBalance = userStats.balance >= card.upgradeCost;
