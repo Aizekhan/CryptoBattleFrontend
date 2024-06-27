@@ -83,4 +83,10 @@ function App() {
     );
 }
 
-export default function AppWrapper()
+export default function AppWrapper() {
+    return (
+        <UserStatsProvider>
+            <App />
+        </UserStatsProvider>
+    );
+}
