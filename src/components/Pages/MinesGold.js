@@ -1,11 +1,9 @@
 import React from 'react';
 import CardList from '../Cards/CardList';
-import { useUserStats } from '../../context/UserStatsContext';
+
 import image1 from '../../assets/images/MinesPageImages/1.png';
 import image2 from '../../assets/images/MinesPageImages/2.png';
 
-const MinesGold = () => {
-    const { userStats } = useUserStats();
 
     const goldCards = [
         { id: 1, name: 'Gold Mine 1', level: 1, effect: 'Produces gold', img: image1, prerequisites: [], upgradeCost: 100 },
