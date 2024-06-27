@@ -32,9 +32,9 @@ function App() {
 
             localStorage.setItem('authToken', token);
 
-          axios
+            axios
                 .get(`${process.env.REACT_APP_BACKEND_URL}/api/user/${decoded.id}`, {
-                    headers:{
+                    headers: {
                         Authorization: `Bearer ${token}`,
                         "Content-Type": 'application/json',
                         "Access-Control-Allow-Origin": "*"
@@ -53,8 +53,7 @@ function App() {
                 .catch((error) => {
                     console.error('Error fetching user data:', error);
                 });
-        }
- else {
+        } else {
             console.error('Decoded token does not contain user ID');
         }
     }, [updateUserStats]);
