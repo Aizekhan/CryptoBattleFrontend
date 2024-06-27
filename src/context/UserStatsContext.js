@@ -30,10 +30,12 @@ export const UserStatsProvider = ({ children }) => {
     }, []);
 
     const updateUserStats = (newStats) => {
+        console.log('Updating user stats:', newStats); // Логування перед оновленням
         setUserStats(prevStats => ({
             ...prevStats,
             ...newStats
         }));
+        console.log('Updated user stats:', userStats); // Логування після оновлення
     };
 
     return (
