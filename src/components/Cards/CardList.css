@@ -2,9 +2,11 @@
     display: flex;
     flex-wrap: wrap;
     gap: 16px; /* Відстань між картками */
+    justify-content: center; /* Вирівнювання по центру */
 }
 
 .card-list > div {
     flex: 1 1 calc(50% - 16px); /* По 2 картки в ряд */
     box-sizing: border-box;
+    max-width: calc(50% - 16px); /* Максимальна ширина картки */
 }
