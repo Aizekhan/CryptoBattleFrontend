@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import axios from 'axios';
-import jwt_decode from 'jwt-decode';
+// import axios from 'axios';
+// import jwt_decode from 'jwt-decode';
 import MainLayout from './components/Panels/MainLayout';
 import './App.css';
 import { useUserStats, UserStatsProvider } from './context/UserStatsContext';
@@ -22,8 +22,8 @@ function App() {
     const { updateUserStats } = useUserStats();
 
     useEffect(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get('token') || localStorage.getItem('authToken');
+    //    const urlParams = new URLSearchParams(window.location.search);
+    //    const token = urlParams.get('token') || localStorage.getItem('authToken');
     //     if (token) {
     //         const decoded = jwt_decode(token);
     //         updateUserStats({
