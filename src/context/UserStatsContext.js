@@ -9,6 +9,7 @@ export const UserStatsProvider = ({ children }) => {
         tapIncome: 0,
         hourlyIncome: 0,
         balance: 0,
+        mines: [], // Додайте цю властивість для зберігання даних про шахти
     });
 
     const updateUserStats = (stats) => {
