@@ -1,22 +1,35 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
 const UserStatsContext = createContext();
+
+export const useUserStats = () => useContext(UserStatsContext);
 
 export const UserStatsProvider = ({ children }) => {
     const [userStats, setUserStats] = useState({
         username: '',
-        level: 1,
-        tapIncome: 0,
-        hourlyIncome: 0,
-        balance: 0,
-        mines: [], // Додайте цю властивість для зберігання даних про шахти
+        level: 0,
+        tapIncome: 1,
+        hourlyIncome: 1000,
+        balance: 1000000,
+        mines: [],
     });
 
-    const updateUserStats = (stats) => {
-        setUserStats((prevStats) => ({
-            ...prevStats,
-            ...stats,
-        }));
+    useEffect(() => {
+        const fetchUserStats = async () => {
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/user-stats`);
+                setUserStats(response.data);
+            } catch (error) {
+                console.error('Error fetching user stats:', error);
+            }
+        };
+
+        fetchUserStats();
+    }, []);
+
+    const updateUserStats = (newStats) => {
+        setUserStats(newStats);
     };
 
     return (
@@ -24,8 +37,4 @@ export const UserStatsProvider = ({ children }) => {
             {children}
         </UserStatsContext.Provider>
     );
-};
-
-export const useUserStats = () => {
-    return useContext(UserStatsContext);
 };
