@@ -1,51 +1,14 @@
-.mines-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.mines {
+    padding: 20px;
 }
 
-.mines-grid {
+.card-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
     gap: 20px;
 }
 
-.mine-item {
-    position: relative; /* Додано для позиціонування замка відносно шахти */
-    width: calc(50% - 20px);
-    background-color: #333;
-    padding: 10px;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.mine-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
-.locked {
-    position: relative; /* Додано для позиціонування замка відносно шахти */
-}
-
-.locked img {
-    opacity: 0.5;
-}
-
-.locked::after {
-    content: '';
-    background-image: url('../../assets/images/lock.png'); /* Замість lock.png вкажіть правильний шлях до зображення замка */
-    background-size: contain;
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 20%; /* Розмір замка, можна коригувати за потреби */
-    height: 20%; /* Розмір замка, можна коригувати за потреби */
-    transform: translate(-50%, -50%);
-}
-.upgrade-button:hover {
-    background-color: #0056b3;
+.card {
+    width: calc(50% - 10px); /* Дві картки в ряд */
+    box-sizing: border-box;
 }

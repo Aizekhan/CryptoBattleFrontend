@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import SubNavigation from '../Panels/SubNavigation';
+import './Mines.css'; // Додамо стилі для Mines
 
 const Mines = () => {
     const subPages = [
@@ -11,7 +12,7 @@ const Mines = () => {
     ];
 
     return (
-        <div>
+        <div className="mines">
             <SubNavigation basePath="/mines" subPages={subPages} />
             <Outlet />
         </div>
