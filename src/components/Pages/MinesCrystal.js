@@ -1,6 +1,5 @@
 import React from 'react';
 import CardList from '../Cards/CardList';
-
 import image7 from '../../assets/images/MinesPageImages/7.png';
 import image8 from '../../assets/images/MinesPageImages/8.png';
 import image9 from '../../assets/images/MinesPageImages/9.png';

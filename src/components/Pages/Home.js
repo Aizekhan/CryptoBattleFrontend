@@ -8,6 +8,8 @@ const Home = () => {
         { path: 'equip', name: 'Equip' },
         { path: 'stats', name: 'Stats' },
         { path: 'story', name: 'Story' },
+
+        { path: 'story', name: 'Achives' },
     ];
 
     return (
