@@ -1,22 +1,15 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import './SubNavigation.css';
+import { NavLink } from 'react-router-dom';
 
 const SubNavigation = ({ basePath, subPages }) => {
-    const location = useLocation();
-
     return (
-        <div className="sub-navigation">
-            {subPages.map((subPage, index) => (
-                <Link
-                    key={index}
-                    to={`${basePath}/${subPage.path}`}
-                    className={location.pathname === `${basePath}/${subPage.path}` ? 'active' : ''}
-                >
-                    {subPage.name}
-                </Link>
+        <nav className="sub-navigation">
+            {subPages.map((page) => (
+                <NavLink key={page.path} to={`${basePath}/${page.path}`} className="nav-link">
+                    {page.name}
+                </NavLink>
             ))}
-        </div>
+        </nav>
     );
 };
 
