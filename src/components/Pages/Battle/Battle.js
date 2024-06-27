@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import SubNavigation from '../Panels/SubNavigation';
+import SubNavigation from '../../Panels/SubNavigation';
 
 const Battle = () => {
     const subPages = [
