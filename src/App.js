@@ -37,7 +37,7 @@ function App() {
                     headers: {
                         Authorization: `Bearer ${token}`,
                         "Content-Type": 'application/json',
-                        "Access-Control-Allow-Origin": "*"
+                        "Cache-Control": "no-cache"
                     },
                 })
                 .then((response) => {
