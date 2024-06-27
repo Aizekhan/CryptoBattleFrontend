@@ -3,8 +3,8 @@ import lockIcon from '../../assets/images/lock.png';
 import './Card.css';
 import { useUserStats } from '../../context/UserStatsContext';
 
-const Card = ({ card, onUpgrade }) => {
-    const { userStats } = useUserStats();
+const Card = ({ card }) => {
+    const { userStats, updateUserStats } = useUserStats();
 
     // Логіка перевірки умов прокачки
     const prerequisitesMet = card.prerequisites.every(prereq => {
@@ -16,7 +16,19 @@ const Card = ({ card, onUpgrade }) => {
 
     const canUpgrade = prerequisitesMet && hasEnoughBalance;
 
-    let buttonContent = 'Upgrade';
+    const handleUpgrade = () => {
+        if (canUpgrade) {
+            const updatedMines = userStats.mines.map(c =>
+                c.id === card.id ? { ...c, level: c.level + 1, upgradeCost: c.upgradeCost * 2 } : c
+            );
+            updateUserStats({
+                mines: updatedMines,
+                balance: userStats.balance - card.upgradeCost,
+            });
+        }
+    };
+
+    let buttonContent = `Upgrade (${card.upgradeCost})`;
     let buttonClass = '';
 
     if (!prerequisitesMet) {
@@ -47,7 +59,7 @@ const Card = ({ card, onUpgrade }) => {
             <p className="card-level">Level: {card.level}</p>
             <p className="card-effect">Effect: {card.effect}</p>
             <button 
-                onClick={canUpgrade ? onUpgrade : null}
+                onClick={handleUpgrade}
                 disabled={!canUpgrade}
             >
                 {buttonContent}
