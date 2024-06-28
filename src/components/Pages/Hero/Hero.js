@@ -4,18 +4,18 @@ import SubNavigation from '../../Panels/SubNavigation';
 
 const Home = () => {
     const subPages = [
-        { path: 'hero', name: 'Hero' },
-        { path: 'equip', name: 'Equip' },
-        { path: 'stats', name: 'Stats' },
-        { path: 'story', name: 'Story' },
+        { path: 'sub1', name: 'Char' },
+      
+        { path: 'sub3', name: 'Passive' },
+        { path: 'sub4', name: 'Equip' },
     ];
 
     return (
         <div>
-            <SubNavigation basePath="/home" subPages={subPages} />
+            <SubNavigation basePath="/hero" subPages={subPages} />
             <Outlet />
         </div>
     );
 };
 
-export default Home;
+export default Hero;

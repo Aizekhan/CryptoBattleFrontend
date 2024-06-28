@@ -4,8 +4,8 @@ import SubNavigation from '../../Panels/SubNavigation';
 
 const Mines = () => {
     const subPages = [
-        { path: 'gold', name: 'Mines' },
-        { path: 'skills', name: 'Skills' },
+        { path: 'sub1', name: 'Mines' },
+        { path: 'sub2', name: 'Skills' },
     ];
 
     return (
