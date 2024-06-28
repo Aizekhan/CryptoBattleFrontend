@@ -4,7 +4,7 @@ import SubNavigation from '../../Panels/SubNavigation';
 
 const Farm = () => {
     const subPages = [
-        { path: 'sub1', name: "Hunt' },
+        { path: 'sub1', name: 'Hunt' },
         { path: 'sub2', name: 'Locations' },
        
         { path: 'skills', name: 'Skills' },
