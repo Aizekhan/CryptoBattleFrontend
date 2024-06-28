@@ -6,10 +6,11 @@ const CardList = ({ cards }) => {
     return (
         <div className="card-list">
             {cards.map((card, index) => (
-                <Card 
-                    key={index} 
-                    card={card}
-                />
+                <div className="card-container" key={index}>
+                    <Card 
+                        card={card}
+                    />
+                </div>
             ))}
         </div>
     );
