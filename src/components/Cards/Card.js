@@ -17,13 +17,16 @@ const Card = ({ card }) => {
 
     const handleUpgrade = () => {
         if (canUpgrade) {
-            setUserStats(prevStats => ({
-                ...prevStats,
-                balance: prevStats.balance - card.upgradeCost,
-                mines: prevStats.mines.map(c => 
+            setUserStats(prevStats => {
+                const updatedMines = prevStats.mines.map(c => 
                     c.id === card.id ? { ...c, level: c.level + 1 } : c
-                )
-            }));
+                );
+                return {
+                    ...prevStats,
+                    balance: prevStats.balance - card.upgradeCost,
+                    mines: updatedMines
+                };
+            });
         }
     };
 
@@ -33,7 +36,7 @@ const Card = ({ card }) => {
     if (!prerequisitesMet) {
         buttonContent = (
             <>
-                <img src={lockIcon} alt="Locked" className="lock-icon" />
+                <img src={lockIcon} alt="Locked" />
                 <div className="prerequisites">
                     {card.prerequisites.map(prereq => {
                         const prereqCard = userStats.mines.find(c => c.id === prereq.id);
@@ -55,7 +58,7 @@ const Card = ({ card }) => {
         <div className="card">
             <img src={card.img} alt={card.name} className="card-img" />
             <h3>{card.name}</h3>
-            <p>Level: {userStats.mines.find(c => c.id === card.id)?.level}</p>
+            <p>Level: {userStats.mines.find(c => c.id === card.id)?.level || card.level}</p>
             <p>Effect: {card.effect}</p>
             <button 
                 onClick={handleUpgrade}

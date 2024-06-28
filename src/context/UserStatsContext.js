@@ -12,16 +12,16 @@ export const UserStatsProvider = ({ children }) => {
         tapIncome: 1,
         hourlyIncome: 1000,
         balance: 1000000,
-         mines: [
-            { id: 1, name: 'Gold Mine 1', level: 0 },
-            { id: 2, name: 'Gold Mine 2', level: 0 },
-            { id: 3, name: 'Gold Mine 3', level: 0 },
-            { id: 4, name: 'Resource Mine 1', level: 0 },
-            { id: 5, name: 'Resource Mine 2', level: 0 },
-            { id: 6, name: 'Resource Mine 3', level: 0 },
-            { id: 7, name: 'Crystal Mine 1', level: 0 },
-            { id: 8, name: 'Crystal Mine 2', level: 0 },
-            { id: 9, name: 'Crystal Mine 3', level: 0 }
+        mines: [
+            { id: 1, level: 0 },
+            { id: 2, level: 0 },
+            { id: 3, level: 0 },
+            { id: 4, level: 0 },
+            { id: 5, level: 0 },
+            { id: 6, level: 0 },
+            { id: 7, level: 0 },
+            { id: 8, level: 0 },
+            { id: 9, level: 0 },
         ],
     });
 
@@ -40,12 +40,10 @@ export const UserStatsProvider = ({ children }) => {
     }, []);
 
     const updateUserStats = (newStats) => {
-        console.log('Updating user stats:', newStats); // Логування перед оновленням
         setUserStats(prevStats => ({
             ...prevStats,
             ...newStats
         }));
-        console.log('Updated user stats:', userStats); // Логування після оновлення
     };
 
     return (
