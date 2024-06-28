@@ -30,7 +30,7 @@ export const UserStatsProvider = ({ children }) => {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/user-stats`);
                 setUserStats(response.data);
-                console.log('Fetched user stats:', response.data); // Додаємо логування
+                console.log('Fetched user stats:', response.data);
             } catch (error) {
                 console.error('Error fetching user stats:', error);
             }
@@ -46,8 +46,15 @@ export const UserStatsProvider = ({ children }) => {
         }));
     };
 
+    const decreaseBalance = (amount) => {
+        setUserStats(prevStats => ({
+            ...prevStats,
+            balance: prevStats.balance - amount
+        }));
+    };
+
     return (
-        <UserStatsContext.Provider value={{ userStats, updateUserStats }}>
+        <UserStatsContext.Provider value={{ userStats, updateUserStats, decreaseBalance }}>
             {children}
         </UserStatsContext.Provider>
     );
