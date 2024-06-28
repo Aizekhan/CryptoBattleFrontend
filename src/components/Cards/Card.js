@@ -1,3 +1,8 @@
+import React from 'react';
+import lockIcon from '../../assets/images/lock.png';
+import './Card.css';
+import { useUserStats } from '../../context/UserStatsContext';
+
 const Card = ({ card, onUpgrade }) => {
     const { userStats, setUserStats } = useUserStats();
 
