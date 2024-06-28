@@ -2,8 +2,8 @@ import React from 'react';
 import CardList from '../../Cards/CardList';
 import { miningSkills } from '../../Cards/cardsConfig'; // Імпортуємо тільки карти шахт
 
-const MinesSkills = () => {
+const MiningSkills = () => {
     return <CardList cards={miningSkills} />;
 };
 
-export default MinesSkills;
+export default MiningSkills;
