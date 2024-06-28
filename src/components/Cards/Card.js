@@ -22,13 +22,11 @@ const Card = ({ card }) => {
             );
 
             updateUserStats({
-                ...userStats,
                 balance: userStats.balance - card.upgradeCost,
                 mines: updatedMines
             });
 
             console.log('Updated user stats:', {
-                ...userStats,
                 balance: userStats.balance - card.upgradeCost,
                 mines: updatedMines
             }); // Додаємо логування для перевірки
@@ -65,7 +63,7 @@ const Card = ({ card }) => {
         <div className="card" key={card.id}>
             <img src={card.img} alt={card.name} className="card-img" />
             <h3>{card.name}</h3>
-            <p>Level: {card.level}</p>
+            <p>Level: {userStats.mines.find(c => c.id === card.id)?.level || card.level}</p>
             <p>Effect: {card.effect}</p>
             <button 
                 onClick={handleUpgrade}
