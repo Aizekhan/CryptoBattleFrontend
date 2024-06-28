@@ -1,9 +1,4 @@
-import React from 'react';
-import lockIcon from '../../assets/images/lock.png';
-import './Card.css';
-import { useUserStats } from '../../context/UserStatsContext';
-
-const Card = ({ card }) => {
+const Card = ({ card, onUpgrade }) => {
     const { userStats, setUserStats } = useUserStats();
 
     const prerequisitesMet = card.prerequisites.every(prereq => {
@@ -17,16 +12,13 @@ const Card = ({ card }) => {
 
     const handleUpgrade = () => {
         if (canUpgrade) {
-            setUserStats(prevStats => {
-                const updatedMines = prevStats.mines.map(c => 
+            setUserStats(prevStats => ({
+                ...prevStats,
+                balance: prevStats.balance - card.upgradeCost,
+                mines: prevStats.mines.map(c => 
                     c.id === card.id ? { ...c, level: c.level + 1 } : c
-                );
-                return {
-                    ...prevStats,
-                    balance: prevStats.balance - card.upgradeCost,
-                    mines: updatedMines
-                };
-            });
+                )
+            }));
         }
     };
 
@@ -58,7 +50,7 @@ const Card = ({ card }) => {
         <div className="card">
             <img src={card.img} alt={card.name} className="card-img" />
             <h3>{card.name}</h3>
-            <p>Level: {userStats.mines.find(c => c.id === card.id)?.level || card.level}</p>
+            <p>Level: {card.level}</p>
             <p>Effect: {card.effect}</p>
             <button 
                 onClick={handleUpgrade}
@@ -70,5 +62,3 @@ const Card = ({ card }) => {
         </div>
     );
 };
-
-export default Card;
