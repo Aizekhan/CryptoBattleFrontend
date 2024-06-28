@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import farmIcon from '../../assets/images/farm-icon.png';
 import minesIcon from '../../assets/images/mines-icon.png';
 import battleIcon from '../../assets/images/battle-icon.png';
@@ -9,21 +9,21 @@ import heroIcon from '../../assets/images/hero-icon.png';
 const NavigationBar = () => {
     return (
         <div className="navigation-bar">
-            <Link to="/farm" className="nav-button">
+            <NavLink to="/farm" className={({ isActive }) => isActive ? 'nav-button active' : 'nav-button'}>
                 <img src={farmIcon} alt="Farm" />
-            </Link>
-            <Link to="/mines" className="nav-button">
+            </NavLink>
+            <NavLink to="/mines" className={({ isActive }) => isActive ? 'nav-button active' : 'nav-button'}>
                 <img src={minesIcon} alt="Mines" />
-            </Link>
-            <Link to="/battle" className="nav-button">
+            </NavLink>
+            <NavLink to="/battle" className={({ isActive }) => isActive ? 'nav-button active' : 'nav-button'}>
                 <img src={battleIcon} alt="Battle" />
-            </Link>
-            <Link to="/quests" className="nav-button">
+            </NavLink>
+            <NavLink to="/quests" className={({ isActive }) => isActive ? 'nav-button active' : 'nav-button'}>
                 <img src={questsIcon} alt="Quests" />
-            </Link>
-            <Link to="/hero" className="nav-button">
+            </NavLink>
+            <NavLink to="/hero" className={({ isActive }) => isActive ? 'nav-button active' : 'nav-button'}>
                 <img src={heroIcon} alt="Hero" />
-            </Link>
+            </NavLink>
         </div>
     );
 };
