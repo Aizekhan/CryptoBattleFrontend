@@ -1,12 +1,9 @@
 import React from 'react';
+import CardList from '../../Cards/CardList';
+import { equipmentCards } from '../../Cards/cardsConfig';
 
 const Equip = () => {
-    return (
-        <div>
-            <h1>Equip Page</h1>
-            <p>Welcome to the Equip page. Manage your equipment here.</p>
-        </div>
-    );
+    return <CardList cards={equipmentCards} />;
 };
 
 export default Equip;

@@ -1,12 +1,9 @@
 import React from 'react';
+import CardList from '../../Cards/CardList';
+import { locationCards } from '../../Cards/cardsConfig';
 
 const Locations = () => {
-    return (
-        <div>
-            <h1>Locations Page</h1>
-            <p>Welcome to the Locations page. This is where you can manage your locations.</p>
-        </div>
-    );
+    return <CardList cards={locationCards} />;
 };
 
 export default Locations;

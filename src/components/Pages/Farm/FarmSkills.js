@@ -1,12 +1,9 @@
 import React from 'react';
+import CardList from '../../Cards/CardList';
+import { farmSkills } from '../../Cards/cardsConfig';
 
 const FarmSkills = () => {
-    return (
-        <div>
-            <h1>Skills Page</h1>
-            <p>Welcome to the Skills page. This is where you can manage your skills.</p>
-        </div>
-    );
+    return <CardList cards={farmSkills} />;
 };
 
 export default FarmSkills;

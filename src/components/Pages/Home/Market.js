@@ -1,12 +1,9 @@
 import React from 'react';
+import CardList from '../../Cards/CardList';
+import { marketCards } from '../../Cards/cardsConfig';
 
 const Market = () => {
-    return (
-        <div>
-            <h1>Market Page</h1>
-            <p>Welcome to the Market page. Manage your market activities here.</p>
-        </div>
-    );
+    return <CardList cards={marketCards} />;
 };
 
 export default Market;

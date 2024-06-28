@@ -1,12 +1,9 @@
 import React from 'react';
+import CardList from '../../Cards/CardList';
+import { passiveSkills } from '../../Cards/cardsConfig';
 
 const Passive = () => {
-    return (
-        <div>
-            <h1>Passive Page</h1>
-            <p>Welcome to the Passive page. Manage your passive skills here.</p>
-        </div>
-    );
+    return <CardList cards={passiveSkills} />;
 };
 
 export default Passive;

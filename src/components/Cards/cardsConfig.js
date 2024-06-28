@@ -34,6 +34,12 @@ import mine7 from '../../assets/images/MinesPageImages/7.png';
 import mine8 from '../../assets/images/MinesPageImages/8.png';
 import mine9 from '../../assets/images/MinesPageImages/9.png';
 
+import marketHeroOrc from '../../assets/images/MarketImages/hero_orc.png';
+import marketHeroTroll from '../../assets/images/MarketImages/hero_troll.png';
+import marketHeroDarkElf from '../../assets/images/MarketImages/hero_dark_elf.png';
+import locationCastle from '../../assets/images/LocationImages/castle.png';
+import locationSwamp from '../../assets/images/LocationImages/swamp.png';
+import locationForest from '../../assets/images/LocationImages/forest.png';
 // Додайте інші імпорти картинок для інших категорій карт
 
 export const passiveSkills = [
@@ -90,4 +96,16 @@ export const minesCards = [
     { id: 7, name: 'Crystal Mine 1', level: 0, effect: 'Produces crystals', img: mine7, prerequisites: [], upgradeCost: 400, tag: 'mine' },
     { id: 8, name: 'Crystal Mine 2', level: 0, effect: 'Produces more crystals', img: mine8, prerequisites: [{ id: 7, level: 3 }], upgradeCost: 450, tag: 'mine' },
     { id: 9, name: 'Crystal Mine 3', level: 0, effect: 'Produces even more crystals', img: mine9, prerequisites: [{ id: 8, level: 3 }, { id: 7, level: 5 }], upgradeCost: 500, tag: 'mine' },
+];
+
+export const marketCards = [
+    { id: 1, name: 'Hero Orc', effect: 'A strong orc hero', level: 1, upgradeCost: 100, img: marketHeroOrc, tag: 'market', prerequisites: [] },
+    { id: 2, name: 'Hero Troll', effect: 'A powerful troll hero', level: 1, upgradeCost: 150, img: marketHeroTroll, tag: 'market', prerequisites: [{ id: 1, level: 2 }] },
+    { id: 3, name: 'Hero Dark Elf', effect: 'A swift dark elf hero', level: 1, upgradeCost: 200, img: marketHeroDarkElf, tag: 'market', prerequisites: [{ id: 2, level: 3 }] },
+];
+
+export const locationCards = [
+    { id: 1, name: 'Ancient Castle', effect: 'A location with ancient secrets', level: 0, upgradeCost: 100, img: locationCastle, tag: 'location', prerequisites: [] },
+    { id: 2, name: 'Darwood Swamp', effect: 'A mysterious swamp with hidden dangers', level: 0, upgradeCost: 150, img: locationSwamp, tag: 'location', prerequisites: [{ id: 1, level: 2 }] },
+    { id: 3, name: 'Forest Glade', effect: 'A peaceful glade in the forest', level: 0, upgradeCost: 200, img: locationForest, tag: 'location', prerequisites: [{ id: 2, level: 3 }] },
 ];
