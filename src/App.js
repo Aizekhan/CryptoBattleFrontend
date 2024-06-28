@@ -20,7 +20,7 @@ import Skills from './components/Pages/Farm/Skills';
 
 import Mines from './components/Pages/Mines/Mines';
 import MinesGold from './components/Pages/Mines/MinesGold';
-import MinesSkills from './components/Pages/Mines/MiningSkills';
+import MiningSkills from './components/Pages/Mines/MiningSkills'; // Переконайтеся, що цей компонент існує
 
 import Battle from './components/Pages/Battle/Battle';
 import PvP from './components/Pages/Battle/PvP';

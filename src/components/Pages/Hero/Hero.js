@@ -2,12 +2,11 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import SubNavigation from '../../Panels/SubNavigation';
 
-const Home = () => {
+const Hero = () => {
     const subPages = [
         { path: 'sub1', name: 'Char' },
-      
-        { path: 'sub3', name: 'Passive' },
-        { path: 'sub4', name: 'Equip' },
+        { path: 'sub2', name: 'Passive' },
+        { path: 'sub3', name: 'Equip' },
     ];
 
     return (
