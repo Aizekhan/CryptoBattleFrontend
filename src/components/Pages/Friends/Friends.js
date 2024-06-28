@@ -11,7 +11,7 @@ const Friends = () => {
     return (
         <div>
             <SubNavigation basePath="/friends" subPages={subPages} />
-            <Outlet />
+            <Outlet />{/* Тут відображається вміст дочірніх маршрутів */}
         </div>
     );
 };

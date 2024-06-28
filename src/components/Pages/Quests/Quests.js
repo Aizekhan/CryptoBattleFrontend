@@ -12,7 +12,7 @@ const Quests = () => {
     return (
         <div>
             <SubNavigation basePath="/quests" subPages={subPages} />
-            <Outlet />
+            <Outlet />{/* Тут відображається вміст дочірніх маршрутів */}
         </div>
     );
 };

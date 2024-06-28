@@ -14,7 +14,7 @@ const Home = () => {
     return (
         <div>
             <SubNavigation basePath="/home" subPages={subPages} />
-            <Outlet />
+            <Outlet />{/* Тут відображається вміст дочірніх маршрутів */}
         </div>
     );
 };

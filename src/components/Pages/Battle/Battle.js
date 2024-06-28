@@ -13,7 +13,7 @@ const Battle = () => {
     return (
         <div>
             <SubNavigation basePath="/battle" subPages={subPages} />
-            <Outlet />
+            <Outlet />{/* Тут відображається вміст дочірніх маршрутів */}
         </div>
     );
 };

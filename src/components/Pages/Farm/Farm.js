@@ -13,7 +13,7 @@ const Farm = () => {
     return (
         <div>
             <SubNavigation basePath="/farm" subPages={subPages} />
-            <Outlet />
+            <Outlet />{/* Тут відображається вміст дочірніх маршрутів */}
         </div>
     );
 };

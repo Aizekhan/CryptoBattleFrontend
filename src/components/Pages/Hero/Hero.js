@@ -12,7 +12,7 @@ const Hero = () => {
     return (
         <div>
             <SubNavigation basePath="/hero" subPages={subPages} />
-            <Outlet />
+            <Outlet />{/* Тут відображається вміст дочірніх маршрутів */}
         </div>
     );
 };
