@@ -3,8 +3,8 @@ import lockIcon from '../../assets/images/lock.png';
 import './Card.css';
 import { useUserStats } from '../../context/UserStatsContext';
 
-const Card = ({ card, onUpgrade }) => {
-    const { userStats, setUserStats } = useUserStats();
+const Card = ({ card }) => {
+    const { userStats, updateUserStats } = useUserStats();
 
     const prerequisitesMet = card.prerequisites.every(prereq => {
         const prereqCard = userStats.mines.find(c => c.id === prereq.id);
@@ -12,28 +12,36 @@ const Card = ({ card, onUpgrade }) => {
     });
 
     const hasEnoughBalance = userStats.balance >= card.upgradeCost;
-
     const canUpgrade = prerequisitesMet && hasEnoughBalance;
 
     const handleUpgrade = () => {
         if (canUpgrade) {
-            setUserStats(prevStats => ({
-                ...prevStats,
-                balance: prevStats.balance - card.upgradeCost,
-                mines: prevStats.mines.map(c => 
-                    c.id === card.id ? { ...c, level: c.level + 1 } : c
-                )
-            }));
+            console.log('Upgrading card:', card); // Додаємо логування для перевірки
+            const updatedMines = userStats.mines.map(c => 
+                c.id === card.id ? { ...c, level: c.level + 1 } : c
+            );
+
+            updateUserStats({
+                ...userStats,
+                balance: userStats.balance - card.upgradeCost,
+                mines: updatedMines
+            });
+
+            console.log('Updated user stats:', {
+                ...userStats,
+                balance: userStats.balance - card.upgradeCost,
+                mines: updatedMines
+            }); // Додаємо логування для перевірки
         }
     };
 
-    let buttonContent = 'Upgrade';
+    let buttonContent = `Upgrade (${card.upgradeCost})`;
     let buttonClass = '';
 
     if (!prerequisitesMet) {
         buttonContent = (
             <>
-                <img src={lockIcon} alt="Locked" />
+                <img src={lockIcon} alt="Locked" className="lock-icon" />
                 <div className="prerequisites">
                     {card.prerequisites.map(prereq => {
                         const prereqCard = userStats.mines.find(c => c.id === prereq.id);
@@ -49,10 +57,12 @@ const Card = ({ card, onUpgrade }) => {
         buttonClass = 'locked';
     } else if (!hasEnoughBalance) {
         buttonClass = 'no-balance';
+    } else {
+        buttonClass = 'can-upgrade';
     }
 
     return (
-        <div className="card">
+        <div className="card" key={card.id}>
             <img src={card.img} alt={card.name} className="card-img" />
             <h3>{card.name}</h3>
             <p>Level: {card.level}</p>
@@ -62,8 +72,10 @@ const Card = ({ card, onUpgrade }) => {
                 disabled={!canUpgrade}
                 className={buttonClass}
             >
-                {buttonContent} ({card.upgradeCost})
+                {buttonContent}
             </button>
         </div>
     );
 };
+
+export default Card;
