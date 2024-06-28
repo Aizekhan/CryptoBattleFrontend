@@ -1,12 +1,9 @@
 import React from 'react';
+import CardList from '../../Cards/CardList';
+import { battleCards } from '../../Cards/cardsConfig';
 
-const Cards = () => {
-    return (
-        <div>
-            <h1>Cards Page</h1>
-            <p>Welcome to the Cards page. Manage your battle cards here.</p>
-        </div>
-    );
+const BattleCards = () => {
+    return <CardList cards={battleCards} />;
 };
 
 export default BattleCards;

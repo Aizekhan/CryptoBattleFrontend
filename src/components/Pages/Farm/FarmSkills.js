@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Skills = () => {
+const FarmSkills = () => {
     return (
         <div>
             <h1>Skills Page</h1>
@@ -9,4 +9,4 @@ const Skills = () => {
     );
 };
 
-export default Skills;
+export default FarmSkills;
