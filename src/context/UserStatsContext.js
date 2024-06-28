@@ -12,10 +12,15 @@ export const UserStatsProvider = ({ children }) => {
         tapIncome: 1,
         hourlyIncome: 1000,
         balance: 1000000,
+        currentHeroId: null,
+        heroes: [
+            { id: 1, name: 'Hero 1', level: 1, passive: [], equip: [], farmSkills: [], battleCards: [] },
+            { id: 2, name: 'Hero 2', level: 1, passive: [], equip: [], farmSkills: [], battleCards: [] },
+        ],
         mines: [
-            { id: 1, level: 0 },
-            { id: 2, level: 0 },
-            { id: 3, level: 0 },
+            { id: 1, level: 0, baseIncome: 10 },
+            { id: 2, level: 0, baseIncome: 20 },
+            { id: 3, level: 0, baseIncome: 30 },
             { id: 4, level: 0 },
             { id: 5, level: 0 },
             { id: 6, level: 0 },
@@ -30,7 +35,7 @@ export const UserStatsProvider = ({ children }) => {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/user-stats`);
                 setUserStats(response.data);
-                console.log('Fetched user stats:', response.data);
+                console.log('Fetched user stats:', response.data); // Додаємо логування
             } catch (error) {
                 console.error('Error fetching user stats:', error);
             }
@@ -46,15 +51,17 @@ export const UserStatsProvider = ({ children }) => {
         }));
     };
 
-    const decreaseBalance = (amount) => {
-        setUserStats(prevStats => ({
-            ...prevStats,
-            balance: prevStats.balance - amount
-        }));
+    const updateHeroStats = (heroId, newStats) => {
+        setUserStats(prevStats => {
+            const updatedHeroes = prevStats.heroes.map(hero => 
+                hero.id === heroId ? { ...hero, ...newStats } : hero
+            );
+            return { ...prevStats, heroes: updatedHeroes };
+        });
     };
 
     return (
-        <UserStatsContext.Provider value={{ userStats, updateUserStats, decreaseBalance }}>
+        <UserStatsContext.Provider value={{ userStats, updateUserStats, updateHeroStats }}>
             {children}
         </UserStatsContext.Provider>
     );

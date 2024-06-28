@@ -17,17 +17,32 @@ const Card = ({ card }) => {
     const handleUpgrade = () => {
         if (canUpgrade) {
             console.log('Upgrading card:', card); // Додаємо логування для перевірки
-            const updatedMines = userStats.mines.map(c => 
-                c.id === card.id ? { ...c, level: c.level + 1 } : c
+
+            let newHourlyIncome = userStats.hourlyIncome;
+            let newUpgradeCost = card.upgradeCost;
+
+            // Оновлюємо інкам, якщо карта з тегом goldMine
+            if (card.tag === 'goldMine') {
+                const currentLevel = userStats.mines.find(c => c.id === card.id).level;
+                newHourlyIncome += card.baseIncome * Math.pow(card.scaleIncome, currentLevel + 1);
+            }
+
+            // Збільшуємо вартість апгрейду для всіх карток
+            newUpgradeCost = Math.floor(card.upgradeCost * card.scaleUpgrade);
+
+            const updatedMines = userStats.mines.map(c =>
+                c.id === card.id ? { ...c, level: c.level + 1, upgradeCost: newUpgradeCost } : c
             );
 
             updateUserStats({
                 balance: userStats.balance - card.upgradeCost,
+                hourlyIncome: newHourlyIncome,
                 mines: updatedMines
             });
 
             console.log('Updated user stats:', {
                 balance: userStats.balance - card.upgradeCost,
+                hourlyIncome: newHourlyIncome,
                 mines: updatedMines
             }); // Додаємо логування для перевірки
         }
@@ -65,7 +80,7 @@ const Card = ({ card }) => {
             <h3>{card.name}</h3>
             <p>Level: {userStats.mines.find(c => c.id === card.id)?.level || card.level}</p>
             <p>Effect: {card.effect}</p>
-            <button 
+            <button
                 onClick={handleUpgrade}
                 disabled={!canUpgrade}
                 className={buttonClass}
