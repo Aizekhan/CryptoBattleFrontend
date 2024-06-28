@@ -7,7 +7,7 @@ const Farm = () => {
         { path: 'sub1', name: 'Hunt' },
         { path: 'sub2', name: 'Locations' },
        
-        { path: 'skills', name: 'Skills' },
+        { path: 'sub3', name: 'Skills' },
     ];
 
     return (
