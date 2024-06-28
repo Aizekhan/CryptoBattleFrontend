@@ -16,7 +16,7 @@ import Info from './components/Pages/Home/Info';
 import Farm from './components/Pages/Farm/Farm';
 import Hunt from './components/Pages/Farm/Hunt';
 import Locations from './components/Pages/Farm/Locations';
-import Skills from './components/Pages/Farm/Skills';
+import FarmSkills from './components/Pages/Farm/FarmSkills';
 
 import Mines from './components/Pages/Mines/Mines';
 import MinesGold from './components/Pages/Mines/MinesGold';
@@ -24,7 +24,7 @@ import MiningSkills from './components/Pages/Mines/MiningSkills'; // Перек�
 
 import Battle from './components/Pages/Battle/Battle';
 import PvP from './components/Pages/Battle/PvP';
-import Cards from './components/Pages/Battle/Cards';
+import BattleCards from './components/Pages/Battle/BattleCards';
 import Rank from './components/Pages/Battle/Rank';
 
 import Hero from './components/Pages/Hero/Hero';
@@ -96,7 +96,7 @@ function App() {
                         <Route index element={<Navigate to="sub1" />} /> {/* Redirect to Hunt by default */}
                         <Route path="sub1" element={<Hunt />} />
                         <Route path="sub2" element={<Locations />} />
-                        <Route path="sub3" element={<Skills />} />
+                        <Route path="sub3" element={<FarmSkills />} />
                     </Route>
                     <Route path="mines" element={<Mines />}>
                         <Route index element={<Navigate to="sub1" />} /> {/* Redirect to MinesGold by default */}
@@ -106,7 +106,7 @@ function App() {
                     <Route path="battle" element={<Battle />}>
                         <Route index element={<Navigate to="sub1" />} /> {/* Redirect to PvP by default */}
                         <Route path="sub1" element={<PvP />} />
-                        <Route path="sub2" element={<Cards />} />
+                        <Route path="sub2" element={<BattleCards />} />
                         <Route path="sub3" element={<Rank />} />
                     </Route>
                     <Route path="hero" element={<Hero />}>
