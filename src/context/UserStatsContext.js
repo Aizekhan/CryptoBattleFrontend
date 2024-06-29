@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import heroesConfig from './heroesConfig'; // Імпорт конфігурації героїв
 
 const UserStatsContext = createContext();
 
@@ -12,21 +13,18 @@ export const UserStatsProvider = ({ children }) => {
         tapIncome: 1,
         hourlyIncome: 0,
         balance: 1000000,
-        currentHeroId: null,
-        heroes: [
-            { id: 1, name: 'Hero 1', level: 1, passive: [], equip: [], farmSkills: [], battleCards: [] },
-            { id: 2, name: 'Hero 2', level: 1, passive: [], equip: [], farmSkills: [], battleCards: [] },
-        ],
+        currentHeroId: heroesConfig[0]._id,  // Вибраний герой за замовчуванням
+        heroes: heroesConfig,  // Завантажуємо героїв з конфігураційного файлу
         mines: [
             { id: 1, level: 0, baseIncome: 10 },
             { id: 2, level: 0, baseIncome: 20 },
             { id: 3, level: 0, baseIncome: 30 },
-            { id: 4, level: 0 },
-            { id: 5, level: 0 },
-            { id: 6, level: 0 },
-            { id: 7, level: 0 },
-            { id: 8, level: 0 },
-            { id: 9, level: 0 },
+            { id: 4, level: 0, baseIncome: 40 },
+            { id: 5, level: 0, baseIncome: 50 },
+            { id: 6, level: 0, baseIncome: 60 },
+            { id: 7, level: 0, baseIncome: 70 },
+            { id: 8, level: 0, baseIncome: 80 },
+            { id: 9, level: 0, baseIncome: 90 },
         ],
     });
 
@@ -54,14 +52,21 @@ export const UserStatsProvider = ({ children }) => {
     const updateHeroStats = (heroId, newStats) => {
         setUserStats(prevStats => {
             const updatedHeroes = prevStats.heroes.map(hero => 
-                hero.id === heroId ? { ...hero, ...newStats } : hero
+                hero._id === heroId ? { ...hero, ...newStats } : hero
             );
             return { ...prevStats, heroes: updatedHeroes };
         });
     };
 
+    const setCurrentHero = (heroId) => {
+        setUserStats(prevStats => ({
+            ...prevStats,
+            currentHeroId: heroId
+        }));
+    };
+
     return (
-        <UserStatsContext.Provider value={{ userStats, updateUserStats, updateHeroStats }}>
+        <UserStatsContext.Provider value={{ userStats, updateUserStats, updateHeroStats, setCurrentHero }}>
             {children}
         </UserStatsContext.Provider>
     );

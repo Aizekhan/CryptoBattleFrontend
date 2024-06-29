@@ -5,12 +5,8 @@ import './CardList.css';
 const CardList = ({ cards }) => {
     return (
         <div className="card-list">
-            {cards.map((card, index) => (
-                <div className="card-container" key={index}>
-                    <Card 
-                        card={card}
-                    />
-                </div>
+            {cards.map(card => (
+                <Card key={card.id} card={card} />
             ))}
         </div>
     );

@@ -16,21 +16,21 @@ import Info from './components/Pages/Home/Info';
 import Farm from './components/Pages/Farm/Farm';
 import Hunt from './components/Pages/Farm/Hunt';
 import Locations from './components/Pages/Farm/Locations';
-import FarmSkills from './components/Pages/Farm/FarmSkills';
+import HeroFarmSkills from './components/Pages/Hero/HeroFarmSkills';
 
 import Mines from './components/Pages/Mines/Mines';
 import MinesGold from './components/Pages/Mines/MinesGold';
-import MiningSkills from './components/Pages/Mines/MiningSkills'; // Переконайтеся, що цей компонент існує
+import MiningSkills from './components/Pages/Mines/MiningSkills';
 
 import Battle from './components/Pages/Battle/Battle';
 import PvP from './components/Pages/Battle/PvP';
-import BattleCards from './components/Pages/Battle/BattleCards';
+import HeroBattleCards from './components/Pages/Hero/HeroBattleCards';
 import Rank from './components/Pages/Battle/Rank';
 
 import Hero from './components/Pages/Hero/Hero';
-import Char from './components/Pages/Hero/Char';
-import Passive from './components/Pages/Hero/Passive';
-import Equip from './components/Pages/Hero/Equip';
+import HeroDetails from './components/Pages/Hero/HeroDetails';
+import HeroPassiveSkills from './components/Pages/Hero/HeroPassiveSkills';
+import HeroEquipment from './components/Pages/Hero/HeroEquipment';
 
 import Friends from './components/Pages/Friends/Friends';
 import AllFriends from './components/Pages/Friends/AllFriends';
@@ -70,6 +70,8 @@ function App() {
                         hourlyIncome: response.data.hourlyIncome,
                         balance: response.data.balance,
                         mines: response.data.mines,
+                        heroes: response.data.heroes,
+                        currentHeroId: response.data.currentHeroId
                     });
                 })
                 .catch((error) => {
@@ -96,7 +98,7 @@ function App() {
                         <Route index element={<Navigate to="sub1" />} /> {/* Redirect to Hunt by default */}
                         <Route path="sub1" element={<Hunt />} />
                         <Route path="sub2" element={<Locations />} />
-                        <Route path="sub3" element={<FarmSkills />} />
+                        <Route path="sub3" element={<HeroFarmSkills />} />
                     </Route>
                     <Route path="mines" element={<Mines />}>
                         <Route index element={<Navigate to="sub1" />} /> {/* Redirect to MinesGold by default */}
@@ -106,14 +108,14 @@ function App() {
                     <Route path="battle" element={<Battle />}>
                         <Route index element={<Navigate to="sub1" />} /> {/* Redirect to PvP by default */}
                         <Route path="sub1" element={<PvP />} />
-                        <Route path="sub2" element={<BattleCards />} />
+                        <Route path="sub2" element={<HeroBattleCards />} />
                         <Route path="sub3" element={<Rank />} />
                     </Route>
                     <Route path="hero" element={<Hero />}>
-                        <Route index element={<Navigate to="sub1" />} /> {/* Redirect to Char by default */}
-                        <Route path="sub1" element={<Char />} />
-                        <Route path="sub2" element={<Passive />} />
-                        <Route path="sub3" element={<Equip />} />
+                        <Route index element={<Navigate to="sub1" />} /> {/* Redirect to HeroDetails by default */}
+                        <Route path="sub1" element={<HeroDetails />} />
+                        <Route path="sub2" element={<HeroPassiveSkills />} />
+                        <Route path="sub3" element={<HeroEquipment />} />
                     </Route>
                     <Route path="friends" element={<Friends />}>
                         <Route index element={<Navigate to="sub1" />} /> {/* Redirect to AllFriends by default */}

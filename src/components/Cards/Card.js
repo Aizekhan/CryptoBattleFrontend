@@ -4,7 +4,7 @@ import './Card.css';
 import { useUserStats } from '../../context/UserStatsContext';
 
 const Card = ({ card }) => {
-    const { userStats, updateUserStats } = useUserStats();
+    const { userStats, updateUserStats, updateHeroStats } = useUserStats();
 
     const prerequisitesMet = card.prerequisites.every(prereq => {
         const prereqCard = userStats.mines.find(c => c.id === prereq.id);
@@ -20,30 +20,67 @@ const Card = ({ card }) => {
 
             let newHourlyIncome = userStats.hourlyIncome;
             let newUpgradeCost = card.upgradeCost;
+            let newHeroStats = { ...userStats.heroes.find(hero => hero.id === userStats.currentHeroId) };
 
-            // Оновлюємо інкам, якщо карта з тегом goldMine
-            if (card.tag === 'goldMine') {
-                const currentLevel = userStats.mines.find(c => c.id === card.id).level;
-                newHourlyIncome += card.baseIncome * Math.pow(card.scaleIncome, currentLevel + 1);
+            switch (card.tag) {
+                case 'goldMine':
+                    const currentLevel = userStats.mines.find(c => c.id === card.id).level;
+                    newHourlyIncome += card.baseIncome * Math.pow(card.scaleIncome, currentLevel + 1);
+                    break;
+                
+                case 'heroStat':
+                    newHeroStats[card.effectType] += card.effectValue;
+                    break;
+                
+                case 'equip':
+                    // Логіка для спорядження
+                    break;
+
+                case 'battleCard':
+                    // Логіка для карток битви
+                    break;
+
+                case 'farmSkill':
+                    // Логіка для фарм скілів
+                    break;
+
+                case 'market':
+                    // Логіка для ринку
+                    break;
+
+                case 'location':
+                    // Логіка для локацій
+                    break;
+
+                default:
+                    break;
             }
 
-            // Збільшуємо вартість апгрейду для всіх карток
+            // Збільшуємо вартість апгрейду для конкретної картки
             newUpgradeCost = Math.floor(card.upgradeCost * card.scaleUpgrade);
 
+            // Оновлюємо масив mines
             const updatedMines = userStats.mines.map(c =>
                 c.id === card.id ? { ...c, level: c.level + 1, upgradeCost: newUpgradeCost } : c
+            );
+
+            // Оновлюємо героя
+            const updatedHeroes = userStats.heroes.map(hero =>
+                hero.id === userStats.currentHeroId ? newHeroStats : hero
             );
 
             updateUserStats({
                 balance: userStats.balance - card.upgradeCost,
                 hourlyIncome: newHourlyIncome,
-                mines: updatedMines
+                mines: updatedMines,
+                heroes: updatedHeroes
             });
 
             console.log('Updated user stats:', {
                 balance: userStats.balance - card.upgradeCost,
                 hourlyIncome: newHourlyIncome,
-                mines: updatedMines
+                mines: updatedMines,
+                heroes: updatedHeroes
             }); // Додаємо логування для перевірки
         }
     };

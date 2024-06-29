@@ -1,3 +1,5 @@
+// cardsConfig.js
+
 import passiveSkill1 from '../../assets/images/PassiveSkillsImages/passive1.png';
 import passiveSkill2 from '../../assets/images/PassiveSkillsImages/passive2.png';
 import passiveSkill3 from '../../assets/images/PassiveSkillsImages/passive3.png';
@@ -40,50 +42,49 @@ import marketHeroDarkElf from '../../assets/images/MarketImages/hero_dark_elf.pn
 import locationCastle from '../../assets/images/LocationImages/castle.png';
 import locationSwamp from '../../assets/images/LocationImages/swamp.png';
 import locationForest from '../../assets/images/LocationImages/forest.png';
-// Додайте інші імпорти картинок для інших категорій карт
 
 export const passiveSkills = [
-    { id: 1, name: 'Increase HP', effect: '+5 HP', level: 0, upgradeCost: 100, img: passiveSkill1, tag: 'heroStat', prerequisites: [] },
-    { id: 2, name: 'Increase Armor', effect: '+5% Armor', level: 0, upgradeCost: 150, img: passiveSkill2, tag: 'heroStat', prerequisites: [{ id: 1, level: 1 }] },
-    { id: 3, name: 'Increase Damage', effect: '+1 Damage', level: 0, upgradeCost: 200, img: passiveSkill3, tag: 'heroStat', prerequisites: [{ id: 2, level: 2 }] },
-    { id: 4, name: 'Increase Attack Speed', effect: '+5% Attack Speed', level: 0, upgradeCost: 250, img: passiveSkill4, tag: 'heroStat', prerequisites: [{ id: 3, level: 3 }] },
-    { id: 5, name: 'Increase Block Chance', effect: '+5% Block Chance', level: 0, upgradeCost: 300, img: passiveSkill5, tag: 'heroStat', prerequisites: [{ id: 4, level: 4 }] },
-    { id: 6, name: 'Increase Penetration Chance', effect: '+5% Penetration Chance', level: 0, upgradeCost: 350, img: passiveSkill6, tag: 'heroStat', prerequisites: [{ id: 5, level: 5 }] },
-    { id: 7, name: 'Increase Crit Chance', effect: '+5% Crit Chance', level: 0, upgradeCost: 400, img: passiveSkill7, tag: 'heroStat', prerequisites: [{ id: 6, level: 6 }] },
-    { id: 8, name: 'Increase Dodge Chance', effect: '+5% Dodge Chance', level: 0, upgradeCost: 450, img: passiveSkill8, tag: 'heroStat', prerequisites: [{ id: 7, level: 7 }] },
-    { id: 9, name: 'Increase Crit Power', effect: '+5% Crit Power', level: 0, upgradeCost: 500, img: passiveSkill9, tag: 'heroStat', prerequisites: [{ id: 8, level: 8 }] },
-    { id: 10, name: 'Increase Accuracy', effect: '+5% Accuracy', level: 0, upgradeCost: 550, img: passiveSkill10, tag: 'heroStat', prerequisites: [{ id: 9, level: 9 }] },
+    { id: 1, name: 'Increase HP', effect: '+5 HP', level: 0, upgradeCost: 100, img: passiveSkill1, tag: 'heroStat', prerequisites: [], scaleUpgrade: 1.1 },
+    { id: 2, name: 'Increase Armor', effect: '+5% Armor', level: 0, upgradeCost: 150, img: passiveSkill2, tag: 'heroStat', prerequisites: [{ id: 1, level: 1 }], scaleUpgrade: 1.1 },
+    { id: 3, name: 'Increase Damage', effect: '+1 Damage', level: 0, upgradeCost: 200, img: passiveSkill3, tag: 'heroStat', prerequisites: [{ id: 2, level: 2 }], scaleUpgrade: 1.1 },
+    { id: 4, name: 'Increase Attack Speed', effect: '+5% Attack Speed', level: 0, upgradeCost: 250, img: passiveSkill4, tag: 'heroStat', prerequisites: [{ id: 3, level: 3 }], scaleUpgrade: 1.1 },
+    { id: 5, name: 'Increase Block Chance', effect: '+5% Block Chance', level: 0, upgradeCost: 300, img: passiveSkill5, tag: 'heroStat', prerequisites: [{ id: 4, level: 4 }], scaleUpgrade: 1.1 },
+    { id: 6, name: 'Increase Penetration Chance', effect: '+5% Penetration Chance', level: 0, upgradeCost: 350, img: passiveSkill6, tag: 'heroStat', prerequisites: [{ id: 5, level: 5 }], scaleUpgrade: 1.1 },
+    { id: 7, name: 'Increase Crit Chance', effect: '+5% Crit Chance', level: 0, upgradeCost: 400, img: passiveSkill7, tag: 'heroStat', prerequisites: [{ id: 6, level: 6 }], scaleUpgrade: 1.1 },
+    { id: 8, name: 'Increase Dodge Chance', effect: '+5% Dodge Chance', level: 0, upgradeCost: 450, img: passiveSkill8, tag: 'heroStat', prerequisites: [{ id: 7, level: 7 }], scaleUpgrade: 1.1 },
+    { id: 9, name: 'Increase Crit Power', effect: '+5% Crit Power', level: 0, upgradeCost: 500, img: passiveSkill9, tag: 'heroStat', prerequisites: [{ id: 8, level: 8 }], scaleUpgrade: 1.1 },
+    { id: 10, name: 'Increase Accuracy', effect: '+5% Accuracy', level: 0, upgradeCost: 550, img: passiveSkill10, tag: 'heroStat', prerequisites: [{ id: 9, level: 9 }], scaleUpgrade: 1.1 },
 ];
 
 export const miningSkills = [
-    { id: 1, name: 'Increased Mining Income', effect: 'Increase income from mines by 10', level: 0, upgradeCost: 100, img: miningSkill1, tag: 'miningSkill', prerequisites: [] },
-    { id: 2, name: 'Loot Chance', effect: 'Increase loot chance by 1%', level: 0, upgradeCost: 150, img: miningSkill2, tag: 'miningSkill', prerequisites: [{ id: 1, level: 1 }] },
-    { id: 3, name: 'Double Income Chance', effect: 'Chance to earn double income per hour', level: 0, upgradeCost: 200, img: miningSkill3, tag: 'miningSkill', prerequisites: [{ id: 2, level: 2 }] },
+    { id: 1, name: 'Increased Mining Income', effect: 'Increase income from mines by 10', level: 0, upgradeCost: 100, img: miningSkill1, tag: 'miningSkill', prerequisites: [], scaleUpgrade: 1.1 },
+    { id: 2, name: 'Loot Chance', effect: 'Increase loot chance by 1%', level: 0, upgradeCost: 150, img: miningSkill2, tag: 'miningSkill', prerequisites: [{ id: 1, level: 1 }], scaleUpgrade: 1.1 },
+    { id: 3, name: 'Double Income Chance', effect: 'Chance to earn double income per hour', level: 0, upgradeCost: 200, img: miningSkill3, tag: 'miningSkill', prerequisites: [{ id: 2, level: 2 }], scaleUpgrade: 1.1 },
 ];
 
 export const equipmentCards = [
-    { id: 1, name: 'Simple Sword', effect: '+1 Damage', level: 0, upgradeCost: 100, img: equipment1, tag: 'equip', prerequisites: [] },
-    { id: 2, name: 'Basic Armor', effect: '+5 HP', level: 0, upgradeCost: 150, img: equipment2, tag: 'equip', prerequisites: [{ id: 1, level: 1 }] },
-    { id: 3, name: 'Simple Cloak', effect: '+5% Dodge Chance', level: 0, upgradeCost: 200, img: equipment3, tag: 'equip', prerequisites: [{ id: 2, level: 2 }] },
+    { id: 1, name: 'Simple Sword', effect: '+1 Damage', level: 0, upgradeCost: 100, img: equipment1, tag: 'equip', prerequisites: [], scaleUpgrade: 1.1 },
+    { id: 2, name: 'Basic Armor', effect: '+5 HP', level: 0, upgradeCost: 150, img: equipment2, tag: 'equip', prerequisites: [{ id: 1, level: 1 }], scaleUpgrade: 1.1 },
+    { id: 3, name: 'Simple Cloak', effect: '+5% Dodge Chance', level: 0, upgradeCost: 200, img: equipment3, tag: 'equip', prerequisites: [{ id: 2, level: 2 }], scaleUpgrade: 1.1 },
 ];
 
 export const battleCards = [
-    { id: 1, name: 'Battle Sword', effect: '+5% Crit Chance', level: 0, upgradeCost: 100, img: battleCard1, tag: 'battleCard', prerequisites: [] },
-    { id: 2, name: 'Battle Armor', effect: '+5% Armor', level: 0, upgradeCost: 150, img: battleCard2, tag: 'battleCard', prerequisites: [{ id: 1, level: 1 }] },
-    { id: 3, name: 'Battle Cloak', effect: '+5% Dodge Chance', level: 0, upgradeCost: 200, img: battleCard3, tag: 'battleCard', prerequisites: [{ id: 2, level: 2 }] },
-    { id: 4, name: 'Battle Axe', effect: '+5% Crit Power', level: 0, upgradeCost: 250, img: battleCard4, tag: 'battleCard', prerequisites: [{ id: 3, level: 3 }] },
+    { id: 1, name: 'Battle Sword', effect: '+5% Crit Chance', level: 0, upgradeCost: 100, img: battleCard1, tag: 'battleCard', prerequisites: [], scaleUpgrade: 1.1 },
+    { id: 2, name: 'Battle Armor', effect: '+5% Armor', level: 0, upgradeCost: 150, img: battleCard2, tag: 'battleCard', prerequisites: [{ id: 1, level: 1 }], scaleUpgrade: 1.1 },
+    { id: 3, name: 'Battle Cloak', effect: '+5% Dodge Chance', level: 0, upgradeCost: 200, img: battleCard3, tag: 'battleCard', prerequisites: [{ id: 2, level: 2 }], scaleUpgrade: 1.1 },
+    { id: 4, name: 'Battle Axe', effect: '+5% Crit Power', level: 0, upgradeCost: 250, img: battleCard4, tag: 'battleCard', prerequisites: [{ id: 3, level: 3 }], scaleUpgrade: 1.1 },
 ];
 
 export const farmSkills = [
-    { id: 1, name: 'Loot Chance', effect: 'Increase loot chance by 1%', level: 0, upgradeCost: 100, img: farmSkill1, tag: 'farmSkill', prerequisites: [] },
-    { id: 2, name: 'Double Tap Income', effect: 'Chance to earn double income per tap', level: 0, upgradeCost: 150, img: farmSkill2, tag: 'farmSkill', prerequisites: [{ id: 1, level: 1 }] },
-    { id: 3, name: 'Tap Damage', effect: '+1 Damage per tap', level: 0, upgradeCost: 200, img: farmSkill3, tag: 'farmSkill', prerequisites: [{ id: 2, level: 2 }] },
+    { id: 1, name: 'Loot Chance', effect: 'Increase loot chance by 1%', level: 0, upgradeCost: 100, img: farmSkill1, tag: 'farmSkill', prerequisites: [], scaleUpgrade: 1.1 },
+    { id: 2, name: 'Double Tap Income', effect: 'Chance to earn double income per tap', level: 0, upgradeCost: 150, img: farmSkill2, tag: 'farmSkill', prerequisites: [{ id: 1, level: 1 }], scaleUpgrade: 1.1 },
+    { id: 3, name: 'Tap Damage', effect: '+1 Damage per tap', level: 0, upgradeCost: 200, img: farmSkill3, tag: 'farmSkill', prerequisites: [{ id: 2, level: 2 }], scaleUpgrade: 1.1 },
 ];
 
 export const heroCards = [
-    { id: 1, name: 'Hero 1', effect: 'Basic Hero', level: 1, upgradeCost: 100, img: heroCard1, tag: 'hero', prerequisites: [] },
-    { id: 2, name: 'Hero 2', effect: 'Basic Hero', level: 1, upgradeCost: 150, img: heroCard2, tag: 'hero', prerequisites: [{ id: 1, level: 1 }] },
-    { id: 3, name: 'Hero 3', effect: 'Basic Hero', level: 1, upgradeCost: 200, img: heroCard3, tag: 'hero', prerequisites: [{ id: 2, level: 2 }] },
+    { id: 1, name: 'Hero 1', effect: 'Basic Hero', level: 1, upgradeCost: 100, img: heroCard1, tag: 'hero', prerequisites: [], scaleUpgrade: 1.1 },
+    { id: 2, name: 'Hero 2', effect: 'Basic Hero', level: 1, upgradeCost: 150, img: heroCard2, tag: 'hero', prerequisites: [{ id: 1, level: 1 }], scaleUpgrade: 1.1 },
+    { id: 3, name: 'Hero 3', effect: 'Basic Hero', level: 1, upgradeCost: 200, img: heroCard3, tag: 'hero', prerequisites: [{ id: 2, level: 2 }], scaleUpgrade: 1.1 },
 ];
 
 export const minesCards = [
@@ -98,7 +99,6 @@ export const minesCards = [
     { id: 9, name: 'Crystal Mine 3', effect: 'Produces even more crystals', level: 0, img: mine9, prerequisites: [{ id: 8, level: 3 }, { id: 7, level: 5 }], upgradeCost: 500, tag: 'crystalMine', scaleUpgrade: 1.3, scaleIncome: 1.4, baseIncome: 15 },
 ];
 
-
 export const marketCards = [
     { id: 1, name: 'Hero Orc', effect: 'A strong orc hero', level: 1, upgradeCost: 100, img: marketHeroOrc, tag: 'market', prerequisites: [] },
     { id: 2, name: 'Hero Troll', effect: 'A powerful troll hero', level: 1, upgradeCost: 150, img: marketHeroTroll, tag: 'market', prerequisites: [{ id: 1, level: 2 }] },
@@ -110,3 +110,17 @@ export const locationCards = [
     { id: 2, name: 'Darwood Swamp', effect: 'A mysterious swamp with hidden dangers', level: 0, upgradeCost: 150, img: locationSwamp, tag: 'location', prerequisites: [{ id: 1, level: 2 }] },
     { id: 3, name: 'Forest Glade', effect: 'A peaceful glade in the forest', level: 0, upgradeCost: 200, img: locationForest, tag: 'location', prerequisites: [{ id: 2, level: 3 }] },
 ];
+
+const cardsConfig = [
+    ...passiveSkills,
+    ...miningSkills,
+    ...equipmentCards,
+    ...battleCards,
+    ...farmSkills,
+    ...heroCards,
+    ...minesCards,
+    ...marketCards,
+    ...locationCards,
+];
+
+export default cardsConfig;
