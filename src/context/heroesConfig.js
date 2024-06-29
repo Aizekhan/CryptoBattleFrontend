@@ -1,9 +1,9 @@
 // heroesConfig.js
 
-import hero1FullImage from '../../assets/images/Heroes/hero1_full.png';
-import hero1Avatar from '../../assets/images/Heroes/hero1_avatar.png';
-import hero2FullImage from '../../assets/images/Heroes/hero2_full.png';
-import hero2Avatar from '../../assets/images/Heroes/hero2_avatar.png';
+import hero1FullImage from '../assets/images/Heroes/hero1_full.png';
+import hero1Avatar from '../assets/images/Heroes/hero1_avatar.png';
+import hero2FullImage from '../assets/images/Heroes/hero2_full.png';
+import hero2Avatar from '../assets/images/Heroes/hero2_avatar.png';
 
 const heroesConfig = [
     {
