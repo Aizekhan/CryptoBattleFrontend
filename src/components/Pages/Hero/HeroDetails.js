@@ -1,6 +1,6 @@
 import React from 'react';
-import { useUserStats } from '../../context/UserStatsContext';
-import heroConfig from '../../config/heroesConfig';
+import { useUserStats } from '../../../context/UserStatsContext';
+import heroConfig from '../../../context/heroesConfig';
 
 const HeroDetails = () => {
     const { userStats, updateUserStats } = useUserStats();
