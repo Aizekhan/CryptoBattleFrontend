@@ -16,7 +16,7 @@ import Info from './components/Pages/Home/Info';
 import Farm from './components/Pages/Farm/Farm';
 import Hunt from './components/Pages/Farm/Hunt';
 import Locations from './components/Pages/Farm/Locations';
-import HeroFarmSkills from './components/Pages/Hero/HeroFarmSkills';
+import HeroFarmSkills from './components/Pages/Farm/HeroFarmSkills';
 
 import Mines from './components/Pages/Mines/Mines';
 import MinesGold from './components/Pages/Mines/MinesGold';
@@ -24,7 +24,7 @@ import MiningSkills from './components/Pages/Mines/MiningSkills';
 
 import Battle from './components/Pages/Battle/Battle';
 import PvP from './components/Pages/Battle/PvP';
-import HeroBattleCards from './components/Pages/Hero/HeroBattleCards';
+import HeroBattleCards from './components/Pages/Battle/HeroBattleCards';
 import Rank from './components/Pages/Battle/Rank';
 
 import Hero from './components/Pages/Hero/Hero';

@@ -3,13 +3,13 @@ import { Link, useLocation } from 'react-router-dom';
 import homeIcon from '../../assets/images/home-icon.png';
 import friendsIcon from '../../assets/images/friends-icon.png';
 import pickaxeIcon from '../../assets/images/pickaxe-icon.png';
-import heroAvatar from '../../assets/images/hero-avatar.png';
 import { useUserStats } from '../../context/UserStatsContext'; // Імпортуйте контекст користувача
 import './MainLayout.css';
 
 const SecondaryBar = () => {
     const location = useLocation();
     const { userStats } = useUserStats(); // Використовуйте контекст користувача
+    const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
 
     return (
         <div className="secondary-bar">
@@ -23,7 +23,9 @@ const SecondaryBar = () => {
                 </div>
             ) : (
                 <div className="hero-info">
-                    <img src={heroAvatar} alt="Hero Avatar" className="hero-avatar" />
+                    {currentHero && (
+                        <img src={currentHero.avatarImg} alt="Hero Avatar" className="hero-avatar" />
+                    )}
                 </div>
             )}
             <Link to="/friends" className="nav-button">
