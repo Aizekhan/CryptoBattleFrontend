@@ -14,7 +14,7 @@
     align-items: center;
     padding: 10px 20px;
     position: fixed;
-    top: 5px; /* Відступ від верхнього краю */
+    top: 0px; /* Відступ від верхнього краю */
     width: calc(100% - 10px); /* Віднімання відступів */
     z-index: 1000;
     background-color: #333; /* Графітовий фон */
@@ -53,7 +53,7 @@
     align-items: center;
     padding: 10px 20px;
     position: fixed;
-    top: 65px; /* Відступ від верхнього краю (включає висоту top-bar + відступ) */
+    top: 55px; /* Відступ від верхнього краю (включає висоту top-bar + відступ) */
     width: calc(100% - 10px); /* Віднімання відступів */
     z-index: 999;
     background-color: #333; /* Графітовий фон */

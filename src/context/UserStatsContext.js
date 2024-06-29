@@ -10,7 +10,7 @@ export const UserStatsProvider = ({ children }) => {
         username: '',
         level: 0,
         tapIncome: 1,
-        hourlyIncome: 1000,
+        hourlyIncome: 0,
         balance: 1000000,
         currentHeroId: null,
         heroes: [
