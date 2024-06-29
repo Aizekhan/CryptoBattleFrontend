@@ -27,11 +27,12 @@ const Card = ({ card }) => {
                     const currentLevel = userStats.mines.find(c => c.id === card.id).level;
                     newHourlyIncome += card.baseIncome * Math.pow(card.scaleIncome, currentLevel + 1);
                     break;
-                
+
                 case 'heroStat':
                     newHeroStats[card.effectType] += card.effectValue;
+                    updateHeroStats(userStats.currentHeroId, newHeroStats);
                     break;
-                
+
                 case 'equip':
                     // Логіка для спорядження
                     break;
