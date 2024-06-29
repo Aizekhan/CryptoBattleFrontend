@@ -53,7 +53,7 @@
     align-items: center;
     padding: 10px 20px;
     position: fixed;
-    top: 55px; /* Відступ від верхнього краю (включає висоту top-bar + відступ) */
+    top: 50px; /* Відступ від верхнього краю (включає висоту top-bar + відступ) */
     width: calc(100% - 10px); /* Віднімання відступів */
     z-index: 999;
     background-color: #333; /* Графітовий фон */
@@ -61,6 +61,12 @@
     box-sizing: border-box;
 }
 
+.hero-avatar {
+    height: 100%;
+    width: auto; /* Зберігає пропорції зображення */
+    max-height:30px; /* Адаптуйте під ваш розмір */
+    object-fit: cover; /* Заповнює контейнер зображенням, зберігаючи пропорції */
+}
 .nav-button {
     background: none;
     border: none;
