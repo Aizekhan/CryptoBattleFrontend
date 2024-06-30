@@ -1,0 +1,108 @@
+Коли бекенд буде готовий, вам потрібно буде зробити деякі зміни в UserStatsContext, щоб завантажувати дані з API замість використання конфігураційного файлу. Ви можете закоментувати або видалити деякі частини коду, які використовують дані з heroesConfig. Також потрібно буде додати логіку для збереження змін на бекенд при оновленні даних користувача.
+
+Ось приклад, як це може виглядати, коли ви підключите бекенд:
+
+javascript
+Копировать код
+
+
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import axios from 'axios';
+import heroesConfig from './heroesConfig'; // Імпорт конфігурації героїв
+
+const UserStatsContext = createContext();
+
+export const useUserStats = () => useContext(UserStatsContext);
+
+export const UserStatsProvider = ({ children }) => {
+    const [userStats, setUserStats] = useState({
+        username: 'Player',
+        level: 0,
+        tapIncome: 1,
+        hourlyIncome: 0,
+        balance: 1000000,
+        currentHeroId: heroesConfig[0].id,  // Вибраний герой за замовчуванням
+        heroes: heroesConfig.map(hero => ({
+            ...hero,
+            passiveSkills: hero.defaultPassiveSkills,
+            equipment: hero.defaultEquipment,
+            battleCards: hero.defaultBattleCards,
+            farmSkills: hero.defaultFarmSkills
+        })),  // Завантажуємо героїв з конфігураційного файлу
+        mines: [
+            { id: 1, level: 0, baseIncome: 10 },
+            { id: 2, level: 0, baseIncome: 20 },
+            { id: 3, level: 0, baseIncome: 30 },
+            { id: 4, level: 0, baseIncome: 40 },
+            { id: 5, level: 0, baseIncome: 50 },
+            { id: 6, level: 0, baseIncome: 60 },
+            { id: 7, level: 0, baseIncome: 70 },
+            { id: 8, level: 0, baseIncome: 80 },
+            { id: 9, level: 0, baseIncome: 90 },
+        ],
+    });
+
+    useEffect(() => {
+        const fetchUserStats = async () => {
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/user-stats`);
+                setUserStats(response.data);
+                console.log('Fetched user stats:', response.data); // Додаємо логування
+            } catch (error) {
+                console.error('Error fetching user stats:', error);
+            }
+        };
+
+        fetchUserStats();
+    }, []);
+
+    const updateUserStats = async (newStats) => {
+        setUserStats(prevStats => ({
+            ...prevStats,
+            ...newStats
+        }));
+        
+        try {
+            await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/user-stats`, newStats);
+        } catch (error) {
+            console.error('Error updating user stats:', error);
+        }
+    };
+
+    const updateHeroStats = async (heroId, newStats) => {
+        setUserStats(prevStats => {
+            const updatedHeroes = prevStats.heroes.map(hero => 
+                hero.id === heroId ? { ...hero, ...newStats } : hero
+            );
+            return { ...prevStats, heroes: updatedHeroes };
+        });
+
+        try {
+            await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/heroes/${heroId}`, newStats);
+        } catch (error) {
+            console.error('Error updating hero stats:', error);
+        }
+    };
+
+    const setCurrentHero = (heroId) => {
+        setUserStats(prevStats => ({
+            ...prevStats,
+            currentHeroId: heroId
+        }));
+    };
+
+    return (
+        <UserStatsContext.Provider value={{ userStats, updateUserStats, updateHeroStats, setCurrentHero }}>
+            {children}
+        </UserStatsContext.Provider>
+    );
+};
+В цьому коді:
+
+Додано axios.put для оновлення даних користувача та героя на бекенді при виклику updateUserStats та updateHeroStats.
+Залишена можливість завантаження даних з heroesConfig за замовчуванням для початкового стану.
+Коли ви будете готові перейти на використання бекенду:
+
+Ви можете залишити завантаження даних з heroesConfig як резервний варіант, якщо бекенд недоступний.
+Видалити або закоментувати код, що завантажує героїв з heroesConfig, після успішного завантаження даних з бекенду.
+Таким чином, ви зможете плавно перейти на використання бекенду без значних змін у вашому фронтенд коді.
