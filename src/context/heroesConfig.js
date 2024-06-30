@@ -20,7 +20,8 @@ const heroesConfig = [
             critChance: 5,
             dodgeChance: 5,
             critPower: 150,
-            accuracy: 90
+            accuracy: 90,
+            regenSpeed: 7
         },
         baseIncome: {
             goldPerTap: 10,
@@ -55,7 +56,8 @@ const heroesConfig = [
             critChance: 10,
             dodgeChance: 10,
             critPower: 175,
-            accuracy: 85
+            accuracy: 85,
+            regenSpeed: 7
         },
         baseIncome: {
             goldPerTap: 15,

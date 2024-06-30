@@ -79,12 +79,25 @@ export const farmSkills = [
     { id: 1, name: 'Loot Chance', effect: 'Increase loot chance by 1%', level: 0, upgradeCost: 100, img: farmSkill1, tag: 'farmSkill', prerequisites: [], scaleUpgrade: 1.1 },
     { id: 2, name: 'Double Tap Income', effect: 'Chance to earn double income per tap', level: 0, upgradeCost: 150, img: farmSkill2, tag: 'farmSkill', prerequisites: [{ id: 1, level: 1 }], scaleUpgrade: 1.1 },
     { id: 3, name: 'Tap Damage', effect: '+1 Damage per tap', level: 0, upgradeCost: 200, img: farmSkill3, tag: 'farmSkill', prerequisites: [{ id: 2, level: 2 }], scaleUpgrade: 1.1 },
+    {
+        id: 5,
+        name: 'HP Regen',
+        effect: 'Increases HP regeneration rate',
+        level: 0,
+        upgradeCost: 200,
+        tag: 'farmSkill',
+        scaleUpgrade: 1.1,
+        img: farmSkill3,
+        effectType: 'regenSpeed',
+        effectValue: 1 // Значення збільшення регенерації на рівень
+    },
 ];
 
 export const heroCards = [
     { id: 1, name: 'Hero 1', effect: 'Basic Hero', level: 1, upgradeCost: 100, img: heroCard1, tag: 'hero', prerequisites: [], scaleUpgrade: 1.1 },
     { id: 2, name: 'Hero 2', effect: 'Basic Hero', level: 1, upgradeCost: 150, img: heroCard2, tag: 'hero', prerequisites: [{ id: 1, level: 1 }], scaleUpgrade: 1.1 },
     { id: 3, name: 'Hero 3', effect: 'Basic Hero', level: 1, upgradeCost: 200, img: heroCard3, tag: 'hero', prerequisites: [{ id: 2, level: 2 }], scaleUpgrade: 1.1 },
+
 ];
 
 export const minesCards = [

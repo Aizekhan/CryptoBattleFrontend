@@ -42,7 +42,9 @@ const Card = ({ card }) => {
                     break;
 
                 case 'farmSkill':
-                    // Логіка для фарм скілів
+                  if (card.effectType === 'regenSpeed') {
+                        newHeroStats.regenSpeed = (newHeroStats.regenSpeed || 0) + card.effectValue;
+                    }
                     break;
 
                 case 'market':
