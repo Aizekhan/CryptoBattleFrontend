@@ -1,4 +1,3 @@
-// Card.js
 import React from 'react';
 import lockIcon from '../../assets/images/lock.png';
 import './Card.css';
@@ -17,7 +16,7 @@ const Card = ({ card }) => {
 
     const handleUpgrade = () => {
         if (canUpgrade) {
-            console.log('Upgrading card:', card);
+            console.log('Upgrading card:', card); // Додаємо логування для перевірки
 
             let newHourlyIncome = userStats.hourlyIncome;
             let newUpgradeCost = card.upgradeCost;
@@ -31,6 +30,7 @@ const Card = ({ card }) => {
                 
                 case 'heroStat':
                     newHeroStats[card.effectType] += card.effectValue;
+                    updateHeroStats(userStats.currentHeroId, newHeroStats);
                     break;
                 
                 case 'equip':
@@ -82,7 +82,7 @@ const Card = ({ card }) => {
                 hourlyIncome: newHourlyIncome,
                 mines: updatedMines,
                 heroes: updatedHeroes
-            });
+            }); // Додаємо логування для перевірки
         }
     };
 
