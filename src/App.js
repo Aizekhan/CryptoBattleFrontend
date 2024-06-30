@@ -23,7 +23,7 @@ import MinesGold from './components/Pages/Mines/MinesGold';
 import MiningSkills from './components/Pages/Mines/MiningSkills';
 
 import Battle from './components/Pages/Battle/Battle';
-import PvP from './components/Pages/Battle/PvPBattle';
+import PvPBattle from './components/Pages/Battle/PvPBattle';
 import HeroBattleCards from './components/Pages/Battle/HeroBattleCards';
 import Rank from './components/Pages/Battle/Rank';
 
