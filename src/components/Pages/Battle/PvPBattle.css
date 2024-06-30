@@ -1,0 +1,54 @@
+.battle-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+}
+
+.hero-image {
+    width: 100px; /* Розмір зображення героя */
+    height: auto;
+}
+
+.hero-stats {
+    margin-top: 10px;
+}
+
+.strategy-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.strategy-buttons button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.strategy-buttons button:hover {
+    background-color: #555;
+}
+
+.log-container {
+    flex: 1;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    height: 100%;
+    overflow-y: auto;
+}

@@ -23,7 +23,7 @@ import MinesGold from './components/Pages/Mines/MinesGold';
 import MiningSkills from './components/Pages/Mines/MiningSkills';
 
 import Battle from './components/Pages/Battle/Battle';
-import PvP from './components/Pages/Battle/PvP';
+import PvP from './components/Pages/Battle/PvPBattle';
 import HeroBattleCards from './components/Pages/Battle/HeroBattleCards';
 import Rank from './components/Pages/Battle/Rank';
 
@@ -107,12 +107,12 @@ function App() {
                     </Route>
                     <Route path="battle" element={<Battle />}>
                         <Route index element={<Navigate to="sub1" />} /> {/* Redirect to PvP by default */}
-                        <Route path="sub1" element={<PvP />} />
+                        <Route path="sub1" element={<PvPBattle />} />
                         <Route path="sub2" element={<HeroBattleCards />} />
                         <Route path="sub3" element={<Rank />} />
                     </Route>
                     <Route path="hero" element={<Hero />}>
-                        <Route index element={<Navigate to="sub2" />} /> {/* Redirect to HeroDetails by default */}
+                        <Route index element={<Navigate to="sub1" />} /> {/* Redirect to HeroDetails by default */}
                         <Route path="sub1" element={<HeroDetails />} />
                         <Route path="sub2" element={<HeroPassiveSkills />} />
                         <Route path="sub3" element={<HeroEquipment />} />

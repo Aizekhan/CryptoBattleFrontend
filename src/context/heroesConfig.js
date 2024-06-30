@@ -1,9 +1,9 @@
-// heroesConfig.js
-
 import hero1FullImage from '../assets/images/Heroes/hero1_full.png';
 import hero1Avatar from '../assets/images/Heroes/hero1_avatar.png';
 import hero2FullImage from '../assets/images/Heroes/hero2_full.png';
 import hero2Avatar from '../assets/images/Heroes/hero2_avatar.png';
+import botFullImage from '../assets/images/Heroes/bot_full.png';
+import botAvatar from '../assets/images/Heroes/bot_avatar.png';
 
 const heroesConfig = [
     {
@@ -21,7 +21,7 @@ const heroesConfig = [
             dodgeChance: 5,
             critPower: 150,
             accuracy: 90,
-            regenSpeed: 7
+            regenSpeed: 5
         },
         baseIncome: {
             goldPerTap: 10,
@@ -37,7 +37,6 @@ const heroesConfig = [
         },
         level: 1,
         defaultPassiveSkills: [1, 2],
-        defaultMiningSkills: [1, 2],
         defaultEquipment: [1, 2],
         defaultBattleCards: [1, 2],
         defaultFarmSkills: [1, 2]
@@ -73,10 +72,44 @@ const heroesConfig = [
         },
         level: 1,
         defaultPassiveSkills: [3, 4],
-        defaultMiningSkills: [3, 4],
         defaultEquipment: [3, 4],
         defaultBattleCards: [3, 4],
         defaultFarmSkills: [3, 4]
+    },
+    {
+        id: 'bot_1_id',
+        name: 'Bot 1',
+        race: 'Robot',
+        baseStats: {
+            hp: 200,
+            armor: 20,
+            damage: 25,
+            attackSpeed: 1.5,
+            blockChance: 10,
+            penetrationChance: 15,
+            critChance: 10,
+            dodgeChance: 10,
+            critPower: 150,
+            accuracy: 95,
+            regenSpeed: 0
+        },
+        baseIncome: {
+            goldPerTap: 0,
+            commonItemChance: 0,
+            rareItemChance: 0,
+            epicItemChance: 0,
+            legendaryItemChance: 0,
+            uniqueItemChance: 0
+        },
+        img: {
+            full: botFullImage,
+            avatar: botAvatar
+        },
+        level: 1,
+        defaultPassiveSkills: [],
+        defaultEquipment: [],
+        defaultBattleCards: [],
+        defaultFarmSkills: []
     }
 ];
 
