@@ -1,64 +1,46 @@
-import React, { createContext, useContext, useState } from 'react';
-import heroesConfig from './heroesConfig'; // Імпорт конфігурації героїв
+import React from 'react';
+import { useUserStats } from '../../../context/UserStatsContext';
+import heroConfig from '../../../context/heroesConfig';
 
-const UserStatsContext = createContext();
+const HeroDetails = () => {
+    const { userStats, updateUserStats } = useUserStats();
+    const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId) || {};
 
-export const useUserStats = () => useContext(UserStatsContext);
-
-export const UserStatsProvider = ({ children }) => {
-    const [userStats, setUserStats] = useState({
-        username: 'Player',
-        level: 0,
-        tapIncome: 1,
-        hourlyIncome: 0,
-        balance: 1000000,
-        currentHeroId: heroesConfig[0].id,  // Вибраний герой за замовчуванням
-        heroes: heroesConfig.map(hero => ({
-            ...hero,
-            passiveSkills: hero.defaultPassiveSkills,
-            equipment: hero.defaultEquipment,
-            battleCards: hero.defaultBattleCards,
-            farmSkills: hero.defaultFarmSkills
-        })),  // Завантажуємо героїв з конфігураційного файлу
-        mines: [
-            { id: 1, level: 0, baseIncome: 10 },
-            { id: 2, level: 0, baseIncome: 20 },
-            { id: 3, level: 0, baseIncome: 30 },
-            { id: 4, level: 0, baseIncome: 40 },
-            { id: 5, level: 0, baseIncome: 50 },
-            { id: 6, level: 0, baseIncome: 60 },
-            { id: 7, level: 0, baseIncome: 70 },
-            { id: 8, level: 0, baseIncome: 80 },
-            { id: 9, level: 0, baseIncome: 90 },
-        ],
-    });
-
-    const updateUserStats = (newStats) => {
-        setUserStats(prevStats => ({
-            ...prevStats,
-            ...newStats
-        }));
-    };
-
-    const updateHeroStats = (heroId, newStats) => {
-        setUserStats(prevStats => {
-            const updatedHeroes = prevStats.heroes.map(hero => 
-                hero.id === heroId ? { ...hero, ...newStats } : hero
-            );
-            return { ...prevStats, heroes: updatedHeroes };
-        });
-    };
-
-    const setCurrentHero = (heroId) => {
-        setUserStats(prevStats => ({
-            ...prevStats,
-            currentHeroId: heroId
-        }));
+    const handleHeroChange = (event) => {
+        const newHeroId = event.target.value;
+        updateUserStats({ currentHeroId: newHeroId });
     };
 
     return (
-        <UserStatsContext.Provider value={{ userStats, updateUserStats, updateHeroStats, setCurrentHero }}>
-            {children}
-        </UserStatsContext.Provider>
+        <div>
+            <h2>Hero Details</h2>
+            <div>
+                <label htmlFor="hero-select">Select Hero:</label>
+                <select id="hero-select" onChange={handleHeroChange} value={userStats.currentHeroId || ''}>
+                    {userStats.heroes.map(hero => (
+                        <option key={hero.id} value={hero.id}>{hero.name}</option>
+                    ))}
+                </select>
+            </div>
+            {currentHero && (
+                <div>
+                    <h3>{currentHero.name}</h3>
+                    <img src={currentHero.img.avatar} alt={currentHero.name} />
+                    <p>Level: {currentHero.level}</p>
+                    <p>HP: {currentHero.baseStats.hp}</p>
+                    <p>Armor: {currentHero.baseStats.armor}</p>
+                    <p>Damage: {currentHero.baseStats.damage}</p>
+                    <p>Attack Speed: {currentHero.baseStats.attackSpeed}</p>
+                    <p>Crit Chance: {currentHero.baseStats.critChance}</p>
+                    <p>Crit Power: {currentHero.baseStats.critPower}</p>
+                    <p>Accuracy: {currentHero.baseStats.accuracy}</p>
+                    <p>Dodge Chance: {currentHero.baseStats.dodgeChance}</p>
+                    <p>Block Chance: {currentHero.baseStats.blockChance}</p>
+                    <p>Penetration Chance: {currentHero.baseStats.penetrationChance}</p>
+                </div>
+            )}
+        </div>
     );
 };
+
+export default HeroDetails;
