@@ -1,0 +1,38 @@
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0px; /* Відступ від верхнього краю */
+    width: calc(100% - 10px); /* Віднімання відступів */
+    z-index: 1000;
+    background-color: #333; /* Графітовий фон */
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.user-info,
+.wallet-info {
+    display: flex;
+    align-items: center;
+}
+
+.balance-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.coin-icon {
+    width: 30px;
+    margin-right: 10px;
+}
+
+.user-info img,
+.wallet-info img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}

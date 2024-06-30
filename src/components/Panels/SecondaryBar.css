@@ -1,0 +1,59 @@
+.secondary-bar {
+    display: flex;
+    justify-content: space-between; /* Розподіл елементів по всій ширині */
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    top: 52px; /* Відступ від верхнього краю (включає висоту top-bar + відступ) */
+    width: calc(100% - 10px); /* Віднімання відступів */
+    z-index: 999;
+    background-color: #333; /* Графітовий фон */
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.hero-avatar {
+    height: 35px;
+    width: 35px; /* Зберігає пропорції зображення */
+    max-height: 50px; /* Адаптуйте під ваш розмір */
+    object-fit: cover; /* Заповнює контейнер зображенням, зберігаючи пропорції */
+    border-radius: 50%; /* Робить зображення круглим */
+}
+
+.income-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.income-icon {
+    width: 30px;
+    margin-right: 10px;
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    opacity: 0.7; /* Зменшення прозорості для неактивних вкладок */
+}
+
+.nav-button.active {
+    opacity: 1; /* Повна прозорість для активної вкладки */
+}
+
+.nav-button img {
+    width: 30px; /* Встановлення фіксованого розміру для іконок */
+    height: 30px;
+    margin-bottom: 5px;
+}
+
+.nav-button:focus {
+    outline: none;
+}

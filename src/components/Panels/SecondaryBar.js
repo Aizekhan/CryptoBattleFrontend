@@ -4,7 +4,7 @@ import homeIcon from '../../assets/images/home-icon.png';
 import friendsIcon from '../../assets/images/friends-icon.png';
 import pickaxeIcon from '../../assets/images/pickaxe-icon.png';
 import { useUserStats } from '../../context/UserStatsContext';
-import './MainLayout.css';
+import './SecondaryBar.css';
 
 const SecondaryBar = () => {
     const location = useLocation();
