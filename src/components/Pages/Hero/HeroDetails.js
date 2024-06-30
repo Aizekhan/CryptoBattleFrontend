@@ -36,6 +36,7 @@ const HeroDetails = () => {
                     <p>Dodge Chance: {currentHero.baseStats.dodgeChance}</p>
                     <p>Block Chance: {currentHero.baseStats.blockChance}</p>
                     <p>Penetration Chance: {currentHero.baseStats.penetrationChance}</p>
+                    <p>HPRegen: {currentHero.baseStats.regenSpeed}</p> 
                 </div>
             )}
         </div>
