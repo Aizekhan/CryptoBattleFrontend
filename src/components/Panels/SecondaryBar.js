@@ -3,12 +3,12 @@ import { Link, useLocation } from 'react-router-dom';
 import homeIcon from '../../assets/images/home-icon.png';
 import friendsIcon from '../../assets/images/friends-icon.png';
 import pickaxeIcon from '../../assets/images/pickaxe-icon.png';
-import { useUserStats } from '../../context/UserStatsContext'; // Імпортуйте контекст користувача
+import { useUserStats } from '../../context/UserStatsContext';
 import './MainLayout.css';
 
 const SecondaryBar = () => {
     const location = useLocation();
-    const { userStats } = useUserStats(); // Використовуйте контекст користувача
+    const { userStats } = useUserStats();
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
 
     return (
@@ -19,7 +19,7 @@ const SecondaryBar = () => {
             {location.pathname.startsWith('/mines') ? (
                 <div className="income-info">
                     <img src={pickaxeIcon} alt="Income" className="income-icon" />
-                    <span>{userStats.hourlyIncome}</span> {/* Відображення актуального доходу */}
+                    <span>{userStats.hourlyIncome}</span>
                 </div>
             ) : (
                 <div className="hero-info">
