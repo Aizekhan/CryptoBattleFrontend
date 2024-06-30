@@ -7,9 +7,9 @@ const HeroEquipment = () => {
     const { userStats } = useUserStats();
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
 
-    const heroEquipment = cardsConfig.filter(card => 
-        card.tag === 'equip' && currentHero.equip.includes(card.id)
-    );
+    const heroEquipment = currentHero && Array.isArray(currentHero.equipment)
+        ? cardsConfig.filter(card => card.tag === 'equip' && currentHero.equipment.includes(card.id))
+        : [];
 
     return <CardList cards={heroEquipment} />;
 };
