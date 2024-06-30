@@ -13,8 +13,14 @@ export const UserStatsProvider = ({ children }) => {
         tapIncome: 1,
         hourlyIncome: 0,
         balance: 1000000,
-        currentHeroId: heroesConfig[0]._id,  // Вибраний герой за замовчуванням
-        heroes: heroesConfig,  // Завантажуємо героїв з конфігураційного файлу
+        currentHeroId: heroesConfig[0].id,  // Вибраний герой за замовчуванням
+        heroes: heroesConfig.map(hero => ({
+            ...hero,
+            passiveSkills: hero.defaultPassiveSkills,
+            equipment: hero.defaultEquipment,
+            battleCards: hero.defaultBattleCards,
+            farmSkills: hero.defaultFarmSkills
+        })),  // Завантажуємо героїв з конфігураційного файлу
         mines: [
             { id: 1, level: 0, baseIncome: 10 },
             { id: 2, level: 0, baseIncome: 20 },
@@ -32,8 +38,10 @@ export const UserStatsProvider = ({ children }) => {
         const fetchUserStats = async () => {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/user-stats`);
-                setUserStats(response.data);
-                console.log('Fetched user stats:', response.data); // Додаємо логування
+                if (response.data) {
+                    setUserStats(response.data);
+                    console.log('Fetched user stats:', response.data); // Додаємо логування
+                }
             } catch (error) {
                 console.error('Error fetching user stats:', error);
             }
@@ -52,7 +60,7 @@ export const UserStatsProvider = ({ children }) => {
     const updateHeroStats = (heroId, newStats) => {
         setUserStats(prevStats => {
             const updatedHeroes = prevStats.heroes.map(hero => 
-                hero._id === heroId ? { ...hero, ...newStats } : hero
+                hero.id === heroId ? { ...hero, ...newStats } : hero
             );
             return { ...prevStats, heroes: updatedHeroes };
         });
