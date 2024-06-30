@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useUserStats } from '../../../context/UserStatsContext';
 import heroesConfig from '../../../context/heroesConfig';
-import './Battle.css';
+import './PvPBattle.css';
 
 const PvPBattle = () => {
     const { userStats } = useUserStats();
