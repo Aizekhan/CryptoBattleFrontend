@@ -9,16 +9,18 @@ const PvPBattle = () => {
     const botHero = heroesConfig.find(hero => hero.id === 'bot_1_id');
 
     const [log, setLog] = useState([]);
-    const [playerStrategy, setPlayerStrategy] = useState('normal'); // Додаємо стан для стратегії гравця
-    // Видалено setBotStrategy
+    const [playerStrategy, setPlayerStrategy] = useState('normal');
 
-    const addLogEntry = (entry) => {
-        setLog((prevLog) => [...prevLog, entry]);
+    const addLogEntry = (entry, isPlayer) => {
+        setLog((prevLog) => {
+            const newLog = [...prevLog, { entry, isPlayer }];
+            return newLog.slice(-2); // Зберігаємо тільки останні два записи
+        });
     };
 
     const handleStrategyChange = (strategy) => {
         setPlayerStrategy(strategy);
-        addLogEntry(`Player changed strategy to ${strategy}.`);
+        addLogEntry(`Player changed strategy to ${strategy}.`, true);
     };
 
     const calculateDamage = (attacker, defender, strategy) => {
@@ -38,19 +40,18 @@ const PvPBattle = () => {
 
     useEffect(() => {
         const battleInterval = setInterval(() => {
-            // Обчислення бою
             const playerDamage = calculateDamage(currentHero, botHero, playerStrategy);
-            const botDamage = calculateDamage(botHero, currentHero, 'normal'); // Бот завжди атакує нормально
+            const botDamage = calculateDamage(botHero, currentHero, 'normal');
 
             botHero.baseStats.hp -= playerDamage;
             currentHero.baseStats.hp -= botDamage;
 
-            addLogEntry(`Player hits Bot for ${playerDamage} damage.`);
-            addLogEntry(`Bot hits Player for ${botDamage} damage.`);
+            addLogEntry(`Player hits Bot for ${playerDamage} damage.`, false);
+            addLogEntry(`Bot hits Player for ${botDamage} damage.`, true);
 
             if (botHero.baseStats.hp <= 0 || currentHero.baseStats.hp <= 0) {
                 clearInterval(battleInterval);
-                addLogEntry(botHero.baseStats.hp <= 0 ? 'Player wins!' : 'Bot wins!');
+                addLogEntry(botHero.baseStats.hp <= 0 ? 'Player wins!' : 'Bot wins!', true);
             }
         }, 3000);
 
@@ -59,7 +60,7 @@ const PvPBattle = () => {
 
     return (
         <div className="battle-container">
-            <div className="hero-container">
+            <div className="hero-container player">
                 <img src={currentHero.img.full} alt={currentHero.name} className="hero-image" />
                 <div className="hero-stats">
                     <p>HP: {currentHero.baseStats.hp}</p>
@@ -71,19 +72,20 @@ const PvPBattle = () => {
                         <button onClick={() => handleStrategyChange('defensive')}>Defensive</button>
                     </div>
                 </div>
-            </div>
-            <div className="log-container">
-                {log.map((entry, index) => (
-                    <p key={index}>{entry}</p>
+                {log.filter(logEntry => logEntry.isPlayer).map((logEntry, index) => (
+                    <div key={index} className="log-entry player-log">{logEntry.entry}</div>
                 ))}
             </div>
-            <div className="hero-container">
+            <div className="hero-container bot">
                 <img src={botHero.img.full} alt={botHero.name} className="hero-image" />
                 <div className="hero-stats">
                     <p>HP: {botHero.baseStats.hp}</p>
                     <p>Armor: {botHero.baseStats.armor}</p>
                     <p>Damage: {botHero.baseStats.damage}</p>
                 </div>
+                {log.filter(logEntry => !logEntry.isPlayer).map((logEntry, index) => (
+                    <div key={index} className="log-entry bot-log">{logEntry.entry}</div>
+                ))}
             </div>
         </div>
     );
