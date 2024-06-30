@@ -112,7 +112,7 @@ function App() {
                         <Route path="sub3" element={<Rank />} />
                     </Route>
                     <Route path="hero" element={<Hero />}>
-                        <Route index element={<Navigate to="sub1" />} /> {/* Redirect to HeroDetails by default */}
+                        <Route index element={<Navigate to="sub2" />} /> {/* Redirect to HeroDetails by default */}
                         <Route path="sub1" element={<HeroDetails />} />
                         <Route path="sub2" element={<HeroPassiveSkills />} />
                         <Route path="sub3" element={<HeroEquipment />} />
