@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useUserStats } from '../../../context/UserStatsContext';
 import heroesConfig from '../../../context/heroesConfig';
-import './PvPBattle.css';
+import './Battle.css';
 
 const PvPBattle = () => {
     const { userStats } = useUserStats();
@@ -10,7 +10,7 @@ const PvPBattle = () => {
 
     const [log, setLog] = useState([]);
     const [playerStrategy, setPlayerStrategy] = useState('normal'); // Додаємо стан для стратегії гравця
-    const [botStrategy, setBotStrategy] = useState('normal'); // Додаємо стан для стратегії бота
+    // Видалено setBotStrategy
 
     const addLogEntry = (entry) => {
         setLog((prevLog) => [...prevLog, entry]);
@@ -40,7 +40,7 @@ const PvPBattle = () => {
         const battleInterval = setInterval(() => {
             // Обчислення бою
             const playerDamage = calculateDamage(currentHero, botHero, playerStrategy);
-            const botDamage = calculateDamage(botHero, currentHero, botStrategy);
+            const botDamage = calculateDamage(botHero, currentHero, 'normal'); // Бот завжди атакує нормально
 
             botHero.baseStats.hp -= playerDamage;
             currentHero.baseStats.hp -= botDamage;
@@ -55,7 +55,7 @@ const PvPBattle = () => {
         }, 3000);
 
         return () => clearInterval(battleInterval);
-    }, [currentHero, botHero, playerStrategy, botStrategy]);
+    }, [currentHero, botHero, playerStrategy]);
 
     return (
         <div className="battle-container">
