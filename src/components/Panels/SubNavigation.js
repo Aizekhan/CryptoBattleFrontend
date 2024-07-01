@@ -2,11 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './SubNavigation.css';
 
-const SubNavigation = ({ isBattlePage, basePath, subPages }) => {
-    if (isBattlePage) {
-        return null; // Не відображати субвкладки під час битви
-    }
-
+const SubNavigation = ({ basePath, subPages }) => {
     return (
         <div className="sub-navigation">
             {subPages.map((subPage) => (

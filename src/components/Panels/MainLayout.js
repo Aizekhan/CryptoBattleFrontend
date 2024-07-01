@@ -15,7 +15,7 @@ const MainLayout = () => {
             <TopBar isBattlePage={isBattlePage} />
             <SecondaryBar isBattlePage={isBattlePage} />
             <div className={`content ${isBattlePage ? 'battle-content' : ''}`}>
-                {!isBattlePage && <SubNavigation isBattlePage={isBattlePage} />} {/* Передаємо пропс isBattlePage */}
+                {!isBattlePage && <SubNavigation />} {/* Приховуємо SubNavigation під час битви */}
                 <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
             </div>
             <NavigationBar isBattlePage={isBattlePage} />
