@@ -30,11 +30,11 @@ const TopBar = ({ isBattlePage }) => {
                 <div className="battle-hp-info">
                     <div className="hp-info">
                         <span>{currentHero.name}</span>
-                        <span>HP: {userStats.heroes.find(hero => hero.id === userStats.currentHeroId).baseStats.hp}</span>
+                        <span>HP: {currentHero.baseStats.hp}</span>
                     </div>
                     <div className="hp-info">
                         <span>{opponentHero.name}</span>
-                        <span>HP: {userStats.heroes.find(hero => hero.id === opponentHero.id).baseStats.hp}</span>
+                        <span>HP: {opponentHero.baseStats.hp}</span>
                     </div>
                 </div>
             )}

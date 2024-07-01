@@ -4,8 +4,8 @@
     align-items: center;
     padding: 10px 20px;
     position: fixed;
-    top: 0px; /* Відступ від верхнього краю */
-    width: calc(100% - 10px); /* Віднімання відступів */
+    top: 0;
+    width: 100%;
     z-index: 1000;
     background-color: #333; /* Графітовий фон */
     color: #fff;

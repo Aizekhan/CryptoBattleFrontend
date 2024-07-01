@@ -12,7 +12,7 @@ const MainLayout = () => {
     return (
         <div className="main-layout">
             <TopBar isBattlePage={isBattlePage} />
-            <SecondaryBar />
+            {!isBattlePage && <SecondaryBar />}
             <div className={`content ${isBattlePage ? 'battle-content' : ''}`}>
                 <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
             </div>

@@ -13,7 +13,7 @@
     justify-content: space-around;
     width: 100%;
     flex: 1;
-    align-items: flex-end;
+    align-items: center; /* Вирівнювання по центру по вертикалі */
 }
 
 .hero-side, .bot-side {
@@ -22,7 +22,7 @@
 }
 
 .hero-image, .bot-image {
-    width: 100px;
+    width: 150px;
     height: auto;
 }
 

@@ -6,13 +6,13 @@ import pickaxeIcon from '../../assets/images/pickaxe-icon.png';
 import { useUserStats } from '../../context/UserStatsContext';
 import './SecondaryBar.css';
 
-const SecondaryBar = () => {
+const SecondaryBar = ({ isBattlePage }) => {
     const location = useLocation();
     const { userStats } = useUserStats();
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
 
     return (
-        <div className="secondary-bar">
+        <div className={`secondary-bar ${isBattlePage ? 'hidden' : ''}`}>
             <Link to="/home" className="nav-button">
                 <img src={homeIcon} alt="Home" className="icon" />
             </Link>

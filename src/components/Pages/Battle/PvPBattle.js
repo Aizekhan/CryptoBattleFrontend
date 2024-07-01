@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useUserStats } from '../../../context/UserStatsContext';
 import heroesConfig from '../../../context/heroesConfig';
 import './PvPBattle.css';
@@ -12,9 +11,7 @@ import accuracyIcon from '../../../assets/icons/accuracy.png';
 const PvPBattle = () => {
     const { userStats } = useUserStats();
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
-    const location = useLocation();
-    const opponentId = location.state?.opponentId || heroesConfig[2].id;
-    const bot = heroesConfig.find(hero => hero.id === opponentId);
+    const bot = heroesConfig[1]; // Використовуємо другого героя як бота
 
     const [playerHP, setPlayerHP] = useState(currentHero.baseStats.hp);
     const [botHP, setBotHP] = useState(bot.baseStats.hp);
