@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import farmIcon from '../../assets/images/farm-icon.png';
 import minesIcon from '../../assets/images/mines-icon.png';
 import battleIcon from '../../assets/images/battle-icon.png';
