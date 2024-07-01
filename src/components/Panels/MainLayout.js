@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import TopBar from './TopBar';
 import SecondaryBar from './SecondaryBar';
 import NavigationBar from './NavigationBar';
+import SubNavigation from './SubNavigation';
 import './MainLayout.css';
 
 const MainLayout = () => {
