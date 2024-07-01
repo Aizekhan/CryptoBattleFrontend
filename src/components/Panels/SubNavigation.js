@@ -2,19 +2,19 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './SubNavigation.css';
 
-const SubNavigation = ({ basePath, subPages }) => {
+const SubNavigation = ({ isBattlePage, basePath, subPages }) => {
+    if (isBattlePage) {
+        return null; // Не відображати субвкладки під час битви
+    }
+
     return (
-        <nav className="sub-navigation">
-            {subPages.map((page) => (
-                <NavLink
-                    key={page.path}
-                    to={`${basePath}/${page.path}`}
-                    className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
-                >
-                    {page.name}
+        <div className="sub-navigation">
+            {subPages.map((subPage) => (
+                <NavLink key={subPage.path} to={`${basePath}/${subPage.path}`} className="sub-nav-link">
+                    {subPage.name}
                 </NavLink>
             ))}
-        </nav>
+        </div>
     );
 };
 

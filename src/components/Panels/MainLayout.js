@@ -3,7 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import TopBar from './TopBar';
 import SecondaryBar from './SecondaryBar';
 import NavigationBar from './NavigationBar';
-import SubNavigation from './SubNavigation'; // Додано імпорт SubNavigation
+import SubNavigation from './SubNavigation';
 import './MainLayout.css';
 
 const MainLayout = () => {
@@ -13,9 +13,9 @@ const MainLayout = () => {
     return (
         <div className="main-layout">
             <TopBar isBattlePage={isBattlePage} />
-            {!isBattlePage && <SecondaryBar />}
+            <SecondaryBar isBattlePage={isBattlePage} />
             <div className={`content ${isBattlePage ? 'battle-content' : ''}`}>
-                {!isBattlePage && <SubNavigation />} {/* Додано SubNavigation */}
+                {!isBattlePage && <SubNavigation isBattlePage={isBattlePage} />} {/* Передаємо пропс isBattlePage */}
                 <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
             </div>
             <NavigationBar isBattlePage={isBattlePage} />

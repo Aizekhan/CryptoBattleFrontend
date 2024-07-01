@@ -11,8 +11,12 @@ const SecondaryBar = ({ isBattlePage }) => {
     const { userStats } = useUserStats();
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
 
+    if (isBattlePage) {
+        return null; // Не відображати панель під час битви
+    }
+
     return (
-        <div className={`secondary-bar ${isBattlePage ? 'hidden' : ''}`}>
+        <div className="secondary-bar">
             <Link to="/home" className="nav-button">
                 <img src={homeIcon} alt="Home" className="icon" />
             </Link>
