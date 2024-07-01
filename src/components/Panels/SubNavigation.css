@@ -7,8 +7,8 @@
     color: #fff;
     box-sizing: border-box;
     height: 50px; /* Фіксована висота */
-    position: relative;
-    top: 0; /* Відступ від верхнього краю */
+    position: absolute; /* Абсолютне розташування */
+    top: 114px; /* Відступ від верхнього краю, враховуючи висоту TopBar і SecondaryBar */
     width: 100%;
     z-index: 998;
 }
