@@ -36,11 +36,6 @@
     flex: 1;
 }
 
-.hero-avatar {
-    width:30px;
-    height: auto;
-    
-}
 
 .income-info {
     display: flex;
