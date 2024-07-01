@@ -62,40 +62,42 @@ const PvPBattle = () => {
 
     return (
         <div className="pvp-battle">
-            <div className="player-side">
-                <img src={currentHero.img.full} alt={currentHero.name} className="hero-image" />
-                <div className="stats">
-                    <p>HP: {playerHP.toFixed(2)}</p>
-                    <p>Armor: {currentHero.baseStats.armor}</p>
-                    <p>Damage: {currentHero.baseStats.damage}</p>
+            <div className="hero-row">
+                <div className="hero-side">
+                    <img src={currentHero.img.full} alt={currentHero.name} className="hero-image" />
+                    <div className="stats">
+                        <p>HP: {playerHP.toFixed(2)}</p>
+                        <p>Armor: {currentHero.baseStats.armor}</p>
+                        <p>Damage: {currentHero.baseStats.damage}</p>
+                    </div>
+                    <div className="hero-effects">
+                        {damageEffect && damageEffect.isPlayerAttacking && (
+                            <>
+                                <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
+                                {damageEffect.effect && (
+                                    <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
+                                )}
+                            </>
+                        )}
+                    </div>
                 </div>
-                <div className="hero-effects">
-                    {damageEffect && damageEffect.isPlayerAttacking && (
-                        <>
-                            <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
-                            {damageEffect.effect && (
-                                <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
-                            )}
-                        </>
-                    )}
-                </div>
-            </div>
-            <div className="bot-side">
-                <img src={bot.img.full} alt={bot.name} className="bot-image" />
-                <div className="stats">
-                    <p>HP: {botHP.toFixed(2)}</p>
-                    <p>Armor: {bot.baseStats.armor}</p>
-                    <p>Damage: {bot.baseStats.damage}</p>
-                </div>
-                <div className="bot-effects">
-                    {damageEffect && !damageEffect.isPlayerAttacking && (
-                        <>
-                            <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
-                            {damageEffect.effect && (
-                                <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
-                            )}
-                        </>
-                    )}
+                <div className="bot-side">
+                    <img src={bot.img.full} alt={bot.name} className="bot-image" />
+                    <div className="stats">
+                        <p>HP: {botHP.toFixed(2)}</p>
+                        <p>Armor: {bot.baseStats.armor}</p>
+                        <p>Damage: {bot.baseStats.damage}</p>
+                    </div>
+                    <div className="bot-effects">
+                        {damageEffect && !damageEffect.isPlayerAttacking && (
+                            <>
+                                <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
+                                {damageEffect.effect && (
+                                    <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
+                                )}
+                            </>
+                        )}
+                    </div>
                 </div>
             </div>
             <div className="tactics">
