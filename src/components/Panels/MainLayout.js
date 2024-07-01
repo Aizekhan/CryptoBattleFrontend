@@ -3,7 +3,6 @@ import { Outlet, useLocation } from 'react-router-dom';
 import TopBar from './TopBar';
 import SecondaryBar from './SecondaryBar';
 import NavigationBar from './NavigationBar';
-import BattleHeader from '../Pages/Battle/BattleHeader'; // Імпорт нового компонента
 import './MainLayout.css';
 
 const MainLayout = () => {
@@ -13,7 +12,7 @@ const MainLayout = () => {
     return (
         <div className="main-layout">
             <TopBar />
-            {isBattlePage ? <BattleHeader /> : <SecondaryBar />}
+            {!isBattlePage && <SecondaryBar />}
             <div className={`content ${isBattlePage ? 'battle-content' : ''}`}>
                 <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
             </div>

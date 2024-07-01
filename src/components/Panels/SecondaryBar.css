@@ -42,7 +42,7 @@
 
 .hero-avatar {
     width: 20px; /* Зменшена ширина картинки */
-    height: auto;
+    height: 20px;
 }
 
 .income-info {
