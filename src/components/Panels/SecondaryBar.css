@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 20px; /* Зменшені відступи зверху і знизу */
+    padding: 5px 10px; /* Зменшені відступи зверху і знизу */
     background-color: #333; /* Графітовий фон */
     color: #fff;
     box-sizing: border-box;
@@ -41,7 +41,7 @@
 }
 
 .hero-avatar {
-    width: 40px; /* Зменшена ширина картинки */
+    width: 20px; /* Зменшена ширина картинки */
     height: auto;
 }
 

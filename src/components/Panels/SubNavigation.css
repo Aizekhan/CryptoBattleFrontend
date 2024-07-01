@@ -10,7 +10,7 @@
     width: 100%;
     z-index: 998;
     position: relative; /* Відносне розташування */
-    margin-top: 60px; /* Відступ від верхнього краю */
+    margin-top: 0px; /* Відступ від верхнього краю */
 }
 
 .sub-nav-button {
