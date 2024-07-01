@@ -6,14 +6,13 @@ const Battle = () => {
     const subPages = [
         { path: 'sub1', name: 'PvP' },
         { path: 'sub2', name: 'Cards' },
-         { path: 'sub3', name: 'Rank' },
-    
+        { path: 'sub3', name: 'Rank' },
     ];
 
     return (
         <div>
             <SubNavigation basePath="/battle" subPages={subPages} />
-            <Outlet />{/* Тут відображається вміст дочірніх маршрутів */}
+            <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
         </div>
     );
 };

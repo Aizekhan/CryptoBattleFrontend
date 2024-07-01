@@ -8,13 +8,13 @@
 
 .content {
     flex: 1;
-    margin-top: 102px; /* Відступ від верхнього краю (включає висоту top-bar + secondary-bar) */
-    margin-bottom: 65px; /* Відступ від нижнього краю (включає висоту navigation-bar) */
-    overflow-y: hidden; /* Вимикаємо вертикальне прокручування */
+    margin-top: 52px; /* Відступ для TopBar */
+    margin-bottom: 65px; /* Відступ для NavigationBar */
+    overflow-y: auto;
     padding: 20px;
 }
 
 .battle-content {
-    margin-top: 52px; /* Відступ тільки для top-bar */
-    margin-bottom: 0; /* Без відступу для navigation-bar */
+    margin-top: 52px; /* Відступ для TopBar */
+    margin-bottom: 0; /* Без відступу для NavigationBar */
 }
