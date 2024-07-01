@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUserStats } from '../../../context/UserStatsContext';
 import heroesConfig from '../../../context/heroesConfig';
+import BattleHeader from './BattleHeader'; // Імпорт нового компонента
 import './PvPBattle.css';
 import critIcon from '../../../assets/icons/crit.png';
 import blockIcon from '../../../assets/icons/block.png';
@@ -77,65 +78,22 @@ const PvPBattle = () => {
 
     return (
         <div className="pvp-battle">
+            <BattleHeader playerHP={playerHP} botHP={botHP} /> {/* Додавання BattleHeader */}
             <div className="hero-row">
                 <div className="hero-side">
                     <img src={currentHero.img.full} alt={currentHero.name} className="hero-image" />
-                    <div className="stats">
-                        <p>HP: {playerHP.toFixed(2)}</p>
-                    </div>
-                    <div className="hero-effects">
-                        {damageEffect && damageEffect.isPlayerAttacking && (
-                            <>
-                                <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
-                                {damageEffect.effect && (
-                                    <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
-                                )}
-                            </>
-                        )}
-                    </div>
                 </div>
                 <div className="bot-side">
                     <img src={bot.img.full} alt={bot.name} className="bot-image" />
-                    <div className="stats">
-                        <p>HP: {botHP.toFixed(2)}</p>
-                    </div>
-                    <div className="bot-effects">
-                        {damageEffect && !damageEffect.isPlayerAttacking && (
-                            <>
-                                <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
-                                {damageEffect.effect && (
-                                    <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
-                                )}
-                            </>
-                        )}
-                    </div>
                 </div>
             </div>
-            <div className="tactics">
+            <div className="battle-controls">
                 <button>Normal</button>
                 <button>Aggressive</button>
                 <button>Defensive</button>
             </div>
-            {winner && <div className="winner-announcement">{winner} Wins!</div>}
         </div>
     );
-};
-
-const getEffectIcon = (effect) => {
-    switch (effect) {
-        case 'crit':
-            return critIcon;
-        case 'block':
-            return blockIcon;
-        case 'dodge':
-            return dodgeIcon;
-        case 'penetration':
-            return penetrationIcon;
-        case 'accuracy':
-            return accuracyIcon;
-        default:
-            return null;
-    }
 };
 
 export default PvPBattle;
