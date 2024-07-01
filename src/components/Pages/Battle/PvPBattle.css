@@ -19,7 +19,6 @@
     flex-direction: column;
     align-items: center;
     width: 45%;
-    margin-bottom: 20px;
 }
 
 .hero-image {
@@ -39,7 +38,7 @@
 
 .battle-log {
     position: absolute;
-    bottom: 150px;
+    bottom: 120px;
     width: 100%;
     text-align: center;
     background-color: rgba(0, 0, 0, 0.8);
