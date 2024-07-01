@@ -6,7 +6,7 @@
     background-color: #333; /* Графітовий фон */
     color: #fff;
     box-sizing: border-box;
-    height: 50px; /* Фіксована висота */
+    height: 60px; /* Фіксована висота */
     position: fixed; /* Фіксоване положення */
     top: 52px; /* Відступ від верхнього краю */
     width: 100%;
@@ -42,8 +42,8 @@
 
 .hero-avatar {
     width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    height: auto;
+
 }
 
 .income-info {
