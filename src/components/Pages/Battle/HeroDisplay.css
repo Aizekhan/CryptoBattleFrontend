@@ -12,22 +12,27 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 80%; /* Може бути налаштоване відповідно до вашого інтерфейсу */
+    width: 100%; /* Ширина вмісту */
     margin-bottom: 20px;
 }
 
 .hero-image {
-    width: 150px;
+    width: 100px; /* Зменшено розмір зображення героя */
     height: auto;
     margin-right: 20px;
-    border: 1px solid red; /* Червона рамка */
 }
 
 .stats {
     display: flex;
     flex-direction: column;
-    border: 1px solid blue; /* Синя рамка */
+    align-items: flex-start;
     padding: 10px;
+    font-size: 14px; /* Зменшено розмір тексту */
+    line-height: 1.2; /* Зменшено міжрядковий інтервал */
+}
+
+.stat-name {
+    margin: 0 0 5px 0; /* Зменшено відступи */
 }
 
 .actions {
@@ -39,7 +44,7 @@
 .opponent-selection {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px; /* Зменшено відступ */
 }
 
 .opponent-selection label {
