@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUserStats } from '../../../context/UserStatsContext';
 import heroesConfig from '../../../context/heroesConfig';
-import BattleHeader from './BattleHeader';
 import './PvPBattle.css';
+import BattleHeader from './BattleHeader';
 import critIcon from '../../../assets/icons/crit.png';
 import blockIcon from '../../../assets/icons/block.png';
 import dodgeIcon from '../../../assets/icons/dodge.png';
@@ -26,12 +26,14 @@ const PvPBattle = () => {
         let isCritical = Math.random() < attacker.baseStats.critChance / 100;
         let isBlocked = Math.random() < defender.baseStats.blockChance / 100;
         let isDodge = Math.random() < defender.baseStats.dodgeChance / 100;
+        let isPenetrated = Math.random() < attacker.baseStats.penetrationChance / 100;
+        let isAccurate = Math.random() < attacker.baseStats.accuracyChance / 100;
 
-        if (isDodge) {
+        if (isDodge && !isAccurate) {
             return { damage: 0, effect: 'dodge' };
         }
 
-        if (isBlocked) {
+        if (isBlocked && !isPenetrated) {
             damage *= 0.5;
             return { damage, effect: 'block' };
         }
@@ -39,6 +41,14 @@ const PvPBattle = () => {
         if (isCritical) {
             damage *= 1.5;
             return { damage, effect: 'crit' };
+        }
+
+        if (isPenetrated) {
+            return { damage, effect: 'penetration' };
+        }
+
+        if (isAccurate) {
+            return { damage, effect: 'accuracy' };
         }
 
         return { damage, effect: null };
@@ -95,7 +105,7 @@ const PvPBattle = () => {
 
     return (
         <div className="pvp-battle">
-            <BattleHeader playerHP={playerHP} botHP={botHP} />
+            <BattleHeader playerHP={playerHP} botHP={botHP} playerName={currentHero.name} botName={bot.name} />
             <div className="hero-row">
                 <div className="hero-side">
                     <img src={currentHero.img.full} alt={currentHero.name} className="hero-image" />
