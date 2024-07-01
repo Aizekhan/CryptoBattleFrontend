@@ -1,17 +1,39 @@
+.hero-display-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
 .hero-display {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .hero-image {
     width: 150px;
     height: auto;
-    margin-bottom: 20px;
+    margin-right: 20px;
 }
 
 .stats {
-    margin-bottom: 20px;
+    text-align: left;
+    margin-right: 20px;
+}
+
+.actions {
+    text-align: center;
 }
 
 .opponent-selection {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
 }

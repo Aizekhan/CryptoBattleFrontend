@@ -1,4 +1,3 @@
-// PvPBattle.js
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useUserStats } from '../../../context/UserStatsContext';
@@ -14,7 +13,7 @@ const PvPBattle = () => {
     const { userStats } = useUserStats();
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
     const location = useLocation();
-    const opponentId = location.state?.opponentId || heroesConfig[1].id;
+    const opponentId = location.state?.opponentId || heroesConfig[2].id;
     const bot = heroesConfig.find(hero => hero.id === opponentId);
 
     const [playerHP, setPlayerHP] = useState(currentHero.baseStats.hp);
@@ -26,14 +25,26 @@ const PvPBattle = () => {
         let isCritical = Math.random() < attacker.baseStats.critChance / 100;
         let isBlocked = Math.random() < defender.baseStats.blockChance / 100;
         let isDodge = Math.random() < defender.baseStats.dodgeChance / 100;
+        let isPenetration = false;
+        let isAccuracy = false;
 
         if (isDodge) {
-            return { damage: 0, effect: 'dodge' };
+            if (Math.random() < attacker.baseStats.accuracy / 100) {
+                isAccuracy = true;
+                isDodge = false;
+            } else {
+                return { damage: 0, effect: 'dodge' };
+            }
         }
 
         if (isBlocked) {
-            damage *= 0.5;
-            return { damage, effect: 'block' };
+            if (Math.random() < attacker.baseStats.penetrationChance / 100) {
+                isPenetration = true;
+                isBlocked = false;
+            } else {
+                damage *= 0.5;
+                return { damage, effect: 'block' };
+            }
         }
 
         if (isCritical) {
@@ -41,7 +52,7 @@ const PvPBattle = () => {
             return { damage, effect: 'crit' };
         }
 
-        return { damage, effect: null };
+        return { damage, effect: isPenetration ? 'penetration' : isAccuracy ? 'accuracy' : null };
     };
 
     const handleAttack = useCallback((attacker, defender, setDefenderHP, isPlayerAttacking) => {
@@ -67,39 +78,25 @@ const PvPBattle = () => {
             <div className="hero-row">
                 <div className="hero-side">
                     <img src={currentHero.img.full} alt={currentHero.name} className="hero-image" />
-                    <div className="stats">
-                        <p>HP: {playerHP.toFixed(2)}</p>
-                        <p>Armor: {currentHero.baseStats.armor}</p>
-                        <p>Damage: {currentHero.baseStats.damage}</p>
-                    </div>
-                    <div className="hero-effects">
-                        {damageEffect && damageEffect.isPlayerAttacking && (
-                            <>
-                                <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
-                                {damageEffect.effect && (
-                                    <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
-                                )}
-                            </>
-                        )}
-                    </div>
+                    {damageEffect && damageEffect.isPlayerAttacking && (
+                        <div className="damage-effects">
+                            <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
+                            {damageEffect.effect && (
+                                <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
+                            )}
+                        </div>
+                    )}
                 </div>
                 <div className="bot-side">
                     <img src={bot.img.full} alt={bot.name} className="bot-image" />
-                    <div className="stats">
-                        <p>HP: {botHP.toFixed(2)}</p>
-                        <p>Armor: {bot.baseStats.armor}</p>
-                        <p>Damage: {bot.baseStats.damage}</p>
-                    </div>
-                    <div className="bot-effects">
-                        {damageEffect && !damageEffect.isPlayerAttacking && (
-                            <>
-                                <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
-                                {damageEffect.effect && (
-                                    <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
-                                )}
-                            </>
-                        )}
-                    </div>
+                    {damageEffect && !damageEffect.isPlayerAttacking && (
+                        <div className="damage-effects">
+                            <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
+                            {damageEffect.effect && (
+                                <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
+                            )}
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="tactics">
