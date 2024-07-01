@@ -106,6 +106,11 @@ const PvPBattle = () => {
     return (
         <div className="pvp-battle">
             <BattleHeader playerHP={playerHP} botHP={botHP} playerName={currentHero.name} botName={bot.name} />
+            {winner && (
+                <div className="winner-announcement">
+                    {winner} wins!
+                </div>
+            )}
             <div className="hero-row">
                 <div className="hero-side">
                     <img src={currentHero.img.full} alt={currentHero.name} className="hero-image" />
