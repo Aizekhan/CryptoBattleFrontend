@@ -14,22 +14,22 @@ const SecondaryBar = () => {
     return (
         <div className="secondary-bar">
             <Link to="/home" className="nav-button">
-                <img src={homeIcon} alt="Home" className="home-icon" />
+                <img src={homeIcon} alt="Home" className="icon" />
             </Link>
             {location.pathname.startsWith('/mines') ? (
                 <div className="income-info">
-                    <img src={pickaxeIcon} alt="Income" className="income-icon" />
+                    <img src={pickaxeIcon} alt="Income" className="icon" />
                     <span>{userStats.hourlyIncome}</span>
                 </div>
             ) : (
-                <div className="hero-info">
-                    {currentHero && (
+                currentHero && (
+                    <div className="hero-avatar-container">
                         <img src={currentHero.avatarImg} alt="Hero Avatar" className="hero-avatar" />
-                    )}
-                </div>
+                    </div>
+                )
             )}
             <Link to="/friends" className="nav-button">
-                <img src={friendsIcon} alt="Friends" className="friends-icon" />
+                <img src={friendsIcon} alt="Friends" className="icon" />
             </Link>
         </div>
     );

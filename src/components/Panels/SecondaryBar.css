@@ -7,6 +7,10 @@
     color: #fff;
     box-sizing: border-box;
     height: 50px; /* Фіксована висота */
+    position: fixed; /* Фіксоване положення */
+    top: 52px; /* Відступ від верхнього краю */
+    width: 100%;
+    z-index: 999;
 }
 
 .nav-button {
@@ -33,9 +37,9 @@
 }
 
 .hero-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+    width:30px;
+    height: auto;
+    
 }
 
 .income-info {
