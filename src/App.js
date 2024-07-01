@@ -83,12 +83,6 @@ function App() {
         }
     }, [updateUserStats]);
 
-    const battleSubPages = [
-        { path: 'sub1', name: 'PvP' },
-        { path: 'sub2', name: 'Cards' },
-        { path: 'sub3', name: 'Rank' },
-    ];
-
     return (
         <Router>
             <Routes>
