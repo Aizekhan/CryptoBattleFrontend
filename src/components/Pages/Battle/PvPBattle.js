@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useUserStats } from '../../../context/UserStatsContext';
 import heroesConfig from '../../../context/heroesConfig';
 import './PvPBattle.css';
@@ -11,39 +11,28 @@ import accuracyIcon from '../../../assets/icons/accuracy.png';
 
 const PvPBattle = () => {
     const { userStats } = useUserStats();
-    const location = useLocation();
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
-    const bot = heroesConfig.find(hero => hero.id === location.state.opponentId);
+    const bot = heroesConfig[1]; // Використовуємо другого героя як бота
 
     const [playerHP, setPlayerHP] = useState(currentHero.baseStats.hp);
     const [botHP, setBotHP] = useState(bot.baseStats.hp);
     const [damageEffect, setDamageEffect] = useState(null);
+    const [winner, setWinner] = useState(null);
+    const navigate = useNavigate();
 
     const calculateDamage = (attacker, defender) => {
         let damage = attacker.baseStats.damage;
         let isCritical = Math.random() < attacker.baseStats.critChance / 100;
         let isBlocked = Math.random() < defender.baseStats.blockChance / 100;
         let isDodge = Math.random() < defender.baseStats.dodgeChance / 100;
-        let isPenetration = false;
-        let isAccuracy = false;
 
         if (isDodge) {
-            if (Math.random() < attacker.baseStats.accuracy / 100) {
-                isAccuracy = true;
-                isDodge = false;
-            } else {
-                return { damage: 0, effect: 'dodge' };
-            }
+            return { damage: 0, effect: 'dodge' };
         }
 
         if (isBlocked) {
-            if (Math.random() < attacker.baseStats.penetrationChance / 100) {
-                isPenetration = true;
-                isBlocked = false;
-            } else {
-                damage *= 0.5;
-                return { damage, effect: 'block' };
-            }
+            damage *= 0.5;
+            return { damage, effect: 'block' };
         }
 
         if (isCritical) {
@@ -51,7 +40,7 @@ const PvPBattle = () => {
             return { damage, effect: 'crit' };
         }
 
-        return { damage, effect: isPenetration ? 'penetration' : isAccuracy ? 'accuracy' : null };
+        return { damage, effect: null };
     };
 
     const handleAttack = useCallback((attacker, defender, setDefenderHP, isPlayerAttacking) => {
@@ -62,7 +51,21 @@ const PvPBattle = () => {
     }, []);
 
     useEffect(() => {
-        if (playerHP <= 0 || botHP <= 0) return;
+        if (playerHP <= 0) {
+            setWinner('Bot');
+            setTimeout(() => {
+                navigate('/battle/sub1');
+            }, 5000);
+            return;
+        }
+
+        if (botHP <= 0) {
+            setWinner('Player');
+            setTimeout(() => {
+                navigate('/battle/sub1');
+            }, 5000);
+            return;
+        }
 
         const timer = setTimeout(() => {
             handleAttack(currentHero, bot, setBotHP, true);
@@ -70,32 +73,42 @@ const PvPBattle = () => {
         }, 3000);
 
         return () => clearTimeout(timer);
-    }, [playerHP, botHP, bot, currentHero, handleAttack]);
+    }, [playerHP, botHP, bot, currentHero, handleAttack, navigate]);
 
     return (
         <div className="pvp-battle">
             <div className="hero-row">
                 <div className="hero-side">
                     <img src={currentHero.img.full} alt={currentHero.name} className="hero-image" />
-                    {damageEffect && damageEffect.isPlayerAttacking && (
-                        <div className="damage-effects">
-                            <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
-                            {damageEffect.effect && (
-                                <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
-                            )}
-                        </div>
-                    )}
+                    <div className="stats">
+                        <p>HP: {playerHP.toFixed(2)}</p>
+                    </div>
+                    <div className="hero-effects">
+                        {damageEffect && damageEffect.isPlayerAttacking && (
+                            <>
+                                <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
+                                {damageEffect.effect && (
+                                    <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
+                                )}
+                            </>
+                        )}
+                    </div>
                 </div>
                 <div className="bot-side">
                     <img src={bot.img.full} alt={bot.name} className="bot-image" />
-                    {damageEffect && !damageEffect.isPlayerAttacking && (
-                        <div className="damage-effects">
-                            <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
-                            {damageEffect.effect && (
-                                <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
-                            )}
-                        </div>
-                    )}
+                    <div className="stats">
+                        <p>HP: {botHP.toFixed(2)}</p>
+                    </div>
+                    <div className="bot-effects">
+                        {damageEffect && !damageEffect.isPlayerAttacking && (
+                            <>
+                                <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
+                                {damageEffect.effect && (
+                                    <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
+                                )}
+                            </>
+                        )}
+                    </div>
                 </div>
             </div>
             <div className="tactics">
@@ -103,6 +116,7 @@ const PvPBattle = () => {
                 <button>Aggressive</button>
                 <button>Defensive</button>
             </div>
+            {winner && <div className="winner-announcement">{winner} Wins!</div>}
         </div>
     );
 };
