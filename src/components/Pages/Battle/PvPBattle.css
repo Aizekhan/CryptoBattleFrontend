@@ -4,9 +4,8 @@
     align-items: center;
     justify-content: space-between;
     height: 100vh;
+    padding: 20px;
     box-sizing: border-box;
-    padding: 10px;
-    overflow: hidden; /* Вимикаємо прокручування */
 }
 
 .hero-row {
@@ -30,5 +29,4 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
-    padding: 10px 0;
 }
