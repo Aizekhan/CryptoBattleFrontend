@@ -3,13 +3,14 @@
     flex-direction: column;
     height: 100vh;
     box-sizing: border-box;
+    overflow: hidden; /* Вимикаємо прокручування */
 }
 
 .content {
     flex: 1;
     margin-top: 102px; /* Відступ від верхнього краю (включає висоту top-bar + secondary-bar) */
     margin-bottom: 65px; /* Відступ від нижнього краю (включає висоту navigation-bar) */
-    overflow-y: auto;
+    overflow-y: hidden; /* Вимикаємо вертикальне прокручування */
     padding: 20px;
     background-color: #f0f0f0; /* Додайте фон */
     box-sizing: border-box;

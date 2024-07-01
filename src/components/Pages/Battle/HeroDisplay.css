@@ -9,20 +9,25 @@
 }
 
 .hero-info {
-    text-align: center;
-    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%; /* Може бути налаштоване відповідно до вашого інтерфейсу */
+    margin-bottom: 20px;
 }
 
 .hero-image {
     width: 150px;
     height: auto;
-    margin-bottom: 10px;
+    margin-right: 20px;
+    border: 1px solid red; /* Червона рамка */
 }
 
 .stats {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    border: 1px solid blue; /* Синя рамка */
+    padding: 10px;
 }
 
 .actions {

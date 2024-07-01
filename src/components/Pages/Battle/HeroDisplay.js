@@ -23,6 +23,7 @@ const HeroDisplay = () => {
             <div className="hero-info">
                 <img src={currentHero.img.full} alt={currentHero.name} className="hero-image" />
                 <div className="stats">
+                    <p>{currentHero.name}</p>
                     <p>HP: {currentHero.baseStats.hp}</p>
                     <p>Armor: {currentHero.baseStats.armor}</p>
                     <p>Damage: {currentHero.baseStats.damage}</p>

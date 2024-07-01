@@ -3,17 +3,18 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 100vh;
+    height: 100vh; /* Висота 100% екрану */
     padding: 10px;
     box-sizing: border-box;
+    overflow: hidden; /* Вимикаємо прокручування */
 }
 
 .hero-row {
     display: flex;
     justify-content: space-around;
+    align-items: center; /* Вирівнювання по центру по вертикалі */
     width: 100%;
     flex: 1;
-    align-items: center; /* Вирівнювання по центру по вертикалі */
 }
 
 .hero-side, .bot-side {
@@ -28,7 +29,7 @@
 
 .damage-effects {
     position: absolute;
-    bottom: 100px;
+    top: -50px; /* Підняти над героєм */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -50,10 +51,13 @@
 .tactics {
     display: flex;
     justify-content: center;
+    width: 100%;
     padding: 10px 0;
     background-color: #333;
     color: #fff;
-    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
 }
 
 .tactics button {
