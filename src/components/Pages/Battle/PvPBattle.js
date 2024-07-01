@@ -135,7 +135,7 @@ const PvPBattle = () => {
                     )}
                 </div>
             </div>
-            <div className="battle-controls">
+            <div className="battle-controls fixed-controls">
                 <button>Normal</button>
                 <button>Aggressive</button>
                 <button>Defensive</button>
