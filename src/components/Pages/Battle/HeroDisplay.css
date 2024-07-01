@@ -1,0 +1,17 @@
+.hero-display {
+    text-align: center;
+}
+
+.hero-image {
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.stats {
+    margin-bottom: 20px;
+}
+
+.opponent-selection {
+    margin-bottom: 20px;
+}

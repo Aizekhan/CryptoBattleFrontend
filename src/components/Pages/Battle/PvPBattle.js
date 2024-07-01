@@ -1,10 +1,10 @@
 // PvPBattle.js
-
 import React, { useState, useEffect, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useUserStats } from '../../../context/UserStatsContext';
 import heroesConfig from '../../../context/heroesConfig';
 import './PvPBattle.css';
-import critIcon from '../../../assets/icons/crit.png'; // Додайте відповідні іконки
+import critIcon from '../../../assets/icons/crit.png';
 import blockIcon from '../../../assets/icons/block.png';
 import dodgeIcon from '../../../assets/icons/dodge.png';
 import penetrationIcon from '../../../assets/icons/penetration.png';
@@ -13,7 +13,9 @@ import accuracyIcon from '../../../assets/icons/accuracy.png';
 const PvPBattle = () => {
     const { userStats } = useUserStats();
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
-    const bot = heroesConfig[1]; // Використовуємо другого героя як бота
+    const location = useLocation();
+    const opponentId = location.state?.opponentId || heroesConfig[1].id;
+    const bot = heroesConfig.find(hero => hero.id === opponentId);
 
     const [playerHP, setPlayerHP] = useState(currentHero.baseStats.hp);
     const [botHP, setBotHP] = useState(bot.baseStats.hp);
