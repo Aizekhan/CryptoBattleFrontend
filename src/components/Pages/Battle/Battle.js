@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import SubNavigation from '../../Panels/SubNavigation';
 
 const Battle = () => {
@@ -9,9 +9,12 @@ const Battle = () => {
         { path: 'sub3', name: 'Rank' },
     ];
 
+    const location = useLocation();
+    const isBattlePage = location.pathname.startsWith('/battle/pvp-battle');
+
     return (
         <div>
-            <SubNavigation basePath="/battle" subPages={subPages} />
+            <SubNavigation basePath="/battle" subPages={subPages} isBattlePage={isBattlePage} />
             <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
         </div>
     );

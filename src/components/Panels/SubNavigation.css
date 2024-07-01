@@ -1,18 +1,23 @@
 .sub-navigation {
     display: flex;
-    justify-content: space-around;
-    background-color: #333;
-    padding: 10px 0;
-}
-
-.sub-nav-link {
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333; /* Графітовий фон */
     color: #fff;
-    text-decoration: none;
-    padding: 5px 10px;
-    font-size: 14px;
+    box-sizing: border-box;
+    height: 50px; /* Фіксована висота */
+    position: relative;
+    top: 0; /* Відступ від верхнього краю */
+    width: 100%;
+    z-index: 998;
 }
 
-.sub-nav-link.active {
-    background-color: #555;
-    border-radius: 5px;
+.sub-navigation .sub-nav-button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    margin: 0 10px;
+    cursor: pointer;
 }
