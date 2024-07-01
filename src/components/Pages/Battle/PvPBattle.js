@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useUserStats } from '../../../context/UserStatsContext';
 import heroesConfig from '../../../context/heroesConfig';
 import './PvPBattle.css';
@@ -40,7 +40,7 @@ const PvPBattle = () => {
         return { actualDamage, crit };
     };
 
-    const battleTurn = () => {
+    const battleTurn = useCallback(() => {
         // Player attacks Bot
         const { actualDamage: playerDamage, crit: playerCrit } = calculateDamage(currentHero, botHero, playerStrategy);
         setBotHP(prevHP => prevHP - playerDamage);
@@ -50,14 +50,14 @@ const PvPBattle = () => {
         const { actualDamage: botDamage, crit: botCrit } = calculateDamage(botHero, currentHero, 'normal');
         setPlayerHP(prevHP => prevHP - botDamage);
         addLogEntry(`Bot hits Player for ${botDamage.toFixed(2)} damage${botCrit ? '. Critical hit!' : '.'}`);
-    };
+    }, [currentHero, botHero, playerStrategy]);
 
     useEffect(() => {
         if (playerHP > 0 && botHP > 0) {
             const timer = setInterval(battleTurn, 3000);
             return () => clearInterval(timer);
         }
-    }, [playerHP, botHP]);
+    }, [playerHP, botHP, battleTurn]);
 
     return (
         <div className="battle-container">
