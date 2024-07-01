@@ -10,17 +10,24 @@
     position: relative;
 }
 
+.hero-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .hero-side, .bot-side {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%; /* Задаємо ширину для розташування героїв */
+    width: 45%;
 }
 
 .hero-image, .bot-image {
     width: 100px;
     height: 150px;
     object-fit: cover;
+    position: relative;
 }
 
 .stats {
@@ -32,22 +39,21 @@
 }
 
 .hero-effects, .bot-effects {
-    position: relative;
+    position: absolute;
     width: 100%;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    padding: 10px;
-    box-sizing: border-box;
+    height: 100%;
+    top: 0;
+    left: 0;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .damage-number {
     position: absolute;
     font-size: 24px;
     color: red;
-    animation: damage-animation 1s ease-in-out;
+    animation: damage-animation 2s ease-in-out;
 }
 
 @keyframes damage-animation {
@@ -65,7 +71,7 @@
     position: absolute;
     width: 20px;
     height: 20px;
-    animation: effect-animation 1s ease-in-out;
+    animation: effect-animation 2s ease-in-out;
 }
 
 @keyframes effect-animation {
@@ -97,11 +103,4 @@
     flex: 1;
     margin: 5px;
     padding: 10px 20px;
-}
-
-.hero-row {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 20px; /* Відступ між героями та кнопками */
 }
