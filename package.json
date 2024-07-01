@@ -43,6 +43,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "https://cryptobattle-backend-0a2c7aea11c7.herokuapp.com/"
+  }
 }
