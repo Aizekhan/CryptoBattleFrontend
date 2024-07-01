@@ -21,11 +21,7 @@
     width: 45%;
 }
 
-.hero-image {
-    width: 100px;
-    height: 150px;
-    margin-bottom: 20px;
-}
+
 
 .hero-stats {
     width: 100%;
@@ -35,7 +31,16 @@
     padding: 10px;
     box-sizing: border-box;
 }
-
+/* Адаптивний стиль для мобільних пристроїв */
+@media (max-width: 600px) {
+    .hero-image,
+    .bot-image {
+        width: 50vw; /* Ширина зображення 50% від ширини вікна перегляду */
+        height: auto; /* Автоматична висота для збереження пропорцій */
+        max-width: 80px; /* Максимальна ширина зображення на мобільних пристроях */
+        max-height: 120px; /* Максимальна висота зображення на мобільних пристроях */
+    }
+}
 .battle-log {
     position: absolute;
     bottom: 120px;
