@@ -8,7 +8,6 @@ import heroIcon from '../../assets/images/hero-icon.png';
 import './NavigationBar.css';
 
 const NavigationBar = ({ isBattlePage }) => {
-    const location = useLocation();
     const tacticsButtons = (
         <div className="tactics">
             <button>Normal</button>
