@@ -1,6 +1,6 @@
 // PvPBattle.js
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useUserStats } from '../../../context/UserStatsContext';
 import heroesConfig from '../../../context/heroesConfig';
 import './PvPBattle.css';
@@ -42,12 +42,12 @@ const PvPBattle = () => {
         return { damage, effect: null };
     };
 
-    const handleAttack = (attacker, defender, setDefenderHP, isPlayerAttacking) => {
+    const handleAttack = useCallback((attacker, defender, setDefenderHP, isPlayerAttacking) => {
         const { damage, effect } = calculateDamage(attacker, defender);
 
         setDefenderHP(prevHP => Math.max(prevHP - damage, 0));
         setDamageEffect({ isPlayerAttacking, damage, effect });
-    };
+    }, []);
 
     useEffect(() => {
         if (playerHP <= 0 || botHP <= 0) return;
