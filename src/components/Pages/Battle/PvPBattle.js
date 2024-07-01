@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useUserStats } from '../../../context/UserStatsContext';
 import heroesConfig from '../../../context/heroesConfig';
 import './PvPBattle.css';
@@ -13,7 +13,9 @@ import accuracyIcon from '../../../assets/icons/accuracy.png';
 const PvPBattle = () => {
     const { userStats } = useUserStats();
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
-    const bot = heroesConfig[1]; // Використовуємо другого героя як бота
+    const location = useLocation();
+    const opponentId = location.state?.opponentId || heroesConfig[1].id; // Використовуємо переданого противника або другого героя за замовчуванням
+    const bot = heroesConfig.find(hero => hero.id === opponentId);
 
     const [playerHP, setPlayerHP] = useState(currentHero.baseStats.hp);
     const [botHP, setBotHP] = useState(bot.baseStats.hp);
@@ -58,7 +60,7 @@ const PvPBattle = () => {
         const { damage, effect } = calculateDamage(attacker, defender);
 
         setDefenderHP(prevHP => Math.max(prevHP - damage, 0));
-        setDamageEffect({ isPlayerAttacking, damage, effect });
+        setDamageEffect({ isPlayerAttacking: !isPlayerAttacking, damage, effect }); // Змінено на !isPlayerAttacking
     }, []);
 
     useEffect(() => {
@@ -114,7 +116,7 @@ const PvPBattle = () => {
             <div className="hero-row">
                 <div className="hero-side">
                     <img src={currentHero.img.full} alt={currentHero.name} className="hero-image" />
-                    {damageEffect && damageEffect.isPlayerAttacking && (
+                    {damageEffect && !damageEffect.isPlayerAttacking && ( // Змінено на !damageEffect.isPlayerAttacking
                         <>
                             <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
                             {damageEffect.effect && (
@@ -125,7 +127,7 @@ const PvPBattle = () => {
                 </div>
                 <div className="bot-side">
                     <img src={bot.img.full} alt={bot.name} className="bot-image" />
-                    {damageEffect && !damageEffect.isPlayerAttacking && (
+                    {damageEffect && damageEffect.isPlayerAttacking && ( // Змінено на damageEffect.isPlayerAttacking
                         <>
                             <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
                             {damageEffect.effect && (
