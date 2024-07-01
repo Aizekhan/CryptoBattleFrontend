@@ -15,3 +15,8 @@
     background-color: #f0f0f0; /* Додайте фон */
     box-sizing: border-box;
 }
+
+.battle-content {
+    margin-top: 52px; /* Відступ тільки для top-bar */
+    margin-bottom: 0; /* Без відступу для navigation-bar */
+}
