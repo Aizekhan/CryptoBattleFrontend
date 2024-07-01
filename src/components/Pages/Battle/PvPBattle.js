@@ -15,12 +15,11 @@ const PvPBattle = () => {
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
     const bot = heroesConfig[1]; // Використовуємо другого героя як бота
 
-    const [battleLog, setBattleLog] = useState([]);
     const [playerHP, setPlayerHP] = useState(currentHero.baseStats.hp);
     const [botHP, setBotHP] = useState(bot.baseStats.hp);
     const [damageEffect, setDamageEffect] = useState(null);
 
-    const calculateDamage = (attacker, defender, strategy) => {
+    const calculateDamage = (attacker, defender) => {
         let damage = attacker.baseStats.damage;
         let isCritical = Math.random() < attacker.baseStats.critChance / 100;
         let isBlocked = Math.random() < defender.baseStats.blockChance / 100;
@@ -48,10 +47,6 @@ const PvPBattle = () => {
 
         setDefenderHP(prevHP => Math.max(prevHP - damage, 0));
         setDamageEffect({ isPlayerAttacking, damage, effect });
-        setBattleLog(prevLog => [
-            ...prevLog.slice(-1), // Оновлюємо тільки останній запис логу
-            { attacker: attacker.name, damage, effect }
-        ]);
     };
 
     useEffect(() => {
@@ -63,7 +58,7 @@ const PvPBattle = () => {
         }, 3000);
 
         return () => clearTimeout(timer);
-    }, [playerHP, botHP]);
+    }, [playerHP, botHP, bot, currentHero, handleAttack]);
 
     return (
         <div className="pvp-battle">
