@@ -1,17 +1,13 @@
-.navigation-bar {
+.secondary-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    position: fixed;
-    bottom: 5px; /* Відступ від нижнього краю */
-    width: calc(100% - 10px); /* Віднімання відступів */
-    z-index: 1000;
     background-color: #333; /* Графітовий фон */
     color: #fff;
     box-sizing: border-box;
+    height: 50px; /* Фіксована висота */
 }
-
 .nav-button {
     background: none;
     border: none;
@@ -23,31 +19,28 @@
     flex: 1;
     opacity: 0.7; /* Зменшення прозорості для неактивних вкладок */
 }
-
 .nav-button.active {
     opacity: 1; /* Повна прозорість для активної вкладки */
 }
-
 .nav-button img {
     width: 30px; /* Встановлення фіксованого розміру для іконок */
     height: 30px;
     margin-bottom: 5px;
 }
-
 .nav-button:focus {
     outline: none;
 }
-
-.tactics {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+.hero-avatar {
+    width: 40px;
+    height: auto;
+    border-radius: 50%;
 }
-
-.tactics button {
-    flex: 1;
-    margin: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+.income-info {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+.income-info img {
+    width: 20px;
+    margin-right: 5px;
 }
