@@ -1,67 +1,64 @@
 .battle-container {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    height: 60vh; /* Зменшено висоту екрану бою */
+    height: 100vh; /* Повна висота екрану */
     padding: 20px;
     box-sizing: border-box;
     position: relative;
 }
 
 .hero-container {
-    position: relative;
-    width: 45%; /* Обмеження ширини */
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
-    box-sizing: border-box;
+    width: 45%;
+    margin-bottom: 20px;
 }
 
 .hero-image {
-    width: 100px; /* Ширина зображення */
-    height: 150px; /* Висота зображення */
+    width: 100px;
+    height: 150px;
     margin-bottom: 20px;
 }
 
 .hero-stats {
     width: 100%;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.6); /* Тло для тексту */
+    background-color: rgba(0, 0, 0, 0.6);
     color: white;
     padding: 10px;
     box-sizing: border-box;
 }
 
-.strategy-buttons {
-    display: flex;
-    justify-content: space-between; /* Розподіл кнопок рівномірно */
-    padding: 10px 20px; /* Відступ */
-    background-color: #333; /* Графітовий фон */
-    color: #fff;
-    box-sizing: border-box;
-    position: fixed;
-    bottom: 50px; /* Відступ від нижнього краю */
-    left: 0; /* Вирівнювання по центру */
-    width: 100%; /* Ширина контейнера */
-    z-index: 1000;
-}
-
-.strategy-buttons button {
-    flex: 1; /* Розподіл кнопок рівномірно */
-    margin: 5px;
-    padding: 10px 20px;
-}
-
 .battle-log {
-    position: fixed;
-    bottom: 100px; /* Відступ від кнопок тактики */
-    left: 0; /* Вирівнювання по центру */
-    width: 100%; /* Ширина контейнера */
+    position: absolute;
+    bottom: 100px;
+    width: 100%;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.8); /* Тло для логів */
+    background-color: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 10px;
     box-sizing: border-box;
     z-index: 999;
+}
+
+.strategy-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 50px;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.strategy-buttons button {
+    flex: 1;
+    margin: 5px;
+    padding: 10px 20px;
 }

@@ -12,7 +12,7 @@ const PvPBattle = () => {
     const [playerStrategy, setPlayerStrategy] = useState('normal');
 
     const addLogEntry = (entry) => {
-        setLog([entry]); // Зберігаємо тільки останній запис
+        setLog(prevLog => [entry, ...prevLog.slice(0, 1)]); // Зберігаємо тільки останні два записи
     };
 
     const handleStrategyChange = (strategy) => {
@@ -44,16 +44,16 @@ const PvPBattle = () => {
 
     useEffect(() => {
         const battleInterval = setInterval(() => {
-            const playerAttack = calculateDamage(currentHero, botHero, playerStrategy);
-            const botAttack = calculateDamage(botHero, currentHero, 'normal');
+            if (botHero.baseStats.hp > 0 && currentHero.baseStats.hp > 0) {
+                const playerAttack = calculateDamage(currentHero, botHero, playerStrategy);
+                const botAttack = calculateDamage(botHero, currentHero, 'normal');
 
-            botHero.baseStats.hp -= playerAttack.damage;
-            currentHero.baseStats.hp -= botAttack.damage;
+                botHero.baseStats.hp -= playerAttack.damage;
+                currentHero.baseStats.hp -= botAttack.damage;
 
-            addLogEntry(`Player hits Bot for ${playerAttack.damage.toFixed(2)} damage. ${playerAttack.crit ? 'Critical hit!' : ''}`);
-            addLogEntry(`Bot hits Player for ${botAttack.damage.toFixed(2)} damage. ${botAttack.crit ? 'Critical hit!' : ''}`);
-
-            if (botHero.baseStats.hp <= 0 || currentHero.baseStats.hp <= 0) {
+                addLogEntry(`Player hits Bot for ${playerAttack.damage.toFixed(2)} damage. ${playerAttack.crit ? 'Critical hit!' : ''}`);
+                addLogEntry(`Bot hits Player for ${botAttack.damage.toFixed(2)} damage. ${botAttack.crit ? 'Critical hit!' : ''}`);
+            } else {
                 clearInterval(battleInterval);
                 addLogEntry(
                     botHero.baseStats.hp <= 0 ? 'Player wins!' : 'Bot wins!'
@@ -69,17 +69,17 @@ const PvPBattle = () => {
             <div className="hero-container">
                 <img src={currentHero.img.full} alt={currentHero.name} className="hero-image" />
                 <div className="hero-stats">
-                    <p>HP: {currentHero.baseStats.hp}</p>
-                    <p>Armor: {currentHero.baseStats.armor}</p>
-                    <p>Damage: {currentHero.baseStats.damage}</p>
+                    <p>HP: {currentHero.baseStats.hp.toFixed(2)}</p>
+                    <p>Armor: {currentHero.baseStats.armor.toFixed(2)}</p>
+                    <p>Damage: {currentHero.baseStats.damage.toFixed(2)}</p>
                 </div>
             </div>
             <div className="hero-container">
                 <img src={botHero.img.full} alt={botHero.name} className="hero-image" />
                 <div className="hero-stats">
-                    <p>HP: {botHero.baseStats.hp}</p>
-                    <p>Armor: {botHero.baseStats.armor}</p>
-                    <p>Damage: {botHero.baseStats.damage}</p>
+                    <p>HP: {botHero.baseStats.hp.toFixed(2)}</p>
+                    <p>Armor: {botHero.baseStats.armor.toFixed(2)}</p>
+                    <p>Damage: {botHero.baseStats.damage.toFixed(2)}</p>
                 </div>
             </div>
             <div className="battle-log">
