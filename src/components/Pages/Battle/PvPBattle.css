@@ -41,6 +41,67 @@
         max-height: 120px; /* Максимальна висота зображення на мобільних пристроях */
     }
 }
+.hero-image,
+.bot-image {
+    width: 100%;
+    height: auto;
+    max-width: 100px;
+    max-height: 150px;
+    object-fit: cover;
+    position: relative;
+}
+
+/* Стилі для чисел урону */
+.damage-number {
+    position: absolute;
+    font-size: 24px;
+    color: red;
+    animation: damage-animation 1s ease-in-out;
+}
+
+/* Анімація для чисел урону */
+@keyframes damage-animation {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+}
+
+/* Стилі для картинок ефектів */
+.effect-icon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    animation: effect-animation 1s ease-in-out;
+}
+
+/* Анімація для картинок ефектів */
+@keyframes effect-animation {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+}
+
+/* Позиціонування ефектів для героя та бота */
+.hero-effects {
+    left: 50px;
+    top: 0;
+}
+
+.bot-effects {
+    left: 50px;
+    top: 0;
+}
+
 .battle-log {
     position: absolute;
     bottom: 120px;
