@@ -12,10 +12,7 @@ const PvPBattle = () => {
     const [playerStrategy, setPlayerStrategy] = useState('normal');
 
     const addLogEntry = (entry) => {
-        setLog((prevLog) => {
-            const newLog = [...prevLog, entry];
-            return newLog.slice(-5); // Зберігаємо тільки останні п'ять записів
-        });
+        setLog([entry]); // Зберігаємо тільки останній запис
     };
 
     const handleStrategyChange = (strategy) => {
@@ -68,23 +65,21 @@ const PvPBattle = () => {
     }, [currentHero, botHero, playerStrategy]);
 
     return (
-        <div>
-            <div className="battle-container">
-                <div className="hero-container">
-                    <img src={currentHero.img.full} alt={currentHero.name} className="hero-image" />
-                    <div className="hero-stats">
-                        <p>HP: {currentHero.baseStats.hp}</p>
-                        <p>Armor: {currentHero.baseStats.armor}</p>
-                        <p>Damage: {currentHero.baseStats.damage}</p>
-                    </div>
+        <div className="battle-container">
+            <div className="hero-container">
+                <img src={currentHero.img.full} alt={currentHero.name} className="hero-image" />
+                <div className="hero-stats">
+                    <p>HP: {currentHero.baseStats.hp}</p>
+                    <p>Armor: {currentHero.baseStats.armor}</p>
+                    <p>Damage: {currentHero.baseStats.damage}</p>
                 </div>
-                <div className="hero-container">
-                    <img src={botHero.img.full} alt={botHero.name} className="hero-image" />
-                    <div className="hero-stats">
-                        <p>HP: {botHero.baseStats.hp}</p>
-                        <p>Armor: {botHero.baseStats.armor}</p>
-                        <p>Damage: {botHero.baseStats.damage}</p>
-                    </div>
+            </div>
+            <div className="hero-container">
+                <img src={botHero.img.full} alt={botHero.name} className="hero-image" />
+                <div className="hero-stats">
+                    <p>HP: {botHero.baseStats.hp}</p>
+                    <p>Armor: {botHero.baseStats.armor}</p>
+                    <p>Damage: {botHero.baseStats.damage}</p>
                 </div>
             </div>
             <div className="battle-log">

@@ -2,9 +2,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 50vh; /* Зменшено висоту екрану бою */
+    height: 60vh; /* Зменшено висоту екрану бою */
     padding: 20px;
     box-sizing: border-box;
+    position: relative;
 }
 
 .hero-container {
@@ -41,7 +42,8 @@
     box-sizing: border-box;
     position: fixed;
     bottom: 50px; /* Відступ від нижнього краю */
-    width: calc(100% - 10px); /* Віднімання відступів */
+    left: 0; /* Вирівнювання по центру */
+    width: 100%; /* Ширина контейнера */
     z-index: 1000;
 }
 
@@ -54,7 +56,8 @@
 .battle-log {
     position: fixed;
     bottom: 100px; /* Відступ від кнопок тактики */
-    width: calc(100% - 20px); /* Віднімання відступів */
+    left: 0; /* Вирівнювання по центру */
+    width: 100%; /* Ширина контейнера */
     text-align: center;
     background-color: rgba(0, 0, 0, 0.8); /* Тло для логів */
     color: white;
