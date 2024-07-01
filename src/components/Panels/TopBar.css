@@ -11,32 +11,38 @@
     color: #fff;
     box-sizing: border-box;
 }
+
 .user-info,
 .wallet-info {
     display: flex;
     align-items: center;
 }
+
 .balance-info {
     display: flex;
     align-items: center;
     justify-content: center;
     flex: 1;
 }
+
 .coin-icon {
     width: 30px;
     margin-right: 10px;
 }
+
 .user-info img,
 .wallet-info img {
     width: 30px;
     height: 30px;
     margin-right: 10px;
 }
+
 .battle-hp-info {
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
+
 .hp-info {
     display: flex;
     flex-direction: column;

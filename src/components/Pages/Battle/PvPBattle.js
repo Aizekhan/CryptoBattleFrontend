@@ -77,7 +77,6 @@ const PvPBattle = () => {
         <div className="pvp-battle">
             <div className="hero-row">
                 <div className="hero-side">
-                    <div className="hp">HP: {playerHP.toFixed(2)}</div>
                     <img src={currentHero.img.full} alt={currentHero.name} className="hero-image" />
                     {damageEffect && damageEffect.isPlayerAttacking && (
                         <div className="damage-effects">
@@ -89,7 +88,6 @@ const PvPBattle = () => {
                     )}
                 </div>
                 <div className="bot-side">
-                    <div className="hp">HP: {botHP.toFixed(2)}</div>
                     <img src={bot.img.full} alt={bot.name} className="bot-image" />
                     {damageEffect && !damageEffect.isPlayerAttacking && (
                         <div className="damage-effects">

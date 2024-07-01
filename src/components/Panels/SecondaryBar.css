@@ -8,6 +8,7 @@
     box-sizing: border-box;
     height: 50px; /* Фіксована висота */
 }
+
 .nav-button {
     background: none;
     border: none;
@@ -17,30 +18,35 @@
     flex-direction: column;
     align-items: center;
     flex: 1;
-    opacity: 0.7; /* Зменшення прозорості для неактивних вкладок */
 }
-.nav-button.active {
-    opacity: 1; /* Повна прозорість для активної вкладки */
-}
-.nav-button img {
-    width: 30px; /* Встановлення фіксованого розміру для іконок */
+
+.nav-button img.icon {
+    width: 30px;
     height: 30px;
-    margin-bottom: 5px;
 }
-.nav-button:focus {
-    outline: none;
+
+.hero-avatar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
 }
+
 .hero-avatar {
     width: 40px;
-    height: auto;
+    height: 40px;
     border-radius: 50%;
 }
+
 .income-info {
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex: 1;
     font-size: 14px;
 }
-.income-info img {
+
+.income-info img.icon {
     width: 20px;
     margin-right: 5px;
 }

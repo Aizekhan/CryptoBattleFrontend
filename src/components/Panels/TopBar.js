@@ -8,7 +8,7 @@ import './TopBar.css';
 const TopBar = ({ isBattlePage }) => {
     const { userStats } = useUserStats();
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
-    const opponentHero = isBattlePage ? userStats.heroes.find(hero => hero.id !== currentHero.id) : null; // Placeholder for the opponent
+    const opponentHero = userStats.heroes.find(hero => hero.id !== currentHero.id); // Placeholder for the opponent
 
     return (
         <div className="top-bar">
@@ -30,11 +30,11 @@ const TopBar = ({ isBattlePage }) => {
                 <div className="battle-hp-info">
                     <div className="hp-info">
                         <span>{currentHero.name}</span>
-                        <span>HP: {currentHero.baseStats.hp}</span>
+                        <span>HP: {userStats.heroes.find(hero => hero.id === userStats.currentHeroId).baseStats.hp}</span>
                     </div>
                     <div className="hp-info">
                         <span>{opponentHero.name}</span>
-                        <span>HP: {opponentHero.baseStats.hp}</span>
+                        <span>HP: {userStats.heroes.find(hero => hero.id === opponentHero.id).baseStats.hp}</span>
                     </div>
                 </div>
             )}

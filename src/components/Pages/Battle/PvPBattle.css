@@ -21,19 +21,6 @@
     text-align: center;
 }
 
-.hp {
-    position: absolute;
-    bottom: 150px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 16px;
-    font-weight: bold;
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-
 .hero-image, .bot-image {
     width: 100px;
     height: auto;
@@ -63,18 +50,16 @@
 .tactics {
     display: flex;
     justify-content: center;
-    padding: 10px 20px;
+    padding: 10px 0;
     background-color: #333;
     color: #fff;
-    box-sizing: border-box;
     width: 100%;
-    z-index: 1000;
-    margin-top: 20px;
 }
 
 .tactics button {
     flex: 1;
-    margin: 5px;
+    margin: 0 5px;
     padding: 10px 20px;
     font-size: 16px;
+    cursor: pointer;
 }
