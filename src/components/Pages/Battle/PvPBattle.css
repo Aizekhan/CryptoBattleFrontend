@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 60vh; /* Зменшено висоту екрану бою */
+    height: 50vh; /* Зменшено висоту екрану бою */
     padding: 20px;
     box-sizing: border-box;
 }
@@ -34,30 +34,31 @@
 
 .strategy-buttons {
     display: flex;
-    justify-content: center;
-    margin-top: 10px; /* Відступ від верхнього краю */
+    justify-content: space-between; /* Розподіл кнопок рівномірно */
+    padding: 10px 20px; /* Відступ */
+    background-color: #333; /* Графітовий фон */
+    color: #fff;
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 50px; /* Відступ від нижнього краю */
+    width: calc(100% - 10px); /* Віднімання відступів */
+    z-index: 1000;
 }
 
 .strategy-buttons button {
+    flex: 1; /* Розподіл кнопок рівномірно */
     margin: 5px;
     padding: 10px 20px;
 }
 
-.log-entry {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
+.battle-log {
+    position: fixed;
+    bottom: 100px; /* Відступ від кнопок тактики */
+    width: calc(100% - 20px); /* Віднімання відступів */
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8); /* Тло для логів */
     color: white;
-    padding: 5px;
+    padding: 10px;
     box-sizing: border-box;
-}
-
-.player-log {
-    left: 0;
-}
-
-.bot-log {
-    right: 0;
+    z-index: 999;
 }

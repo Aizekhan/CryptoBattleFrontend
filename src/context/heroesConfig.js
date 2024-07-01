@@ -17,8 +17,8 @@ const heroesConfig = [
             attackSpeed: 1.2,
             blockChance: 5,
             penetrationChance: 5,
-            critChance: 5,
-            dodgeChance: 5,
+            critChance: 50,
+            dodgeChance: 50,
             critPower: 150,
             accuracy: 90,
             regenSpeed: 5
@@ -82,7 +82,7 @@ const heroesConfig = [
         race: 'Robot',
         baseStats: {
             hp: 200,
-            armor: 20,
+            armor: 5,
             damage: 25,
             attackSpeed: 1.5,
             blockChance: 10,

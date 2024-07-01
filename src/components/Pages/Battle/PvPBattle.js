@@ -11,21 +11,25 @@ const PvPBattle = () => {
     const [log, setLog] = useState([]);
     const [playerStrategy, setPlayerStrategy] = useState('normal');
 
-    const addLogEntry = (entry, isPlayer) => {
+    const addLogEntry = (entry) => {
         setLog((prevLog) => {
-            const newLog = [...prevLog, { entry, isPlayer }];
-            return newLog.slice(-2); // Зберігаємо тільки останні два записи
+            const newLog = [...prevLog, entry];
+            return newLog.slice(-5); // Зберігаємо тільки останні п'ять записів
         });
     };
 
     const handleStrategyChange = (strategy) => {
         setPlayerStrategy(strategy);
-        addLogEntry(`Player changed strategy to ${strategy}.`, true);
+        addLogEntry(`Player changed strategy to ${strategy}.`);
     };
 
     const calculateDamage = (attacker, defender, strategy) => {
         let damage = attacker.baseStats.damage;
         let armor = defender.baseStats.armor;
+        let crit = Math.random() < (attacker.baseStats.critChance / 100);
+        if (crit) {
+            damage *= (attacker.baseStats.critPower / 100);
+        }
 
         if (strategy === 'aggressive') {
             damage *= 1.2;
@@ -35,25 +39,27 @@ const PvPBattle = () => {
             armor *= 1.2;
         }
 
-        return Math.max(0, damage - armor);
+        return {
+            damage: Math.max(0, damage - armor),
+            crit
+        };
     };
 
     useEffect(() => {
         const battleInterval = setInterval(() => {
-            const playerDamage = calculateDamage(currentHero, botHero, playerStrategy);
-            const botDamage = calculateDamage(botHero, currentHero, 'normal');
+            const playerAttack = calculateDamage(currentHero, botHero, playerStrategy);
+            const botAttack = calculateDamage(botHero, currentHero, 'normal');
 
-            botHero.baseStats.hp -= playerDamage;
-            currentHero.baseStats.hp -= botDamage;
+            botHero.baseStats.hp -= playerAttack.damage;
+            currentHero.baseStats.hp -= botAttack.damage;
 
-            addLogEntry(`Player hits Bot for ${playerDamage} damage.`, false);
-            addLogEntry(`Bot hits Player for ${botDamage} damage.`, false);
+            addLogEntry(`Player hits Bot for ${playerAttack.damage.toFixed(2)} damage. ${playerAttack.crit ? 'Critical hit!' : ''}`);
+            addLogEntry(`Bot hits Player for ${botAttack.damage.toFixed(2)} damage. ${botAttack.crit ? 'Critical hit!' : ''}`);
 
             if (botHero.baseStats.hp <= 0 || currentHero.baseStats.hp <= 0) {
                 clearInterval(battleInterval);
                 addLogEntry(
-                    botHero.baseStats.hp <= 0 ? 'Player wins!' : 'Bot wins!',
-                    botHero.baseStats.hp <= 0
+                    botHero.baseStats.hp <= 0 ? 'Player wins!' : 'Bot wins!'
                 );
             }
         }, 3000);
@@ -71,11 +77,6 @@ const PvPBattle = () => {
                         <p>Armor: {currentHero.baseStats.armor}</p>
                         <p>Damage: {currentHero.baseStats.damage}</p>
                     </div>
-                    <div className="log-entry player-log">
-                        {log.filter(entry => entry.isPlayer).map((entry, index) => (
-                            <p key={index}>{entry.entry}</p>
-                        ))}
-                    </div>
                 </div>
                 <div className="hero-container">
                     <img src={botHero.img.full} alt={botHero.name} className="hero-image" />
@@ -84,12 +85,12 @@ const PvPBattle = () => {
                         <p>Armor: {botHero.baseStats.armor}</p>
                         <p>Damage: {botHero.baseStats.damage}</p>
                     </div>
-                    <div className="log-entry bot-log">
-                        {log.filter(entry => !entry.isPlayer).map((entry, index) => (
-                            <p key={index}>{entry.entry}</p>
-                        ))}
-                    </div>
                 </div>
+            </div>
+            <div className="battle-log">
+                {log.map((entry, index) => (
+                    <p key={index}>{entry}</p>
+                ))}
             </div>
             <div className="strategy-buttons">
                 <button onClick={() => handleStrategyChange('normal')}>Normal</button>
