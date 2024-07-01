@@ -1,10 +1,8 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './SubNavigation.css';
 
 const SubNavigation = ({ basePath, subPages, isBattlePage }) => {
-    const location = useLocation();
-
     if (isBattlePage) {
         return null; // Не відображати SubNavigation під час битви
     }
