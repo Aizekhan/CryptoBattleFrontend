@@ -47,11 +47,14 @@ const PvPBattle = () => {
             currentHero.baseStats.hp -= botDamage;
 
             addLogEntry(`Player hits Bot for ${playerDamage} damage.`, false);
-            addLogEntry(`Bot hits Player for ${botDamage} damage.`, true);
+            addLogEntry(`Bot hits Player for ${botDamage} damage.`, false);
 
             if (botHero.baseStats.hp <= 0 || currentHero.baseStats.hp <= 0) {
                 clearInterval(battleInterval);
-                addLogEntry(botHero.baseStats.hp <= 0 ? 'Player wins!' : 'Bot wins!', true);
+                addLogEntry(
+                    botHero.baseStats.hp <= 0 ? 'Player wins!' : 'Bot wins!',
+                    botHero.baseStats.hp <= 0
+                );
             }
         }, 3000);
 
@@ -59,33 +62,39 @@ const PvPBattle = () => {
     }, [currentHero, botHero, playerStrategy]);
 
     return (
-        <div className="battle-container">
-            <div className="hero-container player">
-                <img src={currentHero.img.full} alt={currentHero.name} className="hero-image" />
-                <div className="hero-stats">
-                    <p>HP: {currentHero.baseStats.hp}</p>
-                    <p>Armor: {currentHero.baseStats.armor}</p>
-                    <p>Damage: {currentHero.baseStats.damage}</p>
-                    <div className="strategy-buttons">
-                        <button onClick={() => handleStrategyChange('normal')}>Normal</button>
-                        <button onClick={() => handleStrategyChange('aggressive')}>Aggressive</button>
-                        <button onClick={() => handleStrategyChange('defensive')}>Defensive</button>
+        <div>
+            <div className="battle-container">
+                <div className="hero-container">
+                    <img src={currentHero.img.full} alt={currentHero.name} className="hero-image" />
+                    <div className="hero-stats">
+                        <p>HP: {currentHero.baseStats.hp}</p>
+                        <p>Armor: {currentHero.baseStats.armor}</p>
+                        <p>Damage: {currentHero.baseStats.damage}</p>
+                    </div>
+                    <div className="log-entry player-log">
+                        {log.filter(entry => entry.isPlayer).map((entry, index) => (
+                            <p key={index}>{entry.entry}</p>
+                        ))}
                     </div>
                 </div>
-                {log.filter(logEntry => logEntry.isPlayer).map((logEntry, index) => (
-                    <div key={index} className="log-entry player-log">{logEntry.entry}</div>
-                ))}
-            </div>
-            <div className="hero-container bot">
-                <img src={botHero.img.full} alt={botHero.name} className="hero-image" />
-                <div className="hero-stats">
-                    <p>HP: {botHero.baseStats.hp}</p>
-                    <p>Armor: {botHero.baseStats.armor}</p>
-                    <p>Damage: {botHero.baseStats.damage}</p>
+                <div className="hero-container">
+                    <img src={botHero.img.full} alt={botHero.name} className="hero-image" />
+                    <div className="hero-stats">
+                        <p>HP: {botHero.baseStats.hp}</p>
+                        <p>Armor: {botHero.baseStats.armor}</p>
+                        <p>Damage: {botHero.baseStats.damage}</p>
+                    </div>
+                    <div className="log-entry bot-log">
+                        {log.filter(entry => !entry.isPlayer).map((entry, index) => (
+                            <p key={index}>{entry.entry}</p>
+                        ))}
+                    </div>
                 </div>
-                {log.filter(logEntry => !logEntry.isPlayer).map((logEntry, index) => (
-                    <div key={index} className="log-entry bot-log">{logEntry.entry}</div>
-                ))}
+            </div>
+            <div className="strategy-buttons">
+                <button onClick={() => handleStrategyChange('normal')}>Normal</button>
+                <button onClick={() => handleStrategyChange('aggressive')}>Aggressive</button>
+                <button onClick={() => handleStrategyChange('defensive')}>Defensive</button>
             </div>
         </div>
     );
