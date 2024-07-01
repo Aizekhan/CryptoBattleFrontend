@@ -1,16 +1,19 @@
 .pvp-battle {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 100vh;
-    position: relative;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .hero-row {
     display: flex;
     justify-content: space-around;
     width: 100%;
+    flex: 1;
+    align-items: flex-end;
 }
 
 .hero-side, .bot-side {
@@ -20,7 +23,7 @@
 
 .hp {
     position: absolute;
-    top: -20px;
+    bottom: 150px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 16px;
@@ -32,16 +35,13 @@
 }
 
 .hero-image, .bot-image {
-    width: 150px;
+    width: 100px;
     height: auto;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto;
 }
 
 .damage-effects {
     position: absolute;
-    top: 10px;
+    bottom: 100px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -67,11 +67,9 @@
     background-color: #333;
     color: #fff;
     box-sizing: border-box;
-    position: fixed;
-    bottom: 10px;
-    left: 0;
     width: 100%;
     z-index: 1000;
+    margin-top: 20px;
 }
 
 .tactics button {
