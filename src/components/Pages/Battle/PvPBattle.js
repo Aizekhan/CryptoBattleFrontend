@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useUserStats } from '../../../context/UserStatsContext';
 import heroesConfig from '../../../context/heroesConfig';
 import './PvPBattle.css';
@@ -12,8 +12,10 @@ import accuracyIcon from '../../../assets/icons/accuracy.png';
 
 const PvPBattle = () => {
     const { userStats } = useUserStats();
+    const location = useLocation();
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
-    const bot = heroesConfig[1]; // Використовуємо другого героя як бота
+    const botId = location.state?.opponentId || 1; // Вибраний противник або дефолтний герой
+    const bot = heroesConfig.find(hero => hero.id === botId); // Знайти героя за ID
 
     const [playerHP, setPlayerHP] = useState(currentHero.baseStats.hp);
     const [botHP, setBotHP] = useState(bot.baseStats.hp);
@@ -88,12 +90,21 @@ const PvPBattle = () => {
             return;
         }
 
-        const timer = setTimeout(() => {
-            handleAttack(currentHero, bot, setBotHP, true);
-            setTimeout(() => handleAttack(bot, currentHero, setPlayerHP, false), 1500);
-        }, 3000);
+        const playerAttackSpeed = 3000 / currentHero.baseStats.attackSpeed;
+        const botAttackSpeed = 3000 / bot.baseStats.attackSpeed;
 
-        return () => clearTimeout(timer);
+        const playerTimer = setInterval(() => {
+            handleAttack(currentHero, bot, setBotHP, true);
+        }, playerAttackSpeed);
+
+        const botTimer = setInterval(() => {
+            handleAttack(bot, currentHero, setPlayerHP, false);
+        }, botAttackSpeed);
+
+        return () => {
+            clearInterval(playerTimer);
+            clearInterval(botTimer);
+        };
     }, [playerHP, botHP, bot, currentHero, handleAttack, navigate]);
 
     const getEffectIcon = (effect) => {
@@ -114,7 +125,7 @@ const PvPBattle = () => {
     };
 
     return (
-        <div className="pvp-battle">
+        <div className="pvp-battle no-scroll">
             <BattleHeader playerStats={playerStats} botStats={botStats} />
             {winner && (
                 <div className="winner-announcement">
