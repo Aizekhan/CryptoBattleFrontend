@@ -11,6 +11,7 @@
     justify-content: space-around;
     align-items: center;
     flex-grow: 1; /* Займає всю доступну висоту */
+    padding: 20px; /* Додаємо відступ, щоб герої не були внизу екрану */
 }
 
 .hero-side {
@@ -26,38 +27,15 @@
     padding: 10px;
     background-color: #333;
     width: 100%;
+    position: fixed;
+    bottom: 0;
 }
 
-.battle-header {
-    display: flex;
-    justify-content: space-between; /* Вирівнювання значків для кожного героя */
-    align-items: center;
-    padding: 10px;
-    background-color: #333; /* Графітовий фон */
-    color: #fff;
-    width: 100%;
-    box-sizing: border-box;
+.no-scroll {
+    overflow: hidden; /* Забороняє прокручування сторінки */
+}
+
+.damage-number, .effect-icon {
     position: absolute;
-    top: 0;
-    z-index: 999;
-    height: 100px; /* Задаємо фіксовану висоту */
-}
-
-.hero-stats {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 10px; /* Відстань між стовпцями */
-}
-
-.hero-stat {
-    display: flex;
-    align-items: center;
-    margin: 2px 0;
-}
-
-.icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
+    top: -30px; /* Позиціонування над героєм */
 }
