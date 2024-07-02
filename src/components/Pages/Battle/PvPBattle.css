@@ -23,7 +23,7 @@
 
 .hero-image, .bot-image {
     width: 150px;
-    height: 100px;
+    height: auto;
 }
 
 .damage-container {
