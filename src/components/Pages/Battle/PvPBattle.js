@@ -103,9 +103,35 @@ const PvPBattle = () => {
         }
     };
 
+    const playerStats = {
+        hp: playerHP,
+        armor: currentHero.baseStats.armor,
+        damage: currentHero.baseStats.damage,
+        attackSpeed: currentHero.baseStats.attackSpeed,
+        blockChance: currentHero.baseStats.blockChance,
+        penetrationChance: currentHero.baseStats.penetrationChance,
+        critChance: currentHero.baseStats.critChance,
+        dodgeChance: currentHero.baseStats.dodgeChance,
+        critPower: currentHero.baseStats.critPower,
+        accuracy: currentHero.baseStats.accuracy
+    };
+
+    const botStats = {
+        hp: botHP,
+        armor: bot.baseStats.armor,
+        damage: bot.baseStats.damage,
+        attackSpeed: bot.baseStats.attackSpeed,
+        blockChance: bot.baseStats.blockChance,
+        penetrationChance: bot.baseStats.penetrationChance,
+        critChance: bot.baseStats.critChance,
+        dodgeChance: bot.baseStats.dodgeChance,
+        critPower: bot.baseStats.critPower,
+        accuracy: bot.baseStats.accuracy
+    };
+
     return (
         <div className="pvp-battle">
-            <BattleHeader playerHP={playerHP} botHP={botHP} playerName={currentHero.name} botName={bot.name} />
+            <BattleHeader playerStats={playerStats} botStats={botStats} />
             {winner && (
                 <div className="winner-announcement">
                     {winner} wins!
