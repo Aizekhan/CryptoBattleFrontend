@@ -13,9 +13,9 @@ import accuracyIcon from '../../../assets/icons/accuracy.png';
 const PvPBattle = () => {
     const { userStats } = useUserStats();
     const location = useLocation();
-    const { opponentId } = location.state || {};
+    const opponentId = location.state.opponentId;
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
-    const bot = heroesConfig.find(hero => hero.id === opponentId) || heroesConfig[1];
+    const bot = heroesConfig.find(hero => hero.id === opponentId);
 
     const [playerHP, setPlayerHP] = useState(currentHero.baseStats.hp);
     const [botHP, setBotHP] = useState(bot.baseStats.hp);
@@ -80,12 +80,21 @@ const PvPBattle = () => {
             return;
         }
 
-        const timer = setTimeout(() => {
-            handleAttack(currentHero, bot, setBotHP, true);
-            setTimeout(() => handleAttack(bot, currentHero, setPlayerHP, false), 1500);
-        }, 3000);
+        const playerAttackInterval = 3000 / currentHero.baseStats.attackSpeed;
+        const botAttackInterval = 3000 / bot.baseStats.attackSpeed;
 
-        return () => clearTimeout(timer);
+        const playerTimer = setTimeout(() => {
+            handleAttack(currentHero, bot, setBotHP, true);
+        }, playerAttackInterval);
+
+        const botTimer = setTimeout(() => {
+            handleAttack(bot, currentHero, setPlayerHP, false);
+        }, botAttackInterval);
+
+        return () => {
+            clearTimeout(playerTimer);
+            clearTimeout(botTimer);
+        };
     }, [playerHP, botHP, bot, currentHero, handleAttack, navigate]);
 
     const getEffectIcon = (effect) => {
@@ -116,20 +125,24 @@ const PvPBattle = () => {
             <div className="hero-row">
                 <div className="hero-side">
                     <img src={currentHero.img.full} alt={currentHero.name} className="hero-image" />
-                    {damageEffect && damageEffect.isPlayerAttacking && (
-                        <div className="damage-container">
-                            <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
+                    {damageEffect && !damageEffect.isPlayerAttacking && (
+                        <>
                             <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
-                        </div>
+                            {damageEffect.effect && (
+                                <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
+                            )}
+                        </>
                     )}
                 </div>
                 <div className="bot-side">
                     <img src={bot.img.full} alt={bot.name} className="bot-image" />
-                    {damageEffect && !damageEffect.isPlayerAttacking && (
-                        <div className="damage-container">
-                            <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
+                    {damageEffect && damageEffect.isPlayerAttacking && (
+                        <>
                             <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
-                        </div>
+                            {damageEffect.effect && (
+                                <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
+                            )}
+                        </>
                     )}
                 </div>
             </div>

@@ -21,6 +21,7 @@ const heroesConfig = [
             dodgeChance: 50,
             critPower: 150,
             accuracy: 90,
+           attackSpeed: 1,
             regenSpeed: 5
         },
         baseIncome: {
@@ -56,6 +57,7 @@ const heroesConfig = [
             dodgeChance: 10,
             critPower: 175,
             accuracy: 85,
+            attackSpeed: 1,
             regenSpeed: 7
         },
         baseIncome: {
@@ -91,6 +93,7 @@ const heroesConfig = [
             dodgeChance: 30,
             critPower: 150,
             accuracy: 50,
+            attackSpeed: 1,
             regenSpeed: 0
         },
         baseIncome: {
