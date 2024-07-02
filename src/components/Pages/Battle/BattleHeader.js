@@ -17,10 +17,10 @@ const BattleHeader = ({ playerStats, botStats }) => {
         { icon: damageIcon, label: 'Damage', value: 'damage' },
         { icon: attackSpeedIcon, label: 'Attack Speed', value: 'attackSpeed' },
         { icon: armorIcon, label: 'Armor', value: 'armor' },
-        { icon: blockChanceIcon, label: 'Block Chance', value: 'blockChance' },
-        { icon: penetrationChanceIcon, label: 'Penetration Chance', value: 'penetrationChance' },
-        { icon: critChanceIcon, label: 'Crit Chance', value: 'critChance' },
-        { icon: dodgeChanceIcon, label: 'Dodge Chance', value: 'dodgeChance' },
+        { icon: blockChanceIcon, label: 'Block', value: 'blockChance' },
+        { icon: penetrationChanceIcon, label: 'Penetration', value: 'penetrationChance' },
+        { icon: critChanceIcon, label: 'Crit', value: 'critChance' },
+        { icon: dodgeChanceIcon, label: 'Dodge', value: 'dodgeChance' },
         { icon: critPowerIcon, label: 'Crit Power', value: 'critPower' },
         { icon: accuracyIcon, label: 'Accuracy', value: 'accuracy' },
     ];
@@ -41,12 +41,10 @@ const BattleHeader = ({ playerStats, botStats }) => {
     return (
         <div className="battle-header">
             <div className="hero-stats">
-                {renderStats(playerStats.slice(0, Math.ceil(playerStats.length / 2)))}
-                {renderStats(playerStats.slice(Math.ceil(playerStats.length / 2)))}
+                {renderStats(playerStats)}
             </div>
             <div className="hero-stats">
-                {renderStats(botStats.slice(0, Math.ceil(botStats.length / 2)))}
-                {renderStats(botStats.slice(Math.ceil(botStats.length / 2)))}
+                {renderStats(botStats)}
             </div>
         </div>
     );
