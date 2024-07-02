@@ -1,71 +1,60 @@
 .pvp-battle {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; /* Фіксуємо висоту на весь екран */
+    justify-content: space-between;
+    height: 100vh;
+    padding-top: 60px; /* Відступ для TopBar і SecondaryBar */
+    box-sizing: border-box;
 }
 
 .hero-row {
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    padding: 20px;
+    align-items: center;
+    flex-grow: 1;
+    padding: 0 20px;
 }
 
 .hero-side, .bot-side {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 50%;
-    position: relative; /* Відносне положення для правильного відображення ефектів */
+    position: relative;
+    text-align: center;
 }
 
 .hero-image, .bot-image {
     width: 150px;
-    height: 100px;
-}
-
-.damage-container {
-    position: absolute;
-    top: 50%; /* Відцентровуємо по вертикалі */
-    left: 50%; /* Відцентровуємо по горизонталі */
-    transform: translate(-50%, -50%); /* Вирівнюємо по центру */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: auto;
 }
 
 .damage-number {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     font-size: 24px;
     color: red;
-    margin-right: 10px;
 }
 
 .effect-icon {
-    width: 30px;
-    height: 30px;
-}
-
-.winner-announcement {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 32px;
-    color: gold;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    border-radius: 10px;
-    z-index: 1000;
+    top: 0;
+    right: 0;
+    width: 24px;
+    height: 24px;
 }
 
 .battle-controls {
     display: flex;
     justify-content: space-around;
-    width: 100%;
+    background-color: #333;
+    padding: 10px;
+}
+
+.fixed-controls {
     position: fixed;
     bottom: 0;
-    background-color: #333; /* Графітовий фон */
-    padding: 10px;
+    width: 100%;
+}
+
+.hidden-navigation-bar {
+    display: none;
 }
