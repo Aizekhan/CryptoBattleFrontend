@@ -78,4 +78,82 @@ const PvPBattle = () => {
             setWinner('Bot');
             setTimeout(() => {
                 navigate('/battle/sub1');
-      
+            }, 5000);
+            return;
+        }
+
+        if (botHP <= 0) {
+            setWinner('Player');
+            setTimeout(() => {
+                navigate('/battle/sub1');
+            }, 5000);
+            return;
+        }
+
+        const timer = setTimeout(() => {
+            handleAttack(currentHero, bot, setBotHP, true);
+            setTimeout(() => handleAttack(bot, currentHero, setPlayerHP, false), 1500);
+        }, 3000);
+
+        return () => clearTimeout(timer);
+    }, [playerHP, botHP, bot, currentHero, handleAttack, navigate]);
+
+    const getEffectIcon = (effect) => {
+        switch (effect) {
+            case 'crit':
+                return critIcon;
+            case 'block':
+                return blockIcon;
+            case 'dodge':
+                return dodgeIcon;
+            case 'penetration':
+                return penetrationIcon;
+            case 'accuracy':
+                return accuracyIcon;
+            default:
+                return null;
+        }
+    };
+
+    return (
+        <div className="pvp-battle">
+            <BattleHeader playerStats={playerStats} botStats={botStats} />
+            {winner && (
+                <div className="winner-announcement">
+                    {winner} wins!
+                </div>
+            )}
+            <div className="hero-row">
+                <div className="hero-side">
+                    <img src={currentHero.img.full} alt={currentHero.name} className="hero-image" />
+                    {damageEffect && !damageEffect.isPlayerAttacking && (
+                        <>
+                            <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
+                            {damageEffect.effect && (
+                                <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
+                            )}
+                        </>
+                    )}
+                </div>
+                <div className="bot-side">
+                    <img src={bot.img.full} alt={bot.name} className="bot-image" />
+                    {damageEffect && damageEffect.isPlayerAttacking && (
+                        <>
+                            <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
+                            {damageEffect.effect && (
+                                <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
+                            )}
+                        </>
+                    )}
+                </div>
+            </div>
+            <div className="battle-controls">
+                <button>Normal</button>
+                <button>Aggressive</button>
+                <button>Defensive</button>
+            </div>
+        </div>
+    );
+};
+
+export default PvPBattle;
