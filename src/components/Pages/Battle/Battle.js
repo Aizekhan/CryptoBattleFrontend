@@ -10,7 +10,7 @@ const Battle = () => {
     ];
 
     const location = useLocation();
-    const isBattlePage = location.pathname.startsWith('/battle/pvp-battle');
+    const isBattlePage = location.pathname.startsWith('/Battle/BattleScene/pvp-battle');
 
     return (
         <div>
