@@ -21,22 +21,15 @@ const PvPBattle = () => {
     const [winner, setWinner] = useState(null);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        document.body.classList.add('no-scroll');
-        return () => {
-            document.body.classList.remove('no-scroll');
-        };
-    }, []);
+    const playerStats = [
+        { hp: playerHP },
+        ...Object.entries(currentHero.baseStats).map(([key, value]) => ({ [key]: value }))
+    ];
 
-    const playerStats = {
-        hp: playerHP,
-        ...currentHero.baseStats
-    };
-
-    const botStats = {
-        hp: botHP,
-        ...bot.baseStats
-    };
+    const botStats = [
+        { hp: botHP },
+        ...Object.entries(bot.baseStats).map(([key, value]) => ({ [key]: value }))
+    ];
 
     const calculateDamage = (attacker, defender) => {
         let damage = attacker.baseStats.damage;

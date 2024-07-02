@@ -1,25 +1,59 @@
-.battle-header {
+.pvp-battle {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    height: 100vh; /* Займає всю висоту екрану */
+    overflow: hidden; /* Забороняє прокручування */
+}
+
+.hero-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-grow: 1; /* Займає всю доступну висоту */
+}
+
+.hero-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.battle-controls {
+    display: flex;
+    justify-content: center;
     padding: 10px;
     background-color: #333;
+    width: 100%;
+}
+
+.battle-header {
+    display: flex;
+    justify-content: space-between; /* Вирівнювання значків для кожного героя */
+    align-items: center;
+    padding: 10px;
+    background-color: #333; /* Графітовий фон */
     color: #fff;
     width: 100%;
     box-sizing: border-box;
     position: absolute;
     top: 0;
     z-index: 999;
-    height: 150px;
-    gap: 50px; /* Збільшує відстань між стовпцями противників */
+    height: 200px; /* Задаємо фіксовану висоту */
 }
 
 .hero-stats {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 45%;
+}
+
+.stats-column {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    margin: 0 10px; /* Відстань між стовпцями одного героя */
-    gap: 5px; /* Додає відстань між елементами одного стовпця */
 }
 
 .hero-stat {
