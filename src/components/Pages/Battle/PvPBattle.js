@@ -13,7 +13,7 @@ import accuracyIcon from '../../../assets/icons/accuracy.png';
 const PvPBattle = () => {
     const { userStats } = useUserStats();
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
-    const bot = heroesConfig[1]; // Використовуємо другого героя як бота
+    const bot = heroesConfig.find(hero => hero.id === currentHero.opponentId); // Знайти обраного противника
 
     const [playerHP, setPlayerHP] = useState(currentHero.baseStats.hp);
     const [botHP, setBotHP] = useState(bot.baseStats.hp);
@@ -21,15 +21,15 @@ const PvPBattle = () => {
     const [winner, setWinner] = useState(null);
     const navigate = useNavigate();
 
-    const playerStats = [
-        { hp: playerHP },
-        ...Object.entries(currentHero.baseStats).map(([key, value]) => ({ [key]: value }))
-    ];
+    const playerStats = {
+        hp: playerHP,
+        ...currentHero.baseStats
+    };
 
-    const botStats = [
-        { hp: botHP },
-        ...Object.entries(bot.baseStats).map(([key, value]) => ({ [key]: value }))
-    ];
+    const botStats = {
+        hp: botHP,
+        ...bot.baseStats
+    };
 
     const calculateDamage = (attacker, defender) => {
         let damage = attacker.baseStats.damage;

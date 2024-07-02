@@ -28,7 +28,7 @@ const BattleHeader = ({ playerStats, botStats }) => {
     const renderStats = (stats) => {
         return (
             <div className="stats-column">
-                {statsIcons.map(stat => (
+                {statsIcons.map((stat, index) => (
                     <div className="hero-stat" key={stat.label}>
                         <img src={stat.icon} alt={stat.label} className="icon" />
                         <span>{stats[stat.value]}</span>
