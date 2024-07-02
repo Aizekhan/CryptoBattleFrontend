@@ -1,44 +1,34 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import farmIcon from '../../assets/images/farm-icon.png';
-import minesIcon from '../../assets/images/mines-icon.png';
-import battleIcon from '../../assets/images/battle-icon.png';
-import questsIcon from '../../assets/images/quests-icon.png';
-import heroIcon from '../../assets/images/hero-icon.png';
+import { Link } from 'react-router-dom';
 import './NavigationBar.css';
+import homeIcon from '../../assets/images/home-icon.png';
+import friendsIcon from '../../assets/images/friends-icon.png';
+import pickaxeIcon from '../../assets/images/pickaxe-icon.png';
+import battleIcon from '../../assets/images/battle-icon.png';
+import shopIcon from '../../assets/images/shop-icon.png';
+import heroIcon from '../../assets/images/hero-icon.png';
 
 const NavigationBar = ({ isBattlePage }) => {
-    const tacticsButtons = (
-        <div className="tactics">
-            <button>Normal</button>
-            <button>Aggressive</button>
-            <button>Defensive</button>
-        </div>
-    );
-
     return (
-        <div className="navigation-bar">
-            {isBattlePage ? (
-                tacticsButtons
-            ) : (
-                <>
-                    <NavLink to="/farm" className={({ isActive }) => isActive ? 'nav-button active' : 'nav-button'}>
-                        <img src={farmIcon} alt="Farm" />
-                    </NavLink>
-                    <NavLink to="/mines" className={({ isActive }) => isActive ? 'nav-button active' : 'nav-button'}>
-                        <img src={minesIcon} alt="Mines" />
-                    </NavLink>
-                    <NavLink to="/battle" className={({ isActive }) => isActive ? 'nav-button active' : 'nav-button'}>
-                        <img src={battleIcon} alt="Battle" />
-                    </NavLink>
-                    <NavLink to="/quests" className={({ isActive }) => isActive ? 'nav-button active' : 'nav-button'}>
-                        <img src={questsIcon} alt="Quests" />
-                    </NavLink>
-                    <NavLink to="/hero" className={({ isActive }) => isActive ? 'nav-button active' : 'nav-button'}>
-                        <img src={heroIcon} alt="Hero" />
-                    </NavLink>
-                </>
-            )}
+        <div className={`navigation-bar ${isBattlePage ? 'hidden-navigation-bar' : ''}`}>
+            <Link to="/home" className="nav-button">
+                <img src={homeIcon} alt="Home" className="icon" />
+            </Link>
+            <Link to="/mines" className="nav-button">
+                <img src={pickaxeIcon} alt="Mines" className="icon" />
+            </Link>
+            <Link to="/battle" className="nav-button">
+                <img src={battleIcon} alt="Battle" className="icon" />
+            </Link>
+            <Link to="/shop" className="nav-button">
+                <img src={shopIcon} alt="Shop" className="icon" />
+            </Link>
+            <Link to="/hero" className="nav-button">
+                <img src={heroIcon} alt="Hero" className="icon" />
+            </Link>
+            <Link to="/friends" className="nav-button">
+                <img src={friendsIcon} alt="Friends" className="icon" />
+            </Link>
         </div>
     );
 };
