@@ -14,7 +14,7 @@ const Battle = () => {
 
     return (
         <div>
-            {!isBattlePage && <SubNavigation basePath="/battle" subPages={subPages} />}
+            <SubNavigation basePath="/battle" subPages={subPages} isBattlePage={isBattlePage} />
             <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
         </div>
     );
