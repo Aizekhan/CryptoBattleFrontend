@@ -7,7 +7,7 @@ import './MainLayout.css';
 
 const MainLayout = () => {
     const location = useLocation();
-    const isBattlePage = location.pathname.startsWith('/battle/battle-scene/pvp-battle');
+    const isBattlePage = location.pathname.startsWith('/battle/pvp-battle');
 
     return (
         <div className="main-layout">
@@ -16,7 +16,7 @@ const MainLayout = () => {
             <div className={`content ${isBattlePage ? 'battle-content' : ''}`}>
                 <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
             </div>
-            <NavigationBar isBattlePage={isBattlePage} />
+            {!isBattlePage && <NavigationBar isBattlePage={isBattlePage} />}
         </div>
     );
 };
