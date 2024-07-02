@@ -17,16 +17,16 @@ const BattleHeader = ({ playerStats, botStats }) => {
         { icon: damageIcon, label: 'Damage', value: 'damage' },
         { icon: attackSpeedIcon, label: 'Attack Speed', value: 'attackSpeed' },
         { icon: armorIcon, label: 'Armor', value: 'armor' },
-        { icon: blockChanceIcon, label: 'Block', value: 'blockChance' },
-        { icon: penetrationChanceIcon, label: 'Penetration', value: 'penetrationChance' },
-        { icon: critChanceIcon, label: 'Crit', value: 'critChance' },
-        { icon: dodgeChanceIcon, label: 'Dodge', value: 'dodgeChance' },
+        { icon: blockChanceIcon, label: 'Block Chance', value: 'blockChance' },
+        { icon: penetrationChanceIcon, label: 'Penetration Chance', value: 'penetrationChance' },
+        { icon: critChanceIcon, label: 'Crit Chance', value: 'critChance' },
+        { icon: dodgeChanceIcon, label: 'Dodge Chance', value: 'dodgeChance' },
         { icon: critPowerIcon, label: 'Crit Power', value: 'critPower' },
         { icon: accuracyIcon, label: 'Accuracy', value: 'accuracy' },
     ];
 
     const renderStats = (stats) => {
-        return statsIcons.map(stat => (
+        return statsIcons.map((stat, index) => (
             <div className="hero-stat" key={stat.label}>
                 <img src={stat.icon} alt={stat.label} className="icon" />
                 <span>{stats[stat.value]}</span>
@@ -36,11 +36,17 @@ const BattleHeader = ({ playerStats, botStats }) => {
 
     return (
         <div className="battle-header">
-            <div className="hero-stats">
-                {renderStats(playerStats)}
+            <div className="hero-stats hero-stats-column">
+                {renderStats(playerStats).slice(0, 5)}
             </div>
-            <div className="hero-stats">
-                {renderStats(botStats)}
+            <div className="hero-stats hero-stats-column">
+                {renderStats(playerStats).slice(5)}
+            </div>
+            <div className="hero-stats hero-stats-column">
+                {renderStats(botStats).slice(0, 5)}
+            </div>
+            <div className="hero-stats hero-stats-column">
+                {renderStats(botStats).slice(5)}
             </div>
         </div>
     );

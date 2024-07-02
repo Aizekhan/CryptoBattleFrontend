@@ -16,7 +16,7 @@ const MainLayout = () => {
             <div className={`content ${isBattlePage ? 'battle-content' : ''}`}>
                 <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
             </div>
-            <NavigationBar isBattlePage={isBattlePage} />
+            {!isBattlePage && <NavigationBar />}
         </div>
     );
 };
