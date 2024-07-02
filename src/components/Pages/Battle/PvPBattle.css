@@ -1,0 +1,43 @@
+.battle-header {
+    display: flex;
+    justify-content: space-between; /* Вирівнювання значків для кожного героя */
+    align-items: center;
+    padding: 10px;
+    background-color: #333; /* Графітовий фон */
+    color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    z-index: 999;
+    height: 150px; /* Збільшуємо висоту, щоб вміщали всі значки */
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: space-between;
+    width: 45%;
+}
+
+.stats-container {
+    display: flex;
+}
+
+.stats-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px; /* Відстань між стовпцями одного героя */
+}
+
+.hero-stat {
+    display: flex;
+    align-items: center;
+    margin: 2px 0;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
