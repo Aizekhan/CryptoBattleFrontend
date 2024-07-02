@@ -10,11 +10,11 @@ const Battle = () => {
     ];
 
     const location = useLocation();
-    const isBattlePage = location.pathname.startsWith('/Battle/BattleScene/pvp-battle');
+    const isBattlePage = location.pathname.startsWith('/battle/battle-scene/pvp-battle');
 
     return (
         <div>
-            <SubNavigation basePath="/battle" subPages={subPages} isBattlePage={isBattlePage} />
+            {!isBattlePage && <SubNavigation basePath="/battle" subPages={subPages} />}
             <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
         </div>
     );

@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-// import axios from 'axios';
-// import jwt_decode from 'jwt-decode';
 import MainLayout from './components/Panels/MainLayout';
 import './App.css';
 import { useUserStats, UserStatsProvider } from './context/UserStatsContext';
@@ -109,7 +107,7 @@ function App() {
                     <Route path="battle" element={<Battle />}>
                         <Route index element={<Navigate to="sub1" />} /> {/* Redirect to HeroDisplay by default */}
                         <Route path="sub1" element={<HeroDisplay />} />
-                        <Route path="pvp-battle" element={<PvPBattle />} />
+                        <Route path="battle-scene/pvp-battle" element={<PvPBattle />} />
                         <Route path="sub2" element={<HeroBattleCards />} />
                         <Route path="sub3" element={<Rank />} />
                     </Route>
@@ -132,6 +130,14 @@ function App() {
                 </Route>
             </Routes>
         </Router>
+    );
+}
+
+export default function AppWrapper() {
+    return (
+        <UserStatsProvider>
+            <App />
+        </UserStatsProvider>
     );
 }
 
