@@ -68,13 +68,16 @@ const PvPBattle = () => {
         const playerAttackInterval = 3000 / currentHero.baseStats.attackSpeed;
         const botAttackInterval = 3000 / bot.baseStats.attackSpeed;
 
-        const playerTimer = setInterval(() => {
+        const playerAttack = () => {
             handleAttack(currentHero, bot, setBotHP, setPlayerDamageEffect, true);
-        }, playerAttackInterval);
+        };
 
-        const botTimer = setInterval(() => {
+        const botAttack = () => {
             handleAttack(bot, currentHero, setPlayerHP, setBotDamageEffect, false);
-        }, botAttackInterval);
+        };
+
+        const playerTimer = setInterval(playerAttack, playerAttackInterval);
+        const botTimer = setInterval(botAttack, botAttackInterval);
 
         return () => {
             clearInterval(playerTimer);
@@ -126,7 +129,7 @@ const PvPBattle = () => {
             <div className="hero-row">
                 <div className="hero-side">
                     <img src={currentHero.img.full} alt={currentHero.name} className="hero-image" />
-                    {botDamageEffect && (
+                    {botDamageEffect && botDamageEffect.isPlayerAttacking && (
                         <>
                             <div className="damage-number">{-botDamageEffect.damage.toFixed(2)}</div>
                             {botDamageEffect.effect && (
@@ -137,7 +140,7 @@ const PvPBattle = () => {
                 </div>
                 <div className="bot-side">
                     <img src={bot.img.full} alt={bot.name} className="bot-image" />
-                    {playerDamageEffect && (
+                    {playerDamageEffect && !playerDamageEffect.isPlayerAttacking && (
                         <>
                             <div className="damage-number">{-playerDamageEffect.damage.toFixed(2)}</div>
                             {playerDamageEffect.effect && (
