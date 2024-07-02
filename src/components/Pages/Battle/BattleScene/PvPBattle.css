@@ -2,17 +2,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh; /* Occupy full screen height */
-    overflow: hidden; /* Prevent scrolling */
-    position: relative;
+    height: 100vh; /* Займає всю висоту екрану */
+    overflow: hidden; /* Забороняє прокручування */
 }
 
 .hero-row {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    flex-grow: 1; /* Occupy all available height */
-    width: 100%;
+    flex-grow: 1; /* Займає всю доступну висоту */
 }
 
 .hero-side {
@@ -30,14 +28,42 @@
     width: 100%;
 }
 
-.left-panel {
+.battle-header {
+    display: flex;
+    justify-content: space-between; /* Вирівнювання значків для кожного героя */
+    align-items: center;
+    padding: 10px;
+    background-color: #333; /* Графітовий фон */
+    color: #fff;
+    width: 100%;
+    box-sizing: border-box;
     position: absolute;
-    left: 0;
-    top: 100px;
+    top: 0;
+    z-index: 999;
+    height: 200px; /* Задаємо фіксовану висоту */
 }
 
-.right-panel {
-    position: absolute;
-    right: 0;
-    top: 100px;
+.hero-stats {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 45%;
+}
+
+.stats-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-stat {
+    display: flex;
+    align-items: center;
+    margin: 2px 0;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
 }
