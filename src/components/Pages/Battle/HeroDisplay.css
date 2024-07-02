@@ -17,8 +17,8 @@
 }
 
 .hero-image {
-    width: 100px; /* Зменшено розмір зображення героя */
-    height: auto;
+    width: auto; /* Зменшено розмір зображення героя */
+    height: 150px;
     margin-right: 20px;
 }
 

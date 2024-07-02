@@ -60,7 +60,7 @@ const PvPBattle = () => {
         const { damage, effect } = calculateDamage(attacker, defender);
 
         setDefenderHP(prevHP => Math.max(prevHP - damage, 0));
-        setDamageEffect({ isPlayerAttacking: !isPlayerAttacking, damage, effect }); // Змінено на !isPlayerAttacking
+        setDamageEffect({ isPlayerAttacking, damage, effect });
     }, []);
 
     useEffect(() => {
