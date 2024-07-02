@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useUserStats } from '../../../context/UserStatsContext';
 import heroesConfig from '../../../context/heroesConfig';
 import './PvPBattle.css';
@@ -12,10 +12,8 @@ import accuracyIcon from '../../../assets/icons/accuracy.png';
 
 const PvPBattle = () => {
     const { userStats } = useUserStats();
-    const location = useLocation();
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
-    const botId = location.state?.opponentId || 1; // Вибраний противник або дефолтний герой
-    const bot = heroesConfig.find(hero => hero.id === botId); // Знайти героя за ID
+    const bot = heroesConfig[1]; // Використовуємо другого героя як бота
 
     const [playerHP, setPlayerHP] = useState(currentHero.baseStats.hp);
     const [botHP, setBotHP] = useState(bot.baseStats.hp);
@@ -90,21 +88,12 @@ const PvPBattle = () => {
             return;
         }
 
-        const playerAttackSpeed = 3000 / currentHero.baseStats.attackSpeed;
-        const botAttackSpeed = 3000 / bot.baseStats.attackSpeed;
-
-        const playerTimer = setInterval(() => {
+        const timer = setTimeout(() => {
             handleAttack(currentHero, bot, setBotHP, true);
-        }, playerAttackSpeed);
+            setTimeout(() => handleAttack(bot, currentHero, setPlayerHP, false), 1500);
+        }, 3000);
 
-        const botTimer = setInterval(() => {
-            handleAttack(bot, currentHero, setPlayerHP, false);
-        }, botAttackSpeed);
-
-        return () => {
-            clearInterval(playerTimer);
-            clearInterval(botTimer);
-        };
+        return () => clearTimeout(timer);
     }, [playerHP, botHP, bot, currentHero, handleAttack, navigate]);
 
     const getEffectIcon = (effect) => {

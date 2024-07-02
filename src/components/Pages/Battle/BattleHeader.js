@@ -26,7 +26,7 @@ const BattleHeader = ({ playerStats, botStats }) => {
     ];
 
     const renderStats = (stats) => {
-        return statsIcons.map((stat, index) => (
+        return statsIcons.map((stat) => (
             <div className="hero-stat" key={stat.label}>
                 <img src={stat.icon} alt={stat.label} className="icon" />
                 <span>{stats[stat.value]}</span>
@@ -36,16 +36,16 @@ const BattleHeader = ({ playerStats, botStats }) => {
 
     return (
         <div className="battle-header">
-            <div className="hero-stats hero-stats-column">
+            <div className="hero-stats">
                 {renderStats(playerStats).slice(0, 5)}
             </div>
-            <div className="hero-stats hero-stats-column">
+            <div className="hero-stats">
                 {renderStats(playerStats).slice(5)}
             </div>
-            <div className="hero-stats hero-stats-column">
+            <div className="hero-stats">
                 {renderStats(botStats).slice(0, 5)}
             </div>
-            <div className="hero-stats hero-stats-column">
+            <div className="hero-stats">
                 {renderStats(botStats).slice(5)}
             </div>
         </div>
