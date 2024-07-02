@@ -14,14 +14,14 @@ const heroesConfig = [
             hp: 100,
             armor: 10,
             damage: 15,
-            attackSpeed: 1.2,
+            attackSpeed: 2,
             blockChance: 50,
             penetrationChance: 50,
             critChance: 50,
             dodgeChance: 50,
             critPower: 150,
             accuracy: 90,
-           attackSpeed: 1,
+       
             regenSpeed: 5
         },
         baseIncome: {
@@ -57,7 +57,7 @@ const heroesConfig = [
             dodgeChance: 10,
             critPower: 175,
             accuracy: 85,
-            attackSpeed: 1,
+          
             regenSpeed: 7
         },
         baseIncome: {
@@ -86,14 +86,14 @@ const heroesConfig = [
             hp: 200,
             armor: 5,
             damage: 25,
-            attackSpeed: 1.5,
+            attackSpeed: 1,
             blockChance: 60,
             penetrationChance: 25,
             critChance: 40,
             dodgeChance: 30,
             critPower: 150,
             accuracy: 50,
-            attackSpeed: 1,
+      
             regenSpeed: 0
         },
         baseIncome: {
