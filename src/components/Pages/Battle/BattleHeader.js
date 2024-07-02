@@ -12,31 +12,35 @@ import critPowerIcon from '../../../assets/icons/critPower.png';
 import accuracyIcon from '../../../assets/icons/accuracy.png';
 
 const BattleHeader = ({ playerStats, botStats }) => {
+    const statsIcons = [
+        { icon: hpIcon, label: 'HP', value: 'hp' },
+        { icon: damageIcon, label: 'Damage', value: 'damage' },
+        { icon: attackSpeedIcon, label: 'Attack Speed', value: 'attackSpeed' },
+        { icon: armorIcon, label: 'Armor', value: 'armor' },
+        { icon: blockIcon, label: 'Block', value: 'blockChance' },
+        { icon: penetrationIcon, label: 'Penetration', value: 'penetrationChance' },
+        { icon: critIcon, label: 'Crit', value: 'critChance' },
+        { icon: dodgeIcon, label: 'Dodge', value: 'dodgeChance' },
+        { icon: critPowerIcon, label: 'Crit Power', value: 'critPower' },
+        { icon: accuracyIcon, label: 'Accuracy', value: 'accuracy' },
+    ];
+
+    const renderStats = (stats) => {
+        return statsIcons.map(stat => (
+            <div className="hero-stat" key={stat.label}>
+                <img src={stat.icon} alt={stat.label} className="icon" />
+                <span>{stats[stat.value]}</span>
+            </div>
+        ));
+    };
+
     return (
         <div className="battle-header">
             <div className="hero-stats">
-                <div className="hero-stat"><img src={hpIcon} alt="HP" className="icon" /> {playerStats.hp}</div>
-                <div className="hero-stat"><img src={armorIcon} alt="Armor" className="icon" /> {playerStats.armor}</div>
-                <div className="hero-stat"><img src={damageIcon} alt="Damage" className="icon" /> {playerStats.damage}</div>
-                <div className="hero-stat"><img src={attackSpeedIcon} alt="Attack Speed" className="icon" /> {playerStats.attackSpeed}</div>
-                <div className="hero-stat"><img src={blockChanceIcon} alt="Block Chance" className="icon" /> {playerStats.blockChance}</div>
-                <div className="hero-stat"><img src={penetrationChanceIcon} alt="Penetration Chance" className="icon" /> {playerStats.penetrationChance}</div>
-                <div className="hero-stat"><img src={critChanceIcon} alt="Crit Chance" className="icon" /> {playerStats.critChance}</div>
-                <div className="hero-stat"><img src={dodgeChanceIcon} alt="Dodge Chance" className="icon" /> {playerStats.dodgeChance}</div>
-                <div className="hero-stat"><img src={critPowerIcon} alt="Crit Power" className="icon" /> {playerStats.critPower}</div>
-                <div className="hero-stat"><img src={accuracyIcon} alt="Accuracy" className="icon" /> {playerStats.accuracy}</div>
+                {renderStats(playerStats)}
             </div>
             <div className="hero-stats">
-                <div className="hero-stat"><img src={hpIcon} alt="HP" className="icon" /> {botStats.hp}</div>
-                <div className="hero-stat"><img src={armorIcon} alt="Armor" className="icon" /> {botStats.armor}</div>
-                <div className="hero-stat"><img src={damageIcon} alt="Damage" className="icon" /> {botStats.damage}</div>
-                <div className="hero-stat"><img src={attackSpeedIcon} alt="Attack Speed" className="icon" /> {botStats.attackSpeed}</div>
-                <div className="hero-stat"><img src={blockChanceIcon} alt="Block Chance" className="icon" /> {botStats.blockChance}</div>
-                <div className="hero-stat"><img src={penetrationChanceIcon} alt="Penetration Chance" className="icon" /> {botStats.penetrationChance}</div>
-                <div className="hero-stat"><img src={critChanceIcon} alt="Crit Chance" className="icon" /> {botStats.critChance}</div>
-                <div className="hero-stat"><img src={dodgeChanceIcon} alt="Dodge Chance" className="icon" /> {botStats.dodgeChance}</div>
-                <div className="hero-stat"><img src={critPowerIcon} alt="Crit Power" className="icon" /> {botStats.critPower}</div>
-                <div className="hero-stat"><img src={accuracyIcon} alt="Accuracy" className="icon" /> {botStats.accuracy}</div>
+                {renderStats(botStats)}
             </div>
         </div>
     );

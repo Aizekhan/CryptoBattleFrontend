@@ -3,81 +3,66 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    height: 100%;
-    overflow: hidden;
-    padding: 20px;
-    box-sizing: border-box;
+    height: 100vh;
+    overflow: hidden; /* Заборона прокрутки сторінки */
 }
 
 .hero-row {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
+    justify-content: space-between;
     width: 100%;
+    margin-top: 100px; /* Відступ зверху */
 }
 
-.hero-side, .bot-side {
-    position: relative;
+.hero-side {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: 50%;
 }
 
-.hero-image, .bot-image {
+.hero-image {
     width: 150px;
     height: auto;
 }
 
 .damage-number {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18px;
+    top: -30px; /* Позиція відносно героя */
     color: red;
-    z-index: 1;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 .effect-icon {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 30px;
-    height: 30px;
-    z-index: 1;
+    top: -60px; /* Позиція відносно героя */
+    width: 24px;
+    height: 24px;
 }
 
 .battle-controls {
     display: flex;
     justify-content: space-around;
     width: 100%;
-    padding: 10px;
-    background-color: #333;
-    color: #fff;
-    box-sizing: border-box;
     position: fixed;
     bottom: 0;
-    z-index: 999;
+    background-color: #333;
+    padding: 10px 0;
 }
 
 .battle-controls button {
-    flex: 1;
-    background: none;
+    background: #444;
+    color: white;
     border: none;
-    color: #fff;
-    font-size: 14px;
+    padding: 10px 20px;
     cursor: pointer;
-    margin: 0 5px;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #444;
+    font-size: 16px;
 }
 
 .battle-controls button:hover {
-    background-color: #555;
+    background: #555;
+}
+
+.no-scroll {
+    overflow: hidden;
 }

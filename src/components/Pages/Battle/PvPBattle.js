@@ -4,10 +4,10 @@ import { useUserStats } from '../../../context/UserStatsContext';
 import heroesConfig from '../../../context/heroesConfig';
 import './PvPBattle.css';
 import BattleHeader from './BattleHeader';
-import critIcon from '../../../assets/icons/crit.png';
-import blockIcon from '../../../assets/icons/block.png';
-import dodgeIcon from '../../../assets/icons/dodge.png';
-import penetrationIcon from '../../../assets/icons/penetration.png';
+import critIcon from '../../../assets/icons/critChance.png';
+import blockIcon from '../../../assets/icons/blockChance.png';
+import dodgeIcon from '../../../assets/icons/dodgeChance.png';
+import penetrationIcon from '../../../assets/icons/penetrationChance.png';
 import accuracyIcon from '../../../assets/icons/accuracy.png';
 
 const PvPBattle = () => {
@@ -20,6 +20,16 @@ const PvPBattle = () => {
     const [damageEffect, setDamageEffect] = useState(null);
     const [winner, setWinner] = useState(null);
     const navigate = useNavigate();
+
+    const playerStats = {
+        hp: playerHP,
+        ...currentHero.baseStats
+    };
+
+    const botStats = {
+        hp: botHP,
+        ...bot.baseStats
+    };
 
     const calculateDamage = (attacker, defender) => {
         let damage = attacker.baseStats.damage;
@@ -101,32 +111,6 @@ const PvPBattle = () => {
             default:
                 return null;
         }
-    };
-
-    const playerStats = {
-        hp: playerHP,
-        armor: currentHero.baseStats.armor,
-        damage: currentHero.baseStats.damage,
-        attackSpeed: currentHero.baseStats.attackSpeed,
-        blockChance: currentHero.baseStats.blockChance,
-        penetrationChance: currentHero.baseStats.penetrationChance,
-        critChance: currentHero.baseStats.critChance,
-        dodgeChance: currentHero.baseStats.dodgeChance,
-        critPower: currentHero.baseStats.critPower,
-        accuracy: currentHero.baseStats.accuracy
-    };
-
-    const botStats = {
-        hp: botHP,
-        armor: bot.baseStats.armor,
-        damage: bot.baseStats.damage,
-        attackSpeed: bot.baseStats.attackSpeed,
-        blockChance: bot.baseStats.blockChance,
-        penetrationChance: bot.baseStats.penetrationChance,
-        critChance: bot.baseStats.critChance,
-        dodgeChance: bot.baseStats.dodgeChance,
-        critPower: bot.baseStats.critPower,
-        accuracy: bot.baseStats.accuracy
     };
 
     return (
