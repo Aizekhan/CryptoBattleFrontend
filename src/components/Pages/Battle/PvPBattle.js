@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useUserStats } from '../../../context/UserStatsContext';
 import heroesConfig from '../../../context/heroesConfig';
 import './PvPBattle.css';
@@ -12,8 +12,9 @@ import accuracyIcon from '../../../assets/icons/accuracy.png';
 
 const PvPBattle = () => {
     const { userStats } = useUserStats();
+    const location = useLocation();
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
-    const bot = heroesConfig.find(hero => hero.id === currentHero.opponentId); // Знайти обраного противника
+    const bot = heroesConfig.find(hero => hero.id === location.state.opponentId);
 
     const [playerHP, setPlayerHP] = useState(currentHero.baseStats.hp);
     const [botHP, setBotHP] = useState(bot.baseStats.hp);
@@ -37,7 +38,7 @@ const PvPBattle = () => {
         let isBlocked = Math.random() < defender.baseStats.blockChance / 100;
         let isDodge = Math.random() < defender.baseStats.dodgeChance / 100;
         let isPenetrated = Math.random() < attacker.baseStats.penetrationChance / 100;
-        let isAccurate = Math.random() < attacker.baseStats.accuracyChance / 100;
+        let isAccurate = Math.random() < attacker.baseStats.accuracy / 100;
 
         if (isDodge && !isAccurate) {
             return { damage: 0, effect: 'dodge' };
