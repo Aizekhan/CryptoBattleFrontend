@@ -41,8 +41,8 @@
 }
 
 .hero-avatar {
-    width: 20px; /* Зменшена ширина картинки */
-    height: 20px;
+    width: 30px; /* Зменшена ширина картинки */
+    height: auto;
 }
 
 .income-info {
