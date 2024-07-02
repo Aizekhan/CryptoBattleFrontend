@@ -24,7 +24,7 @@ import MiningSkills from './components/Pages/Mines/MiningSkills';
 
 import Battle from './components/Pages/Battle/Battle';
 import HeroDisplay from './components/Pages/Battle/HeroDisplay';
-import PvPBattle from './components/Pages/Battle/PvPBattle';
+import PvPBattle from './components/Pages/Battle/BattleScene/PvPBattle';
 import HeroBattleCards from './components/Pages/Battle/HeroBattleCards';
 import Rank from './components/Pages/Battle/Rank';
 

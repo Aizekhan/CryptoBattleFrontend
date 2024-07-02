@@ -1,33 +1,3 @@
-.pvp-battle {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh; /* Займає всю висоту екрану */
-    overflow: hidden; /* Забороняє прокручування */
-}
-
-.hero-row {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-grow: 1; /* Займає всю доступну висоту */
-}
-
-.hero-side {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-}
-
-.battle-controls {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-    background-color: #333;
-    width: 100%;
-}
-
 .battle-header {
     display: flex;
     justify-content: space-between; /* Вирівнювання значків для кожного героя */
@@ -40,20 +10,24 @@
     position: absolute;
     top: 0;
     z-index: 999;
-    height: 200px; /* Задаємо фіксовану висоту */
+    height: 150px; /* Збільшуємо висоту, щоб вміщали всі значки */
 }
 
 .hero-stats {
     display: flex;
-    flex-direction: row;
-    align-items: center;
     justify-content: space-between;
     width: 45%;
+}
+
+.stats-container {
+    display: flex;
 }
 
 .stats-column {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    margin: 0 10px; /* Відстань між стовпцями одного героя */
 }
 
 .hero-stat {
