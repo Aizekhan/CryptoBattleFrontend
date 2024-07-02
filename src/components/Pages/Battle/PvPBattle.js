@@ -19,7 +19,8 @@ const PvPBattle = () => {
 
     const [playerHP, setPlayerHP] = useState(currentHero.baseStats.hp);
     const [botHP, setBotHP] = useState(bot.baseStats.hp);
-    const [damageEffect, setDamageEffect] = useState(null);
+    const [playerDamageEffect, setPlayerDamageEffect] = useState(null);
+    const [botDamageEffect, setBotDamageEffect] = useState(null);
     const [winner, setWinner] = useState(null);
     const navigate = useNavigate();
 
@@ -56,7 +57,7 @@ const PvPBattle = () => {
         return { damage, effect: null };
     };
 
-    const handleAttack = useCallback((attacker, defender, setDefenderHP, isPlayerAttacking) => {
+    const handleAttack = useCallback((attacker, defender, setDefenderHP, setDamageEffect, isPlayerAttacking) => {
         const { damage, effect } = calculateDamage(attacker, defender);
 
         setDefenderHP(prevHP => Math.max(prevHP - damage, 0));
@@ -64,12 +65,29 @@ const PvPBattle = () => {
     }, []);
 
     useEffect(() => {
+        const playerAttackInterval = 3000 / currentHero.baseStats.attackSpeed;
+        const botAttackInterval = 3000 / bot.baseStats.attackSpeed;
+
+        const playerTimer = setInterval(() => {
+            handleAttack(currentHero, bot, setBotHP, setPlayerDamageEffect, true);
+        }, playerAttackInterval);
+
+        const botTimer = setInterval(() => {
+            handleAttack(bot, currentHero, setPlayerHP, setBotDamageEffect, false);
+        }, botAttackInterval);
+
+        return () => {
+            clearInterval(playerTimer);
+            clearInterval(botTimer);
+        };
+    }, [playerHP, botHP, bot, currentHero, handleAttack, navigate]);
+
+    useEffect(() => {
         if (playerHP <= 0) {
             setWinner('Bot');
             setTimeout(() => {
                 navigate('/battle/sub1');
             }, 5000);
-            return;
         }
 
         if (botHP <= 0) {
@@ -77,25 +95,8 @@ const PvPBattle = () => {
             setTimeout(() => {
                 navigate('/battle/sub1');
             }, 5000);
-            return;
         }
-
-        const playerAttackInterval = 3000 / currentHero.baseStats.attackSpeed;
-        const botAttackInterval = 3000 / bot.baseStats.attackSpeed;
-
-        const playerTimer = setTimeout(() => {
-            handleAttack(currentHero, bot, setBotHP, true);
-        }, playerAttackInterval);
-
-        const botTimer = setTimeout(() => {
-            handleAttack(bot, currentHero, setPlayerHP, false);
-        }, botAttackInterval);
-
-        return () => {
-            clearTimeout(playerTimer);
-            clearTimeout(botTimer);
-        };
-    }, [playerHP, botHP, bot, currentHero, handleAttack, navigate]);
+    }, [playerHP, botHP, navigate]);
 
     const getEffectIcon = (effect) => {
         switch (effect) {
@@ -115,7 +116,7 @@ const PvPBattle = () => {
     };
 
     return (
-        <div className="pvp-battle">
+        <div className="pvp-battle no-scroll">
             <BattleHeader playerHP={playerHP} botHP={botHP} playerName={currentHero.name} botName={bot.name} />
             {winner && (
                 <div className="winner-announcement">
@@ -125,22 +126,22 @@ const PvPBattle = () => {
             <div className="hero-row">
                 <div className="hero-side">
                     <img src={currentHero.img.full} alt={currentHero.name} className="hero-image" />
-                    {damageEffect && !damageEffect.isPlayerAttacking && (
+                    {botDamageEffect && (
                         <>
-                            <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
-                            {damageEffect.effect && (
-                                <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
+                            <div className="damage-number">{-botDamageEffect.damage.toFixed(2)}</div>
+                            {botDamageEffect.effect && (
+                                <img src={getEffectIcon(botDamageEffect.effect)} alt={botDamageEffect.effect} className="effect-icon" />
                             )}
                         </>
                     )}
                 </div>
                 <div className="bot-side">
                     <img src={bot.img.full} alt={bot.name} className="bot-image" />
-                    {damageEffect && damageEffect.isPlayerAttacking && (
+                    {playerDamageEffect && (
                         <>
-                            <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
-                            {damageEffect.effect && (
-                                <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
+                            <div className="damage-number">{-playerDamageEffect.damage.toFixed(2)}</div>
+                            {playerDamageEffect.effect && (
+                                <img src={getEffectIcon(playerDamageEffect.effect)} alt={playerDamageEffect.effect} className="effect-icon" />
                             )}
                         </>
                     )}
