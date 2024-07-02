@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useUserStats } from '../../../context/UserStatsContext';
 import heroesConfig from '../../../context/heroesConfig';
 import './PvPBattle.css';
+import BattleHeader from './BattleHeader';
 import critIcon from '../../../assets/icons/crit.png';
 import blockIcon from '../../../assets/icons/block.png';
 import dodgeIcon from '../../../assets/icons/dodge.png';
@@ -11,39 +12,32 @@ import accuracyIcon from '../../../assets/icons/accuracy.png';
 
 const PvPBattle = () => {
     const { userStats } = useUserStats();
-    const location = useLocation();
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
-    const bot = heroesConfig.find(hero => hero.id === location.state.opponentId);
+    const location = useLocation();
+    const opponentId = location.state?.opponentId || heroesConfig[1].id; // Використовуємо переданого противника або другого героя за замовчуванням
+    const bot = heroesConfig.find(hero => hero.id === opponentId);
 
     const [playerHP, setPlayerHP] = useState(currentHero.baseStats.hp);
     const [botHP, setBotHP] = useState(bot.baseStats.hp);
     const [damageEffect, setDamageEffect] = useState(null);
+    const [winner, setWinner] = useState(null);
+    const navigate = useNavigate();
 
     const calculateDamage = (attacker, defender) => {
         let damage = attacker.baseStats.damage;
         let isCritical = Math.random() < attacker.baseStats.critChance / 100;
         let isBlocked = Math.random() < defender.baseStats.blockChance / 100;
         let isDodge = Math.random() < defender.baseStats.dodgeChance / 100;
-        let isPenetration = false;
-        let isAccuracy = false;
+        let isPenetrated = Math.random() < attacker.baseStats.penetrationChance / 100;
+        let isAccurate = Math.random() < attacker.baseStats.accuracyChance / 100;
 
-        if (isDodge) {
-            if (Math.random() < attacker.baseStats.accuracy / 100) {
-                isAccuracy = true;
-                isDodge = false;
-            } else {
-                return { damage: 0, effect: 'dodge' };
-            }
+        if (isDodge && !isAccurate) {
+            return { damage: 0, effect: 'dodge' };
         }
 
-        if (isBlocked) {
-            if (Math.random() < attacker.baseStats.penetrationChance / 100) {
-                isPenetration = true;
-                isBlocked = false;
-            } else {
-                damage *= 0.5;
-                return { damage, effect: 'block' };
-            }
+        if (isBlocked && !isPenetrated) {
+            damage *= 0.5;
+            return { damage, effect: 'block' };
         }
 
         if (isCritical) {
@@ -51,18 +45,40 @@ const PvPBattle = () => {
             return { damage, effect: 'crit' };
         }
 
-        return { damage, effect: isPenetration ? 'penetration' : isAccuracy ? 'accuracy' : null };
+        if (isPenetrated) {
+            return { damage, effect: 'penetration' };
+        }
+
+        if (isAccurate) {
+            return { damage, effect: 'accuracy' };
+        }
+
+        return { damage, effect: null };
     };
 
     const handleAttack = useCallback((attacker, defender, setDefenderHP, isPlayerAttacking) => {
         const { damage, effect } = calculateDamage(attacker, defender);
 
         setDefenderHP(prevHP => Math.max(prevHP - damage, 0));
-        setDamageEffect({ isPlayerAttacking, damage, effect });
+        setDamageEffect({ isPlayerAttacking: !isPlayerAttacking, damage, effect }); // Змінено на !isPlayerAttacking
     }, []);
 
     useEffect(() => {
-        if (playerHP <= 0 || botHP <= 0) return;
+        if (playerHP <= 0) {
+            setWinner('Bot');
+            setTimeout(() => {
+                navigate('/battle/sub1');
+            }, 5000);
+            return;
+        }
+
+        if (botHP <= 0) {
+            setWinner('Player');
+            setTimeout(() => {
+                navigate('/battle/sub1');
+            }, 5000);
+            return;
+        }
 
         const timer = setTimeout(() => {
             handleAttack(currentHero, bot, setBotHP, true);
@@ -70,58 +86,64 @@ const PvPBattle = () => {
         }, 3000);
 
         return () => clearTimeout(timer);
-    }, [playerHP, botHP, bot, currentHero, handleAttack]);
+    }, [playerHP, botHP, bot, currentHero, handleAttack, navigate]);
+
+    const getEffectIcon = (effect) => {
+        switch (effect) {
+            case 'crit':
+                return critIcon;
+            case 'block':
+                return blockIcon;
+            case 'dodge':
+                return dodgeIcon;
+            case 'penetration':
+                return penetrationIcon;
+            case 'accuracy':
+                return accuracyIcon;
+            default:
+                return null;
+        }
+    };
 
     return (
         <div className="pvp-battle">
+            <BattleHeader playerHP={playerHP} botHP={botHP} playerName={currentHero.name} botName={bot.name} />
+            {winner && (
+                <div className="winner-announcement">
+                    {winner} wins!
+                </div>
+            )}
             <div className="hero-row">
                 <div className="hero-side">
                     <img src={currentHero.img.full} alt={currentHero.name} className="hero-image" />
-                    {damageEffect && damageEffect.isPlayerAttacking && (
-                        <div className="damage-effects">
+                    {damageEffect && !damageEffect.isPlayerAttacking && ( // Змінено на !damageEffect.isPlayerAttacking
+                        <>
                             <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
                             {damageEffect.effect && (
                                 <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
                             )}
-                        </div>
+                        </>
                     )}
                 </div>
                 <div className="bot-side">
                     <img src={bot.img.full} alt={bot.name} className="bot-image" />
-                    {damageEffect && !damageEffect.isPlayerAttacking && (
-                        <div className="damage-effects">
+                    {damageEffect && damageEffect.isPlayerAttacking && ( // Змінено на damageEffect.isPlayerAttacking
+                        <>
                             <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
                             {damageEffect.effect && (
                                 <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
                             )}
-                        </div>
+                        </>
                     )}
                 </div>
             </div>
-            <div className="tactics">
+            <div className="battle-controls fixed-controls">
                 <button>Normal</button>
                 <button>Aggressive</button>
                 <button>Defensive</button>
             </div>
         </div>
     );
-};
-
-const getEffectIcon = (effect) => {
-    switch (effect) {
-        case 'crit':
-            return critIcon;
-        case 'block':
-            return blockIcon;
-        case 'dodge':
-            return dodgeIcon;
-        case 'penetration':
-            return penetrationIcon;
-        case 'accuracy':
-            return accuracyIcon;
-        default:
-            return null;
-    }
 };
 
 export default PvPBattle;

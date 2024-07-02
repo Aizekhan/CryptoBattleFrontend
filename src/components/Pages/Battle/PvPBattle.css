@@ -1,74 +1,72 @@
 .pvp-battle {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    height: 100vh; /* Висота 100% екрану */
-    padding: 10px;
-    box-sizing: border-box;
-    overflow: hidden; /* Вимикаємо прокручування */
+    justify-content: space-between;
+    height: 100vh; /* Повна висота вікна */
+    overflow: hidden; /* Забороняємо прокрутку */
 }
 
 .hero-row {
     display: flex;
-    justify-content: space-around;
-    align-items: center; /* Вирівнювання по центру по вертикалі */
+    justify-content: space-between;
     width: 100%;
-    flex: 1;
+    padding: 20px;
 }
 
 .hero-side, .bot-side {
-    position: relative;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .hero-image, .bot-image {
-    width: 150px;
-    height: auto;
-}
-
-.damage-effects {
-    position: absolute;
-    top: -50px; /* Підняти над героєм */
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
 }
 
 .damage-number {
-    font-size: 20px;
     color: red;
+    font-size: 24px;
     font-weight: bold;
 }
 
 .effect-icon {
-    width: 25px;
-    height: 25px;
+    width: 24px;
+    height: 24px;
 }
 
-.tactics {
-    display: flex;
-    justify-content: space-around; /* Вирівнювання по центру */
-    width: 100%;
-    padding: 10px 0;
-    background-color: #333;
-    color: #fff;
-    box-sizing: border-box;
-    position: fixed;
-    bottom: 0;
+.winner-announcement {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
     z-index: 1000;
 }
 
-.tactics button {
-    flex: 1;
-    margin: 0 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+.battle-controls {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.hidden {
-    display: none;
+.fixed-controls {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }

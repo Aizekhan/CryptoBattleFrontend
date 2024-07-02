@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 5px 10px; /* Зменшені відступи зверху і знизу */
     background-color: #333; /* Графітовий фон */
     color: #fff;
     box-sizing: border-box;
@@ -41,9 +41,8 @@
 }
 
 .hero-avatar {
-    width: 50px;
-    height: auto;
-
+    width: 20px; /* Зменшена ширина картинки */
+    height: 20px;
 }
 
 .income-info {
