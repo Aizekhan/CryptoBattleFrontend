@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useUserStats } from '../../../context/UserStatsContext';
-import heroesConfig from '../../../context/heroesConfig';
+import { useUserStats } from '../../../../context/UserStatsContext';
+import heroesConfig from '../../../../context/heroesConfig';
 import './PvPBattle.css';
 import BattleHeader from './BattleHeader';
-import critIcon from '../../../assets/icons/critChance.png';
-import blockIcon from '../../../assets/icons/blockChance.png';
-import dodgeIcon from '../../../assets/icons/dodgeChance.png';
-import penetrationIcon from '../../../assets/icons/penetrationChance.png';
-import accuracyIcon from '../../../assets/icons/accuracy.png';
+import critIcon from '../../../../assets/icons/critChance.png';
+import blockIcon from '../../../../assets/icons/blockChance.png';
+import dodgeIcon from '../../../../assets/icons/dodgeChance.png';
+import penetrationIcon from '../../../../assets/icons/penetrationChance.png';
+import accuracyIcon from '../../../../assets/icons/accuracy.png';
 
 const PvPBattle = () => {
     const { userStats } = useUserStats();
