@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
-import battleIcon from '../../assets/icons/NavPanel/battle-icon.png';
-import farmIcon from '../../assets/icons/NavPanel/farm-icon.png';
-import friendsIcon from '../../assets/icons/NavPanel/friends-icon.png';
-import heroIcon from '../../assets/icons/NavPanel/hero-icon.png';
 import homeIcon from '../../assets/icons/NavPanel/home-icon.png';
-import minesIcon from '../../assets/icons/NavPanel/mines-icon.png';
-import questsIcon from '../../assets/icons/NavPanel/quests-icon.png';
+import addFriendsIcon from '../../assets/icons/NavPanel/add-friends-icon.png';
+import farmIcon from '../../assets/icons/NavPanel/farm-icon.png';
+import heroIcon from '../../assets/icons/NavPanel/hero-icon.png';
+import questIcon from '../../assets/icons/NavPanel/quest-icon.png';
+import mineIcon from '../../assets/icons/NavPanel/mine-icon.png';
+import battleIcon from '../../assets/icons/NavPanel/battle-icon.png';
 import './MainLayout.css';
 import SubNavigation from './SubNavigation';
 
@@ -16,6 +16,11 @@ const MainLayout = () => {
     const basePath = location.pathname.split('/')[1];
 
     const subPagesConfig = {
+        battle: [
+            { path: 'pvp', name: 'PVP' },
+            { path: 'ability', name: 'ABILITY' },
+            { path: 'rank', name: 'RANK' }
+        ],
         home: [
             { path: 'sub1', name: 'News' },
             { path: 'sub2', name: 'Market' },
@@ -29,12 +34,6 @@ const MainLayout = () => {
         mines: [
             { path: 'sub1', name: 'MinesGold' },
             { path: 'sub2', name: 'MiningSkills' }
-        ],
-        battle: [
-            { path: 'sub1', name: 'HeroDisplay' },
-            { path: 'pvp-battle', name: 'PvPBattle' },
-            { path: 'sub2', name: 'HeroBattleCards' },
-            { path: 'sub3', name: 'Rank' }
         ],
         hero: [
             { path: 'sub1', name: 'HeroDetails' },
@@ -55,18 +54,22 @@ const MainLayout = () => {
 
     return (
         <div className="main-layout">
-            <div className="nav-icons">
+            <div className="nav-icons-top">
                 <img src={homeIcon} alt="Home" onClick={() => navigate('/home')} className="nav-icon" />
-                <img src={farmIcon} alt="Farm" onClick={() => navigate('/farm')} className="nav-icon" />
-                <img src={battleIcon} alt="Battle" onClick={() => navigate('/battle')} className="nav-icon" />
-                <img src={heroIcon} alt="Hero" onClick={() => navigate('/hero')} className="nav-icon" />
-                <img src={friendsIcon} alt="Friends" onClick={() => navigate('/friends')} className="nav-icon" />
-                <img src={minesIcon} alt="Mines" onClick={() => navigate('/mines')} className="nav-icon" />
-                <img src={questsIcon} alt="Quests" onClick={() => navigate('/quests')} className="nav-icon" />
+                <img src={addFriendsIcon} alt="Add Friends" onClick={() => navigate('/friends')} className="nav-icon" />
             </div>
             <SubNavigation basePath={`/${basePath}`} subPages={subPages} />
             <div className="content">
                 <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
+            </div>
+            <div className="nav-icon-battle">
+                <img src={battleIcon} alt="Battle" onClick={() => navigate('/battle')} className="nav-icon" />
+            </div>
+            <div className="nav-icons-bottom">
+                <img src={farmIcon} alt="Farm" onClick={() => navigate('/farm')} className="nav-icon" />
+                <img src={heroIcon} alt="Hero" onClick={() => navigate('/hero')} className="nav-icon" />
+                <img src={questIcon} alt="Quest" onClick={() => navigate('/quests')} className="nav-icon" />
+                <img src={mineIcon} alt="Mine" onClick={() => navigate('/mines')} className="nav-icon" />
             </div>
         </div>
     );

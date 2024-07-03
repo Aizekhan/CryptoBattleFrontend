@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './SubNavigation.css';
+
 import subPageIcon from '../../assets/icons/NavPanel/subPage.png';
 
 const SubNavigation = ({ basePath, subPages, isBattlePage }) => {
