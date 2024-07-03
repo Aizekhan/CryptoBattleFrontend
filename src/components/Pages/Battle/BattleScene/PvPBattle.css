@@ -48,6 +48,7 @@
     color: red;
     position: absolute;
     left: 50%;
+    bottom: 50px; /* Визначаємо початкову висоту появи */
     transform: translateX(-50%);
     animation: floatAndFade 3s forwards; /* Анімація для переміщення та зникання триватиме 3 секунди */
 }
@@ -57,7 +58,8 @@
     height: 30px;
     position: absolute;
     left: 50%;
-    transform: translateX(-50%) translateY(-40px); /* Позиціонування іконки над цифрою урону */
+    bottom: 80px; /* Визначаємо початкову висоту появи вище цифр урону */
+    transform: translateX(-50%);
     animation: floatAndFade 3s forwards; /* Анімація для переміщення та зникання триватиме 3 секунди */
     opacity: 1; /* Прибираємо прозорість */
 }
