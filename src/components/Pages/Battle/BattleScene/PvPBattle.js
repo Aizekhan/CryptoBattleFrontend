@@ -14,7 +14,7 @@ const PvPBattle = () => {
     const { userStats } = useUserStats();
     const location = useLocation();
     const navigate = useNavigate();
-    
+
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
     const bot = heroesConfig.find(hero => hero.id === location.state.opponentId);
 
@@ -22,6 +22,14 @@ const PvPBattle = () => {
     const [botHP, setBotHP] = useState(bot.baseStats.hp);
     const [damageEffect, setDamageEffect] = useState(null);
     const [winner, setWinner] = useState(null);
+    const [playerStats, setPlayerStats] = useState({
+        hp: currentHero.baseStats.hp,
+        ...currentHero.baseStats
+    });
+    const [botStats, setBotStats] = useState({
+        hp: bot.baseStats.hp,
+        ...bot.baseStats
+    });
 
     const calculateDamage = (attacker, defender) => {
         let damage = attacker.baseStats.damage;
@@ -92,6 +100,14 @@ const PvPBattle = () => {
         return () => clearTimeout(timer);
     }, [playerHP, botHP, bot, currentHero, handleAttack, navigate]);
 
+    useEffect(() => {
+        setPlayerStats(prevStats => ({ ...prevStats, hp: playerHP }));
+    }, [playerHP]);
+
+    useEffect(() => {
+        setBotStats(prevStats => ({ ...prevStats, hp: botHP }));
+    }, [botHP]);
+
     const getEffectIcon = (effect) => {
         switch (effect) {
             case 'crit':
@@ -107,16 +123,6 @@ const PvPBattle = () => {
             default:
                 return null;
         }
-    };
-
-    const playerStats = {
-        hp: playerHP,
-        ...currentHero.baseStats
-    };
-
-    const botStats = {
-        hp: botHP,
-        ...bot.baseStats
     };
 
     return (
