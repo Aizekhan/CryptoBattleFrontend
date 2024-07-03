@@ -4,7 +4,7 @@ import homeIcon from '../../assets/icons/NavPanel/home-icon.png';
 import addFriendsIcon from '../../assets/icons/NavPanel/friends-icon.png';
 import farmIcon from '../../assets/icons/NavPanel/farm-icon.png';
 import heroIcon from '../../assets/icons/NavPanel/hero-icon.png';
-import questIcon from '../../assets/icons/NavPanel/quest-icon.png';
+import questIcon from '../../assets/icons/NavPanel/quests-icon.png';
 import mineIcon from '../../assets/icons/NavPanel/mine-icon.png';
 import battleIcon from '../../assets/icons/NavPanel/battle-icon.png';
 import './MainLayout.css';
