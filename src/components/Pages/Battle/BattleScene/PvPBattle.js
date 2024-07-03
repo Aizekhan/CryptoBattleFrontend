@@ -19,31 +19,17 @@ const PvPBattle = () => {
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
     const bot = heroesConfig.find(hero => hero.id === location.state.opponentId);
 
-    console.log("User Stats:", userStats);
-    console.log("Current Hero:", currentHero);
-    console.log("Bot:", bot);
-
     // Викликаємо хуки поза умовним блоком
     const [playerHP, setPlayerHP] = useState(currentHero ? currentHero.baseStats.hp : 0);
     const [botHP, setBotHP] = useState(bot ? bot.baseStats.hp : 0);
     const [damageEffect, setDamageEffect] = useState(null);
     const [winner, setWinner] = useState(null);
 
-    if (!currentHero || !bot) {
-        return <div>Hero or Bot not found</div>;
-    }
-
-    const playerStats = {
-        hp: playerHP,
-        ...currentHero.baseStats
-    };
-
-    const botStats = {
-        hp: botHP,
-        ...bot.baseStats
-    };
-
     useEffect(() => {
+        if (!currentHero || !bot) {
+            return;
+        }
+
         const battleSystem = new BattleSystem(currentHero, bot);
 
         const handleAttack = (attacker, defender, result, battleEnded) => {
@@ -88,6 +74,20 @@ const PvPBattle = () => {
             default:
                 return null;
         }
+    };
+
+    if (!currentHero || !bot) {
+        return <div>Hero or Bot not found</div>;
+    }
+
+    const playerStats = {
+        hp: playerHP,
+        ...currentHero.baseStats
+    };
+
+    const botStats = {
+        hp: botHP,
+        ...bot.baseStats
     };
 
     return (
