@@ -1,5 +1,3 @@
-/* MainLayout.css */
-
 .main-layout {
     display: flex;
     flex-direction: column;
@@ -10,10 +8,11 @@
 }
 
 .nav-icons {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
     padding: 20px;
+    justify-items: center;
     box-sizing: border-box;
 }
 
@@ -43,6 +42,6 @@
     }
 
     .nav-icons {
-        flex-direction: column;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
