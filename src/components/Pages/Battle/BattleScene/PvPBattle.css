@@ -1,4 +1,3 @@
-
 .damage-container {
     position: relative;
 }
@@ -9,9 +8,9 @@
     color: red;
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
-    bottom: 50px; /* Початкова висота */
-    animation: floatAndFadeNumber 4s forwards; /* Анімація для переміщення та зникання триватиме 3 секунди */
+    transform: translate(-50%, 50%);
+    top: 50%; /* Початкова висота - по середині картинки героя */
+    animation: floatAndFadeNumber 4s forwards; /* Анімація для переміщення та зникання триватиме 4 секунди */
 }
 
 .effect-icon {
@@ -19,17 +18,17 @@
     height: 30px;
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
-    bottom: 80px; /* Початкова висота вище цифр урону */
-    animation: floatAndFadeIcon 4s forwards; /* Анімація для переміщення та зникання триватиме 3 секунди */
+    transform: translate(-50%, 50%);
+    top: 45%; /* Початкова висота вище цифр урону */
+    animation: floatAndFadeIcon 4s forwards; /* Анімація для переміщення та зникання триватиме 4 секунди */
     opacity: 1; /* Прибираємо прозорість */
 }
 
-/* Анімація для переміщення та зникання */
+/* Анімація для переміщення та зникання цифр урону */
 @keyframes floatAndFadeNumber {
     0% {
         opacity: 1;
-        transform: translate(-50%, 50px);
+        transform: translate(-50%, 0);
     }
     100% {
         opacity: 1;
@@ -37,14 +36,15 @@
     }
 }
 
+/* Анімація для переміщення та зникання іконок ефектів */
 @keyframes floatAndFadeIcon {
     0% {
         opacity: 1;
-        transform: translate(-50%, 80px);
+        transform: translate(-50%, 0);
     }
     100% {
         opacity: 1;
-        transform: translate(-50%, -100px); /* Позиціонування до верху */
+        transform: translate(-50%, -50px); /* Позиціонування до верху */
     }
 }
 
