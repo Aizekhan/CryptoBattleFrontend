@@ -49,7 +49,7 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    animation: floatAndFade 1.5s forwards; /* Анімація для переміщення та зникання */
+    animation: floatAndFade 3s forwards; /* Анімація для переміщення та зникання триватиме 3 секунди */
 }
 
 .effect-icon {
@@ -58,7 +58,7 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%) translateY(-30px); /* Позиціонування іконки над цифрою урону */
-    animation: floatAndFade 1.5s forwards; /* Анімація для переміщення та зникання */
+    animation: floatAndFade 3s forwards; /* Анімація для переміщення та зникання триватиме 3 секунди */
 }
 
 /* Анімація для переміщення та зникання */
