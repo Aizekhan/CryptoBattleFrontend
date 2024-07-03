@@ -14,7 +14,7 @@
 .battle-controls {
     display: flex;
     justify-content: space-around;
-    margin-top: 50px; /* Відстань між героями і кнопками тактики */
+    margin-top: 5px; /* Відстань між героями і кнопками тактики */
 }
 
 .damage-container {
