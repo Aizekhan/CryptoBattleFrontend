@@ -1,3 +1,22 @@
+.hero-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end; /* Вирівнювання по нижньому краю контейнера */
+    position: relative;
+    top: 100px; /* Налаштуйте значення для позиціонування над кнопками тактики */
+}
+
+.hero-image, .bot-image {
+    width: 150px;
+    height: auto;
+}
+
+.battle-controls {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px; /* Відстань між героями і кнопками тактики */
+}
+
 .damage-container {
     position: relative;
 }
@@ -8,8 +27,8 @@
     color: red;
     position: absolute;
     left: 50%;
-    transform: translate(-50%, 50%);
-    top: 0%; /* Початкова висота - по середині картинки героя */
+    transform: translate(-50%, -50%);
+    top: 50%; /* Початкова висота - по середині картинки героя */
     animation: floatAndFadeNumber 4s forwards; /* Анімація для переміщення та зникання триватиме 4 секунди */
 }
 
@@ -18,7 +37,7 @@
     height: 30px;
     position: absolute;
     left: 50%;
-    transform: translate(-50%, 50%);
+    transform: translate(-50%, -50%);
     top: 45%; /* Початкова висота вище цифр урону */
     animation: floatAndFadeIcon 4s forwards; /* Анімація для переміщення та зникання триватиме 4 секунди */
     opacity: 1; /* Прибираємо прозорість */
@@ -44,7 +63,7 @@
     }
     100% {
         opacity: 1;
-        transform: translate(-50%, -150px); /* Позиціонування до верху */
+        transform: translate(-50%, -50px); /* Позиціонування до верху */
     }
 }
 
