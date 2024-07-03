@@ -41,39 +41,3 @@
     height: 20px;
     margin-right: 5px;
 }
-
-/* Нові стилі для цифр урону та іконок ефектів */
-.damage-number {
-    font-size: 24px;
-    color: red;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: floatAndFade 3s forwards; /* Анімація для переміщення та зникання триватиме 3 секунди */
-}
-
-.effect-icon {
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%) translateY(-30px); /* Позиціонування іконки над цифрою урону */
-    animation: floatAndFade 3s forwards; /* Анімація для переміщення та зникання триватиме 3 секунди */
-}
-
-/* Анімація для переміщення та зникання */
-@keyframes floatAndFade {
-    0% {
-        opacity: 1;
-        transform: translate(-50%, 0);
-    }
-    100% {
-        opacity: 0;
-        transform: translate(-50%, -50px); /* Позиціонування до верху */
-    }
-}
-
-/* Позиціонування контейнерів героїв відносно */
-.hero-side, .bot-side {
-    position: relative;
-}
