@@ -53,8 +53,8 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 40; /* Початкова висота */
-    animation: floatAndFadeNumber 3s forwards; /* Анімація для переміщення та зникання триватиме 3 секунди */
+    bottom: 50; /* Початкова висота */
+    animation: floatAndFadeNumber 4s forwards; /* Анімація для переміщення та зникання триватиме 3 секунди */
 }
 
 .effect-icon {
@@ -63,8 +63,8 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 40px; /* Початкова висота вище цифр урону */
-    animation: floatAndFadeIcon 3s forwards; /* Анімація для переміщення та зникання триватиме 3 секунди */
+    bottom: 80px; /* Початкова висота вище цифр урону */
+    animation: floatAndFadeIcon 4s forwards; /* Анімація для переміщення та зникання триватиме 3 секунди */
     opacity: 1; /* Прибираємо прозорість */
 }
 
@@ -83,7 +83,7 @@
 @keyframes floatAndFadeIcon {
     0% {
         opacity: 1;
-        transform: translate(-50%, 40);
+        transform: translate(-50%, 0);
     }
     100% {
         opacity: 1;
