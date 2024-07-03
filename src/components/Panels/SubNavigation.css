@@ -3,14 +3,15 @@
     justify-content: center;
     align-items: center;
     padding: 10px 20px;
-    background-color: #333; /* Графітовий фон */
+    background-color: transparent; /* Прозорий фон */
     color: #fff;
     box-sizing: border-box;
-    height: 50px; /* Фіксована висота */
+    height: auto; /* Автоматична висота */
     width: 100%;
     z-index: 998;
-    position: relative; /* Відносне розташування */
-    margin-top: 0px; /* Відступ від верхнього краю */
+    position: absolute; /* Абсолютне позиціонування */
+    top: 10px; /* Відступ від верхнього краю */
+    margin-top: 0px; /* Відсутність відступу від верхнього краю */
 }
 
 .sub-nav-button {
@@ -27,8 +28,8 @@
 }
 
 .sub-nav-icon {
-    width: 30px;
-    height: 30px;
+    width: auto; /* Автоматична ширина */
+    height: 50px; /* Фіксована висота для збереження пропорцій */
     margin-right: 10px;
 }
 

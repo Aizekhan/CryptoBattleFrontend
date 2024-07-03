@@ -8,40 +8,39 @@
 }
 
 .nav-icons {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 20px;
-    justify-items: center;
+    display: flex;
+    justify-content: space-around; /* Розміщення значків по горизонталі */
+    padding: 10px;
     box-sizing: border-box;
 }
 
 .nav-icon {
-    width: 250px;
-    height: 250px;
+    width: 50px;
+    height: 50px;
     cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.nav-icon:hover {
-    transform: scale(1.1);
 }
 
 .content {
     flex: 1;
-    padding: 20px;
+    padding: 10px;
     box-sizing: border-box;
     overflow-y: auto;
 }
 
-/* Адаптивний стиль для мобільних пристроїв */
+
+
+/* Стилі для мобільних пристроїв */
 @media (max-width: 600px) {
     .nav-icon {
-        width: 100px;
-        height: 100px;
+        width: 40px;
+        height: 40px;
     }
 
     .nav-icons {
-        grid-template-columns: repeat(2, 1fr);
+        padding: 5px;
+    }
+
+    .content {
+        padding: 5px;
     }
 }
