@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import homeIcon from '../../assets/icons/NavPanel/home-icon.png';
-import addFriendsIcon from '../../assets/icons/NavPanel/add-friends-icon.png';
+import addFriendsIcon from '../../assets/icons/NavPanel/friends-icon.png';
 import farmIcon from '../../assets/icons/NavPanel/farm-icon.png';
 import heroIcon from '../../assets/icons/NavPanel/hero-icon.png';
 import questIcon from '../../assets/icons/NavPanel/quest-icon.png';
