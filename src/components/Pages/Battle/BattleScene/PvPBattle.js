@@ -137,23 +137,23 @@ const PvPBattle = () => {
                 <div className="hero-side">
                     <img src={currentHero.img.full} alt={currentHero.name} className="hero-image" />
                     {damageEffect && !damageEffect.isPlayerAttacking && (
-                        <>
+                        <div className="damage-container">
                             <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
                             {damageEffect.effect && (
                                 <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
                             )}
-                        </>
+                        </div>
                     )}
                 </div>
                 <div className="bot-side">
                     <img src={bot.img.full} alt={bot.name} className="bot-image" />
                     {damageEffect && damageEffect.isPlayerAttacking && (
-                        <>
+                        <div className="damage-container">
                             <div className="damage-number">{-damageEffect.damage.toFixed(2)}</div>
                             {damageEffect.effect && (
                                 <img src={getEffectIcon(damageEffect.effect)} alt={damageEffect.effect} className="effect-icon" />
                             )}
-                        </>
+                        </div>
                     )}
                 </div>
             </div>
