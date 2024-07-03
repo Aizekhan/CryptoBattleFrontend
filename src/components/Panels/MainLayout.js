@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, useNavigate, Outlet, Navigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, Outlet, Navigate, useLocation } from 'react-router-dom';
 import battleIcon from '../../assets/icons/NavPanel/battle-icon.png';
 import farmIcon from '../../assets/icons/NavPanel/farm-icon.png';
 import friendsIcon from '../../assets/icons/NavPanel/friends-icon.png';
@@ -8,6 +8,7 @@ import homeIcon from '../../assets/icons/NavPanel/home-icon.png';
 import minesIcon from '../../assets/icons/NavPanel/mines-icon.png';
 import questsIcon from '../../assets/icons/NavPanel/quests-icon.png';
 import './MainLayout.css';
+import SubNavigation from './SubNavigation';
 import Home from '../Pages/Home/Home';
 import Farm from '../Pages/Farm/Farm';
 import Battle from '../Pages/Battle/Battle';
@@ -37,6 +38,47 @@ import Profa from '../Pages/Quests/Profa';
 
 const MainLayout = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const isBattlePage = location.pathname.startsWith('/battle');
+
+    const subPagesConfig = {
+        home: [
+            { path: 'sub1', name: 'News' },
+            { path: 'sub2', name: 'Market' },
+            { path: 'sub3', name: 'Info' }
+        ],
+        farm: [
+            { path: 'sub1', name: 'Hunt' },
+            { path: 'sub2', name: 'Locations' },
+            { path: 'sub3', name: 'HeroFarmSkills' }
+        ],
+        mines: [
+            { path: 'sub1', name: 'MinesGold' },
+            { path: 'sub2', name: 'MiningSkills' }
+        ],
+        battle: [
+            { path: 'sub1', name: 'HeroDisplay' },
+            { path: 'pvp-battle', name: 'PvPBattle' },
+            { path: 'sub2', name: 'HeroBattleCards' },
+            { path: 'sub3', name: 'Rank' }
+        ],
+        hero: [
+            { path: 'sub1', name: 'HeroDetails' },
+            { path: 'sub2', name: 'HeroPassiveSkills' },
+            { path: 'sub3', name: 'HeroEquipment' }
+        ],
+        friends: [
+            { path: 'sub1', name: 'AllFriends' }
+        ],
+        quests: [
+            { path: 'sub1', name: 'Active' },
+            { path: 'sub2', name: 'Daily' },
+            { path: 'sub3', name: 'Profa' }
+        ]
+    };
+
+    const basePath = location.pathname.split('/')[1];
+    const subPages = subPagesConfig[basePath] || [];
 
     return (
         <div className="main-layout">
@@ -49,6 +91,11 @@ const MainLayout = () => {
                 <img src={minesIcon} alt="Mines" onClick={() => navigate('/mines')} className="nav-icon" />
                 <img src={questsIcon} alt="Quests" onClick={() => navigate('/quests')} className="nav-icon" />
             </div>
+            <SubNavigation 
+                basePath={`/${basePath}`} 
+                subPages={subPages} 
+                isBattlePage={isBattlePage} 
+            />
             <div className="content">
                 <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
             </div>

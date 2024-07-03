@@ -12,8 +12,8 @@ const SubNavigation = ({ basePath, subPages, isBattlePage }) => {
         <div className="sub-navigation">
             {subPages.map((subPage, index) => (
                 <Link key={index} to={`${basePath}/${subPage.path}`} className="sub-nav-button">
-                    <img src={subPageIcon} alt={subPage.name} />
-                    <span className="sub-nav-text">{subPage.name}</span>
+                    <img src={subPageIcon} alt={subPage.name} className="sub-nav-icon" />
+                    <span>{subPage.name}</span>
                 </Link>
             ))}
         </div>

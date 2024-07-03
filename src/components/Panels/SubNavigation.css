@@ -3,7 +3,8 @@
     justify-content: center;
     align-items: center;
     padding: 10px 20px;
-    background-color: transparent; /* Прибираємо фон */
+    background-color: #333; /* Графітовий фон */
+    color: #fff;
     box-sizing: border-box;
     height: 50px; /* Фіксована висота */
     width: 100%;
@@ -13,32 +14,28 @@
 }
 
 .sub-nav-button {
-    background-color: transparent; /* Прибираємо фон */
-    border: none; /* Прибираємо рамки */
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
     color: #fff;
     font-size: 14px;
     margin: 0 10px;
-    padding: 0; /* Прибираємо відступи */
+    padding: 0;
     text-decoration: none;
-    transition: transform 0.3s ease;
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
-.sub-nav-button img {
-    width: 50px; /* Ширина зображення */
-    height: 50px; /* Висота зображення */
+.sub-nav-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
 }
 
-.sub-nav-text {
-    margin-top: 5px;
-    color: white;
-    font-size: 12px;
-    text-align: center;
+.sub-nav-button:hover .sub-nav-icon {
+    transform: scale(1.1);
 }
 
-.sub-nav-button:hover {
-    transform: scale(1.1); /* Збільшення при наведенні */
+.sub-nav-button span {
+    display: none;
 }
