@@ -53,7 +53,7 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 0; /* Початкова висота */
+    bottom: 40; /* Початкова висота */
     animation: floatAndFadeNumber 3s forwards; /* Анімація для переміщення та зникання триватиме 3 секунди */
 }
 
@@ -87,7 +87,7 @@
     }
     100% {
         opacity: 1;
-        transform: translate(-50%, -50px); /* Позиціонування до верху */
+        transform: translate(-50%, -100px); /* Позиціонування до верху */
     }
 }
 
