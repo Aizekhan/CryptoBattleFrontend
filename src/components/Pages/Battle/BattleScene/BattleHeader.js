@@ -12,6 +12,9 @@ import critPowerIcon from '../../../../assets/icons/critPower.png';
 import accuracyIcon from '../../../../assets/icons/accuracy.png';
 
 const BattleHeader = ({ playerStats, botStats }) => {
+    console.log("Player Stats in BattleHeader:", playerStats);
+    console.log("Bot Stats in BattleHeader:", botStats);
+
     const statsIcons = [
         { icon: hpIcon, label: 'HP', value: 'hp' },
         { icon: damageIcon, label: 'Damage', value: 'damage' },

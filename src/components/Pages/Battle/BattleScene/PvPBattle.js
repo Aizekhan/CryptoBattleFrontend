@@ -17,6 +17,14 @@ const PvPBattle = () => {
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
     const bot = heroesConfig.find(hero => hero.id === location.state.opponentId);
 
+    console.log("User Stats:", userStats);
+    console.log("Current Hero:", currentHero);
+    console.log("Bot:", bot);
+
+    if (!currentHero || !bot) {
+        return <div>Hero or Bot not found</div>;
+    }
+
     const [playerHP, setPlayerHP] = useState(currentHero.baseStats.hp);
     const [botHP, setBotHP] = useState(bot.baseStats.hp);
     const [damageEffect, setDamageEffect] = useState(null);
