@@ -104,4 +104,5 @@ const MainRoutes = () => (
     </Routes>
 );
 
-export { MainLayout, MainRoutes };
+export default MainLayout;
+export { MainRoutes };
