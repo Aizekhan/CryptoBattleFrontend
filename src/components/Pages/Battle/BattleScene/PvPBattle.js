@@ -14,6 +14,8 @@ import accuracyIcon from '../../../../assets/icons/accuracy.png';
 const PvPBattle = () => {
     const { userStats } = useUserStats();
     const location = useLocation();
+    const navigate = useNavigate();
+
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
     const bot = heroesConfig.find(hero => hero.id === location.state.opponentId);
 
@@ -21,15 +23,15 @@ const PvPBattle = () => {
     console.log("Current Hero:", currentHero);
     console.log("Bot:", bot);
 
+    // Викликаємо хуки поза умовним блоком
+    const [playerHP, setPlayerHP] = useState(currentHero ? currentHero.baseStats.hp : 0);
+    const [botHP, setBotHP] = useState(bot ? bot.baseStats.hp : 0);
+    const [damageEffect, setDamageEffect] = useState(null);
+    const [winner, setWinner] = useState(null);
+
     if (!currentHero || !bot) {
         return <div>Hero or Bot not found</div>;
     }
-
-    const [playerHP, setPlayerHP] = useState(currentHero.baseStats.hp);
-    const [botHP, setBotHP] = useState(bot.baseStats.hp);
-    const [damageEffect, setDamageEffect] = useState(null);
-    const [winner, setWinner] = useState(null);
-    const navigate = useNavigate();
 
     const playerStats = {
         hp: playerHP,
