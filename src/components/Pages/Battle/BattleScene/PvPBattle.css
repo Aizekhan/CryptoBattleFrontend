@@ -75,7 +75,7 @@
         transform: translate(-50%, 0);
     }
     100% {
-        opacity: 0;
+        opacity: 1;
         transform: translate(-50%, -50px); /* Позиціонування до верху */
     }
 }
@@ -83,10 +83,10 @@
 @keyframes floatAndFadeIcon {
     0% {
         opacity: 1;
-        transform: translate(-50%, 0);
+        transform: translate(-50%, 40);
     }
     100% {
-        opacity: 0;
+        opacity: 1;
         transform: translate(-50%, -50px); /* Позиціонування до верху */
     }
 }
