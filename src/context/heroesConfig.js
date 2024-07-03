@@ -12,9 +12,9 @@ const heroesConfig = [
         race: 'Human',
         baseStats: {
             hp: 100,
-            armor: 10,
-            damage: 15,
-            attackSpeed: 2,
+            armor: 5,
+            damage: 5,
+            attackSpeed: 1,
             blockChance: 50,
             penetrationChance: 50,
             critChance: 50,
@@ -83,7 +83,7 @@ const heroesConfig = [
         baseStats: {
             hp: 200,
             armor: 5,
-            damage: 25,
+            damage: 5,
             attackSpeed: 1,
             blockChance: 60,
             penetrationChance: 25,
