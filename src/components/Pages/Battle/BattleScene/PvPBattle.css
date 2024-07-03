@@ -1,46 +1,3 @@
-.battle-header {
-    display: flex;
-    justify-content: space-between; /* Вирівнювання значків для кожного героя */
-    align-items: center;
-    padding: 10px;
-    background-color: #333; /* Графітовий фон */
-    color: #fff;
-    width: 100%;
-    box-sizing: border-box;
-    position: absolute;
-    top: 0;
-    z-index: 999;
-    height: 150px; /* Збільшуємо висоту, щоб вміщали всі значки */
-}
-
-.hero-stats {
-    display: flex;
-    justify-content: space-between;
-    width: 45%;
-}
-
-.stats-container {
-    display: flex;
-}
-
-.stats-column {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 10px; /* Відстань між стовпцями одного героя */
-}
-
-.hero-stat {
-    display: flex;
-    align-items: center;
-    margin: 2px 0;
-}
-
-.icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
-}
 
 .damage-container {
     position: relative;
@@ -53,7 +10,7 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 50; /* Початкова висота */
+    bottom: 50px; /* Початкова висота */
     animation: floatAndFadeNumber 4s forwards; /* Анімація для переміщення та зникання триватиме 3 секунди */
 }
 
@@ -72,7 +29,7 @@
 @keyframes floatAndFadeNumber {
     0% {
         opacity: 1;
-        transform: translate(-50%, 50);
+        transform: translate(-50%, 50px);
     }
     100% {
         opacity: 1;
@@ -83,7 +40,7 @@
 @keyframes floatAndFadeIcon {
     0% {
         opacity: 1;
-        transform: translate(-50%, 80);
+        transform: translate(-50%, 80px);
     }
     100% {
         opacity: 1;
