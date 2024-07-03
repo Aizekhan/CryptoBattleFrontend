@@ -25,7 +25,7 @@ import Hunt from '../Pages/Farm/Hunt';
 import Locations from '../Pages/Farm/Locations';
 import HeroFarmSkills from '../Pages/Farm/HeroFarmSkills';
 import HeroDisplay from '../Pages/Battle/HeroDisplay';
-import PvPBattle from '../Pages/Battle/PvPBattle';
+import PvPBattle from '../Pages/Battle/BattleScene/PvPBattle';
 import HeroBattleCards from '../Pages/Battle/HeroBattleCards';
 import Rank from '../Pages/Battle/Rank';
 import HeroDetails from '../Pages/Hero/HeroDetails';
