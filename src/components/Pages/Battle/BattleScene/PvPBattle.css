@@ -57,8 +57,8 @@
     height: 30px;
     position: absolute;
     left: 50%;
-    transform: translateX(-50%) translateY(-40px); /* Позиціонування іконки над цифрою урону */
-    animation: floatAndFade 3s forwards; /* Анімація для переміщення та зникання триватиме 3 секунди */
+    transform: translateX(-50%) translateY(-60px); /* Позиціонування іконки над цифрою урону */
+    animation: floatAndFade 5s forwards; /* Анімація для переміщення та зникання триватиме 3 секунди */
 }
 
 /* Анімація для переміщення та зникання */
