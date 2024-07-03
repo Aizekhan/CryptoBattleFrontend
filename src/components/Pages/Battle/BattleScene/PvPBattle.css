@@ -9,7 +9,7 @@
     position: absolute;
     left: 50%;
     transform: translate(-50%, 50%);
-    top: 50%; /* Початкова висота - по середині картинки героя */
+    top: 0%; /* Початкова висота - по середині картинки героя */
     animation: floatAndFadeNumber 4s forwards; /* Анімація для переміщення та зникання триватиме 4 секунди */
 }
 
@@ -44,7 +44,7 @@
     }
     100% {
         opacity: 1;
-        transform: translate(-50%, -50px); /* Позиціонування до верху */
+        transform: translate(-50%, -150px); /* Позиціонування до верху */
     }
 }
 
