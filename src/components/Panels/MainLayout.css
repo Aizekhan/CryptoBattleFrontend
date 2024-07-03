@@ -1,62 +1,48 @@
+/* MainLayout.css */
+
 .main-layout {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background: url('../../assets/images/Backgrounds/MainBackground.png') no-repeat center center fixed;
+    background: url('../assets/images/Backgrounds/MainBackground.png') no-repeat center center fixed;
     background-size: cover;
+    box-sizing: border-box;
 }
 
-.top-bar {
+.nav-icons {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.bottom-bar {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 1000;
+.nav-icon {
+    width: 250px;
+    height: 250px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.nav-icon:hover {
+    transform: scale(1.1);
 }
 
 .content {
     flex: 1;
     padding: 20px;
-    margin-top: 60px; /* Висота top-bar */
-    margin-bottom: 60px; /* Висота bottom-bar */
+    box-sizing: border-box;
     overflow-y: auto;
-}
-
-.icon {
-    width: 40px;
-    height: 40px;
-}
-
-.window-icon {
-    width: 100px;
-    height: 100px;
 }
 
 /* Адаптивний стиль для мобільних пристроїв */
 @media (max-width: 600px) {
-    .icon {
-        width: 30px;
-        height: 30px;
+    .nav-icon {
+        width: 100px;
+        height: 100px;
     }
 
-    .window-icon {
-        width: 70px;
-        height: 70px;
+    .nav-icons {
+        flex-direction: column;
     }
 }
