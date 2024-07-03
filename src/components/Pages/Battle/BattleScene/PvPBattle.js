@@ -13,6 +13,8 @@ import accuracyIcon from '../../../../assets/icons/accuracy.png';
 const PvPBattle = () => {
     const { userStats } = useUserStats();
     const location = useLocation();
+    const navigate = useNavigate();
+    
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
     const bot = heroesConfig.find(hero => hero.id === location.state.opponentId);
 
@@ -20,17 +22,6 @@ const PvPBattle = () => {
     const [botHP, setBotHP] = useState(bot.baseStats.hp);
     const [damageEffect, setDamageEffect] = useState(null);
     const [winner, setWinner] = useState(null);
-    const navigate = useNavigate();
-
-    const playerStats = {
-        hp: playerHP,
-        ...currentHero.baseStats
-    };
-
-    const botStats = {
-        hp: botHP,
-        ...bot.baseStats
-    };
 
     const calculateDamage = (attacker, defender) => {
         let damage = attacker.baseStats.damage;
@@ -71,7 +62,6 @@ const PvPBattle = () => {
         setDefenderHP(prevHP => Math.max(prevHP - damage, 0));
         setDamageEffect({ isPlayerAttacking, damage, effect });
 
-        // Задати час зникнення ефекту
         setTimeout(() => {
             setDamageEffect(null);
         }, 1500);
@@ -117,6 +107,16 @@ const PvPBattle = () => {
             default:
                 return null;
         }
+    };
+
+    const playerStats = {
+        hp: playerHP,
+        ...currentHero.baseStats
+    };
+
+    const botStats = {
+        hp: botHP,
+        ...bot.baseStats
     };
 
     return (
