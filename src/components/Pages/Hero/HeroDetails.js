@@ -1,8 +1,9 @@
 import React from 'react';
 import { useUserStats } from '../../../context/UserStatsContext';
-import leftArrowIcon from '../../../assets/icons/NavPanel/left-arrow.png';
-import rightArrowIcon from '../../../assets/icons/NavPanel/right-arrow.png';
+import leftArrowIcon from '../../assets/icons/NavPanel/left-arrow.png';
+import rightArrowIcon from '../../assets/icons/NavPanel/right-arrow.png';
 import './HeroDetails.css'; // Додаємо окремий файл стилів для компонента
+import heroesConfig from '../../../config/heroesConfig'; // Імпортуємо конфігурацію героїв
 
 const HeroDetails = () => {
     const { userStats, updateUserStats } = useUserStats();
@@ -19,15 +20,15 @@ const HeroDetails = () => {
         updateUserStats({ currentHeroId: userStats.heroes[prevIndex].id });
     };
 
+    const heroConfig = heroesConfig.find(hero => hero.id === currentHero.id) || {};
+
     return (
         <div className="hero-details">
-            <h2>Hero Details</h2>
             <div className="hero-navigation">
                 <img src={leftArrowIcon} alt="Previous Hero" onClick={handlePreviousHero} className="arrow-icon" />
-                {currentHero && (
+                {heroConfig && (
                     <div className="hero-display">
-                        <h3>{currentHero.name}</h3>
-                        <img src={currentHero.img.avatar} alt={currentHero.name} className="hero-image" />
+                        <img src={heroConfig.img.full} alt={heroConfig.name} className="hero-image" />
                     </div>
                 )}
                 <img src={rightArrowIcon} alt="Next Hero" onClick={handleNextHero} className="arrow-icon" />
