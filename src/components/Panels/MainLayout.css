@@ -1,19 +1,19 @@
 .main-layout {
     position: relative;
     height: 100vh;
-    background: url('../../assets/images/Backgrounds/MainBackground.png') no-repeat center center;
-    background-size: contain; /* Зберігає пропорції зображення */
-    background-position: center; /* Центрує зображення */
+    background: url('../../assets/images/Backgrounds/MainBackground.png') no-repeat center center fixed;
+    background-size: cover; /* Зберігає пропорції зображення і заповнює весь екран */
+    background-position: center;
     box-sizing: border-box;
 }
 
 /* Централізована картинка Window */
 .window {
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100%; /* Ширина, яка займає основну частину екрану */
+    width: 80%; /* Ширина, яка займає основну частину екрану */
     height: auto;
     z-index: 1; /* Z-index для відображення поверх бекграунду, але під значками */
     pointer-events: none; /* Вимкнення подій миші для зображення, щоб значки були клікабельні */
@@ -73,7 +73,7 @@
 .sub-nav-icon {
     width: 100%; /* Ширина значків підвкладок */
     height: auto; /* Автоматична висота для збереження пропорцій */
-    max-height: 50px; /* Максимальна висота значків */
+    max-height: 30px; /* Максимальна висота значків */
 }
 
 .sub-nav-button:hover .sub-nav-icon {
@@ -119,8 +119,8 @@
 /* Стилі для контенту сторінки */
 .content {
     position: absolute;
-    top: 160px; /* Відстань від верхнього краю до початку контенту */
-    bottom: 160px; /* Відстань від нижнього краю до кінця контенту */
+    top: 160px; /* Відстань від верхнього краю до початку контенту під субвкладками */
+    bottom: 100px; /* Відстань від нижнього краю до кінця контенту над нижніми значками */
     left: 10px;
     right: 10px;
     overflow-y: auto;

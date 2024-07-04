@@ -69,9 +69,9 @@ const MainLayout = () => {
             </div>
             <div className="nav-icons-bottom">
                 <img src={farmIcon} alt="Farm" onClick={() => navigate('/farm')} className="nav-icon" />
-                <img src={heroIcon} alt="Hero" onClick={() => navigate('/hero')} className="nav-icon" />
-                <img src={questIcon} alt="Quest" onClick={() => navigate('/quests')} className="nav-icon" />
                 <img src={mineIcon} alt="Mine" onClick={() => navigate('/mines')} className="nav-icon" />
+                <img src={questIcon} alt="Quest" onClick={() => navigate('/quests')} className="nav-icon" />  
+                <img src={heroIcon} alt="Hero" onClick={() => navigate('/hero')} className="nav-icon" />
             </div>
         </div>
     );
