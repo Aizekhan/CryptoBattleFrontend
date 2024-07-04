@@ -51,21 +51,27 @@ const MainLayout = () => {
         ]
     };
 
+    const subPages = subPagesConfig[basePath] || [];
+
     return (
         <div className="main-layout">
             <img src={windowImage} alt="Window" className="window" />
             <div className="nav-icons-top">
-                <img src={homeIcon} alt="Home" className="nav-icon" onClick={() => navigate('/home')} />
-                <img src={addFriendsIcon} alt="Friends" className="nav-icon" onClick={() => navigate('/friends')} />
+                <img src={homeIcon} alt="Home" onClick={() => navigate('/home')} className="nav-icon" />
+                <img src={addFriendsIcon} alt="Add Friends" onClick={() => navigate('/friends')} className="nav-icon" />
             </div>
-            <SubNavigation subPages={subPagesConfig[basePath]} />
-            <Outlet />
+            <SubNavigation basePath={`/${basePath}`} subPages={subPages} />
+            <div className="content">
+                <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
+            </div>
+            <div className="nav-icon-battle">
+                <img src={battleIcon} alt="Battle" onClick={() => navigate('/battle')} className="nav-icon" />
+            </div>
             <div className="nav-icons-bottom">
-                <img src={farmIcon} alt="Farm" className="nav-icon" onClick={() => navigate('/farm')} />
-                <img src={heroIcon} alt="Hero" className="nav-icon" onClick={() => navigate('/hero')} />
-                <img src={battleIcon} alt="Battle" className="nav-icon-battle" onClick={() => navigate('/battle')} />
-                <img src={questIcon} alt="Quest" className="nav-icon" onClick={() => navigate('/quests')} />
-                <img src={mineIcon} alt="Mine" className="nav-icon" onClick={() => navigate('/mines')} />
+                <img src={farmIcon} alt="Farm" onClick={() => navigate('/farm')} className="nav-icon" />
+                <img src={heroIcon} alt="Hero" onClick={() => navigate('/hero')} className="nav-icon" />
+                <img src={questIcon} alt="Quest" onClick={() => navigate('/quests')} className="nav-icon" />
+                <img src={mineIcon} alt="Mine" onClick={() => navigate('/mines')} className="nav-icon" />
             </div>
         </div>
     );
