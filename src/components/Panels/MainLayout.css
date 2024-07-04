@@ -6,13 +6,14 @@
     background-position: center; /* Центрує зображення */
     box-sizing: border-box;
 }
+
 /* Централізована картинка Window */
 .window {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%; /* Ширина, яка займає основну частину екрану */
+    width: 100%; /* Ширина, яка займає основну частину екрану */
     height: auto;
     z-index: 1; /* Z-index для відображення поверх бекграунду, але під значками */
     pointer-events: none; /* Вимкнення подій миші для зображення, щоб значки були клікабельні */
@@ -54,10 +55,10 @@
 }
 
 .sub-nav-button {
+    position: relative; /* Потрібно для абсолютного позиціонування тексту всередині кнопки */
     display: flex;
-    flex-direction: column; /* Розташування значка та тексту вертикально */
     align-items: center;
-    justify-content: center; /* Центрування тексту */
+    justify-content: center;
     background-color: transparent;
     border: none;
     color: #fff;
@@ -72,8 +73,7 @@
 .sub-nav-icon {
     width: 100%; /* Ширина значків підвкладок */
     height: auto; /* Автоматична висота для збереження пропорцій */
-    max-height: 30px; /* Максимальна висота значків */
-    margin-bottom: 5px; /* Відступ між значком та текстом */
+    max-height: 50px; /* Максимальна висота значків */
 }
 
 .sub-nav-button:hover .sub-nav-icon {
@@ -81,7 +81,10 @@
 }
 
 .sub-nav-button span {
-    display: block; /* Відображення назв підвкладок як блоків */
+    position: absolute; /* Абсолютне позиціонування тексту */
+    top: 50%; /* Вирівнювання по центру по вертикалі */
+    left: 50%; /* Вирівнювання по центру по горизонталі */
+    transform: translate(-50%, -50%); /* Переміщення на центр */
     text-align: center; /* Центрування тексту */
     line-height: 1; /* Вирівнювання тексту по висоті */
 }
