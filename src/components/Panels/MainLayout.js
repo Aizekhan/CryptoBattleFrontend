@@ -15,6 +15,7 @@ const MainLayout = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const basePath = location.pathname.split('/')[1];
+    const isHeroPage = basePath === 'hero';
 
     const subPagesConfig = {
         battle: [
@@ -55,7 +56,7 @@ const MainLayout = () => {
 
     return (
         <div className="main-layout">
-            <img src={windowImage} alt="Window" className="window" />
+            {!isHeroPage && <img src={windowImage} alt="Window" className="window" />}
             <div className="nav-icons-top">
                 <img src={homeIcon} alt="Home" onClick={() => navigate('/home')} className="nav-icon" />
                 <img src={addFriendsIcon} alt="Add Friends" onClick={() => navigate('/friends')} className="nav-icon" />
@@ -64,15 +65,16 @@ const MainLayout = () => {
             <div className="content">
                 <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
             </div>
-            <div className="nav-icon-battle">
+            <div className={`nav-icon-battle ${isHeroPage ? 'move-up' : ''}`}>
                 <img src={battleIcon} alt="Battle" onClick={() => navigate('/battle')} className="nav-icon" />
             </div>
-            <div className="nav-icons-bottom">
+            <div className={`nav-icons-bottom ${isHeroPage ? 'move-sides' : ''}`}>
                 <img src={farmIcon} alt="Farm" onClick={() => navigate('/farm')} className="nav-icon" />
                 <img src={heroIcon} alt="Hero" onClick={() => navigate('/hero')} className="nav-icon" />
                 <img src={questIcon} alt="Quest" onClick={() => navigate('/quests')} className="nav-icon" />
                 <img src={mineIcon} alt="Mine" onClick={() => navigate('/mines')} className="nav-icon" />
             </div>
+            {isHeroPage && <img src={windowImage} alt="Stats Background" className="stats-background" />}
         </div>
     );
 };

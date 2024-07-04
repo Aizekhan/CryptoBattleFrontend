@@ -19,6 +19,17 @@
     pointer-events: none; /* Вимкнення подій миші для зображення, щоб значки були клікабельні */
 }
 
+.stats-background {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: auto;
+    z-index: 2;
+    pointer-events: none;
+}
+
 /* Позиціонування верхніх кнопок */
 .nav-icons-top {
     position: absolute;
@@ -47,6 +58,10 @@
     z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
 }
 
+.nav-icon-battle.move-sides {
+    bottom: 300px; /* Переміщення вгору при переході на сторінку героя */
+}
+
 /* Позиціонування нижніх значків */
 .nav-icons-bottom {
     position: absolute;
@@ -59,10 +74,13 @@
     z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
 }
 
-.nav-icons-bottom .nav-icon {
-    width: 80px; /* Встановлення розміру значків */
-    height: 80px; /* Встановлення розміру значків */
-    cursor: pointer;
+.nav-icons-bottom.move-sides {
+    bottom: 300px; /* Переміщення вгору при переході на сторінку героя */
+    justify-content: space-between;
+}
+
+.nav-icons-bottom.move-sides .nav-icon {
+    width: 50%; /* Розміри значків в режимі Hero */
 }
 
 /* Позиціонування підвкладок */
@@ -103,7 +121,7 @@
     width: 100%; /* Ширина значків підвкладок */
     height: auto; /* Автоматична висота для збереження пропорцій */
     max-height: 60px; /* Максимальна висота значків */
-    max-width: 160px; /* Максимальна висота значків */  
+    max-width: 160px; /* Максимальна висота значків */
 }
 
 .sub-nav-button:hover .sub-nav-icon {
@@ -132,4 +150,31 @@
     overflow-y: auto;
     box-sizing: border-box;
     z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
+}
+
+/* Адаптивні стилі для мобільних пристроїв */
+@media (max-width: 600px) {
+    .nav-icon,
+    .nav-icon-battle {
+        width: 60px;
+        height: 60px;
+    }
+
+    .nav-icons-top,
+    .nav-icons-bottom {
+        padding: 0 10px;
+    }
+
+    .sub-nav-button {
+        margin: 0 2px;
+    }
+
+    .sub-nav-icon {
+        max-height: 40px;
+    }
+
+    .content {
+        top: 120px;
+        bottom: 120px;
+    }
 }
