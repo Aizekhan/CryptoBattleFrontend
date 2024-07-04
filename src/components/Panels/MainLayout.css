@@ -1,11 +1,11 @@
 .main-layout {
     position: relative;
     height: 100vh;
-    background: url('../../assets/images/Backgrounds/MainBackground.png') no-repeat center center fixed;
-    background-size: cover;
+    background: url('../../assets/images/Backgrounds/MainBackground.png') no-repeat center center;
+    background-size: contain; /* Зберігає пропорції зображення */
+    background-position: center; /* Центрує зображення */
     box-sizing: border-box;
 }
-
 /* Централізована картинка Window */
 .window {
     position: absolute;
