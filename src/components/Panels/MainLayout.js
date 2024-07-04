@@ -56,7 +56,7 @@ const MainLayout = () => {
     return (
         <div className="main-layout">
             <img src={windowImage} alt="Window" className="window" />
-            <div className="nav-icons-top">
+            <div className="nav-icons-top nav-buttons">
                 <img src={homeIcon} alt="Home" onClick={() => navigate('/home')} className="nav-icon" />
                 <img src={addFriendsIcon} alt="Add Friends" onClick={() => navigate('/friends')} className="nav-icon" />
             </div>
@@ -64,10 +64,10 @@ const MainLayout = () => {
             <div className="content">
                 <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
             </div>
-            <div className="nav-icon-battle">
+            <div className="nav-icon-battle nav-buttons">
                 <img src={battleIcon} alt="Battle" onClick={() => navigate('/battle')} className="nav-icon" />
             </div>
-            <div className="nav-icons-bottom">
+            <div className="nav-icons-bottom nav-buttons">
                 <img src={farmIcon} alt="Farm" onClick={() => navigate('/farm')} className="nav-icon" />
                 <img src={heroIcon} alt="Hero" onClick={() => navigate('/hero')} className="nav-icon" />
                 <img src={questIcon} alt="Quest" onClick={() => navigate('/quests')} className="nav-icon" />
