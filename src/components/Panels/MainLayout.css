@@ -15,12 +15,12 @@
     justify-content: space-around;
     padding: 0 20px;
     box-sizing: border-box;
-    z-index: 999;
+    z-index: 1001; /* Збільшений z-index для відображення поверх інших вікон */
 }
 
 .nav-icon {
-    width: 50px;
-    height: auto; /* Автоматична висота для збереження пропорцій */
+    width: 200px; /* Збільшений розмір значків */
+    height: 200px; /* Збільшений розмір значків */
     cursor: pointer;
 }
 
@@ -32,6 +32,7 @@
     display: flex;
     justify-content: space-around;
     box-sizing: border-box;
+    z-index: 1001; /* Збільшений z-index для відображення поверх інших вікон */
 }
 
 /* Позиціонування кнопки Battle */
@@ -40,6 +41,7 @@
     bottom: 70px; /* Відступ від нижнього краю, щоб розмістити над нижнім рядом значків */
     left: 50%;
     transform: translateX(-50%);
+    z-index: 1001; /* Збільшений z-index для відображення поверх інших вікон */
 }
 
 /* Стилі для контенту сторінки */
@@ -53,41 +55,14 @@
     box-sizing: border-box;
 }
 
-/* Позиціонування верхніх підвкладок */
-.sub-navigation {
+/* Централізована картинка Window */
+.window {
     position: absolute;
-    top: 60px; /* Відступ від верхнього краю */
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: space-around;
-    width: 80%; /* Ширина контейнера значків */
-    z-index: 998;
-}
-
-.sub-nav-button {
-    display: flex;
-    align-items: center;
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    font-size: 14px;
-    margin: 0 10px;
-    padding: 0;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.sub-nav-icon {
-    width: auto; /* Автоматична ширина */
-    height: 50px; /* Фіксована висота для збереження пропорцій */
-    margin-right: 10px;
-}
-
-.sub-nav-button:hover .sub-nav-icon {
-    transform: scale(1.1); /* Збільшення іконки при наведенні */
-}
-
-.sub-nav-button span {
-    display: none;
+    transform: translate(-50%, -50%);
+    width: 80%; /* Ширина, яка займає основну частину екрану */
+    height: auto;
+    z-index: 1000; /* Z-index для відображення під значками */
+    pointer-events: none; /* Вимкнення подій миші для зображення, щоб значки були клікабельні */
 }

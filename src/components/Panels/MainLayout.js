@@ -7,6 +7,7 @@ import heroIcon from '../../assets/icons/NavPanel/hero-icon.png';
 import questIcon from '../../assets/icons/NavPanel/quests-icon.png';
 import mineIcon from '../../assets/icons/NavPanel/mines-icon.png';
 import battleIcon from '../../assets/icons/NavPanel/battle-icon.png';
+import windowImage from '../../assets/icons/NavPanel/Window.png';
 import './MainLayout.css';
 import SubNavigation from './SubNavigation';
 
@@ -54,6 +55,7 @@ const MainLayout = () => {
 
     return (
         <div className="main-layout">
+            <img src={windowImage} alt="Window" className="window" />
             <div className="nav-icons-top">
                 <img src={homeIcon} alt="Home" onClick={() => navigate('/home')} className="nav-icon" />
                 <img src={addFriendsIcon} alt="Add Friends" onClick={() => navigate('/friends')} className="nav-icon" />
