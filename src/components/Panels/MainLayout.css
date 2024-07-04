@@ -10,64 +10,21 @@
 .nav-icons-top {
     position: absolute;
     top: 10px; /* Відступ від верхнього краю */
-    width: 100%; /* Ширина контейнера значків */
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    justify-content: space-around;
-    padding: 0 20px;
-    box-sizing: border-box;
+    justify-content: space-between;
+    width: 200px; /* Ширина контейнера значків */
     z-index: 1001; /* Збільшений z-index для відображення поверх інших вікон */
 }
 
 .nav-icon {
     width: 100px; /* Встановлення більшого розміру значків */
-    height: auto; /* Автоматична висота для збереження пропорцій */
+    height: 100px; /* Встановлення більшого розміру значків */
     cursor: pointer;
 }
 
-/* Позиціонування нижніх кнопок (основні значки) */
-.nav-icons-bottom {
-    position: absolute;
-    bottom: 10px; /* Відступ від нижнього краю */
-    width: 100%; /* Ширина контейнера значків */
-    display: flex;
-    justify-content: space-around;
-    box-sizing: border-box;
-    z-index: 1001; /* Збільшений z-index для відображення поверх інших вікон */
-}
-
-/* Позиціонування кнопки Battle */
-.nav-icon-battle {
-    position: absolute;
-    bottom: 70px; /* Відступ від нижнього краю, щоб розмістити над нижнім рядом значків */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1001; /* Збільшений z-index для відображення поверх інших вікон */
-}
-
-/* Стилі для контенту сторінки */
-.content {
-    position: absolute;
-    top: 100px; /* Відстань від верхнього краю до початку контенту */
-    bottom: 100px; /* Відстань від нижнього краю до кінця контенту */
-    left: 10px;
-    right: 10px;
-    overflow-y: auto;
-    box-sizing: border-box;
-}
-
-/* Централізована картинка Window */
-.window {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%; /* Ширина, яка займає основну частину екрану */
-    height: auto;
-    z-index: 1000; /* Z-index для відображення під значками */
-    pointer-events: none; /* Вимкнення подій миші для зображення, щоб значки були клікабельні */
-}
-
-/* Стилі для підвкладок */
+/* Позиціонування підвкладок */
 .sub-navigation {
     display: flex;
     justify-content: space-around; /* Рівномірний розподіл підвкладок по ширині */
@@ -80,7 +37,7 @@
     width: 100%;
     z-index: 998;
     position: absolute; /* Абсолютне позиціонування */
-    top: 70px; /* Відступ від верхнього краю */
+    top: 120px; /* Відступ від верхнього краю */
     margin-top: 0px; /* Відсутність відступу від верхнього краю */
 }
 
@@ -112,4 +69,48 @@
 .sub-nav-button span {
     display: inline; /* Відображення назв підвкладок */
     margin-left: 5px;
+}
+
+/* Позиціонування нижніх кнопок (основні значки) */
+.nav-icons-bottom {
+    position: absolute;
+    bottom: 10px; /* Відступ від нижнього краю */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    width: 500px; /* Ширина контейнера значків */
+    z-index: 1001; /* Збільшений z-index для відображення поверх інших вікон */
+}
+
+/* Позиціонування кнопки Battle */
+.nav-icon-battle {
+    position: absolute;
+    bottom: 80px; /* Відступ від нижнього краю, щоб розмістити над нижнім рядом значків */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1001; /* Збільшений z-index для відображення поверх інших вікон */
+}
+
+/* Стилі для контенту сторінки */
+.content {
+    position: absolute;
+    top: 100px; /* Відстань від верхнього краю до початку контенту */
+    bottom: 100px; /* Відстань від нижнього краю до кінця контенту */
+    left: 10px;
+    right: 10px;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+/* Централізована картинка Window */
+.window {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; /* Ширина, яка займає основну частину екрану */
+    height: auto;
+    z-index: 1000; /* Z-index для відображення під значками */
+    pointer-events: none; /* Вимкнення подій миші для зображення, щоб значки були клікабельні */
 }
