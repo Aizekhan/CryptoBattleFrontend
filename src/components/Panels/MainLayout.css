@@ -50,7 +50,7 @@
 /* Позиціонування нижніх значків */
 .nav-icons-bottom {
     position: absolute;
-    bottom: 15px; /* Відступ від нижнього краю */
+    bottom: 5px; /* Відступ від нижнього краю */
     width: 100%; /* Ширина контейнера значків */
     display: flex;
     justify-content: space-around;
@@ -74,7 +74,7 @@
     background-color: transparent; /* Прозорий фон */
     color: #fff;
     box-sizing: border-box;
-    height: 190px; /* Збільшена висота для підвкладок */
+    height: 60px; /* Збільшена висота для підвкладок */
     width: 100%;
     z-index: 998;
     position: absolute; /* Абсолютне позиціонування */
@@ -124,10 +124,10 @@
 /* Стилі для контенту сторінки */
 .content {
     position: absolute;
-    top: 165px; /* Відстань від верхнього краю до початку контенту під субвкладками */
+    top: 170px; /* Відстань від верхнього краю до початку контенту під субвкладками */
     bottom: 110px; /* Відстань від нижнього краю до кінця контенту над нижніми значками */
-    left: 30px;
-    right: 30px;
+    left: 40px;
+    right: 40px;
     overflow-y: auto;
     box-sizing: border-box;
     z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
