@@ -46,7 +46,7 @@
     background-color: transparent; /* Прозорий фон */
     color: #fff;
     box-sizing: border-box;
-    height: 60px; /* Фіксована висота для підвкладок */
+    height: 80px; /* Фіксована висота для підвкладок */
     width: 100%;
     z-index: 998;
     position: absolute; /* Абсолютне позиціонування */
@@ -87,8 +87,9 @@
     transform: translate(-50%, -50%); /* Переміщення на центр */
     text-align: center; /* Центрування тексту */
     line-height: 1; /* Вирівнювання тексту по висоті */
+    font-weight: bold; /* Жирний текст */
+    color: yellow; /* Жовтий колір тексту */
 }
-
 /* Позиціонування центрального значка Battle */
 .nav-icon-battle {
     position: absolute;
