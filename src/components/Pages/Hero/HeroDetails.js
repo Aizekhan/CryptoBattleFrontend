@@ -4,7 +4,7 @@ import leftArrowIcon from '../../../assets/icons/NavPanel/left-arrow.png';
 import rightArrowIcon from '../../../assets/icons/NavPanel/right-arrow.png';
 import './HeroDetails.css'; // Додаємо окремий файл стилів для компонента
 import heroesConfig from '../../../context/heroesConfig'; // Імпортуємо конфігурацію героїв
-import HeroStatsCard from './HeroStatsCard'; // Імпортуємо новий компонент
+import HeroStatsCard from './HeroDetails/HeroStatsCard'; // Імпортуємо новий компонент
 
 const HeroDetails = () => {
     const { userStats, updateUserStats } = useUserStats();
