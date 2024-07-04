@@ -60,8 +60,8 @@
 }
 
 .nav-icons-bottom .nav-icon {
-    width: 140px; /* Встановлення розміру значків */
-    height: 140px; /* Встановлення розміру значків */
+    width: 80px; /* Встановлення розміру значків */
+    height: 80px; /* Встановлення розміру значків */
     cursor: pointer;
 }
 
@@ -131,31 +131,4 @@
     overflow-y: auto;
     box-sizing: border-box;
     z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
-}
-
-/* Адаптивні стилі для мобільних пристроїв */
-@media (max-width: 600px) {
-    .nav-icon,
-    .nav-icon-battle {
-        width: 60px;
-        height: 60px;
-    }
-
-    .nav-icons-top,
-    .nav-icons-bottom {
-        padding: 0 10px;
-    }
-
-    .sub-nav-button {
-        margin: 0 2px;
-    }
-
-    .sub-nav-icon {
-        max-height: 40px;
-    }
-
-    .content {
-        top: 120px;
-        bottom: 120px;
-    }
 }
