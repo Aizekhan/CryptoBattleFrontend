@@ -14,13 +14,13 @@
     transform: translateX(-50%);
     display: flex;
     justify-content: space-between;
-    width: 250px; /* Ширина контейнера значків */
+    width: 200px; /* Ширина контейнера значків */
     z-index: 1001; /* Збільшений z-index для відображення поверх інших вікон */
 }
 
 .nav-icon {
-    width: 80px; /* Встановлення розміру значків */
-    height: auto; /* Автоматична висота для збереження пропорцій */
+    width: 100px; /* Встановлення більшого розміру значків */
+    height: 100px; /* Встановлення більшого розміру значків */
     cursor: pointer;
 }
 
@@ -79,14 +79,14 @@
     transform: translateX(-50%);
     display: flex;
     justify-content: space-between;
-    width: 400px; /* Ширина контейнера значків */
+    width: 500px; /* Ширина контейнера значків */
     z-index: 1001; /* Збільшений z-index для відображення поверх інших вікон */
 }
 
 /* Позиціонування кнопки Battle */
 .nav-icon-battle {
     position: absolute;
-    bottom: 70px; /* Відступ від нижнього краю, щоб розмістити над нижнім рядом значків */
+    bottom: 80px; /* Відступ від нижнього краю, щоб розмістити над нижнім рядом значків */
     left: 50%;
     transform: translateX(-50%);
     z-index: 1001; /* Збільшений z-index для відображення поверх інших вікон */
