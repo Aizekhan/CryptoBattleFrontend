@@ -30,16 +30,16 @@ const MainLayout = () => {
         farm: [
             { path: 'sub1', name: 'Hunt' },
             { path: 'sub2', name: 'Locations' },
-            { path: 'sub3', name: 'HeroFarmSkills' }
+            { path: 'sub3', name: 'FarmSkills' }
         ],
         mines: [
             { path: 'sub1', name: 'MinesGold' },
             { path: 'sub2', name: 'MiningSkills' }
         ],
         hero: [
-            { path: 'sub1', name: 'HeroDetails' },
-            { path: 'sub2', name: 'HeroPassiveSkills' },
-            { path: 'sub3', name: 'HeroEquipment' }
+            { path: 'sub1', name: 'Hero' },
+            { path: 'sub2', name: 'PassiveSkills' },
+            { path: 'sub3', name: Equipment' }
         ],
         friends: [
             { path: 'sub1', name: 'AllFriends' }

@@ -84,7 +84,7 @@ function App() {
             <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/" element={localStorage.getItem('authToken') ? <MainLayout /> : <Navigate to="/login" />}>
-                    <Route index element={<Home />} />
+                    <Route index element={<Navigate to="/hero/sub1" />} /> {/* Перенаправлення на HeroDetails */}
                     <Route path="home" element={<Home />}>
                         <Route index element={<Navigate to="sub1" />} />
                         <Route path="sub1" element={<News />} />
