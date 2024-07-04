@@ -19,7 +19,7 @@
 }
 
 .nav-icon {
-    width: 10vw; /* Відносний розмір значків для адаптивності */
+    width: 100px; /* Встановлення більшого розміру значків */
     height: auto; /* Автоматична висота для збереження пропорцій */
     cursor: pointer;
 }
@@ -65,4 +65,51 @@
     height: auto;
     z-index: 1000; /* Z-index для відображення під значками */
     pointer-events: none; /* Вимкнення подій миші для зображення, щоб значки були клікабельні */
+}
+
+/* Стилі для підвкладок */
+.sub-navigation {
+    display: flex;
+    justify-content: space-around; /* Рівномірний розподіл підвкладок по ширині */
+    align-items: center;
+    padding: 10px 20px;
+    background-color: transparent; /* Прозорий фон */
+    color: #fff;
+    box-sizing: border-box;
+    height: auto; /* Автоматична висота */
+    width: 100%;
+    z-index: 998;
+    position: absolute; /* Абсолютне позиціонування */
+    top: 70px; /* Відступ від верхнього краю */
+    margin-top: 0px; /* Відсутність відступу від верхнього краю */
+}
+
+.sub-nav-button {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    margin: 0 10px;
+    padding: 0;
+    text-decoration: none;
+    cursor: pointer;
+    flex: 1; /* Розподіл ширини для рівномірного розподілу */
+    justify-content: center; /* Центрування тексту */
+}
+
+.sub-nav-icon {
+    width: auto; /* Автоматична ширина */
+    height: 50px; /* Фіксована висота для збереження пропорцій */
+    margin-right: 10px;
+}
+
+.sub-nav-button:hover .sub-nav-icon {
+    transform: scale(1.1);
+}
+
+.sub-nav-button span {
+    display: inline; /* Відображення назв підвкладок */
+    margin-left: 5px;
 }
