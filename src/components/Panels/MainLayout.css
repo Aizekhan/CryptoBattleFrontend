@@ -6,6 +6,18 @@
     box-sizing: border-box;
 }
 
+/* Централізована картинка Window */
+.window {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; /* Ширина, яка займає основну частину екрану */
+    height: auto;
+    z-index: 1; /* Z-index для відображення поверх бекграунду, але під значками */
+    pointer-events: none; /* Вимкнення подій миші для зображення, щоб значки були клікабельні */
+}
+
 /* Позиціонування верхніх кнопок */
 .nav-icons-top {
     position: absolute;
@@ -15,7 +27,7 @@
     justify-content: space-between;
     padding: 0 20px;
     box-sizing: border-box;
-    z-index: 1001; /* Збільшений z-index для відображення поверх інших вікон */
+    z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
 }
 
 .nav-icon {
@@ -37,7 +49,7 @@
     width: 100%;
     z-index: 998;
     position: absolute; /* Абсолютне позиціонування */
-    top: 100px; /* Відступ від верхнього краю */
+    top: 50px; /* Відступ від верхнього краю */
     margin-top: 0px; /* Відсутність відступу від верхнього краю */
 }
 
@@ -61,6 +73,7 @@
     width: 100%; /* Ширина значків підвкладок */
     height: auto; /* Автоматична висота для збереження пропорцій */
     max-height: 50px; /* Максимальна висота значків */
+    margin-bottom: 5px; /* Відступ між значком та текстом */
 }
 
 .sub-nav-button:hover .sub-nav-icon {
@@ -70,7 +83,6 @@
 .sub-nav-button span {
     display: block; /* Відображення назв підвкладок як блоків */
     text-align: center; /* Центрування тексту */
-    margin-top: 5px; /* Відступ між значком та текстом */
 }
 
 /* Позиціонування центрального значка Battle */
@@ -79,7 +91,7 @@
     bottom: 100px; /* Відступ від нижнього краю, щоб розмістити над іншими значками */
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1001; /* Збільшений z-index для відображення поверх інших вікон */
+    z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
 }
 
 /* Позиціонування нижніх значків */
@@ -91,7 +103,7 @@
     justify-content: space-around;
     padding: 0 20px;
     box-sizing: border-box;
-    z-index: 1001; /* Збільшений z-index для відображення поверх інших вікон */
+    z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
 }
 
 .nav-icons-bottom .nav-icon {
@@ -109,18 +121,7 @@
     right: 10px;
     overflow-y: auto;
     box-sizing: border-box;
-}
-
-/* Централізована картинка Window */
-.window {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%; /* Ширина, яка займає основну частину екрану */
-    height: auto;
-    z-index: 1000; /* Z-index для відображення під значками */
-    pointer-events: none; /* Вимкнення подій миші для зображення, щоб значки були клікабельні */
+    z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
 }
 
 /* Адаптивні стилі для мобільних пристроїв */
