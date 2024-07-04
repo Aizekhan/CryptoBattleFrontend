@@ -46,7 +46,7 @@
     background-color: transparent; /* Прозорий фон */
     color: #fff;
     box-sizing: border-box;
-    height: 80px; /* Фіксована висота для підвкладок */
+    height: 90px; /* Збільшена висота для підвкладок */
     width: 100%;
     z-index: 998;
     position: absolute; /* Абсолютне позиціонування */
@@ -57,8 +57,9 @@
 .sub-nav-button {
     position: relative; /* Потрібно для абсолютного позиціонування тексту всередині кнопки */
     display: flex;
+    flex-direction: column; /* Розташування елементів вертикально */
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* Центрування тексту */
     background-color: transparent;
     border: none;
     color: #fff;
@@ -67,13 +68,13 @@
     padding: 0;
     text-decoration: none;
     cursor: pointer;
-    flex: 1; /* Розподіл ширини для рівномірного розподілу */
+    height: 100%; /* Займає всю висоту батьківського елемента */
 }
 
 .sub-nav-icon {
     width: 100%; /* Ширина значків підвкладок */
     height: auto; /* Автоматична висота для збереження пропорцій */
-    max-height: 30px; /* Максимальна висота значків */
+    max-height: 40px; /* Максимальна висота значків */
 }
 
 .sub-nav-button:hover .sub-nav-icon {
@@ -89,6 +90,7 @@
     line-height: 1; /* Вирівнювання тексту по висоті */
     font-weight: bold; /* Жирний текст */
     color: yellow; /* Жовтий колір тексту */
+    pointer-events: none; /* Вимкнення подій миші для тексту */
 }
 /* Позиціонування центрального значка Battle */
 .nav-icon-battle {
