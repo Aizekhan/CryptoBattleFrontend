@@ -18,9 +18,9 @@ const MainLayout = () => {
 
     const subPagesConfig = {
         battle: [
-            { path: 'pvp', name: 'PVP' },
-            { path: 'ability', name: 'ABILITY' },
-            { path: 'rank', name: 'RANK' }
+            { path: 'sub1', name: 'PVP' },
+            { path: 'sub2', name: 'ABILITY' },
+            { path: 'sub3', name: 'RANK' }
         ],
         home: [
             { path: 'sub1', name: 'News' },
