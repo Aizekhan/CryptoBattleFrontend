@@ -10,17 +10,17 @@
 .nav-icons-top {
     position: absolute;
     top: 10px; /* Відступ від верхнього краю */
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100%; /* Ширина контейнера значків */
     display: flex;
     justify-content: space-between;
-    width: 200px; /* Ширина контейнера значків */
+    padding: 0 20px;
+    box-sizing: border-box;
     z-index: 1001; /* Збільшений z-index для відображення поверх інших вікон */
 }
 
 .nav-icon {
-    width: 100px; /* Встановлення більшого розміру значків */
-    height: 100px; /* Встановлення більшого розміру значків */
+    width: 80px; /* Встановлення розміру значків */
+    height: 80px; /* Встановлення розміру значків */
     cursor: pointer;
 }
 
@@ -37,7 +37,7 @@
     width: 100%;
     z-index: 998;
     position: absolute; /* Абсолютне позиціонування */
-    top: 120px; /* Відступ від верхнього краю */
+    top: 100px; /* Відступ від верхнього краю */
     margin-top: 0px; /* Відсутність відступу від верхнього краю */
 }
 
@@ -48,7 +48,7 @@
     border: none;
     color: #fff;
     font-size: 14px;
-    margin: 0 10px;
+    margin: 0 5px; /* Зменшення відступів для підвкладок */
     padding: 0;
     text-decoration: none;
     cursor: pointer;
@@ -57,9 +57,9 @@
 }
 
 .sub-nav-icon {
-    width: auto; /* Автоматична ширина */
-    height: 50px; /* Фіксована висота для збереження пропорцій */
-    margin-right: 10px;
+    width: 100%; /* Ширина значків підвкладок */
+    height: auto; /* Автоматична висота для збереження пропорцій */
+    max-height: 50px; /* Максимальна висота значків */
 }
 
 .sub-nav-button:hover .sub-nav-icon {
@@ -71,32 +71,38 @@
     margin-left: 5px;
 }
 
-/* Позиціонування нижніх кнопок (основні значки) */
-.nav-icons-bottom {
+/* Позиціонування центрального значка Battle */
+.nav-icon-battle {
     position: absolute;
-    bottom: 10px; /* Відступ від нижнього краю */
+    bottom: 100px; /* Відступ від нижнього краю, щоб розмістити над іншими значками */
     left: 50%;
     transform: translateX(-50%);
-    display: flex;
-    justify-content: space-between;
-    width: 500px; /* Ширина контейнера значків */
     z-index: 1001; /* Збільшений z-index для відображення поверх інших вікон */
 }
 
-/* Позиціонування кнопки Battle */
-.nav-icon-battle {
+/* Позиціонування нижніх значків */
+.nav-icons-bottom {
     position: absolute;
-    bottom: 80px; /* Відступ від нижнього краю, щоб розмістити над нижнім рядом значків */
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 10px; /* Відступ від нижнього краю */
+    width: 100%; /* Ширина контейнера значків */
+    display: flex;
+    justify-content: space-around;
+    padding: 0 20px;
+    box-sizing: border-box;
     z-index: 1001; /* Збільшений z-index для відображення поверх інших вікон */
+}
+
+.nav-icons-bottom .nav-icon {
+    width: 80px; /* Встановлення розміру значків */
+    height: 80px; /* Встановлення розміру значків */
+    cursor: pointer;
 }
 
 /* Стилі для контенту сторінки */
 .content {
     position: absolute;
-    top: 140px; /* Відстань від верхнього краю до початку контенту */
-    bottom: 120px; /* Відстань від нижнього краю до кінця контенту */
+    top: 160px; /* Відстань від верхнього краю до початку контенту */
+    bottom: 160px; /* Відстань від нижнього краю до кінця контенту */
     left: 10px;
     right: 10px;
     overflow-y: auto;
@@ -113,4 +119,30 @@
     height: auto;
     z-index: 1000; /* Z-index для відображення під значками */
     pointer-events: none; /* Вимкнення подій миші для зображення, щоб значки були клікабельні */
+}
+
+/* Адаптивні стилі для мобільних пристроїв */
+@media (max-width: 600px) {
+    .nav-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .nav-icons-top,
+    .nav-icons-bottom {
+        padding: 0 10px;
+    }
+
+    .sub-nav-button {
+        margin: 0 2px;
+    }
+
+    .sub-nav-icon {
+        max-height: 40px;
+    }
+
+    .content {
+        top: 120px;
+        bottom: 120px;
+    }
 }
