@@ -1,44 +1,37 @@
 import React from 'react';
 import { useUserStats } from '../../../context/UserStatsContext';
+import leftArrowIcon from '../../../assets/icons/NavPanel/left-arrow.png';
+import rightArrowIcon from '../../../assets/icons/NavPanel/right-arrow.png';
+import './HeroDetails.css'; // Додаємо окремий файл стилів для компонента
 
 const HeroDetails = () => {
     const { userStats, updateUserStats } = useUserStats();
-    const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId) || {};
+    const currentHeroIndex = userStats.heroes.findIndex(hero => hero.id === userStats.currentHeroId);
+    const currentHero = userStats.heroes[currentHeroIndex] || {};
 
-    const handleHeroChange = (event) => {
-        const newHeroId = event.target.value;
-        updateUserStats({ currentHeroId: newHeroId });
+    const handleNextHero = () => {
+        const nextIndex = (currentHeroIndex + 1) % userStats.heroes.length;
+        updateUserStats({ currentHeroId: userStats.heroes[nextIndex].id });
+    };
+
+    const handlePreviousHero = () => {
+        const prevIndex = (currentHeroIndex - 1 + userStats.heroes.length) % userStats.heroes.length;
+        updateUserStats({ currentHeroId: userStats.heroes[prevIndex].id });
     };
 
     return (
-        <div>
+        <div className="hero-details">
             <h2>Hero Details</h2>
-            <div>
-                <label htmlFor="hero-select">Select Hero:</label>
-                <select id="hero-select" onChange={handleHeroChange} value={userStats.currentHeroId || ''}>
-                    {userStats.heroes.map(hero => (
-                        <option key={hero.id} value={hero.id}>{hero.name}</option>
-                    ))}
-                </select>
+            <div className="hero-navigation">
+                <img src={leftArrowIcon} alt="Previous Hero" onClick={handlePreviousHero} className="arrow-icon" />
+                {currentHero && (
+                    <div className="hero-display">
+                        <h3>{currentHero.name}</h3>
+                        <img src={currentHero.img.avatar} alt={currentHero.name} className="hero-image" />
+                    </div>
+                )}
+                <img src={rightArrowIcon} alt="Next Hero" onClick={handleNextHero} className="arrow-icon" />
             </div>
-            {currentHero && (
-                <div>
-                    <h3>{currentHero.name}</h3>
-                    <img src={currentHero.img.avatar} alt={currentHero.name} />
-                    <p>Level: {currentHero.level}</p>
-                    <p>HP: {currentHero.baseStats.hp}</p>
-                    <p>Armor: {currentHero.baseStats.armor}</p>
-                    <p>Damage: {currentHero.baseStats.damage}</p>
-                    <p>Attack Speed: {currentHero.baseStats.attackSpeed}</p>
-                    <p>Crit Chance: {currentHero.baseStats.critChance}</p>
-                    <p>Crit Power: {currentHero.baseStats.critPower}</p>
-                    <p>Accuracy: {currentHero.baseStats.accuracy}</p>
-                    <p>Dodge Chance: {currentHero.baseStats.dodgeChance}</p>
-                    <p>Block Chance: {currentHero.baseStats.blockChance}</p>
-                    <p>Penetration Chance: {currentHero.baseStats.penetrationChance}</p>
-                    <p>HPRegen: {currentHero.baseStats.regenSpeed}</p> 
-                </div>
-            )}
         </div>
     );
 };
