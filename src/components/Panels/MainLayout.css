@@ -31,6 +31,13 @@
     z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
 }
 
+.nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
 .nav-icon {
     width: 80px; /* Встановлення розміру значків */
     height: 80px; /* Встановлення розміру значків */
