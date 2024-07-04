@@ -44,6 +44,34 @@
     cursor: pointer;
 }
 
+.nav-icon-battle {
+    width: 140px; /* Встановлення розміру значка Battle */
+    height: 140px; /* Встановлення розміру значка Battle */
+    position: absolute;
+    bottom: 100px; /* Відступ від нижнього краю, щоб розмістити над іншими значками */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
+}
+
+/* Позиціонування нижніх значків */
+.nav-icons-bottom {
+    position: absolute;
+    bottom: 15px; /* Відступ від нижнього краю */
+    width: 100%; /* Ширина контейнера значків */
+    display: flex;
+    justify-content: space-around;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
+}
+
+.nav-icons-bottom .nav-icon {
+    width: 140px; /* Встановлення розміру значків */
+    height: 140px; /* Встановлення розміру значків */
+    cursor: pointer;
+}
+
 /* Позиціонування підвкладок */
 .sub-navigation {
     display: flex;
@@ -98,35 +126,6 @@
     font-weight: bold; /* Жирний текст */
     color: yellow; /* Жовтий колір тексту */
     pointer-events: none; /* Вимкнення подій миші для тексту */
-}
-
-/* Позиціонування центрального значка Battle */
-.nav-icon-battle {
-    width: 140px; /* Встановлення розміру значка Battle */
-    height: 140px; /* Встановлення розміру значка Battle */
-    position: absolute;
-    bottom: 100px; /* Відступ від нижнього краю, щоб розмістити над іншими значками */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
-}
-
-/* Позиціонування нижніх значків */
-.nav-icons-bottom {
-    position: absolute;
-    bottom: 15px; /* Відступ від нижнього краю */
-    width: 100%; /* Ширина контейнера значків */
-    display: flex;
-    justify-content: space-around;
-    padding: 0 20px;
-    box-sizing: border-box;
-    z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
-}
-
-.nav-icons-bottom .nav-icon {
-    width: 80px; /* Встановлення розміру значків */
-    height: 80px; /* Встановлення розміру значків */
-    cursor: pointer;
 }
 
 /* Стилі для контенту сторінки */

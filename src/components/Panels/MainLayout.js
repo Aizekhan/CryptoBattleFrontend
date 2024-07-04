@@ -29,20 +29,20 @@ const MainLayout = () => {
         ],
         farm: [
             { path: 'sub1', name: 'Hunt' },
-            { path: 'sub2', name: 'Loca' },
-            { path: 'sub3', name: 'FarmSkills' }
+            { path: 'sub2', name: 'Locations' },
+            { path: 'sub3', name: 'HeroFarmSkills' }
         ],
         mines: [
             { path: 'sub1', name: 'MinesGold' },
             { path: 'sub2', name: 'MiningSkills' }
         ],
         hero: [
-            { path: 'sub1', name: 'Hero' },
-            { path: 'sub2', name: 'Ability' },
-            { path: 'sub3', name: 'Equipment' }
+            { path: 'sub1', name: 'HeroDetails' },
+            { path: 'sub2', name: 'HeroPassiveSkills' },
+            { path: 'sub3', name: 'HeroEquipment' }
         ],
         friends: [
-            { path: 'sub1', name: 'Friends' }
+            { path: 'sub1', name: 'AllFriends' }
         ],
         quests: [
             { path: 'sub1', name: 'Active' },
@@ -57,21 +57,21 @@ const MainLayout = () => {
         <div className="main-layout">
             <img src={windowImage} alt="Window" className="window" />
             <div className="nav-icons-top nav-buttons">
-                <img src={homeIcon} alt="Home" onClick={() => navigate('/home')} className="nav-icon" />
-                <img src={addFriendsIcon} alt="Add Friends" onClick={() => navigate('/friends')} className="nav-icon" />
+                <img src={homeIcon} alt="Home" onClick={() => navigate('/home')} className="nav-icon nav-button" />
+                <img src={addFriendsIcon} alt="Add Friends" onClick={() => navigate('/friends')} className="nav-icon nav-button" />
             </div>
             <SubNavigation basePath={`/${basePath}`} subPages={subPages} />
             <div className="content">
                 <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
             </div>
-            <div className="nav-icon-battle nav-buttons">
+            <div className="nav-icon-battle nav-button">
                 <img src={battleIcon} alt="Battle" onClick={() => navigate('/battle')} className="nav-icon" />
             </div>
             <div className="nav-icons-bottom nav-buttons">
-                <img src={farmIcon} alt="Farm" onClick={() => navigate('/farm')} className="nav-icon" />
-                <img src={heroIcon} alt="Hero" onClick={() => navigate('/hero')} className="nav-icon" />
-                <img src={questIcon} alt="Quest" onClick={() => navigate('/quests')} className="nav-icon" />
-                <img src={mineIcon} alt="Mine" onClick={() => navigate('/mines')} className="nav-icon" />
+                <img src={farmIcon} alt="Farm" onClick={() => navigate('/farm')} className="nav-icon nav-button" />
+                <img src={heroIcon} alt="Hero" onClick={() => navigate('/hero')} className="nav-icon nav-button" />
+                <img src={questIcon} alt="Quest" onClick={() => navigate('/quests')} className="nav-icon nav-button" />
+                <img src={mineIcon} alt="Mine" onClick={() => navigate('/mines')} className="nav-icon nav-button" />
             </div>
         </div>
     );
