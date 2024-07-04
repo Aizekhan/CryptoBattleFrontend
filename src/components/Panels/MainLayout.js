@@ -18,9 +18,9 @@ const MainLayout = () => {
 
     const subPagesConfig = {
         battle: [
-            { path: 'sub1', name: 'PVP' },
-            { path: 'sub2', name: 'ABILITY' },
-            { path: 'sub3', name: 'RANK' }
+            { path: 'pvp', name: 'PVP' },
+            { path: 'ability', name: 'ABILITY' },
+            { path: 'rank', name: 'RANK' }
         ],
         home: [
             { path: 'sub1', name: 'News' },
@@ -30,16 +30,16 @@ const MainLayout = () => {
         farm: [
             { path: 'sub1', name: 'Hunt' },
             { path: 'sub2', name: 'Locations' },
-            { path: 'sub3', name: 'FarmSkills' }
+            { path: 'sub3', name: 'HeroFarmSkills' }
         ],
         mines: [
             { path: 'sub1', name: 'MinesGold' },
             { path: 'sub2', name: 'MiningSkills' }
         ],
         hero: [
-            { path: 'sub1', name: 'Hero' },
-            { path: 'sub2', name: 'Ability' },
-            { path: 'sub3', name: 'Equip' }
+            { path: 'sub1', name: 'HeroDetails' },
+            { path: 'sub2', name: 'HeroPassiveSkills' },
+            { path: 'sub3', name: 'HeroEquipment' }
         ],
         friends: [
             { path: 'sub1', name: 'AllFriends' }
@@ -51,27 +51,21 @@ const MainLayout = () => {
         ]
     };
 
-    const subPages = subPagesConfig[basePath] || [];
-
     return (
         <div className="main-layout">
             <img src={windowImage} alt="Window" className="window" />
             <div className="nav-icons-top">
-                <img src={homeIcon} alt="Home" onClick={() => navigate('/home')} className="nav-icon" />
-                <img src={addFriendsIcon} alt="Add Friends" onClick={() => navigate('/friends')} className="nav-icon" />
+                <img src={homeIcon} alt="Home" className="nav-icon" onClick={() => navigate('/home')} />
+                <img src={addFriendsIcon} alt="Friends" className="nav-icon" onClick={() => navigate('/friends')} />
             </div>
-            <SubNavigation basePath={`/${basePath}`} subPages={subPages} />
-            <div className="content">
-                <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
-            </div>
-            <div className="nav-icon-battle">
-                <img src={battleIcon} alt="Battle" onClick={() => navigate('/battle')} className="nav-icon" />
-            </div>
+            <SubNavigation subPages={subPagesConfig[basePath]} />
+            <Outlet />
             <div className="nav-icons-bottom">
-                <img src={farmIcon} alt="Farm" onClick={() => navigate('/farm')} className="nav-icon" />
-                <img src={mineIcon} alt="Mine" onClick={() => navigate('/mines')} className="nav-icon" />
-                <img src={questIcon} alt="Quest" onClick={() => navigate('/quests')} className="nav-icon" />  
-                <img src={heroIcon} alt="Hero" onClick={() => navigate('/hero')} className="nav-icon" />
+                <img src={farmIcon} alt="Farm" className="nav-icon" onClick={() => navigate('/farm')} />
+                <img src={heroIcon} alt="Hero" className="nav-icon" onClick={() => navigate('/hero')} />
+                <img src={battleIcon} alt="Battle" className="nav-icon-battle" onClick={() => navigate('/battle')} />
+                <img src={questIcon} alt="Quest" className="nav-icon" onClick={() => navigate('/quests')} />
+                <img src={mineIcon} alt="Mine" className="nav-icon" onClick={() => navigate('/mines')} />
             </div>
         </div>
     );
