@@ -43,7 +43,9 @@
 
 .sub-nav-button {
     display: flex;
+    flex-direction: column; /* Розташування значка та тексту вертикально */
     align-items: center;
+    justify-content: center; /* Центрування тексту */
     background-color: transparent;
     border: none;
     color: #fff;
@@ -53,7 +55,6 @@
     text-decoration: none;
     cursor: pointer;
     flex: 1; /* Розподіл ширини для рівномірного розподілу */
-    justify-content: center; /* Центрування тексту */
 }
 
 .sub-nav-icon {
@@ -67,8 +68,9 @@
 }
 
 .sub-nav-button span {
-    display: inline; /* Відображення назв підвкладок */
-    margin-left: 5px;
+    display: block; /* Відображення назв підвкладок як блоків */
+    text-align: center; /* Центрування тексту */
+    margin-top: 5px; /* Відступ між значком та текстом */
 }
 
 /* Позиціонування центрального значка Battle */
@@ -115,7 +117,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%; /* Ширина, яка займає основну частину екрану */
+    width: 100%; /* Ширина, яка займає основну частину екрану */
     height: auto;
     z-index: 1000; /* Z-index для відображення під значками */
     pointer-events: none; /* Вимкнення подій миші для зображення, щоб значки були клікабельні */
