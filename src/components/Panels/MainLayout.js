@@ -39,7 +39,7 @@ const MainLayout = () => {
         hero: [
             { path: 'sub1', name: 'Hero' },
             { path: 'sub2', name: 'PassiveSkills' },
-            { path: 'sub3', name: Equipment' }
+            { path: 'sub3', name: 'Equipment' }
         ],
         friends: [
             { path: 'sub1', name: 'AllFriends' }
