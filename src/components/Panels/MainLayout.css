@@ -117,41 +117,41 @@
     pointer-events: none; /* Вимкнення подій миші для тексту */
 }
 
-/* Стилі для контенту сторінки /
+/* Стилі для контенту сторінки */
 .content {
-position: absolute;
-top: 145px; / Відстань від верхнього краю до початку контенту під субвкладками /
-bottom: 145px; / Відстань від нижнього краю до кінця контенту над нижніми значками /
-left: 40px;
-right: 40px;
-overflow-y: auto;
-box-sizing: border-box;
-z-index: 2; / Збільшений z-index для відображення поверх інших елементів */
+    position: absolute;
+    top: 145px; /* Відстань від верхнього краю до початку контенту під субвкладками */
+    bottom: 145px; /* Відстань від нижнього краю до кінця контенту над нижніми значками */
+    left: 40px;
+    right: 40px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
 }
 
 /* Адаптивні стилі для мобільних пристроїв */
 @media (max-width: 600px) {
-.nav-icon,
-.nav-icon-battle {
-width: 60px;
-height: 60px;
-}
-.nav-icons-top,
-.nav-icons-bottom {
-    padding: 0 10px;
-}
+    .nav-icon,
+    .nav-icon-battle {
+        width: 60px;
+        height: 60px;
+    }
 
-.sub-nav-button {
-    margin: 0 2px;
-}
+    .nav-icons-top,
+    .nav-icons-bottom {
+        padding: 0 10px;
+    }
 
-.sub-nav-icon {
-    max-height: 40px;
-}
+    .sub-nav-button {
+        margin: 0 2px;
+    }
 
-.content {
-    top: 120px;
-    bottom: 120px;
-}
+    .sub-nav-icon {
+        max-height: 40px;
+    }
 
+    .content {
+        top: 120px;
+        bottom: 120px;
+    }
 }
