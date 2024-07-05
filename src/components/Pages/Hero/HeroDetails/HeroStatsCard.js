@@ -10,7 +10,6 @@ import dodgeChanceIcon from '../../../../assets/icons/dodgeChance.png';
 import critPowerIcon from '../../../../assets/icons/critPower.png';
 import accuracyIcon from '../../../../assets/icons/accuracy.png';
 import cardBackground from '../../../../assets/icons/StatsPanel-background.png';
-import './HeroStatsCard.css';
 
 const HeroStatsCard = ({ stats }) => {
     return (
