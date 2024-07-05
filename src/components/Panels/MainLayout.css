@@ -147,7 +147,7 @@
 
 .hero-stats-card {
     position: relative;
-    width: 300px;
+    width: 200px;
     height: auto;
     background: url('../../assets/icons/StatsPanel-background.png') no-repeat center center;
     background-size: contain;
@@ -178,13 +178,13 @@
 }
 
 .stat-icon {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     margin-right: 10px;
 }
 
 .stat-value {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
     color: #fff;
 }
