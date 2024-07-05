@@ -10,7 +10,9 @@ const Hero = () => {
     return (
         <div className="hero-page">
             <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
-            <HeroStatsCard stats={currentHero.baseStats} /> {/* Відображення картки HeroStatsCard */}
+            <div className="hero-stats-container">
+                <HeroStatsCard stats={currentHero.baseStats} /> {/* Відображення картки HeroStatsCard */}
+            </div>
         </div>
     );
 };
