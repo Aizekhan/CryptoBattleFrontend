@@ -50,20 +50,15 @@
 }
 
 
-.nav-icons-bottom.move-icons .mine-icon, 
-.nav-icons-bottom.move-icons .quest-icon {
-    position: absolute; /* Абсолютне позиціонування */
-}
-
 .nav-icons-bottom.move-icons .mine-icon {
-    left: 5px; /* Переміщення до лівого краю */
-    bottom: 105px; /* Підняття на 100px */
+    transform: translate(-50%, -100px);
 }
 
 .nav-icons-bottom.move-icons .quest-icon {
-    right: 5px; /* Переміщення до правого краю */
-    bottom: 105px; /* Підняття на 100px */
+    transform: translate(50%, -100px);
 }
+
+
 .nav-icons-bottom .nav-icon {
     width: 80px;
     height: 80px;
