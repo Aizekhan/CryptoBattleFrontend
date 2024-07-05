@@ -62,7 +62,7 @@ const MainLayout = () => {
         <div className="main-layout">
             <div className="nav-icons-top">
                 <img src={homeIcon} alt="Home" onClick={() => navigate('/home')} className="nav-icon" />
-                <img src={addFriendsIcon} alt="Add Friends" onClick={() => navigate('/friends')} className="nav-icon" />
+                <img src={battleIcon} alt="Battle" onClick={() => navigate('/battle')} className="nav-icon" />
             </div>
             <SubNavigation basePath={`/${basePath}`} subPages={subPages} />
             <div className="content">
@@ -73,8 +73,8 @@ const MainLayout = () => {
                     <HeroStatsCard stats={currentHero.baseStats} />
                 </div>
             )}
-            <div className="nav-icon-battle">
-                <img src={battleIcon} alt="Battle" onClick={() => navigate('/battle')} className="nav-icon" />
+            <div className="nav-icon-addFriends">
+                <img src={addFriendsIcon} alt="Add Friends" onClick={() => navigate('/friends')} className="nav-icon" />       
             </div>
             <div className="nav-icons-bottom">
                 <img src={farmIcon} alt="Farm" onClick={() => navigate('/farm')} className="nav-icon" />
