@@ -4,7 +4,7 @@
     background: url('../../assets/images/Backgrounds/MainBackground.png') no-repeat center center fixed;
     background-size: cover;
     background-position: center;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Враховує padding і border у загальній ширині та висоті */
 }
 
 /* Позиціонування верхніх кнопок */
@@ -14,7 +14,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 0 5px;
+    padding: 0 5px; /* Відступ від країв екрана */
     box-sizing: border-box;
     z-index: 2;
 }
@@ -43,24 +43,19 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
-    padding: 0 5px;
-    box-sizing: border-box;
+    padding: 0 5px; /* Відступ від країв екрана */
+    box-sizing: border-box; /* Враховує padding і border у загальній ширині */
     z-index: 2;
     transition: all 0.5s ease-in-out;
 }
 
+
 .nav-icons-bottom.move-icons .mine-icon {
-    position: absolute;
-    bottom: 105px; /* Трохи більше 100px, щоб компенсувати padding */
-    left: 0; /* Лівий край контейнера */
-    transform: translate(0, 0);
+    transform: translate(-100%, -100px);
 }
 
 .nav-icons-bottom.move-icons .quest-icon {
-    position: absolute;
-    bottom: 105px; /* Трохи більше 100px, щоб компенсувати padding */
-    right: 0; /* Правий край контейнера */
-    transform: translate(0, 0);
+    transform: translate(100%, -100px);
 }
 
 .nav-icons-bottom .nav-icon {
@@ -80,7 +75,7 @@
     padding: 4px 4px;
     background-color: transparent;
     color: #fff;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Враховує padding і border у загальній ширині */
     height: 60px;
     width: 100%;
     z-index: 998;
@@ -99,7 +94,7 @@
     border: none;
     color: #fff;
     font-size: 14px;
-    margin: 0 1px; /* Зменшення відступу між кнопками */
+    margin: 0 2px; /* Зменшення відступу між кнопками */
     padding: 0;
     text-decoration: none;
     cursor: pointer;
@@ -136,7 +131,7 @@
     left: 40px;
     right: 40px;
     overflow-y: auto;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Враховує padding і border у загальній ширині */
     z-index: 2;
 }
 
@@ -152,7 +147,7 @@
 .hero-stats-card {
     position: relative;
     width: 200px;
-    height: 200px;
+    height: auto;
     background: url('../../assets/icons/StatsPanel-background.png') no-repeat center center;
     background-size: contain;
     display: flex;
