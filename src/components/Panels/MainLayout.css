@@ -49,12 +49,17 @@
     z-index: 2;
  transition: all 0.5s ease-in-out;
 }
+
+.nav-icon-addFriends.move-icons {
+    transform: translate(0%, 0%);
+}
+
 .nav-icons-bottom.move-icons .mine-icon {
-    transform: translateY(-120px);
+    transform: translate(0%, -100px);
 }
 
 .nav-icons-bottom.move-icons .quest-icon {
-    transform: translateY(-120px);
+   transform: translate(100%, -100px);
 }
 .nav-icons-bottom .nav-icon {
     width: 80px;
