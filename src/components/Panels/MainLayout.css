@@ -2,7 +2,7 @@
     position: relative;
     height: 100vh;
     background: url('../../assets/images/Backgrounds/MainBackground.png') no-repeat center center fixed;
-    background-size: cover;
+    background-size: cover; /* Зберігає пропорції зображення і заповнює весь екран */
     background-position: center;
     box-sizing: border-box;
 }
@@ -10,88 +10,88 @@
 /* Позиціонування верхніх кнопок */
 .nav-icons-top {
     position: absolute;
-    top: 0px;
-    width: 100%;
+    top: 0px; /* Відступ від верхнього краю */
+    width: 100%; /* Ширина контейнера значків */
     display: flex;
     justify-content: space-between;
     padding: 0 20px;
     box-sizing: border-box;
-    z-index: 2;
+    z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
 }
 
 .nav-icon {
-    width: 80px;
-    height: 80px;
+    width: 80px; /* Встановлення розміру значків */
+    height: 80px; /* Встановлення розміру значків */
     cursor: pointer;
 }
 
 .nav-icon-battle {
-    width: 80px;
-    height: 80px;
+    width: 80px; /* Встановлення розміру значка Battle */
+    height: 80px; /* Встановлення розміру значка Battle */
     position: absolute;
-    bottom: 100px;
+    bottom: 100px; /* Відступ від нижнього краю, щоб розмістити над іншими значками */
     left: 50%;
     transform: translateX(-50%);
-    z-index: 2;
+    z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
 }
 
 /* Позиціонування нижніх значків */
 .nav-icons-bottom {
     position: absolute;
-    bottom: 5px;
-    width: 100%;
+    bottom: 5px; /* Відступ від нижнього краю */
+    width: 100%; /* Ширина контейнера значків */
     display: flex;
     justify-content: space-around;
     padding: 0 20px;
     box-sizing: border-box;
-    z-index: 2;
+    z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
 }
 
 .nav-icons-bottom .nav-icon {
-    width: 80px;
-    height: 80px;
+    width: 80px; /* Встановлення розміру значків */
+    height: 80px; /* Встановлення розміру значків */
     cursor: pointer;
 }
 
 /* Позиціонування підвкладок */
 .sub-navigation {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-around; /* Рівномірний розподіл підвкладок по ширині */
     align-items: center;
     padding: 10px 20px;
-    background-color: transparent;
+    background-color: transparent; /* Прозорий фон */
     color: #fff;
     box-sizing: border-box;
-    height: 60px;
+    height: 60px; /* Збільшена висота для підвкладок */
     width: 100%;
     z-index: 998;
-    position: absolute;
-    top: 70px;
-    margin-top: 0px;
+    position: absolute; /* Абсолютне позиціонування */
+    top: 70px; /* Відступ від верхнього краю */
+    margin-top: 0px; /* Відсутність відступу від верхнього краю */
 }
 
 .sub-nav-button {
-    position: relative;
+    position: relative; /* Потрібно для абсолютного позиціонування тексту всередині кнопки */
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Розташування елементів вертикально */
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* Центрування тексту */
     background-color: transparent;
     border: none;
     color: #fff;
     font-size: 14px;
-    margin: 0 5px;
+    margin: 0 5px; /* Зменшення відступів для підвкладок */
     padding: 0;
     text-decoration: none;
     cursor: pointer;
-    height: 100%;
+    height: 100%; /* Займає всю висоту батьківського елемента */
 }
 
 .sub-nav-icon {
-    width: 100%;
-    height: auto;
-    max-height: 60px;
-    max-width: 160px;  
+    width: 100%; /* Ширина значків підвкладок */
+    height: auto; /* Автоматична висота для збереження пропорцій */
+    max-height: 60px; /* Максимальна висота значків */
+    max-width: 160px; /* Максимальна висота значків */  
 }
 
 .sub-nav-button:hover .sub-nav-icon {
@@ -99,27 +99,27 @@
 }
 
 .sub-nav-button span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    line-height: 1;
-    font-weight: bold;
-    color: yellow;
-    pointer-events: none;
+    position: absolute; /* Абсолютне позиціонування тексту */
+    top: 50%; /* Вирівнювання по центру по вертикалі */
+    left: 50%; /* Вирівнювання по центру по горизонталі */
+    transform: translate(-50%, -50%); /* Переміщення на центр */
+    text-align: center; /* Центрування тексту */
+    line-height: 1; /* Вирівнювання тексту по висоті */
+    font-weight: bold; /* Жирний текст */
+    color: yellow; /* Жовтий колір тексту */
+    pointer-events: none; /* Вимкнення подій миші для тексту */
 }
 
 /* Стилі для контенту сторінки */
 .content {
     position: absolute;
-    top: 145px;
-    bottom: 145px;
+    top: 145px; /* Відстань від верхнього краю до початку контенту під субвкладками */
+    bottom: 145px; /* Відстань від нижнього краю до кінця контенту над нижніми значками */
     left: 40px;
     right: 40px;
     overflow-y: auto;
     box-sizing: border-box;
-    z-index: 2;
+    z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
 }
 
 /* Стилі для HeroStatsCard */
@@ -134,8 +134,8 @@
 
 .hero-stats-card {
     position: relative;
-    width: 300px;
-    height: auto;
+    width: 300px; /* Задаємо ширину картки */
+    height: auto; /* Висота автоматично підлаштовується */
     background: url('../../assets/icons/StatsPanel-background.png') no-repeat center center;
     background-size: contain;
     display: flex;
@@ -152,7 +152,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: -1; /* Розміщуємо фонове зображення позаду вмісту */
 }
 
 .stats-container {
@@ -183,31 +183,4 @@
     font-size: 18px;
     font-weight: bold;
     color: #fff;
-}
-
-/* Адаптивні стилі для мобільних пристроїв */
-@media (max-width: 600px) {
-    .nav-icon,
-    .nav-icon-battle {
-        width: 60px;
-        height: 60px;
-    }
-
-    .nav-icons-top,
-    .nav-icons-bottom {
-        padding: 0 10px;
-    }
-
-    .sub-nav-button {
-        margin: 0 2px;
-    }
-
-    .sub-nav-icon {
-        max-height: 40px;
-    }
-
-    .content {
-        top: 120px;
-        bottom: 120px;
-    }
 }
