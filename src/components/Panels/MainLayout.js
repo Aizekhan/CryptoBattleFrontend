@@ -9,17 +9,17 @@ import mineIcon from '../../assets/icons/NavPanel/mines-icon.png';
 import battleIcon from '../../assets/icons/NavPanel/battle-icon.png';
 import './MainLayout.css';
 import SubNavigation from './SubNavigation';
-import HeroStatsCard from '../Pages/Hero/HeroDetails/HeroStatsCard'; // Імпортуємо компонент HeroStatsCard
-import { useUserStats } from '../../context/UserStatsContext'; // Імпортуємо контекст для отримання статистики героя
+import HeroStatsCard from '../Pages/Hero/HeroDetails/HeroStatsCard';
+import { useUserStats } from '../../context/UserStatsContext';
 
 const MainLayout = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const basePath = location.pathname.split('/')[1];
     const isHeroPage = basePath === 'hero';
-    
-    const { userStats } = useUserStats(); // Отримуємо дані користувача з контексту
-    const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId) || {}; // Знаходимо поточного героя
+
+    const { userStats } = useUserStats();
+    const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId) || {};
 
     const subPagesConfig = {
         battle: [
@@ -69,10 +69,10 @@ const MainLayout = () => {
                 <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
             </div>
             {isHeroPage && <HeroStatsCard stats={currentHero.baseStats} />} {/* Відображення картки HeroStatsCard тільки на сторінці Hero */}
-            <div className={`nav-icon-battle ${isHeroPage ? 'move-up' : ''}`}>
+            <div className="nav-icon-battle">
                 <img src={battleIcon} alt="Battle" onClick={() => navigate('/battle')} className="nav-icon" />
             </div>
-            <div className={`nav-icons-bottom ${isHeroPage ? 'move-sides' : ''}`}>
+            <div className="nav-icons-bottom">
                 <img src={farmIcon} alt="Farm" onClick={() => navigate('/farm')} className="nav-icon" />
                 <img src={heroIcon} alt="Hero" onClick={() => navigate('/hero')} className="nav-icon" />
                 <img src={questIcon} alt="Quest" onClick={() => navigate('/quests')} className="nav-icon" />
