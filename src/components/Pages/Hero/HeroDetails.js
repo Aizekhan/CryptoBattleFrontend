@@ -4,7 +4,6 @@ import leftArrowIcon from '../../../assets/icons/NavPanel/left-arrow.png';
 import rightArrowIcon from '../../../assets/icons/NavPanel/right-arrow.png';
 import './HeroDetails.css'; // Додаємо окремий файл стилів для компонента
 import heroesConfig from '../../../context/heroesConfig'; // Імпортуємо конфігурацію героїв
-import HeroStatsCard from './HeroDetails/HeroStatsCard'; // Імпортуємо новий компонент
 
 const HeroDetails = () => {
     const { userStats, updateUserStats } = useUserStats();
@@ -34,9 +33,6 @@ const HeroDetails = () => {
                 )}
                 <img src={rightArrowIcon} alt="Next Hero" onClick={handleNextHero} className="arrow-icon" />
             </div>
-            {heroConfig && (
-                <HeroStatsCard stats={heroConfig.baseStats} />
-            )}
         </div>
     );
 };
