@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import homeIcon from '../../assets/icons/NavPanel/home-icon.png';
-import addFriendsIcon from '../../assets/icons/NavPanel/friends-icon.png';
 import farmIcon from '../../assets/icons/NavPanel/farm-icon.png';
 import heroIcon from '../../assets/icons/NavPanel/hero-icon.png';
 import questIcon from '../../assets/icons/NavPanel/quests-icon.png';
 import mineIcon from '../../assets/icons/NavPanel/mines-icon.png';
 import battleIcon from '../../assets/icons/NavPanel/battle-icon.png';
+import addFriendsIcon from '../../assets/icons/NavPanel/friends-icon.png';
 import './MainLayout.css';
 import SubNavigation from './SubNavigation';
 import { useUserStats } from '../../context/UserStatsContext';
@@ -73,14 +73,14 @@ const MainLayout = () => {
                     <HeroStatsCard stats={currentHero.baseStats} />
                 </div>
             )}
-            <div className={`nav-icon-addFriends ${isHeroPage ? 'move-icons' : ''}`}>
-                <img src={addFriendsIcon} alt="Add Friends" onClick={() => navigate('/friends')} className="nav-icon" />       
+            <div className={`nav-icon-hero ${isHeroPage ? 'move-icons hidden' : ''}`}>
+                <img src={heroIcon} alt="Hero" onClick={() => navigate('/hero')} className="nav-icon" />
             </div>
             <div className={`nav-icons-bottom ${isHeroPage ? 'move-icons' : ''}`}>
                 <img src={farmIcon} alt="Farm" onClick={() => navigate('/farm')} className="nav-icon" />
                 <img src={mineIcon} alt="Mine" onClick={() => navigate('/mines')} className="nav-icon mine-icon" />
                 <img src={questIcon} alt="Quest" onClick={() => navigate('/quests')} className="nav-icon quest-icon" />
-                <img src={heroIcon} alt="Hero" onClick={() => navigate('/hero')} className="nav-icon" />
+                <img src={addFriendsIcon} alt="Add Friends" onClick={() => navigate('/friends')} className="nav-icon" />       
             </div>
         </div>
     );

@@ -17,17 +17,16 @@
     padding: 0 20px;
     box-sizing: border-box;
     z-index: 2;
-
 }
 
 .nav-icon {
     width: 80px;
     height: 80px;
     cursor: pointer;
- transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
-.nav-icon-addFriends {
+.nav-icon-hero {
     width: 80px;
     height: 80px;
     position: absolute;
@@ -35,7 +34,7 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
- transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 .nav-icons-bottom {
@@ -47,24 +46,29 @@
     padding: 0 20px;
     box-sizing: border-box;
     z-index: 2;
- transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
-.nav-icon-addFriends.move-icons {
+.nav-icon-hero.move-icons {
     transform: translate(0%, 0%);
 }
 
 .nav-icons-bottom.move-icons .mine-icon {
-    transform: translate(10%, -100px);
+    transform: translate(-100%, -100px);
 }
 
 .nav-icons-bottom.move-icons .quest-icon {
-   transform: translate(100%, -100px);
+    transform: translate(100%, -100px);
 }
+
 .nav-icons-bottom .nav-icon {
     width: 80px;
     height: 80px;
     cursor: pointer;
+}
+
+.hidden {
+    display: none;
 }
 
 .sub-navigation {
