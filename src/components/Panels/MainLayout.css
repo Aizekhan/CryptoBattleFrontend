@@ -17,12 +17,14 @@
     padding: 0 20px;
     box-sizing: border-box;
     z-index: 2;
+
 }
 
 .nav-icon {
     width: 80px;
     height: 80px;
     cursor: pointer;
+ transition: all 0.5s ease-in-out;
 }
 
 .nav-icon-addFriends {
@@ -33,6 +35,7 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
+ transition: all 0.5s ease-in-out;
 }
 
 .nav-icons-bottom {
@@ -44,8 +47,12 @@
     padding: 0 20px;
     box-sizing: border-box;
     z-index: 2;
+ transition: all 0.5s ease-in-out;
 }
-
+.nav-icons-bottom.move-center {
+    bottom: 50%;
+    transform: translateY(50%);
+}
 .nav-icons-bottom .nav-icon {
     width: 80px;
     height: 80px;

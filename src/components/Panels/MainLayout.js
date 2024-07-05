@@ -76,7 +76,7 @@ const MainLayout = () => {
             <div className="nav-icon-addFriends">
                 <img src={addFriendsIcon} alt="Add Friends" onClick={() => navigate('/friends')} className="nav-icon" />       
             </div>
-            <div className="nav-icons-bottom">
+            <div className={`nav-icons-bottom ${isHeroPage ? 'move-center' : ''}`}>
                 <img src={farmIcon} alt="Farm" onClick={() => navigate('/farm')} className="nav-icon" />
                 <img src={heroIcon} alt="Hero" onClick={() => navigate('/hero')} className="nav-icon" />
                 <img src={questIcon} alt="Quest" onClick={() => navigate('/quests')} className="nav-icon" />
