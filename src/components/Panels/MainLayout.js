@@ -9,7 +9,7 @@ import mineIcon from '../../assets/icons/NavPanel/mines-icon.png';
 import battleIcon from '../../assets/icons/NavPanel/battle-icon.png';
 import './MainLayout.css';
 import SubNavigation from './SubNavigation';
-import HeroStatsCard from './HeroDetails/HeroStatsCard'; // Імпортуємо компонент HeroStatsCard
+import HeroStatsCard from '../Pages/Hero/HeroDetailsHeroDetails/HeroStatsCard'; // Імпортуємо компонент HeroStatsCard
 
 const MainLayout = () => {
     const navigate = useNavigate();
