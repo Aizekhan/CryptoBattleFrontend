@@ -51,11 +51,11 @@
 
 
 .nav-icons-bottom.move-icons .mine-icon {
-    transform: translate(-50%, -100px);
+    transform: translate(-110%, -100px);
 }
 
 .nav-icons-bottom.move-icons .quest-icon {
-    transform: translate(50%, -100px);
+    transform: translate(110%, -100px);
 }
 
 
