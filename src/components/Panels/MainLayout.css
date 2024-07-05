@@ -7,29 +7,6 @@
     box-sizing: border-box;
 }
 
-/* Централізована картинка Window */
-.window {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%; /* Ширина, яка займає основну частину екрану */
-    height: auto;
-    z-index: 1; /* Z-index для відображення поверх бекграунду, але під значками */
-    pointer-events: none; /* Вимкнення подій миші для зображення, щоб значки були клікабельні */
-}
-
-.stats-background {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    height: auto;
-    z-index: 2;
-    pointer-events: none;
-}
-
 /* Позиціонування верхніх кнопок */
 .nav-icons-top {
     position: absolute;
@@ -58,7 +35,7 @@
     z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
 }
 
-.nav-icon-battle.move-sides {
+.nav-icon-battle.move-up {
     bottom: 300px; /* Переміщення вгору при переході на сторінку героя */
 }
 
@@ -121,7 +98,7 @@
     width: 100%; /* Ширина значків підвкладок */
     height: auto; /* Автоматична висота для збереження пропорцій */
     max-height: 60px; /* Максимальна висота значків */
-    max-width: 160px; /* Максимальна висота значків */
+    max-width: 160px; /* Максимальна висота значків */  
 }
 
 .sub-nav-button:hover .sub-nav-icon {
@@ -140,41 +117,40 @@
     pointer-events: none; /* Вимкнення подій миші для тексту */
 }
 
-/* Стилі для контенту сторінки */
+/* Стилі для контенту сторінки /
 .content {
-    position: absolute;
-    top: 145px; /* Відстань від верхнього краю до початку контенту під субвкладками */
-    bottom: 145px; /* Відстань від нижнього краю до кінця контенту над нижніми значками */
-    left: 40px;
-    right: 40px;
-    overflow-y: auto;
-    box-sizing: border-box;
-    z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
+position: absolute;
+top: 145px; / Відстань від верхнього краю до початку контенту під субвкладками /
+bottom: 145px; / Відстань від нижнього краю до кінця контенту над нижніми значками /
+left: 40px;
+right: 40px;
+overflow-y: auto;
+box-sizing: border-box;
+z-index: 2; / Збільшений z-index для відображення поверх інших елементів */
 }
 
 /* Адаптивні стилі для мобільних пристроїв */
 @media (max-width: 600px) {
-    .nav-icon,
-    .nav-icon-battle {
-        width: 60px;
-        height: 60px;
-    }
-
-    .nav-icons-top,
-    .nav-icons-bottom {
-        padding: 0 10px;
-    }
-
-    .sub-nav-button {
-        margin: 0 2px;
-    }
-
-    .sub-nav-icon {
-        max-height: 40px;
-    }
-
-    .content {
-        top: 120px;
-        bottom: 120px;
-    }
+.nav-icon,
+.nav-icon-battle {
+width: 60px;
+height: 60px;
 }
+.nav-icons-top,
+.nav-icons-bottom {
+    padding: 0 10px;
+}
+
+.sub-nav-button {
+    margin: 0 2px;
+}
+
+.sub-nav-icon {
+    max-height: 40px;
+}
+
+.content {
+    top: 120px;
+    bottom: 120px;
+}
+
