@@ -9,7 +9,7 @@ import mineIcon from '../../assets/icons/NavPanel/mines-icon.png';
 import battleIcon from '../../assets/icons/NavPanel/battle-icon.png';
 import './MainLayout.css';
 import SubNavigation from './SubNavigation';
-import HeroStatsCard from '../Pages/Hero/HeroDetails/HeroStatsCard'; // Імпортуємо компонент HeroStatsCard
+import HeroStatsCard from './HeroDetails/HeroStatsCard'; // Імпортуємо компонент HeroStatsCard
 
 const MainLayout = () => {
     const navigate = useNavigate();
@@ -31,16 +31,16 @@ const MainLayout = () => {
         farm: [
             { path: 'sub1', name: 'Hunt' },
             { path: 'sub2', name: 'Locations' },
-            { path: 'sub3', name: 'FarmSkills' }
+            { path: 'sub3', name: 'HeroFarmSkills' }
         ],
         mines: [
             { path: 'sub1', name: 'MinesGold' },
             { path: 'sub2', name: 'MiningSkills' }
         ],
         hero: [
-            { path: 'sub1', name: 'Hero' },
-            { path: 'sub2', name: 'PassiveSkills' },
-            { path: 'sub3', name: 'Equipment' }
+            { path: 'sub1', name: 'HeroDetails' },
+            { path: 'sub2', name: 'HeroPassiveSkills' },
+            { path: 'sub3', name: 'HeroEquipment' }
         ],
         friends: [
             { path: 'sub1', name: 'AllFriends' }
@@ -73,7 +73,11 @@ const MainLayout = () => {
                 <img src={questIcon} alt="Quest" onClick={() => navigate('/quests')} className="nav-icon" />
                 <img src={mineIcon} alt="Mine" onClick={() => navigate('/mines')} className="nav-icon" />
             </div>
-            {isHeroPage && <HeroStatsCard stats={subPages} />} {/* Додаємо HeroStatsCard лише для сторінок героя */}
+            {isHeroPage && (
+                <div className="hero-stats-container">
+                    <HeroStatsCard stats={{ /* передайте тут потрібні стати героя */ }} />
+                </div>
+            )}
         </div>
     );
 };
