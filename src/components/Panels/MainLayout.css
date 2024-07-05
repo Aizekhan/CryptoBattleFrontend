@@ -55,7 +55,7 @@
 }
 
 .nav-icons-bottom.move-icons .mine-icon {
-    transform: translate(-100%, -100px);
+    transform: translate(10%, -100px);
 }
 
 .nav-icons-bottom.move-icons .quest-icon {

@@ -73,7 +73,7 @@ const MainLayout = () => {
                     <HeroStatsCard stats={currentHero.baseStats} />
                 </div>
             )}
-            <div className="nav-icon-addFriends">
+            <div className={`nav-icon-addFriends ${isHeroPage ? 'move-icons' : ''}`}>
                 <img src={addFriendsIcon} alt="Add Friends" onClick={() => navigate('/friends')} className="nav-icon" />       
             </div>
             <div className={`nav-icons-bottom ${isHeroPage ? 'move-icons' : ''}`}>
