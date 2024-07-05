@@ -150,7 +150,7 @@
     width: 200px;
     height: auto;
     background: url('../../assets/icons/StatsPanel-background.png') no-repeat center center;
-    background-size: 150%; /* Збільшити фон на 150% */
+    background-size: 100%; /* Збільшити фон на 150% */
     display: flex;
     flex-direction: column;
     align-items: center;
