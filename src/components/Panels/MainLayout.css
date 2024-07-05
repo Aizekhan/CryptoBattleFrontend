@@ -147,7 +147,7 @@
 
 .hero-stats-card {
     position: relative;
-    width: 200px;
+    width: 300px;
     height: auto;
     background: url('../../assets/icons/StatsPanel-background.png') no-repeat center center;
     background-size: contain;
