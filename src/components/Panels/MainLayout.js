@@ -64,6 +64,7 @@ const MainLayout = () => {
             <div className="content">
                 <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
             </div>
+            {isHeroPage && <HeroStatsCard stats={/* передайте статистику вашого героя */} />} {/* Відображення картки HeroStatsCard тільки на сторінці Hero */}
             <div className={`nav-icon-battle ${isHeroPage ? 'move-up' : ''}`}>
                 <img src={battleIcon} alt="Battle" onClick={() => navigate('/battle')} className="nav-icon" />
             </div>
@@ -73,11 +74,6 @@ const MainLayout = () => {
                 <img src={questIcon} alt="Quest" onClick={() => navigate('/quests')} className="nav-icon" />
                 <img src={mineIcon} alt="Mine" onClick={() => navigate('/mines')} className="nav-icon" />
             </div>
-            {isHeroPage && (
-                <div className="hero-stats-container">
-                    <HeroStatsCard stats={{ /* передайте тут потрібні стати героя */ }} />
-                </div>
-            )}
         </div>
     );
 };
