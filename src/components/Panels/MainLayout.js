@@ -9,13 +9,17 @@ import mineIcon from '../../assets/icons/NavPanel/mines-icon.png';
 import battleIcon from '../../assets/icons/NavPanel/battle-icon.png';
 import './MainLayout.css';
 import SubNavigation from './SubNavigation';
-
+import { useUserStats } from '../../context/UserStatsContext';
+import HeroStatsCard from '../Pages/Hero/HeroDetails/HeroStatsCard';
 
 const MainLayout = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const basePath = location.pathname.split('/')[1];
-
+    const isHeroPage = basePath === 'hero';
+    
+    const { userStats } = useUserStats();
+    const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId) || {};
 
     const subPagesConfig = {
         battle: [
@@ -64,6 +68,11 @@ const MainLayout = () => {
             <div className="content">
                 <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
             </div>
+            {isHeroPage && (
+                <div className="hero-stats-container">
+                    <HeroStatsCard stats={currentHero.baseStats} />
+                </div>
+            )}
             <div className="nav-icon-battle">
                 <img src={battleIcon} alt="Battle" onClick={() => navigate('/battle')} className="nav-icon" />
             </div>
