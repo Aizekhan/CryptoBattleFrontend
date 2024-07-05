@@ -139,7 +139,7 @@
 .hero-stats-container {
     position: absolute;
     bottom: 0;
-    width: 100%;
+    width: 120%;
     display: flex;
     justify-content: center;
     z-index: 3;
@@ -147,7 +147,7 @@
 
 .hero-stats-card {
     position: relative;
-    width: 300px;
+    width: 200px;
     height: auto;
     background: url('../../assets/icons/StatsPanel-background.png') no-repeat center center;
     background-size: contain;
