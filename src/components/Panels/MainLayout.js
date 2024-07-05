@@ -15,7 +15,7 @@ const MainLayout = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const basePath = location.pathname.split('/')[1];
-    const isHeroPage = basePath === 'hero';
+
 
     const subPagesConfig = {
         battle: [
