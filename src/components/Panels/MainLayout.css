@@ -25,64 +25,6 @@
     cursor: pointer;
 }
 
-/* Позиціонування підвкладок */
-.sub-navigation {
-    display: flex;
-    justify-content: space-around; /* Рівномірний розподіл підвкладок по ширині */
-    align-items: center;
-    padding: 10px 20px;
-    background-color: transparent; /* Прозорий фон */
-    color: #fff;
-    box-sizing: border-box;
-    height: 60px; /* Збільшена висота для підвкладок */
-    width: 100%;
-    z-index: 998;
-    position: absolute; /* Абсолютне позиціонування */
-    top: 70px; /* Відступ від верхнього краю */
-    margin-top: 0px; /* Відсутність відступу від верхнього краю */
-}
-
-.sub-nav-button {
-    position: relative; /* Потрібно для абсолютного позиціонування тексту всередині кнопки */
-    display: flex;
-    flex-direction: column; /* Розташування елементів вертикально */
-    align-items: center;
-    justify-content: center; /* Центрування тексту */
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    font-size: 14px;
-    margin: 0 5px; /* Зменшення відступів для підвкладок */
-    padding: 0;
-    text-decoration: none;
-    cursor: pointer;
-    height: 100%; /* Займає всю висоту батьківського елемента */
-}
-
-.sub-nav-icon {
-    width: 100%; /* Ширина значків підвкладок */
-    height: auto; /* Автоматична висота для збереження пропорцій */
-    max-height: 60px; /* Максимальна висота значків */
-    max-width: 160px; /* Максимальна висота значків */  
-}
-
-.sub-nav-button:hover .sub-nav-icon {
-    transform: scale(1.1);
-}
-
-.sub-nav-button span {
-    position: absolute; /* Абсолютне позиціонування тексту */
-    top: 50%; /* Вирівнювання по центру по вертикалі */
-    left: 50%; /* Вирівнювання по центру по горизонталі */
-    transform: translate(-50%, -50%); /* Переміщення на центр */
-    text-align: center; /* Центрування тексту */
-    line-height: 1; /* Вирівнювання тексту по висоті */
-    font-weight: bold; /* Жирний текст */
-    color: yellow; /* Жовтий колір тексту */
-    pointer-events: none; /* Вимкнення подій миші для тексту */
-}
-
-/* Позиціонування центрального значка Battle */
 .nav-icon-battle {
     width: 80px; /* Встановлення розміру значка Battle */
     height: 80px; /* Встановлення розміру значка Battle */
@@ -91,6 +33,10 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
+}
+
+.nav-icon-battle.move-up {
+    bottom: 300px; /* Переміщення вгору при переході на сторінку героя */
 }
 
 /* Позиціонування нижніх значків */
@@ -105,10 +51,13 @@
     z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
 }
 
-.nav-icons-bottom .nav-icon {
-    width: 80px; /* Встановлення розміру значків */
-    height: 80px; /* Встановлення розміру значків */
-    cursor: pointer;
+.nav-icons-bottom.move-sides {
+    justify-content: space-between;
+}
+
+.nav-icons-bottom.move-sides .nav-icon {
+    width: 60px; /* Зменшений розмір значків */
+    height: 60px;
 }
 
 /* Позиціонування підвкладок */
@@ -166,6 +115,18 @@
     font-weight: bold; /* Жирний текст */
     color: yellow; /* Жовтий колір тексту */
     pointer-events: none; /* Вимкнення подій миші для тексту */
+}
+
+/* Стилі для контенту сторінки */
+.content {
+    position: absolute;
+    top: 145px; /* Відстань від верхнього краю до початку контенту під субвкладками */
+    bottom: 145px; /* Відстань від нижнього краю до кінця контенту над нижніми значками */
+    left: 40px;
+    right: 40px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    z-index: 2; /* Збільшений z-index для відображення поверх інших елементів */
 }
 
 /* Стилі для HeroStatsCard */
