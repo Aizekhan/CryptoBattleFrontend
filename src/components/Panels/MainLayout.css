@@ -51,11 +51,15 @@
 
 
 .nav-icons-bottom.move-icons .mine-icon {
-    transform: translate(-100%, -100px);
+    transform: translateX(-50%);
+    left: 0; /* Переміщення до лівого краю */
+    bottom: 100px; /* Підняття на 100px */
 }
 
 .nav-icons-bottom.move-icons .quest-icon {
-    transform: translate(100%, -100px);
+    transform: translateX(50%);
+    right: 0; /* Переміщення до правого краю */
+    bottom: 100px; /* Підняття на 100px */
 }
 
 .nav-icons-bottom .nav-icon {
