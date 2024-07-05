@@ -51,13 +51,13 @@
 
 
 .nav-icons-bottom.move-icons .mine-icon {
-    transform: translateX(-50%);
+ 
     left: 0; /* Переміщення до лівого краю */
     bottom: 100px; /* Підняття на 100px */
 }
 
 .nav-icons-bottom.move-icons .quest-icon {
-    transform: translateX(50%);
+
     right: 0; /* Переміщення до правого краю */
     bottom: 100px; /* Підняття на 100px */
 }
