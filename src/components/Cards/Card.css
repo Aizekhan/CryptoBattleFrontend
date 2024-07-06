@@ -4,11 +4,11 @@
     background-size: cover; /* Розмір зображення покриває всю картку */
     background-position: center; /* Центрування зображення */
     border: none; /* Видаляємо стандартну рамку */
-    border-radius: 8px;
-    padding: 16px;
+    border-radius: 0px;
+    padding: 0px;
     text-align: center;
     width: 200px;
-    margin: 16px;
+    margin: 5px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     background-color: transparent; /* Робимо фон прозорим, щоб зображення було видно */
 }

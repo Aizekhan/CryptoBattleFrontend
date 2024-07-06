@@ -2,7 +2,10 @@
     display: flex;
     flex-wrap: wrap;
     gap: 16px; /* Відстань між картками */
-    justify-content: space-around; /* Вирівнювання з рівномірним розподілом */
+    justify-content: space-between; /* Вирівнювання з рівномірним розподілом */
+    overflow-y: auto; /* Додаємо прокручування */
+    height: 80vh; /* Висота контейнера для карток */
+    padding: 16px; /* Відступи всередині контейнера */
 }
 
 .card-container {
@@ -31,7 +34,7 @@
 /* Адаптивний дизайн для великих екранів */
 @media (min-width: 1201px) {
     .card-container {
-        flex: 1 1 calc(33.33% - 32px); /* По 3 картки в ряд на великих екранах */
-        max-width: calc(33.33% - 32px);
+        flex: 1 1 calc(50% - 32px); /* По 2 картки в ряд на великих екранах */
+        max-width: calc(50% - 32px);
     }
 }
