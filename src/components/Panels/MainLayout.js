@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import homeIcon from '../../assets/icons/NavPanel/home-icon.png';
 import farmIcon from '../../assets/icons/NavPanel/farm-icon.png';
@@ -17,7 +17,8 @@ const MainLayout = () => {
     const location = useLocation();
     const basePath = location.pathname.split('/')[1];
     const isHeroPage = basePath === 'hero';
-    
+    const isBattlePage = location.pathname.includes('/battle');
+
     const { userStats } = useUserStats();
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId) || {};
 
@@ -59,16 +60,16 @@ const MainLayout = () => {
     const subPages = subPagesConfig[basePath] || [];
 
     return (
-        <div className="main-layout">
-            <div className="nav-icons-top">
+        <div className={`main-layout ${isBattlePage ? 'hidden' : ''}`}>
+            <div className={`nav-icons-top ${isBattlePage ? 'hidden' : ''}`}>
                 <img src={homeIcon} alt="Home" onClick={() => navigate('/home')} className="nav-icon" />
                 <img src={battleIcon} alt="Battle" onClick={() => navigate('/battle')} className="nav-icon" />
             </div>
             <SubNavigation basePath={`/${basePath}`} subPages={subPages} />
-            <div className="content">
+            <div className={`content ${isBattlePage ? 'hidden' : ''}`}>
                 <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
             </div>
-            {isHeroPage && (
+            {isHeroPage && !isBattlePage && (
                 <div className="hero-stats-container">
                     <HeroStatsCard stats={currentHero.baseStats} />
                 </div>
@@ -76,7 +77,7 @@ const MainLayout = () => {
             <div className={`nav-icon-hero ${isHeroPage ? 'move-icons hidden' : ''}`}>
                 <img src={heroIcon} alt="Hero" onClick={() => navigate('/hero')} className="nav-icon" />
             </div>
-            <div className={`nav-icons-bottom ${isHeroPage ? 'move-icons' : ''}`}>
+            <div className={`nav-icons-bottom ${isHeroPage || isBattlePage ? 'move-icons hidden' : ''}`}>
                 <img src={farmIcon} alt="Farm" onClick={() => navigate('/farm')} className="nav-icon" />
                 <img src={mineIcon} alt="Mine" onClick={() => navigate('/mines')} className="nav-icon mine-icon" />
                 <img src={questIcon} alt="Quest" onClick={() => navigate('/quests')} className="nav-icon quest-icon" />
