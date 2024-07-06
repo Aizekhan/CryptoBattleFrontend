@@ -6,12 +6,16 @@
     padding: 16px;
     text-align: center;
     background-color: transparent; /* Робимо фон прозорим, щоб зображення було видно */
+    justify-content: space-between; /* Вирівнювання простору між елементами */
+    align-items: center; /* Вирівнювання елементів по центру */
+    position: relative; /* Необхідно для абсолютного позиціонування кнопки */
 }
 
 .card-img {
-    width: 50px;
-    height: 50px;
+    width: 50%; /* Зображення займає 50% від ширини картки */
+    height: auto; /* Висота автоматично підлаштовується, щоб зберегти пропорції */
     margin-bottom: 16px;
+    object-fit: cover; /* Забезпечує, що зображення покриває весь доступний простір, зберігаючи пропорції */
 }
 
 .card h3 {
@@ -25,13 +29,19 @@
 }
 
 .card button {
-    background-color: orange;
-    border: none;
-    padding: 8px 16px;
-    margin-top: 8px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 1rem;
+    width: 10%; /* Ширина кнопки - 10% від ширини картки */
+    height: 10%; /* Висота кнопки - 10% від висоти картки */
+    position: absolute; /* Встановлює абсолютне позиціонування */
+    bottom: 0; /* Розташовує кнопку внизу картки */
+    left: 50%; /* Вирівнює кнопку по центру горизонтально */
+    transform: translateX(-50%); /* Переміщує кнопку вліво на половину її ширини для точного центровання */
+    background-image: url('../../assets/icons/upgrade-icon.png'); /* Шлях до вашого зображення */
+    background-size: contain; /* Зображення покриває всю кнопку */
+    background-repeat: no-repeat; /* Забороняє повторення зображення */
+    background-position: center; /* Центрування зображення */
+    border: none; /* Видаляємо рамку кнопки */
+    cursor: pointer; /* Змінюємо курсор на руку при наведенні */
+    padding: 0; /* Видаляємо внутрішні відступи */
 }
 
 .card button.locked {
