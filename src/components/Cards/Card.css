@@ -3,14 +3,8 @@
     background-size: contain; /* Розмір зображення покриває всю картку */
     background-position: center; /* Центрування зображення */
     background-repeat: no-repeat; /* Забороняємо повторення зображення */
-    border: none; /* Видаляємо стандартну рамку */
-    border-radius: 8px;
     padding: 16px;
     text-align: center;
-    width: 100%; /* Зробимо ширину 100% від контейнера */
-    height: 200px; /* Додаємо висоту, щоб картки були квадратними */
-    margin: 8px 0; /* Зменшимо відступи між картками */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     background-color: transparent; /* Робимо фон прозорим, щоб зображення було видно */
 }
 

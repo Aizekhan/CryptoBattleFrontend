@@ -1,9 +1,9 @@
 .card-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px; /* Відстань між картками */
-    justify-content: space-around; /* Вирівнювання з рівномірним розподілом */
+    gap: 16px; /* Встановлює відстань між картками */
 }
+
 
 .card-container {
     flex: 0 1 calc(50% - 16px); /* По 2 картки в ряд, віднімаємо відстань між картками */
@@ -14,26 +14,3 @@
     justify-content: center; /* Центруємо картку по горизонталі */
 }
 
-/* Адаптивний дизайн для маленьких екранів */
-@media (max-width: 768px) {
-    .card-container {
-        flex: 1 1 calc(100% - 16px); /* По 1 картці в ряд на маленьких екранах */
-        max-width: calc(100% - 16px);
-    }
-}
-
-/* Адаптивний дизайн для середніх екранів */
-@media (min-width: 769px) and (max-width: 1200px) {
-    .card-container {
-        flex: 1 1 calc(50% - 16px); /* По 2 картки в ряд на середніх екранах */
-        max-width: calc(50% - 16px);
-    }
-}
-
-/* Адаптивний дизайн для великих екранів */
-@media (min-width: 1201px) {
-    .card-container {
-        flex: 1 1 calc(50% - 16px); /* По 2 картки в ряд на великих екранах */
-        max-width: calc(50% - 16px);
-    }
-}
