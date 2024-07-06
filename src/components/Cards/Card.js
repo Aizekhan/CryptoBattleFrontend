@@ -2,9 +2,12 @@ import React from 'react';
 import lockIcon from '../../assets/images/lock.png';
 import './Card.css';
 import { useUserStats } from '../../context/UserStatsContext';
+import { cardBackgrounds } from './cardsConfig';
 
 const Card = ({ card }) => {
     const { userStats, updateUserStats, updateHeroStats } = useUserStats();
+
+    console.log('card in Card:', card); // Додайте це для перевірки даних картки
 
     const prerequisitesMet = card.prerequisites.every(prereq => {
         const prereqCard = userStats.mines.find(c => c.id === prereq.id);
@@ -107,11 +110,13 @@ const Card = ({ card }) => {
         buttonClass = 'can-upgrade';
     }
 
+    const backgroundImage = cardBackgrounds[card.tag] || card.img;
+
     return (
         <div
             className={`card ${card.tag}`} // Динамічно задаємо клас
             key={card.id}
-            style={{ backgroundImage: `url(${card.img})` }} // Динамічно задаємо фон
+            style={{ backgroundImage: `url(${backgroundImage})` }} // Динамічно задаємо фон
         >
             <img src={card.img} alt={card.name} className="card-img" />
             <h3>{card.name}</h3>
