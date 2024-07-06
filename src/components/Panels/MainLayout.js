@@ -17,7 +17,6 @@ const MainLayout = () => {
     const location = useLocation();
     const basePath = location.pathname.split('/')[1];
     const isHeroPage = basePath === 'hero';
-    const isBattlePage = basePath === 'battle';
     const [inBattle, setInBattle] = useState(false);
 
     const { userStats } = useUserStats();
