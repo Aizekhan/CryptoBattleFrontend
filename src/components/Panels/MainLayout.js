@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import homeIcon from '../../assets/icons/NavPanel/home-icon.png';
 import farmIcon from '../../assets/icons/NavPanel/farm-icon.png';
@@ -18,9 +18,15 @@ const MainLayout = () => {
     const basePath = location.pathname.split('/')[1];
     const isHeroPage = basePath === 'hero';
     const isBattlePage = basePath === 'battle';
-
+    
     const { userStats } = useUserStats();
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId) || {};
+    
+    const [isPvPBattlePage, setIsPvPBattlePage] = useState(false);
+    
+    useEffect(() => {
+        setIsPvPBattlePage(location.pathname.includes('/battle/pvp'));
+    }, [location.pathname]);
 
     const subPagesConfig = {
         battle: [
@@ -61,15 +67,15 @@ const MainLayout = () => {
 
     return (
         <div className="main-layout">
-            <div className={`nav-icons-top ${isBattlePage ? 'hidden' : ''}`}>
+            <div className={`nav-icons-top ${isPvPBattlePage ? 'hidden' : ''}`}>
                 <img src={homeIcon} alt="Home" onClick={() => navigate('/home')} className="nav-icon" />
                 <img src={battleIcon} alt="Battle" onClick={() => navigate('/battle')} className="nav-icon" />
             </div>
-            <SubNavigation basePath={`/${basePath}`} subPages={subPages} className={isBattlePage ? 'hidden' : ''} />
-            <div className={`content ${isBattlePage ? 'hidden' : ''}`}>
+            <SubNavigation basePath={`/${basePath}`} subPages={subPages} className={isPvPBattlePage ? 'hidden' : ''} />
+            <div className={`content ${isPvPBattlePage ? 'hidden' : ''}`}>
                 <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
             </div>
-            {isHeroPage && !isBattlePage && (
+            {isHeroPage && !isPvPBattlePage && (
                 <div className="hero-stats-container">
                     <HeroStatsCard stats={currentHero.baseStats} />
                 </div>
@@ -77,7 +83,7 @@ const MainLayout = () => {
             <div className={`nav-icon-hero ${isHeroPage ? 'move-icons hidden' : ''}`}>
                 <img src={heroIcon} alt="Hero" onClick={() => navigate('/hero')} className="nav-icon" />
             </div>
-            <div className={`nav-icons-bottom ${isHeroPage || isBattlePage ? 'move-icons hidden' : ''}`}>
+            <div className={`nav-icons-bottom ${isPvPBattlePage ? 'hidden' : ''}`}>
                 <img src={farmIcon} alt="Farm" onClick={() => navigate('/farm')} className="nav-icon" />
                 <img src={mineIcon} alt="Mine" onClick={() => navigate('/mines')} className="nav-icon mine-icon" />
                 <img src={questIcon} alt="Quest" onClick={() => navigate('/quests')} className="nav-icon quest-icon" />
