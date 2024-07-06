@@ -6,8 +6,8 @@
     border-radius: 8px;
     text-align: center;
     flex: 1 1 auto;
-    width: 150px; /* Встановлюємо ширину картки */
-    height: 150px; /* Встановлюємо висоту картки */
+    width: 100px; /* Встановлюємо ширину картки */
+    height: 100px; /* Встановлюємо висоту картки */
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     background-color: transparent;
     box-sizing: border-box; /* Включаємо відступи та бордюри в загальну ширину та висоту */
