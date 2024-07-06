@@ -7,14 +7,7 @@ import equipBackground from '../../assets/images/Backgrounds/equip-bg.png';
 import battleCardBackground from '../../assets/images/Backgrounds/battle-card-bg.png';
 import farmSkillBackground from '../../assets/images/Backgrounds/farm-skill-bg.png';
 
-export const cardBackgrounds = {
-    goldMine: goldMineBackground,
-    heroStat: heroStatBackground,
-    equip: equipBackground,
-    battleCard: battleCardBackground,
-    farmSkill: farmSkillBackground,
-    passiveSkill: passiveSkillBackground,
-};
+
 
 import passiveSkill1 from '../../assets/images/PassiveSkillsImages/passive1.png';
 import passiveSkill2 from '../../assets/images/PassiveSkillsImages/passive2.png';
@@ -58,6 +51,16 @@ import marketHeroDarkElf from '../../assets/images/MarketImages/hero_dark_elf.pn
 import locationCastle from '../../assets/images/LocationImages/castle.png';
 import locationSwamp from '../../assets/images/LocationImages/swamp.png';
 import locationForest from '../../assets/images/LocationImages/forest.png';
+
+export const cardBackgrounds = {
+    goldMine: goldMineBackground,
+    heroStat: heroStatBackground,
+    equip: equipBackground,
+    battleCard: battleCardBackground,
+    farmSkill: farmSkillBackground,
+    passiveSkill: passiveSkillBackground,
+};
+
 
 export const passiveSkills = [
     { id: 1, name: 'Increase HP', effect: '+5 HP', level: 0, upgradeCost: 100, img: passiveSkill1, tag: 'heroStat', prerequisites: [], scaleUpgrade: 1.1 },
