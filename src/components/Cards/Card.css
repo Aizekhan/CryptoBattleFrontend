@@ -7,17 +7,16 @@
     border-radius: 8px;
     padding: 16px;
     text-align: center;
-    width: 50px;
-    height: 50px; /* Додаємо висоту, щоб картки були квадратними */
-    margin: 5px;
+    width: 100%; /* Зробимо ширину 100% від контейнера */
+    height: 200px; /* Додаємо висоту, щоб картки були квадратними */
+    margin: 8px 0; /* Зменшимо відступи між картками */
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     background-color: transparent; /* Робимо фон прозорим, щоб зображення було видно */
-    position: relative; /* Додаємо позиціонування відносно контейнера */
 }
 
 .card-img {
-    width: 100%;
-    height: auto;
+    width: 50px;
+    height: 50px;
     margin-bottom: 16px;
 }
 
