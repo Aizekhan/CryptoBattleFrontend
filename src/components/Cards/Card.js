@@ -108,7 +108,11 @@ const Card = ({ card }) => {
     }
 
     return (
-        <div className="card" key={card.id}>
+        <div
+            className={`card ${card.tag}`} // Динамічно задаємо клас
+            key={card.id}
+            style={{ backgroundImage: `url(${card.img})` }} // Динамічно задаємо фон
+        >
             <img src={card.img} alt={card.name} className="card-img" />
             <h3>{card.name}</h3>
             <p>Level: {userStats.mines.find(c => c.id === card.id)?.level || card.level}</p>

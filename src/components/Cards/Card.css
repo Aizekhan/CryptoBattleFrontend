@@ -1,5 +1,5 @@
+/* Загальні стилі для всіх карток */
 .card {
-    background-image: url('../../assets/images/card-background.png'); /* Шлях до вашого зображення */
     background-size: cover;
     background-position: center;
     border: none;
@@ -62,3 +62,5 @@
     height: 20px;
     vertical-align: middle;
 }
+
+/* Видалено специфічні фонові зображення, оскільки вони тепер задаються динамічно */
