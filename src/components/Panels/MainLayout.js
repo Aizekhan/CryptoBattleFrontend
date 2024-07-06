@@ -17,13 +17,12 @@ const MainLayout = () => {
     const location = useLocation();
     const basePath = location.pathname.split('/')[1];
     const isHeroPage = basePath === 'hero';
-    const isBattlePage = basePath === 'battle';
     
     const { userStats } = useUserStats();
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId) || {};
-    
+
     const [isPvPBattlePage, setIsPvPBattlePage] = useState(false);
-    
+
     useEffect(() => {
         setIsPvPBattlePage(location.pathname.includes('/battle/pvp'));
     }, [location.pathname]);
