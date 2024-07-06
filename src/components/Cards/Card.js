@@ -84,30 +84,14 @@ const Card = ({ card }) => {
         }
     };
 
-    let buttonContent = `Upgrade (${card.upgradeCost})`;
-    let buttonClass = '';
+    let buttonContent = (
+        <img src={lockIcon} alt="Locked" className="lock-icon" />
+    );
+    let buttonClass = 'locked';
 
-    if (!prerequisitesMet) {
-        buttonContent = (
-            <>
-                <img src={lockIcon} alt="Locked" className="lock-icon" />
-                <div className="prerequisites">
-                    {card.prerequisites.map(prereq => {
-                        const prereqCard = userStats.mines.find(c => c.id === prereq.id);
-                        return (
-                            <p key={prereq.id}>
-                                {prereqCard ? prereqCard.name : `Card ${prereq.id}`} Level {prereq.level} required
-                            </p>
-                        );
-                    })}
-                </div>
-            </>
-        );
-        buttonClass = 'locked';
-    } else if (!hasEnoughBalance) {
-        buttonClass = 'no-balance';
-    } else {
-        buttonClass = 'can-upgrade';
+    if (prerequisitesMet) {
+        buttonContent = null;
+        buttonClass = hasEnoughBalance ? 'can-upgrade' : 'no-balance';
     }
 
     const backgroundImage = cardBackgrounds[card.tag] || card.img;
@@ -129,6 +113,18 @@ const Card = ({ card }) => {
             >
                 {buttonContent}
             </button>
+            {!prerequisitesMet && (
+                <div className="prerequisites">
+                    {card.prerequisites.map(prereq => {
+                        const prereqCard = userStats.mines.find(c => c.id === prereq.id);
+                        return (
+                            <p key={prereq.id}>
+                                {prereqCard ? prereqCard.name : `Card ${prereq.id}`} Level {prereq.level} required
+                            </p>
+                        );
+                    })}
+                </div>
+            )}
         </div>
     );
 };

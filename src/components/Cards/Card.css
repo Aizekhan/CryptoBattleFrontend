@@ -4,18 +4,18 @@
     background-position: center;
     border: none;
     border-radius: 8px;
-    padding: 16px;
     text-align: center;
-    width: 200px;
-    margin: 16px;
+    flex: 1 1 auto; /* Додаємо гнучкі властивості */
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     background-color: transparent;
+    box-sizing: border-box; /* Включаємо відступи та бордюри в загальну ширину та висоту */
 }
 
 .card-img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 16px;
+    width: 50%; /* Встановлює ширину зображення на 50% від ширини картки */
+    height: auto; /* Автоматична висота зображення для збереження пропорцій */
+    margin: 0 auto 16px; /* Центрує зображення горизонтально та додає відступ знизу */
+    display: block; /* Зображення стає блоковим елементом */
 }
 
 .card h3 {
@@ -28,24 +28,30 @@
     margin: 4px 0;
 }
 
+/* Стилі для кнопки */
 .card button {
-    background-color: orange;
-    border: none;
-    padding: 8px 16px;
+    background: url('../../assets/icons/upgrade-icon.png') no-repeat center; /* Використовуємо фонове зображення */
+    background-size: contain; /* Зображення займає всю кнопку */
+    border: none; /* Без бордюру */
+    width: 40px; /* Встановлюємо ширину кнопки */
+    height: 40px; /* Встановлюємо висоту кнопки */
     margin-top: 8px;
-    cursor: pointer;
+    cursor: pointer; /* Курсор змінюється на руку при наведенні */
     border-radius: 4px;
-    font-size: 1rem;
 }
 
+/* Стилі для заблокованої кнопки */
 .card button.locked {
-    background-color: gray;
-    cursor: not-allowed;
+    background: url('../../assets/icons/locked-icon.png') no-repeat center; /* Іконка для заблокованої кнопки */
+    background-size: contain;
+    cursor: not-allowed; /* Курсор змінюється на заборонений знак */
 }
 
+/* Стилі для кнопки з недостатнім балансом */
 .card button.no-balance {
-    background-color: lightgray;
-    cursor: not-allowed;
+    background: url('../../assets/icons/no-balance-icon.png') no-repeat center; /* Іконка для кнопки з недостатнім балансом */
+    background-size: contain;
+    cursor: not-allowed; /* Курсор змінюється на заборонений знак */
 }
 
 .card .prerequisites {

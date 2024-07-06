@@ -10,7 +10,7 @@
 }
 
 .card-container {
-    flex: 1 1 calc(50% - 32px); /* По 2 картки в ряд */
-    max-width: calc(50% - 32px); /* Максимальна ширина картки */
+    flex: 1 1 calc(50% - 16px); /* По 2 картки в ряд */
+    max-width: calc(50% - 16px); /* Максимальна ширина картки */
     box-sizing: border-box;
 }
