@@ -40,20 +40,7 @@
     border-radius: 4px;
 }
 
-/* Стилі для заблокованої кнопки */
-.card button.locked {
-    background: url('../../assets/icons/lock.png') no-repeat center; /* Іконка для заблокованої кнопки */
-    background-size: contain;
-    cursor: not-allowed; /* Курсор змінюється на заборонений знак */
-}
-
-/* Стилі для кнопки з недостатнім балансом */
-.card button.no-balance {
-    background: url('../../assets/icons/no-balance-icon.png') no-repeat center; /* Іконка для кнопки з недостатнім балансом */
-    background-size: contain;
-    cursor: not-allowed; /* Курсор змінюється на заборонений знак */
-}
-
+/* Видалено стилі для заблокованої кнопки та кнопки з недостатнім балансом */
 .card .prerequisites {
     font-size: 0.8rem;
     color: red;
@@ -68,5 +55,3 @@
     height: 20px;
     vertical-align: middle;
 }
-
-/* Видалено специфічні фонові зображення, оскільки вони тепер задаються динамічно */
