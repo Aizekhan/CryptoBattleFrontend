@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import homeIcon from '../../assets/icons/NavPanel/home-icon.png';
 import farmIcon from '../../assets/icons/NavPanel/farm-icon.png';
@@ -60,12 +60,12 @@ const MainLayout = () => {
     const subPages = subPagesConfig[basePath] || [];
 
     return (
-        <div className={`main-layout ${isBattlePage ? 'hidden' : ''}`}>
+        <div className="main-layout">
             <div className={`nav-icons-top ${isBattlePage ? 'hidden' : ''}`}>
                 <img src={homeIcon} alt="Home" onClick={() => navigate('/home')} className="nav-icon" />
                 <img src={battleIcon} alt="Battle" onClick={() => navigate('/battle')} className="nav-icon" />
             </div>
-            <SubNavigation basePath={`/${basePath}`} subPages={subPages} />
+            <SubNavigation basePath={`/${basePath}`} subPages={subPages} className={isBattlePage ? 'hidden' : ''} />
             <div className={`content ${isBattlePage ? 'hidden' : ''}`}>
                 <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
             </div>
