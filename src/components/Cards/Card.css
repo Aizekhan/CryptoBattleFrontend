@@ -42,7 +42,7 @@
 
 /* Стилі для заблокованої кнопки */
 .card button.locked {
-    background: url('../../assets/icons/locked-icon.png') no-repeat center; /* Іконка для заблокованої кнопки */
+    background: url('../../assets/icons/locked.png') no-repeat center; /* Іконка для заблокованої кнопки */
     background-size: contain;
     cursor: not-allowed; /* Курсор змінюється на заборонений знак */
 }
