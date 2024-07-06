@@ -1,18 +1,25 @@
 .card {
-    background-image: url('../../assets/images/card-background.png'); /* Шлях до вашого зображення */
-    background-size: contain; /* Розмір зображення покриває всю картку */
-    background-position: center; /* Центрування зображення */
-    background-repeat: no-repeat; /* Забороняємо повторення зображення */
+    background-image: url('../../assets/images/card-background.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     padding: 16px;
     text-align: center;
-    background-color: transparent; /* Робимо фон прозорим, щоб зображення було видно */
-    justify-content: space-between; /* Вирівнювання простору між елементами */
-    align-items: center; /* Вирівнювання елементів по центру */
-    position: relative; /* Необхідно для абсолютного позиціонування кнопки */
+    background-color: transparent;
+    flex: 0 1 calc(50% - 16px); /* Встановлює ширину кожної картки */
+    box-sizing: border-box;
+    max-width: calc(50% - 16px); /* Максимальна ширина картки */
+    max-height: 300px; /* Максимальна висота картки */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden; /* Приховує вміст, який виходить за межі картки */
 }
 
 .card-img {
-    width: 50%; /* Зображення займає 50% від ширини картки */
+    width: 100%; /* Зображення займає 100% ширини картки */
     height: auto; /* Висота автоматично підлаштовується, щоб зберегти пропорції */
     margin-bottom: 16px;
     object-fit: cover; /* Забезпечує, що зображення покриває весь доступний простір, зберігаючи пропорції */
@@ -25,11 +32,11 @@
 
 .card p {
     font-size: 1rem;
-    margin: 4px 0;
+    margin: 0;
 }
 
 .card button {
-    width: 10%; /* Ширина кнопки - 10% від ширини картки */
+   width: 10%; /* Ширина кнопки - 10% від ширини картки */
     height: 10%; /* Висота кнопки - 10% від висоти картки */
     position: absolute; /* Встановлює абсолютне позиціонування */
     bottom: 0; /* Розташовує кнопку внизу картки */
