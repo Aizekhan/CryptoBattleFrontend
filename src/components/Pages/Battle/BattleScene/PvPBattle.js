@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useUserStats } from '../../../../context/UserStatsContext';
 import heroesConfig from '../../../../context/heroesConfig';
 import './PvPBattle.css';
-import BattleHeader from './BattleHeader';
+import HeroStatsCard from '../../Hero/HeroDetails/HeroStatsCard'; // Імпортуємо HeroStatsCard
 import critIcon from '../../../../assets/icons/critChance.png';
 import blockIcon from '../../../../assets/icons/blockChance.png';
 import dodgeIcon from '../../../../assets/icons/dodgeChance.png';
@@ -127,7 +127,7 @@ const PvPBattle = () => {
 
     return (
         <div className="pvp-battle">
-            <BattleHeader playerStats={playerStats} botStats={botStats} />
+            <HeroStatsCard stats={playerStats} />
             {winner && (
                 <div className="winner-announcement">
                     {winner} wins!
