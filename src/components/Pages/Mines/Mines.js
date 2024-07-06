@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 const Mines = () => {
     return (
-        <div>
+        <div className="mines">
             <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
         </div>
     );

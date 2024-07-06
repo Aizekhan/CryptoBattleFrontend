@@ -16,7 +16,7 @@ const Card = ({ card }) => {
 
     const handleUpgrade = () => {
         if (canUpgrade) {
-            console.log('Upgrading card:', card); // Додаємо логування для перевірки
+            console.log('Upgrading card:', card);
 
             let newHourlyIncome = userStats.hourlyIncome;
             let newUpgradeCost = card.upgradeCost;
@@ -34,40 +34,33 @@ const Card = ({ card }) => {
                     break;
                 
                 case 'equip':
-                    // Логіка для спорядження
                     break;
 
                 case 'battleCard':
-                    // Логіка для карток битви
                     break;
 
                 case 'farmSkill':
-                  if (card.effectType === 'regenSpeed') {
+                    if (card.effectType === 'regenSpeed') {
                         newHeroStats.regenSpeed = (newHeroStats.regenSpeed || 0) + card.effectValue;
                     }
                     break;
 
                 case 'market':
-                    // Логіка для ринку
                     break;
 
                 case 'location':
-                    // Логіка для локацій
                     break;
 
                 default:
                     break;
             }
 
-            // Збільшуємо вартість апгрейду для конкретної картки
             newUpgradeCost = Math.floor(card.upgradeCost * card.scaleUpgrade);
 
-            // Оновлюємо масив mines
             const updatedMines = userStats.mines.map(c =>
                 c.id === card.id ? { ...c, level: c.level + 1, upgradeCost: newUpgradeCost } : c
             );
 
-            // Оновлюємо героя
             const updatedHeroes = userStats.heroes.map(hero =>
                 hero.id === userStats.currentHeroId ? newHeroStats : hero
             );
@@ -84,7 +77,7 @@ const Card = ({ card }) => {
                 hourlyIncome: newHourlyIncome,
                 mines: updatedMines,
                 heroes: updatedHeroes
-            }); // Додаємо логування для перевірки
+            });
         }
     };
 
