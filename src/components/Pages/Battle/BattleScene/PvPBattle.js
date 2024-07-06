@@ -146,6 +146,7 @@ const PvPBattle = () => {
                     )}
                 </div>
                 <div className="bot-side">
+                    <HeroStatsCard stats={botStats} /> {/* Додаємо HeroStatsCard для бота */}
                     <img src={bot.img.full} alt={bot.name} className="bot-image" />
                     {damageEffect && damageEffect.isPlayerAttacking && (
                         <div className="damage-container">
