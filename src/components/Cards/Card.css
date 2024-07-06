@@ -1,13 +1,16 @@
 /* Card.css */
 .card {
-    border: 1px solid #ccc;
+    background-image: url('../../assets/images/card-background.png'); /* Шлях до вашого зображення */
+    background-size: cover; /* Розмір зображення покриває всю картку */
+    background-position: center; /* Центрування зображення */
+    border: none; /* Видаляємо стандартну рамку */
     border-radius: 8px;
     padding: 16px;
     text-align: center;
     width: 200px;
     margin: 16px;
-    background-color: #fff;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: transparent; /* Робимо фон прозорим, щоб зображення було видно */
 }
 
 .card-img {
@@ -36,24 +39,24 @@
     font-size: 1rem;
 }
 
-.card button.locked {
-    background-color: gray;
-    cursor: not-allowed;
-}
+    .card button.locked {
+        background-color: gray;
+        cursor: not-allowed;
+    }
 
-.card button.no-balance {
-    background-color: lightgray;
-    cursor: not-allowed;
-}
+    .card button.no-balance {
+        background-color: lightgray;
+        cursor: not-allowed;
+    }
 
 .card .prerequisites {
     font-size: 0.8rem;
     color: red;
 }
 
-.card .prerequisites p {
-    margin: 0;
-}
+    .card .prerequisites p {
+        margin: 0;
+    }
 
 .card img.lock-icon {
     width: 20px;
