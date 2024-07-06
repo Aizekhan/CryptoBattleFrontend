@@ -1,14 +1,18 @@
 .card {
     background-image: url('../../assets/images/card-background.png'); /* Шлях до вашого зображення */
-    background-size: cover; /* Розмір зображення покриває всю картку */
+    background-size: contain; /* Розмір зображення покриває всю картку */
     background-position: center; /* Центрування зображення */
+    background-repeat: no-repeat; /* Забороняємо повторення зображення */
     border: none; /* Видаляємо стандартну рамку */
     border-radius: 8px;
     padding: 16px;
     text-align: center;
-    width: 100%; /* Робимо ширину картки 100% від батьківського контейнера */
+    width: 50px;
+    height: 50px; /* Додаємо висоту, щоб картки були квадратними */
+    margin: 5px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     background-color: transparent; /* Робимо фон прозорим, щоб зображення було видно */
+    position: relative; /* Додаємо позиціонування відносно контейнера */
 }
 
 .card-img {
