@@ -1,14 +1,16 @@
 .hero-stats-card {
     position: relative;
-    width: 150px; /* Розширено ширину для кращого відображення */
+    width: 140px; /* Розширено ширину для кращого відображення */
     height: auto;
-    padding: 50px; /* Додано padding для внутрішнього відступу */
+    padding: 40px; /* Додано padding для внутрішнього відступу */
     border-radius: 8px; /* Додано заокруглення кутів */
 }
 
 .stats-container {
     display: flex;
     justify-content: center; /* Центрування контейнерів колонок */
+    width: 90%;
+    height: 90&;
 }
 
 .stat-column {
