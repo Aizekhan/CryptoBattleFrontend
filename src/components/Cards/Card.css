@@ -37,12 +37,14 @@
 
 .card button {
     background-size: contain; /* Динамічний фон кнопки */
+    background-position: center; /* Центрує зображення на кнопці */
+    background-repeat: no-repeat; /* Зображення не повторюється */
     border: none;
     width: 20px;
     height: 20px;
     cursor: pointer; /* Курсор змінюється на руку при наведенні */
-    border-radius: 4px;
-    margin: 4px;
+    border-radius: 1px;
+    margin: 2px;
     z-index: 8; /* Значення z-index більше, ніж у інших елементів */
 }
 
