@@ -36,7 +36,7 @@
 }
 
 .card button {
-    background-size: contain;
+    background-size: contain; /* Динамічний фон кнопки */
     border: none;
     width: 20px;
     height: 20px;
@@ -51,9 +51,9 @@
     color: red;
 }
 
-.card .prerequisites p {
-    margin: 0;
-}
+    .card .prerequisites p {
+        margin: 0;
+    }
 
 .card img.lock-icon {
     width: 20px;
