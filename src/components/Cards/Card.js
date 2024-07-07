@@ -91,12 +91,13 @@ const Card = ({ card }) => {
     let buttonClass = 'locked';
 
     if (prerequisitesMet) {
-        buttonContent = null;
+        buttonContent = (
+            <img src={upgradeIcon} alt="Upgrade" className="upgrade-icon" />
+        );
         buttonClass = hasEnoughBalance ? 'can-upgrade' : 'no-balance';
     }
 
     const backgroundImage = cardBackgrounds[card.tag] || card.img;
-    const buttonImage = upgradeIcon; // Використовуємо загальне зображення для всіх кнопок
 
     return (
         <div
@@ -112,7 +113,6 @@ const Card = ({ card }) => {
                 onClick={handleUpgrade}
                 disabled={!canUpgrade}
                 className={buttonClass}
-                style={{ backgroundImage: `url(${buttonImage})` }} // Динамічно задаємо фон кнопки
             >
                 {buttonContent}
             </button>

@@ -14,7 +14,7 @@
     flex-direction: column;
     align-items: center; /* Центруємо елементи горизонтально */
     justify-content: space-between; /* Розташовуємо елементи вертикально з рівними проміжками */
-    padding: 0px; /* Додаємо внутрішні відступи */
+    padding: 0px; /* Відсутність внутрішніх відступів */
     overflow: hidden; /* Запобігає виходу елементів за межі картки */
 }
 
@@ -36,17 +36,17 @@
 }
 
 .card button {
-    background-size: contain; /* Динамічний фон кнопки */
-    background-position: center; /* Центрує зображення на кнопці */
-    background-repeat: no-repeat; /* Зображення не повторюється */
     border: none;
-    width: 20px;
-    height: 20px;
+    background: transparent;
+    padding: 0;
     cursor: pointer; /* Курсор змінюється на руку при наведенні */
-    border-radius: 4px;
-    margin: 4px;
     z-index: 8; /* Значення z-index більше, ніж у інших елементів */
 }
+
+    .card button img {
+        width: 20px;
+        height: 20px;
+    }
 
 .card .prerequisites {
     font-size: 0.6rem;
@@ -60,4 +60,6 @@
 .card img.lock-icon {
     width: 20px;
     height: 20px;
+    vertical-align: middle;
+    z-index: 10; /* Значення z-index більше, ніж у інших елементів */
 }
