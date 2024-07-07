@@ -43,6 +43,7 @@
     cursor: pointer; /* Курсор змінюється на руку при наведенні */
     border-radius: 4px;
     margin: 4px;
+    z-index: 8; /* Значення z-index більше, ніж у інших елементів */
 }
 
 .card .prerequisites {
@@ -58,4 +59,5 @@
     width: 20px;
     height: 20px;
     vertical-align: middle;
+    z-index: 10; /* Значення z-index більше, ніж у інших елементів */
 }
