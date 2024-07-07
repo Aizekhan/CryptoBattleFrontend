@@ -1,6 +1,6 @@
 .hero-stats-card {
     position: relative;
-    width: 300px; /* Розширено ширину для кращого відображення */
+    width: 150px; /* Розширено ширину для кращого відображення */
     height: auto;
     padding: 20px; /* Додано padding для внутрішнього відступу */
     border-radius: 8px; /* Додано заокруглення кутів */
