@@ -61,6 +61,10 @@ export const cardBackgrounds = {
     passiveSkill: passiveSkillBackground,
 };
 
+// Визначення зображень кнопок для карток
+export const buttonImages = {
+    upgrade: upgradeIcon,
+};
 
 export const passiveSkills = [
     { id: 1, name: 'Increase HP', effect: '+5 HP', level: 0, upgradeCost: 100, img: passiveSkill1, tag: 'heroStat', prerequisites: [], scaleUpgrade: 1.1 },
