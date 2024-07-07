@@ -7,7 +7,7 @@ import equipBackground from '../../assets/images/Backgrounds/equip-bg.png';
 import battleCardBackground from '../../assets/images/Backgrounds/battle-card-bg.png';
 import farmSkillBackground from '../../assets/images/Backgrounds/farm-skill-bg.png';
 
-
+import upgradeIcon from '../../assets/icons/upgrade-icon.png';
 
 import passiveSkill1 from '../../assets/images/PassiveSkillsImages/passive1.png';
 import passiveSkill2 from '../../assets/images/PassiveSkillsImages/passive2.png';

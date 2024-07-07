@@ -30,12 +30,12 @@ const Card = ({ card }) => {
                     const currentLevel = userStats.mines.find(c => c.id === card.id).level;
                     newHourlyIncome += card.baseIncome * Math.pow(card.scaleIncome, currentLevel + 1);
                     break;
-                
+
                 case 'heroStat':
                     newHeroStats[card.effectType] += card.effectValue;
                     updateHeroStats(userStats.currentHeroId, newHeroStats);
                     break;
-                
+
                 case 'equip':
                     break;
 
@@ -95,6 +95,7 @@ const Card = ({ card }) => {
     }
 
     const backgroundImage = cardBackgrounds[card.tag] || card.img;
+    const buttonImage = card.buttonImage;
 
     return (
         <div
@@ -110,6 +111,7 @@ const Card = ({ card }) => {
                 onClick={handleUpgrade}
                 disabled={!canUpgrade}
                 className={buttonClass}
+                style={{ backgroundImage: `url(${buttonImage})` }} // Динамічно задаємо фон кнопки
             >
                 {buttonContent}
             </button>

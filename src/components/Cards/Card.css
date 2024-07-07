@@ -14,7 +14,7 @@
     flex-direction: column;
     align-items: center; /* Центруємо елементи горизонтально */
     justify-content: space-between; /* Розташовуємо елементи вертикально з рівними проміжками */
-    padding: 8px; /* Додаємо внутрішні відступи */
+    padding: 0px; /* Додаємо внутрішні відступи */
     overflow: hidden; /* Запобігає виходу елементів за межі картки */
 }
 
@@ -27,7 +27,7 @@
 
 .card h3 {
     font-size: 0.7rem; /* Зменшуємо розмір шрифту для заголовка */
-    margin: 4px 0; /* Відступи зверху та знизу */
+    margin: 3px 0; /* Відступи зверху та знизу */
 }
 
 .card p {
@@ -36,14 +36,13 @@
 }
 
 .card button {
-    background: url('../../assets/icons/upgrade-icon.png') no-repeat center;
     background-size: contain;
     border: none;
     width: 20px;
     height: 20px;
     cursor: pointer; /* Курсор змінюється на руку при наведенні */
     border-radius: 4px;
-    margin: 4px auto; /* Центруємо кнопку горизонтально */
+    margin: 4px;
 }
 
 .card .prerequisites {

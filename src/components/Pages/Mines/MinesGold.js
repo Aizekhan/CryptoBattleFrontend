@@ -1,13 +1,13 @@
 import React from 'react';
 import CardList from '../../Cards/CardList';
 import { useUserStats } from '../../../context/UserStatsContext';
-import cardsConfig from '../../Cards/cardsConfig';
+import { minesCards } from '../../Cards/cardsConfig'; // Імпортуємо тільки minesCards
 
 const MinesGold = () => {
     const { userStats } = useUserStats();
 
     const goldMines = Array.isArray(userStats.mines)
-        ? cardsConfig.filter(card => card.tag === 'goldMine' && userStats.mines.some(mine => mine.id === card.id))
+        ? minesCards.filter(card => userStats.mines.some(mine => mine.id === card.id))
         : [];
 
     console.log('goldMines:', goldMines); // Додайте це для перевірки відфільтрованих карток
