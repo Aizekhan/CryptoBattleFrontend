@@ -1,17 +1,21 @@
 .hero-stats-card {
     position: relative;
-    width: 200px;
+    width: 300px; /* Розширено ширину для кращого відображення */
     height: auto;
+    padding: 20px; /* Додано padding для внутрішнього відступу */
+    border-radius: 8px; /* Додано заокруглення кутів */
 }
 
 .stats-container {
     display: flex;
+    justify-content: center; /* Центрування контейнерів колонок */
 }
 
 .stat-column {
     display: flex;
     flex-direction: column;
-    margin-right: 10px;
+    align-items: center; /* Центрування елементів всередині колонки */
+    margin-right: 20px; /* Додано відступ між колонками */
 }
 
 .stat {
@@ -29,4 +33,5 @@
 .stat-value {
     font-weight: bold;
     color: #fff;
+    text-align: center; /* Центрування тексту */
 }

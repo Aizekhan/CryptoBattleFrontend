@@ -9,7 +9,7 @@ import critChanceIcon from '../../../../assets/icons/critChance.png';
 import dodgeChanceIcon from '../../../../assets/icons/dodgeChance.png';
 import critPowerIcon from '../../../../assets/icons/critPower.png';
 import accuracyIcon from '../../../../assets/icons/accuracy.png';
-import statsPanelBackground from '../../../../assets/icons/StatsPanel-background.png';
+import statsPanelBackground from '../../../../assets/images/Backgrounds/StatsPanel-background.png';
 import './HeroStatsCard.css';
 
 const HeroStatsCard = ({ stats }) => {
@@ -17,7 +17,8 @@ const HeroStatsCard = ({ stats }) => {
     const backgroundStyle = {
         backgroundImage: `url(${statsPanelBackground})`,
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center center'
+        backgroundPosition: 'center center',
+        backgroundSize: 'cover', // «м≥нюЇмо розм≥р фону, щоб в≥н покривав весь контейнер
     };
 
     return (

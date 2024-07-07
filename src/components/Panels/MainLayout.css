@@ -79,6 +79,7 @@
     right: 40px;
     overflow-y: auto;
     box-sizing: border-box; /* Враховує padding і border у загальній ширині */
+    overflow-y: auto;
     z-index: 2;
 }
 
