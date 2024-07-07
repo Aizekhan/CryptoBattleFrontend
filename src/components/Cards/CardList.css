@@ -3,8 +3,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     gap: 16px; /* Відстань між картками */
-    max-height: 100vh; /* Задаємо максимальну висоту, щоб обмежити область прокрутки */
-    overflow-y: auto; /* Додаємо вертикальну прокрутку */
+    overflow-y: auto; /* Додаємо вертикальну прокрутку, якщо потрібно */
     padding: 16px; /* Додаємо відступи навколо */
     box-sizing: border-box;
 }

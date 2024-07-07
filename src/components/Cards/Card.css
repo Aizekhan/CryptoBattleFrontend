@@ -10,38 +10,38 @@
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     background-color: transparent;
     box-sizing: border-box; /* Включаємо відступи та бордюри в загальну ширину та висоту */
-    position: relative; /* Встановлюємо позицію для правильного розміщення внутрішніх елементів */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центруємо елементи горизонтально */
+    justify-content: space-between; /* Розташовуємо елементи вертикально з рівними проміжками */
+    padding: 8px; /* Додаємо внутрішні відступи */
 }
 
 .card-img {
     width: 50%; /* Встановлює ширину зображення на 50% від ширини картки */
     height: auto; /* Автоматична висота зображення для збереження пропорцій */
-    margin: 0 auto 8px; /* Центрує зображення горизонтально та додає відступ знизу */
-    display: block; /* Зображення стає блоковим елементом */
+    margin: 0 auto; /* Центрує зображення горизонтально */
 }
 
 .card h3 {
-    font-size: 1rem; /* Розмір шрифту для заголовка */
-    margin-bottom: 4px;
+    font-size: 0.8rem; /* Розмір шрифту для заголовка */
+    margin: 4px 0; /* Відступи зверху та знизу */
 }
 
 .card p {
-    font-size: 0.8rem; /* Розмір шрифту для абзаців */
-    margin: 4px 0;
+    font-size: 0.6rem; /* Розмір шрифту для абзаців */
+    margin: 2px 0; /* Відступи зверху та знизу */
 }
 
 .card button {
     background: url('../../assets/icons/upgrade-icon.png') no-repeat center;
     background-size: contain;
     border: none;
-    width: 20px; /* Встановлюємо ширину кнопки */
-    height: 20px; /* Встановлюємо висоту кнопки */
-    margin-top: 4px;
+    width: 20px;
+    height: 20px;
     cursor: pointer; /* Курсор змінюється на руку при наведенні */
     border-radius: 4px;
-    position: absolute; /* Позиціонування кнопки */
-    bottom: 4px; /* Відступ від нижнього краю картки */
-    right: 4px; /* Відступ від правого краю картки */
+    margin: 4px auto; /* Центруємо кнопку горизонтально */
 }
 
 .card .prerequisites {
