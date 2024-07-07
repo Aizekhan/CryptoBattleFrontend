@@ -5,46 +5,47 @@
     border: none;
     border-radius: 8px;
     text-align: center;
-    flex: 1 1 auto;
-    width: 100px; /* Встановлюємо ширину картки */
-    height: 100px; /* Встановлюємо висоту картки */
+    width: 120px; /* Встановлюємо ширину картки */
+    height: 120px; /* Встановлюємо висоту картки */
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     background-color: transparent;
     box-sizing: border-box; /* Включаємо відступи та бордюри в загальну ширину та висоту */
+    position: relative; /* Встановлюємо позицію для правильного розміщення внутрішніх елементів */
 }
 
 .card-img {
     width: 50%; /* Встановлює ширину зображення на 50% від ширини картки */
     height: auto; /* Автоматична висота зображення для збереження пропорцій */
-    margin: 0 auto 16px; /* Центрує зображення горизонтально та додає відступ знизу */
+    margin: 0 auto 8px; /* Центрує зображення горизонтально та додає відступ знизу */
     display: block; /* Зображення стає блоковим елементом */
 }
 
 .card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 8px;
+    font-size: 1rem; /* Розмір шрифту для заголовка */
+    margin-bottom: 4px;
 }
 
 .card p {
-    font-size: 1rem;
+    font-size: 0.8rem; /* Розмір шрифту для абзаців */
     margin: 4px 0;
 }
 
-/* Стилі для кнопки */
 .card button {
-    background: url('../../assets/icons/upgrade-icon.png') no-repeat center; /* Використовуємо фонове зображення */
-    background-size: contain; /* Зображення займає всю кнопку */
-    border: none; /* Без бордюру */
-    width: 40px; /* Встановлюємо ширину кнопки */
-    height: 40px; /* Встановлюємо висоту кнопки */
-    margin-top: 8px;
+    background: url('../../assets/icons/upgrade-icon.png') no-repeat center;
+    background-size: contain;
+    border: none;
+    width: 20px; /* Встановлюємо ширину кнопки */
+    height: 20px; /* Встановлюємо висоту кнопки */
+    margin-top: 4px;
     cursor: pointer; /* Курсор змінюється на руку при наведенні */
     border-radius: 4px;
+    position: absolute; /* Позиціонування кнопки */
+    bottom: 4px; /* Відступ від нижнього краю картки */
+    right: 4px; /* Відступ від правого краю картки */
 }
 
-/* Видалено стилі для заблокованої кнопки та кнопки з недостатнім балансом */
 .card .prerequisites {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     color: red;
 }
 
