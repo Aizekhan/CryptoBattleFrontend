@@ -1,5 +1,6 @@
 import React from 'react';
 import lockIcon from '../../assets/images/lock.png';
+import upgradeIcon from '../../assets/icons/upgrade-icon.png'; // Імпортуємо зображення кнопки
 import './Card.css';
 import { useUserStats } from '../../context/UserStatsContext';
 import { cardBackgrounds } from './cardsConfig';
@@ -95,7 +96,7 @@ const Card = ({ card }) => {
     }
 
     const backgroundImage = cardBackgrounds[card.tag] || card.img;
-    const buttonImage = card.buttonImage;
+    const buttonImage = upgradeIcon; // Використовуємо загальне зображення для всіх кнопок
 
     return (
         <div

@@ -7,7 +7,6 @@ import equipBackground from '../../assets/images/Backgrounds/equip-bg.png';
 import battleCardBackground from '../../assets/images/Backgrounds/battle-card-bg.png';
 import farmSkillBackground from '../../assets/images/Backgrounds/farm-skill-bg.png';
 
-import upgradeIcon from '../../assets/icons/upgrade-icon.png';
 
 import passiveSkill1 from '../../assets/images/PassiveSkillsImages/passive1.png';
 import passiveSkill2 from '../../assets/images/PassiveSkillsImages/passive2.png';
@@ -61,10 +60,7 @@ export const cardBackgrounds = {
     passiveSkill: passiveSkillBackground,
 };
 
-// Визначення зображень кнопок для карток
-export const buttonImages = {
-    upgrade: upgradeIcon,
-};
+
 
 export const passiveSkills = [
     { id: 1, name: 'Increase HP', effect: '+5 HP', level: 0, upgradeCost: 100, img: passiveSkill1, tag: 'heroStat', prerequisites: [], scaleUpgrade: 1.1 },
