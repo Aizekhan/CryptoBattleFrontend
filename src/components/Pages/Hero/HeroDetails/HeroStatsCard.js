@@ -9,11 +9,19 @@ import critChanceIcon from '../../../../assets/icons/critChance.png';
 import dodgeChanceIcon from '../../../../assets/icons/dodgeChance.png';
 import critPowerIcon from '../../../../assets/icons/critPower.png';
 import accuracyIcon from '../../../../assets/icons/accuracy.png';
+import statsPanelBackground from '../../../../assets/icons/StatsPanel-background.png';
 import './HeroStatsCard.css';
 
 const HeroStatsCard = ({ stats }) => {
+
+    const backgroundStyle = {
+        backgroundImage: `url(${statsPanelBackground})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center center'
+    };
+
     return (
-        <div className="hero-stats-card">
+        <div className="hero-stats-card" style={backgroundStyle}>
             <div className="stats-container">
                 <div className="stat-column">
                     <div className="stat">
