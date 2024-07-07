@@ -123,12 +123,12 @@ export const minesCards = [
     { id: 1, name: 'Gold Mine 1', effect: 'Produces gold', level: 0, img: mine1, prerequisites: [], upgradeCost: 100, tag: 'goldMine', scaleUpgrade: 1.1, scaleIncome: 1.2, baseIncome: 10 },
     { id: 2, name: 'Gold Mine 2', effect: 'Produces more gold', level: 0, img: mine2, prerequisites: [{ id: 1, level: 3 }], upgradeCost: 200, tag: 'goldMine', scaleUpgrade: 1.2, scaleIncome: 1.3, baseIncome: 20 },
     { id: 3, name: 'Gold Mine 3', effect: 'Produces even more gold', level: 0, img: mine3, prerequisites: [{ id: 2, level: 3 }], upgradeCost: 300, tag: 'goldMine', scaleUpgrade: 1.3, scaleIncome: 1.4, baseIncome: 30 },
-    { id: 4, name: 'Resource Mine 1', effect: 'Produces resources', level: 0, img: mine4, prerequisites: [], upgradeCost: 150, tag: 'resourceMine', scaleUpgrade: 1.1, scaleIncome: 1.2, baseIncome: 15 },
-    { id: 5, name: 'Resource Mine 2', effect: 'Produces more resources', level: 0, img: mine5, prerequisites: [{ id: 4, level: 3 }], upgradeCost: 250, tag: 'resourceMine', scaleUpgrade: 1.2, scaleIncome: 1.3, baseIncome: 30 },
-    { id: 6, name: 'Resource Mine 3', effect: 'Produces even more resources', level: 0, img: mine6, prerequisites: [{ id: 5, level: 3 }], upgradeCost: 350, tag: 'resourceMine', scaleUpgrade: 1.3, scaleIncome: 1.4, baseIncome: 45 },
-    { id: 7, name: 'Crystal Mine 1', effect: 'Produces crystals', level: 0, img: mine7, prerequisites: [], upgradeCost: 400, tag: 'crystalMine', scaleUpgrade: 1.1, scaleIncome: 1.2, baseIncome: 5 },
-    { id: 8, name: 'Crystal Mine 2', effect: 'Produces more crystals', level: 0, img: mine8, prerequisites: [{ id: 7, level: 3 }], upgradeCost: 450, tag: 'crystalMine', scaleUpgrade: 1.2, scaleIncome: 1.3, baseIncome: 10 },
-    { id: 9, name: 'Crystal Mine 3', effect: 'Produces even more crystals', level: 0, img: mine9, prerequisites: [{ id: 8, level: 3 }, { id: 7, level: 5 }], upgradeCost: 500, tag: 'crystalMine', scaleUpgrade: 1.3, scaleIncome: 1.4, baseIncome: 15 },
+    { id: 4, name: 'Resource Mine 1', effect: 'Produces resources', level: 0, img: mine4, prerequisites: [], upgradeCost: 150, tag: 'goldMine', scaleUpgrade: 1.1, scaleIncome: 1.2, baseIncome: 15 },
+    { id: 5, name: 'Resource Mine 2', effect: 'Produces more resources', level: 0, img: mine5, prerequisites: [{ id: 4, level: 3 }], upgradeCost: 250, tag: 'goldMine', scaleUpgrade: 1.2, scaleIncome: 1.3, baseIncome: 30 },
+    { id: 6, name: 'Resource Mine 3', effect: 'Produces even more resources', level: 0, img: mine6, prerequisites: [{ id: 5, level: 3 }], upgradeCost: 350, tag: 'goldMine', scaleUpgrade: 1.3, scaleIncome: 1.4, baseIncome: 45 },
+    { id: 7, name: 'Crystal Mine 1', effect: 'Produces crystals', level: 0, img: mine7, prerequisites: [], upgradeCost: 400, tag: 'goldMine', scaleUpgrade: 1.1, scaleIncome: 1.2, baseIncome: 5 },
+    { id: 8, name: 'Crystal Mine 2', effect: 'Produces more crystals', level: 0, img: mine8, prerequisites: [{ id: 7, level: 3 }], upgradeCost: 450, tag: 'goldMine', scaleUpgrade: 1.2, scaleIncome: 1.3, baseIncome: 10 },
+    { id: 9, name: 'Crystal Mine 3', effect: 'Produces even more crystals', level: 0, img: mine9, prerequisites: [{ id: 8, level: 3 }, { id: 7, level: 5 }], upgradeCost: 500, tag: 'goldMine', scaleUpgrade: 1.3, scaleIncome: 1.4, baseIncome: 15 },
 ];
 
 export const marketCards = [
