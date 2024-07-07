@@ -2,7 +2,7 @@
     position: relative;
     width: 150px; /* Розширено ширину для кращого відображення */
     height: auto;
-    padding: 20px; /* Додано padding для внутрішнього відступу */
+    padding: 25px; /* Додано padding для внутрішнього відступу */
     border-radius: 8px; /* Додано заокруглення кутів */
 }
 
