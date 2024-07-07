@@ -17,15 +17,17 @@ const MainLayout = () => {
     const location = useLocation();
     const basePath = location.pathname.split('/')[1];
     const isHeroPage = basePath === 'hero';
+    const fullPath = location.pathname;
+    const isPvPBattle = fullPath === '/battle/pvp-battle';
     
     const { userStats } = useUserStats();
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId) || {};
 
     const subPagesConfig = {
         battle: [
-            { path: 'pvp', name: 'PVP' },
-            { path: 'ability', name: 'ABILITY' },
-            { path: 'rank', name: 'RANK' }
+            { path: 'sub1', name: 'PvP' },
+            { path: 'sub2', name: 'Ability' },
+            { path: 'sub3', name: 'Rank' }
         ],
         home: [
             { path: 'sub1', name: 'News' },
@@ -60,11 +62,22 @@ const MainLayout = () => {
 
     return (
         <div className="main-layout">
-            <div className="nav-icons-top">
-                <img src={homeIcon} alt="Home" onClick={() => navigate('/home')} className="nav-icon" />
-                <img src={battleIcon} alt="Battle" onClick={() => navigate('/battle')} className="nav-icon" />
+            <div className={`nav-icons-wrapper ${isPvPBattle ? 'hidden' : ''}`}>
+                <div className="nav-icons-top">
+                    <img src={homeIcon} alt="Home" onClick={() => navigate('/home')} className="nav-icon" />
+                    <img src={battleIcon} alt="Battle" onClick={() => navigate('/battle')} className="nav-icon" />
+                </div>
+                <SubNavigation basePath={`/${basePath}`} subPages={subPages} />
+                <div className={`nav-icon-hero ${isHeroPage ? 'hidden' : ''}`}>
+                    <img src={heroIcon} alt="Hero" onClick={() => navigate('/hero')} className="nav-icon" />
+                </div>
+                <div className={`nav-icons-bottom ${isHeroPage ? 'move-icons' : ''}`}>
+                    <img src={farmIcon} alt="Farm" onClick={() => navigate('/farm')} className="nav-icon" />
+                    <img src={mineIcon} alt="Mine" onClick={() => navigate('/mines')} className="nav-icon mine-icon" />
+                    <img src={questIcon} alt="Quest" onClick={() => navigate('/quests')} className="nav-icon quest-icon" />
+                    <img src={addFriendsIcon} alt="Add Friends" onClick={() => navigate('/friends')} className="nav-icon" />
+                </div>
             </div>
-            <SubNavigation basePath={`/${basePath}`} subPages={subPages} />
             <div className="content">
                 <Outlet /> {/* Тут відображається вміст дочірніх маршрутів */}
             </div>
@@ -73,15 +86,6 @@ const MainLayout = () => {
                     <HeroStatsCard stats={currentHero.baseStats} />
                 </div>
             )}
-            <div className={`nav-icon-hero ${isHeroPage ? 'move-icons hidden' : ''}`}>
-                <img src={heroIcon} alt="Hero" onClick={() => navigate('/hero')} className="nav-icon" />
-            </div>
-            <div className={`nav-icons-bottom ${isHeroPage ? 'move-icons' : ''}`}>
-                <img src={farmIcon} alt="Farm" onClick={() => navigate('/farm')} className="nav-icon" />
-                <img src={mineIcon} alt="Mine" onClick={() => navigate('/mines')} className="nav-icon mine-icon" />
-                <img src={questIcon} alt="Quest" onClick={() => navigate('/quests')} className="nav-icon quest-icon" />
-                <img src={addFriendsIcon} alt="Add Friends" onClick={() => navigate('/friends')} className="nav-icon" />       
-            </div>
         </div>
     );
 };

@@ -1,13 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import './SubNavigation.css';
 import subPageIcon from '../../assets/icons/NavPanel/subPage.png';
 
-const SubNavigation = ({ basePath, subPages, isBattlePage }) => {
-    if (isBattlePage) {
-        return null; // Не відображати SubNavigation під час битви
-    }
-
+const SubNavigation = ({ basePath, subPages }) => { 
     return (
         <div className="sub-navigation">
             {subPages.map((subPage, index) => (

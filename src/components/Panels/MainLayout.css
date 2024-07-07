@@ -19,12 +19,7 @@
     z-index: 2;
 }
 
-.nav-icon {
-    width: 80px;
-    height: 80px;
-    cursor: pointer;
-    transition: all 0.5s ease-in-out;
-}
+
 
 .nav-icon-hero {
     width: 75px;
@@ -58,6 +53,11 @@
     transform: translate(130%, -100px);
 }
 
+.nav-icon {
+        width: 80px;
+        height: 80px;
+        cursor: pointer;
+    }
 
 .nav-icons-bottom .nav-icon {
     width: 80px;
@@ -69,61 +69,7 @@
     display: none;
 }
 
-.sub-navigation {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 4px 4px;
-    background-color: transparent;
-    color: #fff;
-    box-sizing: border-box; /* Враховує padding і border у загальній ширині */
-    height: 60px;
-    width: 100%;
-    z-index: 998;
-    position: absolute;
-    top: 70px;
-    margin-top: 0px;
-}
 
-.sub-nav-button {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    font-size: 14px;
-    margin: 0 2px; /* Зменшення відступу між кнопками */
-    padding: 0;
-    text-decoration: none;
-    cursor: pointer;
-    height: 100%;
-}
-
-.sub-nav-icon {
-    width: 100%;
-    height: auto;
-    max-height: 60px;
-    max-width: 160px;  
-}
-
-.sub-nav-button:hover .sub-nav-icon {
-    transform: scale(1.1);
-}
-
-.sub-nav-button span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    line-height: 1;
-    font-weight: bold;
-    color: yellow;
-    pointer-events: none;
-}
 
 .content {
     position: absolute;
@@ -145,46 +91,3 @@
     z-index: 3;
 }
 
-.hero-stats-card {
-    position: relative;
-    width: 200px;
-    height: auto;
-    background: url('../../assets/icons/StatsPanel-background.png') no-repeat center center;
-    background-size: contain;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.stats-container {
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-}
-
-.stat-column {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.stat {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.stat-icon {
-    width: 16px;
-    height: 16px;
-    margin-right: 10px;
-}
-
-.stat-value {
-    font-size: 14px;
-    font-weight: bold;
-    color: #fff;
-}
