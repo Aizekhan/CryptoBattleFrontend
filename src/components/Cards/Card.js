@@ -17,12 +17,12 @@ const Card = ({ card }) => {
             key={card.id}
             style={{ backgroundImage: `url(${backgroundImage})` }} // Динамічно задаємо фон
         >
+            <div className="card-img-container">
+                <img src={card.img} alt={card.name} className="card-img" />
+            </div>
             <div className="card-header">
                 <h3>{card.name}</h3>
                 <p>Level: {userStats.mines.find(c => c.id === card.id)?.level || card.level}</p>
-            </div>
-            <div className="card-img-container">
-                <img src={card.img} alt={card.name} className="card-img" />
             </div>
             <div className="card-prerequisites">
                 {card.prerequisites.map(prereq => {

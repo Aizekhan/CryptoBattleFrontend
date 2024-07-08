@@ -1,13 +1,13 @@
 // cardsConfig.js
 
-import passiveSkillBackground from '../../assets/images/Backgrounds/passive-skill-bg.png';
-import goldMineBackground from '../../assets/images/Backgrounds/gold-mine-bg.png';
-import heroStatBackground from '../../assets/images/Backgrounds/hero-stat-bg.png';
-import equipBackground from '../../assets/images/Backgrounds/equip-bg.png';
+import passiveSkillBackground from '../../assets/images/Backgrounds/mining-skill-bg.png';
+import goldMineBackground from '../../assets/images/Backgrounds/mining-skill-bg.png';
+import heroStatBackground from '../../assets/images/Backgrounds/mining-skill-bg.png';
+import equipBackground from '../../assets/images/Backgrounds/battle-card-bg.png';
 import battleCardBackground from '../../assets/images/Backgrounds/battle-card-bg.png';
-import farmSkillBackground from '../../assets/images/Backgrounds/farm-skill-bg.png';
-import locationBackground from '../../assets/images/Backgrounds/location-bg.png';
-import marketBackground from '../../assets/images/Backgrounds/market-bg.png';
+import farmSkillBackground from '../../assets/images/Backgrounds/mining-skill-bg.png';
+import locationBackground from '../../assets/images/Backgrounds/mining-skill-bg.png';
+import marketBackground from '../../assets/images/Backgrounds/mining-skill-bg.png';
 import miningSkillBackground from '../../assets/images/Backgrounds/mining-skill-bg.png';
 
 import passiveSkill1 from '../../assets/images/PassiveSkillsImages/passive1.png';
