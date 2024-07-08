@@ -6,6 +6,8 @@ import heroStatBackground from '../../assets/images/Backgrounds/hero-stat-bg.png
 import equipBackground from '../../assets/images/Backgrounds/equip-bg.png';
 import battleCardBackground from '../../assets/images/Backgrounds/battle-card-bg.png';
 import farmSkillBackground from '../../assets/images/Backgrounds/farm-skill-bg.png';
+import locationBackground from '../../assets/images/Backgrounds/location-bg.png';
+import marketBackground from '../../assets/images/Backgrounds/market-bg.png';
 
 
 import passiveSkill1 from '../../assets/images/PassiveSkillsImages/passive1.png';
@@ -58,8 +60,9 @@ export const cardBackgrounds = {
     battleCard: battleCardBackground,
     farmSkill: farmSkillBackground,
     passiveSkill: passiveSkillBackground,
+    market: marketBackground, // Додано
+    location: locationBackground, // Додано};
 };
-
 
 
 export const passiveSkills = [

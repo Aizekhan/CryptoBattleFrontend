@@ -35,19 +35,6 @@
     margin: 2px 0; /* Відступи зверху та знизу */
 }
 
-.card button {
-    border: none;
-    background: transparent;
-    padding: 0;
-    cursor: pointer; /* Курсор змінюється на руку при наведенні */
-    z-index: 8; /* Значення z-index більше, ніж у інших елементів */
-}
-
-    .card button img {
-        width: 20px;
-        height: 20px;
-    }
-
 .card .prerequisites {
     font-size: 0.6rem;
     color: red;
