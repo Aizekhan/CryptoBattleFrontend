@@ -20,11 +20,11 @@ const Card = ({ card }) => {
             <div className="card-img-container">
                 <img src={card.img} alt={card.name} className="card-img" />
             </div>
-            <div className="card-header">
+            <div className="card-header rubik-glitch-regular">
                 <h3>{card.name}</h3>
                 <p>Level: {userStats.mines.find(c => c.id === card.id)?.level || card.level}</p>
             </div>
-            <div className="card-prerequisites">
+            <div className="card-prerequisites rubik-glitch-regular">
                 {card.prerequisites.map(prereq => {
                     const prereqCard = userStats.mines.find(c => c.id === prereq.id);
                     return (
