@@ -1,8 +1,8 @@
 import React from 'react';
 import lockIcon from '../../assets/images/lock.png';
-import upgradeIcon from '../../assets/icons/upgrade-icon.png';
-import { useUserStats } from '../../context/UserStatsContext';
+import upgradeIcon from '../../assets/icons/upgrade-icon.png'; // Імпортуємо зображення кнопки
 import './UpgradeButton.css';
+import { useUserStats } from '../../context/UserStatsContext';
 
 const UpgradeButton = ({ card }) => {
     const { userStats, updateUserStats, updateHeroStats } = useUserStats();
@@ -34,7 +34,23 @@ const UpgradeButton = ({ card }) => {
                     updateHeroStats(userStats.currentHeroId, newHeroStats);
                     break;
 
-                // Інші випадки...
+                case 'equip':
+                    break;
+
+                case 'battleCard':
+                    break;
+
+                case 'farmSkill':
+                    if (card.effectType === 'regenSpeed') {
+                        newHeroStats.regenSpeed = (newHeroStats.regenSpeed || 0) + card.effectValue;
+                    }
+                    break;
+
+                case 'market':
+                    break;
+
+                case 'location':
+                    break;
 
                 default:
                     break;

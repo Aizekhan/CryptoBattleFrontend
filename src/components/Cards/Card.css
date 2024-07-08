@@ -2,13 +2,14 @@
 .card {
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     border: none;
     border-radius: 8px;
     text-align: center;
     width: 120px; /* Встановлюємо ширину картки */
     height: 120px; /* Встановлюємо висоту картки */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    background-color: transparent;
+  
+    background-color: transparent; /* Фоновий колір картки прозорий */
     box-sizing: border-box; /* Включаємо відступи та бордюри в загальну ширину та висоту */
     display: flex;
     flex-direction: column;
@@ -18,6 +19,13 @@
     overflow: hidden; /* Запобігає виходу елементів за межі картки */
 }
 
+.card-img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50%; /* Ви можете налаштувати висоту за потреби */
+}
+
 .card-img {
     width: 50%; /* Встановлює ширину зображення на 50% від ширини картки */
     height: auto; /* Автоматична висота зображення для збереження пропорцій */
@@ -25,22 +33,47 @@
     display: block;
 }
 
-.card h3 {
-    font-size: 0.7rem; /* Зменшуємо розмір шрифту для заголовка */
-    margin: 3px 0; /* Відступи зверху та знизу */
+.card-header {
+    flex: 0 0 auto; /* Встановлює фіксовану висоту для заголовка */
 }
 
-.card p {
-    font-size: 0.5rem; /* Зменшуємо розмір шрифту для абзаців */
-    margin: 2px 0; /* Відступи зверху та знизу */
+    .card-header h3 {
+        font-size: 0.7rem; /* Зменшуємо розмір шрифту для заголовка */
+        margin: 3px 0; /* Відступи зверху та знизу */
+    }
+
+.card-level {
+    flex: 0 0 auto; /* Встановлює фіксовану висоту для рівня */
 }
 
-.card .prerequisites {
+    .card-level p {
+        font-size: 0.5rem; /* Зменшуємо розмір шрифту для абзаців */
+        margin: 2px 0; /* Відступи зверху та знизу */
+    }
+
+.card-upgrade-button {
+    flex: 0 0 auto; /* Встановлює фіксовану висоту для кнопки апгрейду */
+}
+
+.card button {
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer; /* Курсор змінюється на руку при наведенні */
+    z-index: 8; /* Значення z-index більше, ніж у інших елементів */
+}
+
+    .card button img {
+        width: 40px;
+        height: 40px;
+    }
+
+.card-prerequisites {
     font-size: 0.6rem;
     color: red;
 }
 
-    .card .prerequisites p {
+    .card-prerequisites p {
         margin: 0;
     }
 

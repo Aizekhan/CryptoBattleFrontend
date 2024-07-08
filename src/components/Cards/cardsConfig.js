@@ -8,7 +8,7 @@ import battleCardBackground from '../../assets/images/Backgrounds/battle-card-bg
 import farmSkillBackground from '../../assets/images/Backgrounds/farm-skill-bg.png';
 import locationBackground from '../../assets/images/Backgrounds/location-bg.png';
 import marketBackground from '../../assets/images/Backgrounds/market-bg.png';
-
+import miningSkillBackground from '../../assets/images/Backgrounds/mining-skill-bg.png';
 
 import passiveSkill1 from '../../assets/images/PassiveSkillsImages/passive1.png';
 import passiveSkill2 from '../../assets/images/PassiveSkillsImages/passive2.png';
@@ -61,7 +61,8 @@ export const cardBackgrounds = {
     farmSkill: farmSkillBackground,
     passiveSkill: passiveSkillBackground,
     market: marketBackground, // Додано
-    location: locationBackground, // Додано};
+    location: locationBackground, 
+    miningSkill: miningSkillBackground, // Додано
 };
 
 
