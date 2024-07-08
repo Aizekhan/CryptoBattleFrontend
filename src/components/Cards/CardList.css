@@ -2,14 +2,14 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    gap: 8px; /* Відстань між картками */
+    gap: 16px; /* Відстань між картками */
     overflow-y: auto; /* Додаємо вертикальну прокрутку, якщо потрібно */
     padding: 8px; /* Додаємо відступи навколо */
     box-sizing: border-box;
 }
 
 .card-container {
-    flex: 1 1 calc(50% - 8px); /* По 2 картки в ряд */
-    max-width: calc(50% - 8px); /* Максимальна ширина картки */
+    flex: 1 1 calc(50% - 16px); /* По 2 картки в ряд */
+    max-width: calc(50% - 16px); /* Максимальна ширина картки */
     box-sizing: border-box;
 }

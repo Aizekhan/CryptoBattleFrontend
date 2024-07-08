@@ -17,30 +17,26 @@ const Card = ({ card }) => {
             key={card.id}
             style={{ backgroundImage: `url(${backgroundImage})` }} // Динамічно задаємо фон
         >
+            <div className="card-header">
+                <h3>{card.name}</h3>
+                <p>Level: {userStats.mines.find(c => c.id === card.id)?.level || card.level}</p>
+            </div>
             <div className="card-img-container">
                 <img src={card.img} alt={card.name} className="card-img" />
             </div>
-            <div className="card-header">
-                <h3>{card.name}</h3>
-            </div>
-            <div className="card-level">
-                <p>Level: {userStats.mines.find(c => c.id === card.id)?.level || card.level}</p>
+            <div className="card-prerequisites">
+                {card.prerequisites.map(prereq => {
+                    const prereqCard = userStats.mines.find(c => c.id === prereq.id);
+                    return (
+                        <p key={prereq.id}>
+                            {prereqCard ? prereqCard.name : `Card ${prereq.id}`} Level {prereq.level} required
+                        </p>
+                    );
+                })}
             </div>
             <div className="card-upgrade-button">
                 <UpgradeButton card={card} /> {/* Використовуємо компонент UpgradeButton */}
             </div>
-            {!userStats.mines.find(c => c.id === card.id)?.level && (
-                <div className="card-prerequisites">
-                    {card.prerequisites.map(prereq => {
-                        const prereqCard = userStats.mines.find(c => c.id === prereq.id);
-                        return (
-                            <p key={prereq.id}>
-                                {prereqCard ? prereqCard.name : `Card ${prereq.id}`} Level {prereq.level} required
-                            </p>
-                        );
-                    })}
-                </div>
-            )}
         </div>
     );
 };
