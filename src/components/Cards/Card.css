@@ -5,8 +5,8 @@
     background-repeat: no-repeat;
     border: none;
     border-radius: 8px;
-    width: 120px; /* Встановлюємо ширину картки */
-    height: 120px; /* Встановлюємо висоту картки */
+    width: 150px; /* Встановлюємо ширину картки */
+    height: 150px; /* Встановлюємо висоту картки */
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     background-color: transparent; /* Фоновий колір картки прозорий */
     box-sizing: border-box; /* Включаємо відступи та бордюри в загальну ширину та висоту */
@@ -24,11 +24,13 @@
     .card-header h3 {
         font-size: 0.7rem; /* Зменшуємо розмір шрифту для заголовка */
         margin: 3px 0; /* Відступи зверху та знизу */
+        color: white;
     }
 
     .card-header p {
         font-size: 0.5rem; /* Зменшуємо розмір шрифту для рівня */
         margin: 2px 0; /* Відступи зверху та знизу */
+        color: white;
     }
 
 .card-img-container {
@@ -54,11 +56,12 @@
 
     .card-prerequisites p {
         margin: 0;
+        color: white;
     }
 
 .card-upgrade-button {
     position: absolute;
-    bottom: 20px; /* Відступ від нижнього краю */
+    bottom: 5px; /* Відступ від нижнього краю */
     left: 50%;
     transform: translateX(-50%);
 }
