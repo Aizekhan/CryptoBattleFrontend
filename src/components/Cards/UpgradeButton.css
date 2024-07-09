@@ -16,3 +16,7 @@
 .no-balance-button {
     filter: grayscale(100%);
 }
+
+.locked-button img {
+    filter: grayscale(100%);
+}

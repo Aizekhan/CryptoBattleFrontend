@@ -1,7 +1,7 @@
 import React from 'react';
-import './UpgradeModal.css'; // Імпортуємо стилі для модального вікна
-import closeIcon from '../../assets/icons/close-icon.png'; // Імпортуємо іконку закриття
-import UpgradeButton from '../Cards/UpgradeButton'; // Імпортуємо компонент UpgradeButton
+import './UpgradeModal.css';
+import closeIcon from '../../assets/icons/close-icon.png';
+import UpgradeButton from '../Cards/UpgradeButton';
 
 const UpgradeModal = ({ card, onClose, canUpgrade }) => {
     return (
@@ -19,7 +19,7 @@ const UpgradeModal = ({ card, onClose, canUpgrade }) => {
                         ))}
                     </div>
                     {!canUpgrade && <p>Conditions not met</p>}
-                    <UpgradeButton card={card} />
+                    <UpgradeButton card={card} onClose={onClose} />
                 </div>
             </div>
         </div>
