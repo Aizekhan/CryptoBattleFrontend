@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import './Card.css';
 import { useUserStats } from '../../context/UserStatsContext';
 import { cardBackgrounds } from './cardsConfig';
-import UpgradeModal from '../Panels/UpgradeModal';
-import upgradeIcon from '../../assets/icons/upgrade-icon.png';
-import lockIcon from '../../assets/images/lock.png';
+import UpgradeModal from '../Panels/UpgradeModal'; // Îíîâëåíèé øëÿõ äî êîìïîíåíòà UpgradeModal
+import upgradeIcon from '../../assets/icons/upgrade-icon.png'; // ²ìïîğòóºìî ³êîíêó àïãğåéäó
+import lockIcon from '../../assets/images/lock.png'; // ²ìïîğòóºìî ³êîíêó çàìêà
 
 const Card = ({ card }) => {
     const { userStats } = useUserStats();
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false); // Ñòàí äëÿ êåğóâàííÿ ìîäàëüíèì â³êíîì
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
@@ -25,9 +25,9 @@ const Card = ({ card }) => {
     return (
         <>
             <div
-                className={`card ${card.tag}`}
+                className={`card ${card.tag}`} // Äèíàì³÷íî çàäàºìî êëàñ
                 key={card.id}
-                style={{ backgroundImage: `url(${backgroundImage})` }}
+                style={{ backgroundImage: `url(${backgroundImage})` }} // Äèíàì³÷íî çàäàºìî ôîí
             >
                 <div className="card-img-container">
                     <img src={card.img} alt={card.name} className="card-img" />
@@ -47,8 +47,8 @@ const Card = ({ card }) => {
                     })}
                 </div>
                 <div className="card-upgrade-button">
-                    <button onClick={openModal} className="transparent-button">
-                        <img src={prerequisitesMet ? upgradeIcon : lockIcon} alt="Upgrade" className="button-icon" />
+                    <button onClick={openModal}>
+                        <img src={prerequisitesMet ? upgradeIcon : lockIcon} alt="Upgrade" />
                     </button>
                 </div>
             </div>
