@@ -1,6 +1,6 @@
 import React from 'react';
-import lockIcon from '../../assets/images/lock.png';
-import upgradeIcon from '../../assets/icons/upgrade-icon.png'; // Імпортуємо зображення кнопки
+import upgradeIcon from '../../assets/icons/upgrade-icon.png'; // Імпортуємо іконку апгрейду
+import lockIcon from '../../assets/images/lock.png'; // Імпортуємо іконку замка
 import './UpgradeButton.css';
 import { useUserStats } from '../../context/UserStatsContext';
 
@@ -82,25 +82,14 @@ const UpgradeButton = ({ card }) => {
         }
     };
 
-    let buttonContent = (
-        <img src={lockIcon} alt="Locked" className="lock-icon" />
-    );
-    let buttonClass = 'locked';
-
-    if (prerequisitesMet) {
-        buttonContent = (
-            <img src={upgradeIcon} alt="Upgrade" className="upgrade-icon" />
-        );
-        buttonClass = hasEnoughBalance ? 'can-upgrade' : 'no-balance';
-    }
-
     return (
         <button
             onClick={handleUpgrade}
             disabled={!canUpgrade}
-            className={buttonClass}
+            className={canUpgrade ? 'upgrade-button' : 'no-balance-button'}
         >
-            {buttonContent}
+            <img src={canUpgrade ? upgradeIcon : lockIcon} alt="Upgrade" />
+            <span>Cost: {card.upgradeCost}</span>
         </button>
     );
 };

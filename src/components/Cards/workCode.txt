@@ -1,0 +1,264 @@
+import React from 'react';
+import './Card.css';
+import { useUserStats } from '../../context/UserStatsContext';
+import { cardBackgrounds } from './cardsConfig';
+import UpgradeButton from './UpgradeButton'; // Імпортуємо компонент UpgradeButton
+
+const Card = ({ card }) => {
+    const { userStats } = useUserStats();
+
+    console.log('card in Card:', card); // Додайте це для перевірки даних картки
+
+    const backgroundImage = cardBackgrounds[card.tag] || card.img;
+
+    return (
+        <div
+            className={`card ${card.tag}`} // Динамічно задаємо клас
+            key={card.id}
+            style={{ backgroundImage: `url(${backgroundImage})` }} // Динамічно задаємо фон
+        >
+            <div className="card-img-container">
+                <img src={card.img} alt={card.name} className="card-img" />
+            </div>
+            <div className="card-header">
+                <h3>{card.name}</h3>
+                <p>Level: {userStats.mines.find(c => c.id === card.id)?.level || card.level}</p>
+            </div>
+            <div className="card-prerequisites">
+                {card.prerequisites.map(prereq => {
+                    const prereqCard = userStats.mines.find(c => c.id === prereq.id);
+                    return (
+                        <p key={prereq.id}>
+                            {prereqCard ? prereqCard.name : `Card ${prereq.id}`} Level {prereq.level} required
+                        </p>
+                    );
+                })}
+            </div>
+            <div className="card-upgrade-button">
+                <UpgradeButton card={card} /> {/* Використовуємо компонент UpgradeButton */}
+            </div>
+        </div>
+    );
+};
+
+export default Card;
+
+
+/* Загальні стилі для всіх карток */
+.card {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    border-radius: 8px;
+    width: 140px; /* Встановлюємо ширину картки */
+    height: 140px; /* Встановлюємо висоту картки */
+    background-color: transparent; /* Фоновий колір картки прозорий */
+    box-sizing: border-box; /* Включаємо відступи та бордюри в загальну ширину та висоту */
+    position: relative; /* Додаємо відносне позиціонування для батьківського елемента */
+    overflow: hidden; /* Запобігає виходу елементів за межі картки */
+    color: white; /* Встановлюємо білий колір шрифту для всієї картки */
+    font-family: 'Rubik Glitch', sans-serif; /* Встановлюємо шрифт для всієї картки */
+}
+
+.rubik-glitch-regular {
+    font-family: "Rubik Glitch", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.card-header {
+    position: absolute;
+    top: 5px; /* Відступ зверху */
+    width: 100%;
+    text-align: center;
+    z-index: 2; /* Задаємо високий z-index, щоб заголовок був попереду */
+}
+
+    .card-header h3 {
+        font-size: 1.2rem; /* Зменшуємо розмір шрифту для заголовка */
+        margin: 3px 0; /* Відступи зверху та знизу */
+        color: blueviolet; /* Встановлюємо білий колір шрифту для заголовка */
+    }
+
+    .card-header p {
+        font-size: 1rem; /* Зменшуємо розмір шрифту для рівня */
+        margin: 2px 0; /* Відступи зверху та знизу */
+        color: blueviolet; /* Встановлюємо білий колір шрифту для рівня */
+    }
+
+.card-img-container {
+    position: absolute;
+    top: 10%; /* Відступ від верху */
+    left: 10%; /* Відступ від лівого краю */
+    width: 80%; /* Ширина зображення 80% від ширини картки */
+    height: 80%; /* Висота зображення 80% від висоти картки */
+    z-index: 1; /* Розташування позаду інших елементів */
+}
+
+.card-img {
+    width: 100%; /* Встановлює ширину зображення на 100% від контейнера */
+    height: 100%; /* Встановлює висоту зображення на 100% від контейнера */
+    object-fit: cover; /* Масштабує зображення, щоб воно повністю вміщувалось в контейнер */
+}
+
+.card-prerequisites {
+    position: absolute;
+    bottom: 42px; /* Відступ від низу */
+    width: 100%;
+    text-align: center;
+    font-size: 0.8rem;
+    color: darkred; /* Встановлюємо білий колір шрифту для умов апгрейду */
+    z-index: 2; /* Задаємо високий z-index, щоб умови були попереду */
+}
+
+    .card-prerequisites p {
+        margin: 0;
+    }
+
+.card-upgrade-button {
+    position: absolute;
+    bottom: 0px; /* Відступ від нижнього краю */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2; /* Задаємо високий z-index, щоб кнопка була попереду */
+}
+
+
+import React from 'react';
+import lockIcon from '../../assets/images/lock.png';
+import upgradeIcon from '../../assets/icons/upgrade-icon.png'; // Імпортуємо зображення кнопки
+import './UpgradeButton.css';
+import { useUserStats } from '../../context/UserStatsContext';
+
+const UpgradeButton = ({ card }) => {
+    const { userStats, updateUserStats, updateHeroStats } = useUserStats();
+
+    const prerequisitesMet = card.prerequisites.every(prereq => {
+        const prereqCard = userStats.mines.find(c => c.id === prereq.id);
+        return prereqCard && prereqCard.level >= prereq.level;
+    });
+
+    const hasEnoughBalance = userStats.balance >= card.upgradeCost;
+    const canUpgrade = prerequisitesMet && hasEnoughBalance;
+
+    const handleUpgrade = () => {
+        if (canUpgrade) {
+            console.log('Upgrading card:', card);
+
+            let newHourlyIncome = userStats.hourlyIncome;
+            let newUpgradeCost = card.upgradeCost;
+            let newHeroStats = { ...userStats.heroes.find(hero => hero.id === userStats.currentHeroId) };
+
+            switch (card.tag) {
+                case 'goldMine':
+                    const currentLevel = userStats.mines.find(c => c.id === card.id).level;
+                    newHourlyIncome += card.baseIncome * Math.pow(card.scaleIncome, currentLevel + 1);
+                    break;
+
+                case 'heroStat':
+                    newHeroStats[card.effectType] += card.effectValue;
+                    updateHeroStats(userStats.currentHeroId, newHeroStats);
+                    break;
+
+                case 'equip':
+                    break;
+
+                case 'battleCard':
+                    break;
+
+                case 'farmSkill':
+                    if (card.effectType === 'regenSpeed') {
+                        newHeroStats.regenSpeed = (newHeroStats.regenSpeed || 0) + card.effectValue;
+                    }
+                    break;
+
+                case 'market':
+                    break;
+
+                case 'location':
+                    break;
+
+                default:
+                    break;
+            }
+
+            newUpgradeCost = Math.floor(card.upgradeCost * card.scaleUpgrade);
+
+            const updatedMines = userStats.mines.map(c =>
+                c.id === card.id ? { ...c, level: c.level + 1, upgradeCost: newUpgradeCost } : c
+            );
+
+            const updatedHeroes = userStats.heroes.map(hero =>
+                hero.id === userStats.currentHeroId ? newHeroStats : hero
+            );
+
+            updateUserStats({
+                balance: userStats.balance - card.upgradeCost,
+                hourlyIncome: newHourlyIncome,
+                mines: updatedMines,
+                heroes: updatedHeroes
+            });
+
+            console.log('Updated user stats:', {
+                balance: userStats.balance - card.upgradeCost,
+                hourlyIncome: newHourlyIncome,
+                mines: updatedMines,
+                heroes: updatedHeroes
+            });
+        }
+    };
+
+    let buttonContent = (
+        <img src={lockIcon} alt="Locked" className="lock-icon" />
+    );
+    let buttonClass = 'locked';
+
+    if (prerequisitesMet) {
+        buttonContent = (
+            <img src={upgradeIcon} alt="Upgrade" className="upgrade-icon" />
+        );
+        buttonClass = hasEnoughBalance ? 'can-upgrade' : 'no-balance';
+    }
+
+    return (
+        <button
+            onClick={handleUpgrade}
+            disabled={!canUpgrade}
+            className={buttonClass}
+        >
+            {buttonContent}
+        </button>
+    );
+};
+
+export default UpgradeButton;
+
+
+button.locked {
+    cursor: not-allowed;
+}
+
+button.can-upgrade {
+    cursor: pointer;
+}
+
+button.no-balance {
+    cursor: not-allowed;
+}
+
+button {
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer; /* Курсор змінюється на руку при наведенні */
+    z-index: 8; /* Значення z-index більше, ніж у інших елементів */
+}
+
+    button img {
+        width: 40px;
+        height: 40px;
+    }
+
+
+
