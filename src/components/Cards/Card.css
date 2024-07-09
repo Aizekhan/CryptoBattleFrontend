@@ -1,46 +1,69 @@
+/* Загальні стилі для всіх карток */
 .card {
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     border: none;
     border-radius: 8px;
-    text-align: center;
-    width: 120px;
-    height: 120px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    background-color: transparent;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0px;
-    overflow: hidden;
+    width: 140px; /* Встановлюємо ширину картки */
+    height: 140px; /* Встановлюємо висоту картки */
+    background-color: transparent; /* Фоновий колір картки прозорий */
+    box-sizing: border-box; /* Включаємо відступи та бордюри в загальну ширину та висоту */
+    position: relative; /* Додаємо відносне позиціонування для батьківського елемента */
+    overflow: hidden; /* Запобігає виходу елементів за межі картки */
+    color: white; /* Встановлюємо білий колір шрифту для всієї картки */
+    font-family: 'Rubik Glitch', sans-serif; /* Встановлюємо шрифт для всієї картки */
 }
 
-.card-img {
-    width: 80%;
-    height: 80%;
-    margin: 0 auto;
-    display: block;
+.rubik-glitch-regular {
+    font-family: "Rubik Glitch", system-ui;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .card-header {
-    font-family: "Rubik Glitch", system-ui;
+    position: absolute;
+    top: 5px; /* Відступ зверху */
+    width: 100%;
+    text-align: center;
+    z-index: 2; /* Задаємо високий z-index, щоб заголовок був попереду */
 }
 
     .card-header h3 {
-        font-size: 0.7rem;
-        margin: 3px 0;
+        font-size: 1.2rem; /* Зменшуємо розмір шрифту для заголовка */
+        margin: 3px 0; /* Відступи зверху та знизу */
+        color: blueviolet; /* Встановлюємо білий колір шрифту для заголовка */
     }
 
     .card-header p {
-        font-size: 0.5rem;
-        margin: 2px 0;
+        font-size: 1rem; /* Зменшуємо розмір шрифту для рівня */
+        margin: 2px 0; /* Відступи зверху та знизу */
+        color: blueviolet; /* Встановлюємо білий колір шрифту для рівня */
     }
 
+.card-img-container {
+    position: absolute;
+    top: 10%; /* Відступ від верху */
+    left: 10%; /* Відступ від лівого краю */
+    width: 80%; /* Ширина зображення 80% від ширини картки */
+    height: 80%; /* Висота зображення 80% від висоти картки */
+    z-index: 1; /* Розташування позаду інших елементів */
+}
+
+.card-img {
+    width: 100%; /* Встановлює ширину зображення на 100% від контейнера */
+    height: 100%; /* Встановлює висоту зображення на 100% від контейнера */
+    object-fit: cover; /* Масштабує зображення, щоб воно повністю вміщувалось в контейнер */
+}
+
 .card-prerequisites {
-    font-size: 0.6rem;
-    color: red;
+    position: absolute;
+    bottom: 42px; /* Відступ від низу */
+    width: 100%;
+    text-align: center;
+    font-size: 0.8rem;
+    color: darkred; /* Встановлюємо білий колір шрифту для умов апгрейду */
+    z-index: 2; /* Задаємо високий z-index, щоб умови були попереду */
 }
 
     .card-prerequisites p {
@@ -49,32 +72,8 @@
 
 .card-upgrade-button {
     position: absolute;
-    bottom: 20px;
+    bottom: 0px; /* Відступ від нижнього краю */
     left: 50%;
     transform: translateX(-50%);
-}
-
-.transparent-button {
-    background: transparent;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-}
-
-.button-icon {
-    width: 40px;
-    height: 40px;
-}
-
-.card img.lock-icon {
-    width: 20px;
-    height: 20px;
-    vertical-align: middle;
-    z-index: 10;
-}
-
-.locked-button img {
-    width: 40px;
-    height: 40px;
-    filter: grayscale(100%); /* Для сірої іконки */
+    z-index: 2; /* Задаємо високий z-index, щоб кнопка була попереду */
 }
