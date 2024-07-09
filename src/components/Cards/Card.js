@@ -47,7 +47,7 @@ const Card = ({ card }) => {
                     })}
                 </div>
                 <div className="card-upgrade-button">
-                    <button onClick={openModal}>
+                    <button onClick={openModal} className="card-upgrade-img-button">
                         <img src={prerequisitesMet ? upgradeIcon : lockIcon} alt="Upgrade" />
                     </button>
                 </div>

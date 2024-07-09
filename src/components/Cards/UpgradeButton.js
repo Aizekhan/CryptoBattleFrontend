@@ -1,10 +1,10 @@
 import React from 'react';
-import upgradeIcon from '../../assets/icons/upgrade-icon.png'; // Імпортуємо іконку апгрейду
-import lockIcon from '../../assets/images/lock.png'; // Імпортуємо іконку замка
+import upgradeIcon from '../../assets/icons/upgrade-icon.png';
+import lockIcon from '../../assets/images/lock.png';
 import './UpgradeButton.css';
 import { useUserStats } from '../../context/UserStatsContext';
 
-const UpgradeButton = ({ card }) => {
+const UpgradeButton = ({ card, onClose }) => {
     const { userStats, updateUserStats, updateHeroStats } = useUserStats();
 
     const prerequisitesMet = card.prerequisites.every(prereq => {
@@ -79,6 +79,10 @@ const UpgradeButton = ({ card }) => {
                 mines: updatedMines,
                 heroes: updatedHeroes
             });
+
+            if (onClose) {
+                onClose(); // Закриваємо модальне вікно після апгрейду
+            }
         }
     };
 
@@ -86,10 +90,10 @@ const UpgradeButton = ({ card }) => {
         <button
             onClick={handleUpgrade}
             disabled={!canUpgrade}
-            className={canUpgrade ? 'upgrade-button' : 'no-balance-button'}
+            className={`upgrade-button ${canUpgrade ? '' : 'no-balance'}`}
         >
             <img src={canUpgrade ? upgradeIcon : lockIcon} alt="Upgrade" />
-            <span>Cost: {card.upgradeCost}</span>
+            {canUpgrade && <span>Cost: {card.upgradeCost}</span>}
         </button>
     );
 };

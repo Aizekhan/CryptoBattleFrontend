@@ -1,4 +1,3 @@
-/* Загальні стилі для всіх карток */
 .card {
     background-size: cover;
     background-position: center;
@@ -78,8 +77,8 @@
     z-index: 2; /* Задаємо високий z-index, щоб кнопка була попереду */
 }
 
-    .card-upgrade-button img {
-        width: 40px;
-        height: 40px;
-        background: transparent; /* Прозорий фон */
-    }
+.card-upgrade-img-button img {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+}
