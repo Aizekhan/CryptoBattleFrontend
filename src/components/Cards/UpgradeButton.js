@@ -1,10 +1,8 @@
 import React from 'react';
-import upgradeIcon from '../../assets/icons/upgrade-icon.png';
-import lockIcon from '../../assets/images/lock.png';
 import './UpgradeButton.css';
 import { useUserStats } from '../../context/UserStatsContext';
 
-const UpgradeButton = ({ card, onClose }) => {
+const UpgradeButton = ({ card }) => {
     const { userStats, updateUserStats, updateHeroStats } = useUserStats();
 
     const prerequisitesMet = card.prerequisites.every(prereq => {
@@ -17,8 +15,6 @@ const UpgradeButton = ({ card, onClose }) => {
 
     const handleUpgrade = () => {
         if (canUpgrade) {
-            console.log('Upgrading card:', card);
-
             let newHourlyIncome = userStats.hourlyIncome;
             let newUpgradeCost = card.upgradeCost;
             let newHeroStats = { ...userStats.heroes.find(hero => hero.id === userStats.currentHeroId) };
@@ -35,21 +31,11 @@ const UpgradeButton = ({ card, onClose }) => {
                     break;
 
                 case 'equip':
-                    break;
-
                 case 'battleCard':
-                    break;
-
                 case 'farmSkill':
                     if (card.effectType === 'regenSpeed') {
                         newHeroStats.regenSpeed = (newHeroStats.regenSpeed || 0) + card.effectValue;
                     }
-                    break;
-
-                case 'market':
-                    break;
-
-                case 'location':
                     break;
 
                 default:
@@ -72,17 +58,6 @@ const UpgradeButton = ({ card, onClose }) => {
                 mines: updatedMines,
                 heroes: updatedHeroes
             });
-
-            console.log('Updated user stats:', {
-                balance: userStats.balance - card.upgradeCost,
-                hourlyIncome: newHourlyIncome,
-                mines: updatedMines,
-                heroes: updatedHeroes
-            });
-
-            if (onClose) {
-                onClose(); // Закриваємо модальне вікно після апгрейду
-            }
         }
     };
 
@@ -90,10 +65,9 @@ const UpgradeButton = ({ card, onClose }) => {
         <button
             onClick={handleUpgrade}
             disabled={!canUpgrade}
-            className={`upgrade-button ${canUpgrade ? '' : 'no-balance'}`}
+            className={canUpgrade ? 'upgrade-button' : 'no-balance-button'}
         >
-            <img src={canUpgrade ? upgradeIcon : lockIcon} alt="Upgrade" />
-            {canUpgrade && <span>Cost: {card.upgradeCost}</span>}
+            Cost: {card.upgradeCost}
         </button>
     );
 };
