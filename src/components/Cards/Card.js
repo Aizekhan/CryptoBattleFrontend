@@ -18,7 +18,7 @@ const Card = ({ card }) => {
         return prereqCard && prereqCard.level >= prereq.level;
     });
 
-    console.log('card in Card:', card);
+    const buttonClass = prerequisitesMet ? 'upgrade-button' : 'locked-button';
 
     const backgroundImage = cardBackgrounds[card.tag] || card.img;
 
@@ -47,8 +47,8 @@ const Card = ({ card }) => {
                     })}
                 </div>
                 <div className="card-upgrade-button">
-                    <button onClick={openModal} className="transparent-button">
-                        <img src={prerequisitesMet ? upgradeIcon : lockIcon} alt="Upgrade" className="button-icon" />
+                    <button className={buttonClass} onClick={openModal}>
+                        <img src={prerequisitesMet ? upgradeIcon : lockIcon} alt="Upgrade" />
                     </button>
                 </div>
             </div>
