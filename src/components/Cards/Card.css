@@ -11,7 +11,7 @@
     position: relative; /* Додаємо відносне позиціонування для батьківського елемента */
     overflow: hidden; /* Запобігає виходу елементів за межі картки */
     color: white; /* Встановлюємо білий колір шрифту для всієї картки */
-    font-family: 'Rubik Glitch', sans-serif; /* Встановлюємо шрифт для всієї картки */
+  
 }
 
 .rubik-glitch-regular {
@@ -64,6 +64,7 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 3; /* Задаємо високий z-index, щоб кнопка була попереду */
+    background: transparent; /* Прозорий фон для кнопок */
 }
 
 .card-upgrade-img-button img {
