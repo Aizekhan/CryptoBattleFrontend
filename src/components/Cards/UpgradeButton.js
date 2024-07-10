@@ -4,7 +4,7 @@ import lockIcon from '../../assets/images/lock.png'; // Імпортуємо іконку замка
 import './UpgradeButton.css';
 import { useUserStats } from '../../context/UserStatsContext';
 
-const UpgradeButton = ({ card, onClose }) => {
+const UpgradeButton = ({ card, onUpgrade }) => {
     const { userStats, updateUserStats, updateHeroStats } = useUserStats();
 
     const prerequisitesMet = card.prerequisites.every(prereq => {
@@ -73,14 +73,7 @@ const UpgradeButton = ({ card, onClose }) => {
                 heroes: updatedHeroes
             });
 
-            onClose(); // Закриваємо модальне вікно після апгрейду
-
-            console.log('Updated user stats:', {
-                balance: userStats.balance - card.upgradeCost,
-                hourlyIncome: newHourlyIncome,
-                mines: updatedMines,
-                heroes: updatedHeroes
-            });
+            onUpgrade(); // Викликаємо колбек для закриття модального вікна
         }
     };
 
