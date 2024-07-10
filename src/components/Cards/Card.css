@@ -25,7 +25,7 @@
 }
 
 .card-header {
-    font-family: "Rubik Glitch", system-ui;
+    font-family: , system-ui;
 }
 
     .card-header h3 {
@@ -38,14 +38,6 @@
         margin: 2px 0;
     }
 
-.card-prerequisites {
-    font-size: 0.6rem;
-    color: red;
-}
-
-    .card-prerequisites p {
-        margin: 0;
-    }
 
 .card-upgrade-button {
     position: absolute;
