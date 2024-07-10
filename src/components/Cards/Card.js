@@ -37,7 +37,7 @@ const Card = ({ card }) => {
                     <p>Level: {userStats.mines.find(c => c.id === card.id)?.level || card.level}</p>
                 </div>
                 <div className="card-upgrade-button">
-                    <button onClick={openModal}>
+                    <button onClick={openModal} className="card-upgrade-img-button">
                         <img src={prerequisitesMet ? upgradeIcon : lockIcon} alt="Upgrade" />
                     </button>
                 </div>
