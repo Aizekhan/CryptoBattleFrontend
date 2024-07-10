@@ -55,14 +55,11 @@
     transform: translateX(-50%);
     z-index: 3; /* Задаємо високий z-index, щоб кнопка була попереду */
     background: transparent; /* Прозорий фон для кнопок */
-    border: none; /* Видаляємо рамку кнопки */
-    padding: 0;
-    cursor: pointer;
 }
 
-.card-upgrade-img-button img {
+.card-upgrade-img-button {
     width: 40px;
     height: 40px;
-    background: transparent;
-    pointer-events: none; /* Відключаємо події миші для зображення, щоб події були оброблені кнопкою */
+    cursor: pointer;
+    background: transparent; /* Прозорий фон для зображення */
 }
