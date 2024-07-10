@@ -19,7 +19,7 @@ const UpgradeModal = ({ card, onClose, canUpgrade }) => {
                         ))}
                     </div>
                     {!canUpgrade && <p>Conditions not met</p>}
-                    <UpgradeButton card={card} />
+                    <UpgradeButton card={card} onClose={onClose} /> {/* Використовуємо компонент UpgradeButton */}
                 </div>
             </div>
         </div>
