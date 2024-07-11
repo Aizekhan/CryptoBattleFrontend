@@ -31,6 +31,18 @@ export const UserStatsProvider = ({ children }) => {
             { id: 8, level: 0, baseIncome: 80 },
             { id: 9, level: 0, baseIncome: 90 },
         ],
+        equipment: [
+            { id: 1, level: 0, effect: '+1 Damage' },
+            { id: 2, level: 0, effect: '+5 HP' }
+        ],
+        battleCards: [
+            { id: 1, level: 0, effect: '+5% Crit Chance' },
+            { id: 2, level: 0, effect: '+5% Armor' }
+        ],
+        farmSkills: [
+            { id: 1, level: 0, effect: 'Increase loot chance by 1%' },
+            { id: 2, level: 0, effect: 'Chance to earn double income per tap' }
+        ]
     });
 
     const updateUserStats = (newStats) => {
