@@ -4,7 +4,6 @@ export const getCardListByTag = (userStats, tag) => {
             return userStats.mines;
         case 'heroStat':
         case 'equip':
-            return userStats.mines;
         case 'battleCard':
         case 'farmSkill':
             const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
