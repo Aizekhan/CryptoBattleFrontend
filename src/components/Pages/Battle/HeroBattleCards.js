@@ -1,6 +1,6 @@
 import React from 'react';
 import CardList from '../../Cards/CardList';
-import { useUserStats } from '../../../.context/UserStatsContext';
+import { useUserStats } from '../../../context/UserStatsContext';
 import { getCardListByTag } from '../../Cards/cardUtils';
 
 const HeroBattleCards = () => {
