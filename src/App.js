@@ -15,12 +15,13 @@ import Hero from './components/Pages/Hero/Hero';
 import Friends from './components/Pages/Friends/Friends';
 import Mines from './components/Pages/Mines/Mines';
 import Quests from './components/Pages/Quests/Quests';
-import News from './components/Pages/Home/News';
+import Town from './components/Pages/Home/Town';
 import Market from './components/Pages/Home/Market';
-import Info from './components/Pages/Home/Info';
 import Hunt from './components/Pages/Farm/Hunt';
-import Locations from './components/Pages/Farm/Locations';
-import HeroFarmSkills from './components/Pages/Farm/HeroFarmSkills';
+import Dungeons from './components/Pages/Farm/Dungeons';
+import Monsters from './components/Pages/Farm/Monsters';
+import Locations from './components/Pages/Home/Locations';
+import HeroFarmSkills from './components/Pages/Mines/HeroFarmSkills';
 import MinesGold from './components/Pages/Mines/MinesGold';
 import MiningSkills from './components/Pages/Mines/MiningSkills';
 import HeroDisplay from './components/Pages/Battle/HeroDisplay';
@@ -31,6 +32,7 @@ import HeroDetails from './components/Pages/Hero/HeroDetails';
 import HeroPassiveSkills from './components/Pages/Hero/HeroPassiveSkills';
 import HeroEquipment from './components/Pages/Hero/HeroEquipment';
 import AllFriends from './components/Pages/Friends/AllFriends';
+import Enemys from './components/Pages/Friends/Enemys';
 import Active from './components/Pages/Quests/Active';
 import Daily from './components/Pages/Quests/Daily';
 import Profa from './components/Pages/Quests/Profa';
@@ -87,20 +89,23 @@ function App() {
                     <Route index element={<Navigate to="/hero/sub1" />} /> {/* Перенаправлення на HeroDetails */}
                     <Route path="home" element={<Home />}>
                         <Route index element={<Navigate to="sub1" />} />
-                        <Route path="sub1" element={<News />} />
+                        <Route path="sub1" element={<Town />} />
                         <Route path="sub2" element={<Market />} />
-                        <Route path="sub3" element={<Info />} />
+                        <Route path="sub3" element={<Locations />} />
                     </Route>
                     <Route path="farm" element={<Farm />}>
                         <Route index element={<Navigate to="sub1" />} />
                         <Route path="sub1" element={<Hunt />} />
-                        <Route path="sub2" element={<Locations />} />
-                        <Route path="sub3" element={<HeroFarmSkills />} />
+                        <Route path="sub2" element={<Dungeons />} />
+                        <Route path="sub3" element={<Monsters />} />
+                        
+                        
                     </Route>
                     <Route path="mines" element={<Mines />}>
                         <Route index element={<Navigate to="sub1" />} />
                         <Route path="sub1" element={<MinesGold />} />
-                        <Route path="sub2" element={<MiningSkills />} />
+                      <Route path="sub2" element={<MiningSkills />} />
+                      <Route path="sub3" element={<HeroFarmSkills />} />
                     </Route>
                     <Route path="battle" element={<Battle />}>
                         <Route index element={<Navigate to="sub1" />} />
@@ -118,6 +123,7 @@ function App() {
                     <Route path="friends" element={<Friends />}>
                         <Route index element={<Navigate to="sub1" />} />
                         <Route path="sub1" element={<AllFriends />} />
+                        <Route path="sub2" element={<Enemys />} />
                     </Route>
                     <Route path="quests" element={<Quests />}>
                         <Route index element={<Navigate to="sub1" />} />

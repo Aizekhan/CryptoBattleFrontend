@@ -26,22 +26,23 @@ const MainLayout = () => {
     const subPagesConfig = {
         battle: [
             { path: 'sub1', name: 'PvP' },
-            { path: 'sub2', name: 'Ability' },
+            { path: 'sub2', name: 'BattleShop' },
             { path: 'sub3', name: 'Rank' }
         ],
         home: [
-            { path: 'sub1', name: 'News' },
+            { path: 'sub1', name: 'Town' },
             { path: 'sub2', name: 'Market' },
-            { path: 'sub3', name: 'Info' }
+            { path: 'sub3', name: 'Location' }
         ],
         farm: [
             { path: 'sub1', name: 'Hunt' },
-            { path: 'sub2', name: 'Locations' },
-            { path: 'sub3', name: 'FarmSkills' }
+            { path: 'sub2', name: 'Dungeons' },
+            { path: 'sub3', name: 'Monsters' }
         ],
         mines: [
             { path: 'sub1', name: 'MinesGold' },
-            { path: 'sub2', name: 'MiningSkills' }
+            { path: 'sub2', name: 'MiningSkills' },
+            { path: 'sub3', name: 'FarmSkills' }
         ],
         hero: [
             { path: 'sub1', name: 'Hero' },
@@ -49,7 +50,8 @@ const MainLayout = () => {
             { path: 'sub3', name: 'Equipment' }
         ],
         friends: [
-            { path: 'sub1', name: 'AllFriends' }
+            { path: 'sub1', name: 'AllFriends' },
+            { path: 'sub2', name: 'Enemys' }
         ],
         quests: [
             { path: 'sub1', name: 'Active' },
