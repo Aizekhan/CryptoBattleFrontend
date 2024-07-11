@@ -23,14 +23,6 @@ export const getCardListByTag = (userStats, tag) => {
             return currentHero.monsterCards;
         case 'miningSkill':
             return currentHero.miningSkillsCards;
-        case 'heroFarmSkill':
-            return currentHero.heroFarmSkillsCards;
-        case 'heroBattleCard':
-            return currentHero.heroBattleCards;
-        case 'heroPassiveSkill':
-            return currentHero.heroPassiveSkillsCards;
-        case 'heroEquipment':
-            return currentHero.heroEquipmentCards;
         case 'activeSkill':
             return currentHero.activeSkills;
         default:
