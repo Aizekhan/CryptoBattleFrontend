@@ -14,7 +14,7 @@ export const UserStatsProvider = ({ children }) => {
         level: 0,
         tapIncome: currentHero.baseIncome.goldPerTap, // Ініціалізація tapIncome на основі поточного героя
         incomePer8Hours: currentHero.baseIncome.goldPer8Hours, // Додано новий параметр
-        balance: 1000000,
+        balance: 500,
         currentHeroId: currentHero.id,  // Вибраний герой за замовчуванням
         heroes: heroesConfig.map(hero => ({
             ...hero,
