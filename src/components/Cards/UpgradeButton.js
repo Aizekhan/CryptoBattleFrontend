@@ -6,7 +6,7 @@ import { useUserStats } from '../../context/UserStatsContext';
 import { prerequisitesMet } from './cardUtils';
 
 const UpgradeButton = ({ card, onClose }) => {
-    const { userStats, updateUserStats, updateHeroStats, updateHeroPassiveSkills, updateHeroEquipment, updateHeroBattleCards, updateHeroFarmSkills, updateHeroTownCards, updateHeroLocationCards, updateHeroDungeonCards, updateHeroMonsterCards, updateHeroMinesGoldCards, updateHeroMiningSkillsCards, updateHeroHeroFarmSkillsCards, updateHeroHeroBattleCards, updateHeroHeroPassiveSkillsCards, updateHeroHeroEquipmentCards, updateHeroActiveSkills } = useUserStats();
+    const { userStats, updateUserStats, updateHeroPassiveSkills, updateHeroEquipment, updateHeroBattleCards, updateHeroFarmSkills, updateHeroTownCards, updateHeroLocationCards, updateHeroDungeonCards, updateHeroMonsterCards, updateHeroMinesGoldCards, updateHeroMiningSkillsCards, updateHeroHeroFarmSkillsCards, updateHeroHeroBattleCards, updateHeroHeroPassiveSkillsCards, updateHeroHeroEquipmentCards, updateHeroActiveSkills } = useUserStats();
 
     const canUpgrade = prerequisitesMet(userStats, card) && userStats.balance >= card.upgradeCost;
 
