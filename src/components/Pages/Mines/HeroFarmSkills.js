@@ -1,13 +1,13 @@
 import React from 'react';
 import CardList from '../../Cards/CardList';
 import { useUserStats } from '../../../context/UserStatsContext';
-import { getCardListByTag } from '../../Cards/cardUtils';
 
 const HeroFarmSkills = () => {
     const { userStats } = useUserStats();
+    const currentHeroId = userStats.currentHeroId;
 
     // Отримуємо фермерські навички поточного героя
-    const heroFarmSkills = getCardListByTag(userStats, 'farmSkill');
+    const heroFarmSkills = userStats.heroes.find(hero => hero.id === currentHeroId)?.farmSkills || [];
 
     return (
         <div className="hero-farm-skills">
