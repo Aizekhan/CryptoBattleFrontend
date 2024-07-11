@@ -1,19 +1,14 @@
 import React from 'react';
-import upgradeIcon from '../../assets/icons/upgrade-icon.png'; // Імпортуємо іконку апгрейду
-import lockIcon from '../../assets/images/lock.png'; // Імпортуємо іконку замка
+import upgradeIcon from '../../assets/icons/upgrade-icon.png';
+import lockIcon from '../../assets/images/lock.png';
 import './UpgradeButton.css';
 import { useUserStats } from '../../context/UserStatsContext';
+import { prerequisitesMet } from './cardUtils';
 
 const UpgradeButton = ({ card, onUpgrade }) => {
     const { userStats, updateUserStats, updateHeroStats } = useUserStats();
 
-    const prerequisitesMet = card.prerequisites.every(prereq => {
-        const prereqCard = userStats.mines.find(c => c.id === prereq.id);
-        return prereqCard && prereqCard.level >= prereq.level;
-    });
-
-    const hasEnoughBalance = userStats.balance >= card.upgradeCost;
-    const canUpgrade = prerequisitesMet && hasEnoughBalance;
+    const canUpgrade = prerequisitesMet(userStats, card) && userStats.balance >= card.upgradeCost;
 
     const handleUpgrade = () => {
         if (canUpgrade) {
@@ -35,21 +30,17 @@ const UpgradeButton = ({ card, onUpgrade }) => {
                     break;
 
                 case 'equip':
+                    // Логіка для апгрейду спорядження
                     break;
 
                 case 'battleCard':
+                    // Логіка для апгрейду бойових карток
                     break;
 
                 case 'farmSkill':
                     if (card.effectType === 'regenSpeed') {
                         newHeroStats.regenSpeed = (newHeroStats.regenSpeed || 0) + card.effectValue;
                     }
-                    break;
-
-                case 'market':
-                    break;
-
-                case 'location':
                     break;
 
                 default:
@@ -73,7 +64,7 @@ const UpgradeButton = ({ card, onUpgrade }) => {
                 heroes: updatedHeroes
             });
 
-            onUpgrade(); // Викликаємо колбек для закриття модального вікна
+            onUpgrade();
         }
     };
 
