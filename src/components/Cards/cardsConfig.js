@@ -1,5 +1,3 @@
-// cardsConfig.js
-
 import passiveSkillBackground from '../../assets/images/Backgrounds/mining-skill-bg.png';
 import goldMineBackground from '../../assets/images/Backgrounds/mining-skill-bg.png';
 import heroStatBackground from '../../assets/images/Backgrounds/mining-skill-bg.png';
@@ -9,6 +7,10 @@ import farmSkillBackground from '../../assets/images/Backgrounds/mining-skill-bg
 import locationBackground from '../../assets/images/Backgrounds/mining-skill-bg.png';
 import marketBackground from '../../assets/images/Backgrounds/mining-skill-bg.png';
 import miningSkillBackground from '../../assets/images/Backgrounds/mining-skill-bg.png';
+
+import activeSkill1 from '../../assets/images/ActiveSkillsImages/active1.png';
+import activeSkill2 from '../../assets/images/ActiveSkillsImages/active2.png';
+import activeSkill3 from '../../assets/images/ActiveSkillsImages/active3.png';
 
 import passiveSkill1 from '../../assets/images/PassiveSkillsImages/passive1.png';
 import passiveSkill2 from '../../assets/images/PassiveSkillsImages/passive2.png';
@@ -60,11 +62,19 @@ export const cardBackgrounds = {
     battleCard: battleCardBackground,
     farmSkill: farmSkillBackground,
     passiveSkill: passiveSkillBackground,
-    market: marketBackground, // Додано
-    location: locationBackground, 
-    miningSkill: miningSkillBackground, // Додано
+    market: marketBackground,
+    location: locationBackground,
+    miningSkill: miningSkillBackground,
+    town: heroStatBackground,  // Використовуємо існуюче зображення як тимчасове
+    dungeon: locationBackground,  // Використовуємо існуюче зображення як тимчасове
+    monster: locationBackground   // Використовуємо існуюче зображення як тимчасове
 };
 
+export const activeSkills = [
+    { id: 1, name: 'Fireball', effect: 'Deals fire damage', level: 0, upgradeCost: 100, img: activeSkill1, tag: 'activeSkill', prerequisites: [], scaleUpgrade: 1.1 },
+    { id: 2, name: 'Heal', effect: 'Restores HP', level: 0, upgradeCost: 150, img: activeSkill2, tag: 'activeSkill', prerequisites: [{ id: 1, level: 1 }], scaleUpgrade: 1.1 },
+    { id: 3, name: 'Shield', effect: 'Increases armor temporarily', level: 0, upgradeCost: 200, img: activeSkill3, tag: 'activeSkill', prerequisites: [{ id: 2, level: 2 }], scaleUpgrade: 1.1 },
+];
 
 export const passiveSkills = [
     { id: 1, name: 'Increase HP', effect: '+5 HP', level: 0, upgradeCost: 100, img: passiveSkill1, tag: 'heroStat', prerequisites: [], scaleUpgrade: 1.1 },
@@ -147,6 +157,24 @@ export const locationCards = [
     { id: 3, name: 'Forest Glade', effect: 'A peaceful glade in the forest', level: 0, upgradeCost: 200, img: locationForest, tag: 'location', prerequisites: [{ id: 2, level: 3 }] },
 ];
 
+export const townCards = [
+    { id: 1, name: 'Town Hall', effect: 'Central building of the town', level: 0, upgradeCost: 100, img: locationCastle, tag: 'town', prerequisites: [] },
+    { id: 2, name: 'Blacksmith', effect: 'Produces weapons and armor', level: 0, upgradeCost: 150, img: locationSwamp, tag: 'town', prerequisites: [{ id: 1, level: 2 }] },
+    { id: 3, name: 'Marketplace', effect: 'Trading center of the town', level: 0, upgradeCost: 200, img: locationForest, tag: 'town', prerequisites: [{ id: 2, level: 3 }] },
+];
+
+export const dungeonCards = [
+    { id: 1, name: 'Dark Cave', effect: 'A cave filled with dangers', level: 0, upgradeCost: 100, img: locationCastle, tag: 'dungeon', prerequisites: [] },
+    { id: 2, name: 'Haunted Crypt', effect: 'A crypt with restless spirits', level: 0, upgradeCost: 150, img: locationSwamp, tag: 'dungeon', prerequisites: [{ id: 1, level: 2 }] },
+    { id: 3, name: 'Lost Tomb', effect: 'An ancient tomb with hidden treasures', level: 0, upgradeCost: 200, img: locationForest, tag: 'dungeon', prerequisites: [{ id: 2, level: 3 }] },
+];
+
+export const monsterCards = [
+    { id: 1, name: 'Goblin', effect: 'A sneaky goblin', level: 0, upgradeCost: 100, img: locationCastle, tag: 'monster', prerequisites: [] },
+    { id: 2, name: 'Troll', effect: 'A strong and brutal troll', level: 0, upgradeCost: 150, img: locationSwamp, tag: 'monster', prerequisites: [{ id: 1, level: 2 }] },
+    { id: 3, name: 'Dragon', effect: 'A fearsome dragon', level: 0, upgradeCost: 200, img: locationForest, tag: 'monster', prerequisites: [{ id: 2, level: 3 }] },
+];
+
 const cardsConfig = [
     ...passiveSkills,
     ...miningSkills,
@@ -157,6 +185,10 @@ const cardsConfig = [
     ...minesCards,
     ...marketCards,
     ...locationCards,
+    ...townCards,
+    ...dungeonCards,
+    ...monsterCards,
+    ...activeSkills  
 ];
 
 export default cardsConfig;

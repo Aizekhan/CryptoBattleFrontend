@@ -1,17 +1,9 @@
 import React from 'react';
 import CardList from '../../Cards/CardList';
-import { useUserStats } from '../../../context/UserStatsContext';
-import cardsConfig from '../../Cards/cardsConfig';
+import { farmSkills } from '../../Cards/cardsConfig'; // ²ìïîðòóºìî named export
 
-const HeroFarmSkills = () => {
-    const { userStats } = useUserStats();
-    const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
-
-    const heroFarmSkills = cardsConfig.filter(card => 
-        card.tag === 'farmSkill' && currentHero.farmSkills.includes(card.id)
-    );
-
-    return <CardList cards={heroFarmSkills} />;
+const FarmSkills = () => {
+    return <CardList cards={farmSkills} />;
 };
 
-export default HeroFarmSkills;
+export default FarmSkills;

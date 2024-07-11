@@ -5,7 +5,7 @@ import { cardBackgrounds } from './cardsConfig';
 import UpgradeModal from '../Panels/UpgradeModal';
 import upgradeIcon from '../../assets/icons/upgrade-icon.png';
 import lockIcon from '../../assets/images/lock.png';
-import { prerequisitesMet } from './cardUtils';
+import { prerequisitesMet, getCardListByTag } from './cardUtils';
 
 const Card = ({ card }) => {
     const { userStats } = useUserStats();
@@ -15,6 +15,8 @@ const Card = ({ card }) => {
     const closeModal = () => setIsModalOpen(false);
 
     const canUpgrade = prerequisitesMet(userStats, card);
+    const cardList = getCardListByTag(userStats, card.tag);
+    const cardData = cardList.find(c => c.id === card.id) || card;
 
     const backgroundImage = cardBackgrounds[card.tag] || card.img;
 
@@ -29,7 +31,7 @@ const Card = ({ card }) => {
                     <img src={card.img} alt={card.name} className="card-img" />
                 </div>
                 <div className="card-header">
-                    <p>Level: {userStats.mines.find(c => c.id === card.id)?.level || card.level}</p>
+                    <p>Level: {cardData.level}</p>
                     <h3>{card.name}</h3>
                 </div>
                 <div className="card-upgrade-button">

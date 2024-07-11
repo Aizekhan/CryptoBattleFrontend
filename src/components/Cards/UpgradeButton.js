@@ -6,7 +6,7 @@ import { useUserStats } from '../../context/UserStatsContext';
 import { prerequisitesMet } from './cardUtils';
 
 const UpgradeButton = ({ card, onClose }) => {
-    const { userStats, updateUserStats, updateHeroStats } = useUserStats();
+    const { userStats, updateUserStats, updateHeroStats, updateHeroPassiveSkills, updateHeroEquipment, updateHeroBattleCards, updateHeroFarmSkills, updateHeroTownCards, updateHeroLocationCards, updateHeroDungeonCards, updateHeroMonsterCards, updateHeroMinesGoldCards, updateHeroMiningSkillsCards, updateHeroHeroFarmSkillsCards, updateHeroHeroBattleCards, updateHeroHeroPassiveSkillsCards, updateHeroHeroEquipmentCards, updateHeroActiveSkills } = useUserStats();
 
     const canUpgrade = prerequisitesMet(userStats, card) && userStats.balance >= card.upgradeCost;
 
@@ -17,6 +17,58 @@ const UpgradeButton = ({ card, onClose }) => {
             let newHourlyIncome = userStats.hourlyIncome;
             let newUpgradeCost = card.upgradeCost;
             let newHeroStats = { ...userStats.heroes.find(hero => hero.id === userStats.currentHeroId) };
+
+            const updateHeroCards = (cardType, newCards) => {
+                switch (cardType) {
+                    case 'passiveSkills':
+                        updateHeroPassiveSkills(userStats.currentHeroId, newCards);
+                        break;
+                    case 'equipment':
+                        updateHeroEquipment(userStats.currentHeroId, newCards);
+                        break;
+                    case 'battleCards':
+                        updateHeroBattleCards(userStats.currentHeroId, newCards);
+                        break;
+                    case 'farmSkills':
+                        updateHeroFarmSkills(userStats.currentHeroId, newCards);
+                        break;
+                    case 'townCards':
+                        updateHeroTownCards(userStats.currentHeroId, newCards);
+                        break;
+                    case 'locationCards':
+                        updateHeroLocationCards(userStats.currentHeroId, newCards);
+                        break;
+                    case 'dungeonCards':
+                        updateHeroDungeonCards(userStats.currentHeroId, newCards);
+                        break;
+                    case 'monsterCards':
+                        updateHeroMonsterCards(userStats.currentHeroId, newCards);
+                        break;
+                    case 'minesGoldCards':
+                        updateHeroMinesGoldCards(userStats.currentHeroId, newCards);
+                        break;
+                    case 'miningSkillsCards':
+                        updateHeroMiningSkillsCards(userStats.currentHeroId, newCards);
+                        break;
+                    case 'heroFarmSkillsCards':
+                        updateHeroHeroFarmSkillsCards(userStats.currentHeroId, newCards);
+                        break;
+                    case 'heroBattleCards':
+                        updateHeroHeroBattleCards(userStats.currentHeroId, newCards);
+                        break;
+                    case 'heroPassiveSkillsCards':
+                        updateHeroHeroPassiveSkillsCards(userStats.currentHeroId, newCards);
+                        break;
+                    case 'heroEquipmentCards':
+                        updateHeroHeroEquipmentCards(userStats.currentHeroId, newCards);
+                        break;
+                    case 'activeSkills':
+                        updateHeroActiveSkills(userStats.currentHeroId, newCards);
+                        break;
+                    default:
+                        break;
+                }
+            };
 
             switch (card.tag) {
                 case 'goldMine':
@@ -30,19 +82,12 @@ const UpgradeButton = ({ card, onClose }) => {
                     });
                     break;
 
-                case 'heroStat':
-                case 'equip':
-                case 'battleCard':
-                case 'farmSkill':
+                default:
                     const cardType = card.tag;
                     const updatedCards = newHeroStats[cardType].map(c =>
                         c.id === card.id ? { ...c, level: c.level + 1, upgradeCost: newUpgradeCost } : c
                     );
-                    newHeroStats[cardType] = updatedCards;
-                    updateHeroStats(userStats.currentHeroId, newHeroStats);
-                    break;
-
-                default:
+                    updateHeroCards(cardType, updatedCards);
                     break;
             }
 

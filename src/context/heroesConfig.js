@@ -10,6 +10,12 @@ const heroesConfig = [
         id: 'hero_1_id',
         name: 'Hero 1',
         race: 'Human',
+        religion: 'none',
+        ideology: 'Techno',
+        class: 'Warrior',
+        profa1: 'Blacksmith',
+        profa2: 'Miner',
+        profa3: 'Warrior Trainer',
         baseStats: {
             hp: 100,
             armor: 5,
@@ -25,6 +31,7 @@ const heroesConfig = [
         },
         baseIncome: {
             goldPerTap: 10,
+            goldPer8Hours: 80,  // Додано новий параметр
             commonItemChance: 10,
             rareItemChance: 5,
             epicItemChance: 1,
@@ -39,12 +46,29 @@ const heroesConfig = [
         defaultPassiveSkills: [1, 2],
         defaultEquipment: [1, 2],
         defaultBattleCards: [1, 2],
-        defaultFarmSkills: [1, 2]
+        defaultFarmSkills: [1, 2],
+        townCards: [1, 2],
+        locationCards: [1, 2],
+        dungeonCards: [1, 2],
+        monsterCards: [1, 2],
+        minesGoldCards: [1, 2],
+        miningSkillsCards: [1, 2],
+        heroFarmSkillsCards: [1, 2],
+        heroBattleCards: [1, 2],
+        heroPassiveSkillsCards: [1, 2],
+        heroEquipmentCards: [1, 2],
+        activeSkills: [1, 2]  // Додано активні уміння
     },
     {
         id: 'hero_2_id',
         name: 'Hero 2',
         race: 'Orc',
+        religion: 'none',
+        ideology: 'Nature',
+        class: 'Shaman',
+        profa1: 'Herbalist',
+        profa2: 'Hunter',
+        profa3: 'Beastmaster',
         baseStats: {
             hp: 150,
             armor: 15,
@@ -60,6 +84,7 @@ const heroesConfig = [
         },
         baseIncome: {
             goldPerTap: 15,
+            goldPer8Hours: 120,  // Додано новий параметр
             commonItemChance: 15,
             rareItemChance: 7,
             epicItemChance: 2,
@@ -74,12 +99,29 @@ const heroesConfig = [
         defaultPassiveSkills: [3, 4],
         defaultEquipment: [3, 4],
         defaultBattleCards: [3, 4],
-        defaultFarmSkills: [3, 4]
+        defaultFarmSkills: [3, 4],
+        townCards: [3, 4],
+        locationCards: [3, 4],
+        dungeonCards: [3, 4],
+        monsterCards: [3, 4],
+        minesGoldCards: [3, 4],
+        miningSkillsCards: [3, 4],
+        heroFarmSkillsCards: [3, 4],
+        heroBattleCards: [3, 4],
+        heroPassiveSkillsCards: [3, 4],
+        heroEquipmentCards: [3, 4],
+        activeSkills: [3, 4]  // Додано активні уміння
     },
     {
         id: 'bot_1_id',
         name: 'Bot 1',
         race: 'Robot',
+        religion: 'none',
+        ideology: 'Balance',
+        class: 'Engineer',
+        profa1: 'Mechanic',
+        profa2: 'Programmer',
+        profa3: 'Data Analyst',
         baseStats: {
             hp: 200,
             armor: 5,
@@ -95,6 +137,7 @@ const heroesConfig = [
         },
         baseIncome: {
             goldPerTap: 0,
+            goldPer8Hours: 0,  // Додано новий параметр
             commonItemChance: 0,
             rareItemChance: 0,
             epicItemChance: 0,
@@ -109,7 +152,18 @@ const heroesConfig = [
         defaultPassiveSkills: [],
         defaultEquipment: [],
         defaultBattleCards: [],
-        defaultFarmSkills: []
+        defaultFarmSkills: [],
+        townCards: [],
+        locationCards: [],
+        dungeonCards: [],
+        monsterCards: [],
+        minesGoldCards: [],
+        miningSkillsCards: [],
+        heroFarmSkillsCards: [],
+        heroBattleCards: [],
+        heroPassiveSkillsCards: [],
+        heroEquipmentCards: [],
+        activeSkills: []
     }
 ];
 

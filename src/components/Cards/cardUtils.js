@@ -1,17 +1,38 @@
 export const getCardListByTag = (userStats, tag) => {
+    const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
+    if (!currentHero) return [];
+
     switch (tag) {
         case 'goldMine':
-            return userStats.mines;
+            return currentHero.minesGoldCards;
         case 'heroStat':
+            return currentHero.passiveSkills;
         case 'equip':
-            return userStats.equipment;
+            return currentHero.equipment;
         case 'battleCard':
+            return currentHero.battleCards;
         case 'farmSkill':
-            const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
-            if (currentHero) {
-                return currentHero[tag];
-            }
-            return [];
+            return currentHero.farmSkills;
+        case 'town':
+            return currentHero.townCards;
+        case 'location':
+            return currentHero.locationCards;
+        case 'dungeon':
+            return currentHero.dungeonCards;
+        case 'monster':
+            return currentHero.monsterCards;
+        case 'miningSkill':
+            return currentHero.miningSkillsCards;
+        case 'heroFarmSkill':
+            return currentHero.heroFarmSkillsCards;
+        case 'heroBattleCard':
+            return currentHero.heroBattleCards;
+        case 'heroPassiveSkill':
+            return currentHero.heroPassiveSkillsCards;
+        case 'heroEquipment':
+            return currentHero.heroEquipmentCards;
+        case 'activeSkill':
+            return currentHero.activeSkills;
         default:
             return [];
     }
