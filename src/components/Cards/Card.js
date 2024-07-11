@@ -29,7 +29,7 @@ const Card = ({ card }) => {
                     <img src={card.img} alt={card.name} className="card-img" />
                 </div>
                 <div className="card-header">
-                    <p>lvl: {userStats.mines.find(c => c.id === card.id)?.level || card.level}</p>
+                    <p>Level: {userStats.mines.find(c => c.id === card.id)?.level || card.level}</p>
                     <h3>{card.name}</h3>
                 </div>
                 <div className="card-upgrade-button">
@@ -45,8 +45,6 @@ const Card = ({ card }) => {
                 <UpgradeModal
                     card={card}
                     onClose={closeModal}
-                    canUpgrade={canUpgrade}
-                    onUpgrade={closeModal}
                 />
             )}
         </>

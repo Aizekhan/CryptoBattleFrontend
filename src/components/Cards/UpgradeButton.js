@@ -5,7 +5,7 @@ import './UpgradeButton.css';
 import { useUserStats } from '../../context/UserStatsContext';
 import { prerequisitesMet } from './cardUtils';
 
-const UpgradeButton = ({ card, onUpgrade }) => {
+const UpgradeButton = ({ card, onClose }) => {
     const { userStats, updateUserStats, updateHeroStats } = useUserStats();
 
     const canUpgrade = prerequisitesMet(userStats, card) && userStats.balance >= card.upgradeCost;
@@ -64,7 +64,7 @@ const UpgradeButton = ({ card, onUpgrade }) => {
                 heroes: updatedHeroes
             });
 
-            onUpgrade();
+            onClose(); // Закриваємо модальне вікно після апгрейду
         }
     };
 

@@ -3,7 +3,7 @@ import Card from './Card';
 import './CardList.css';
 
 const CardList = ({ cards }) => {
-    console.log('cards in CardList:', cards); // Додайте це для перевірки карток
+ 
 
     return (
         <div className="card-list">
