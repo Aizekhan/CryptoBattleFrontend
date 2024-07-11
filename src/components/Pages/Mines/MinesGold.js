@@ -9,6 +9,9 @@ const MinesGold = () => {
     // Отримуємо картки золотих шахт поточного героя
     const goldMines = getCardListByTag(userStats, 'goldMine');
 
+    console.log('userStats:', userStats);
+    console.log('goldMines:', goldMines);
+
     return (
         <div className="mines-gold">
             <CardList cards={goldMines} />
