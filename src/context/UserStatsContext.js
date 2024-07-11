@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import heroesConfig from './heroesConfig'; // Імпорт конфігурації героїв
+import heroesConfig from './heroesConfig';
+import cardsConfig from '../components/Cards/cardsConfig'; // Імпортуємо конфігурацію карток
 
 const UserStatsContext = createContext();
 
@@ -9,31 +10,35 @@ export const UserStatsProvider = ({ children }) => {
     // Вибраний герой за замовчуванням
     const currentHero = heroesConfig[0];
 
+    const mapIdsToCards = (ids) => {
+        return ids.map(id => cardsConfig.find(card => card.id === id));
+    };
+
     const [userStats, setUserStats] = useState({
         username: 'Player',
         level: 0,
-        tapIncome: currentHero.baseIncome.goldPerTap, // Ініціалізація tapIncome на основі поточного героя
-        incomePer8Hours: currentHero.baseIncome.goldPer8Hours, // Додано новий параметр
+        tapIncome: currentHero.baseIncome.goldPerTap,
+        incomePer8Hours: currentHero.baseIncome.goldPer8Hours,
         balance: 500,
-        currentHeroId: currentHero.id,  // Вибраний герой за замовчуванням
+        currentHeroId: currentHero.id,
         heroes: heroesConfig.map(hero => ({
             ...hero,
-            passiveSkills: hero.defaultPassiveSkills,
-            equipment: hero.defaultEquipment,
-            battleCards: hero.defaultBattleCards,
-            farmSkills: hero.defaultFarmSkills,
-            townCards: hero.townCards,
-            locationCards: hero.locationCards,
-            dungeonCards: hero.dungeonCards,
-            monsterCards: hero.monsterCards,
-            minesGoldCards: hero.minesGoldCards,
-            miningSkillsCards: hero.miningSkillsCards,
-            heroFarmSkillsCards: hero.heroFarmSkillsCards,
-            heroBattleCards: hero.heroBattleCards,
-            heroPassiveSkillsCards: hero.heroPassiveSkillsCards,
-            heroEquipmentCards: hero.heroEquipmentCards,
-            activeSkills: hero.activeSkills  // Додано новий тип карток
-        }))  // Завантажуємо героїв з конфігураційного файлу
+            passiveSkills: mapIdsToCards(hero.defaultPassiveSkills),
+            equipment: mapIdsToCards(hero.defaultEquipment),
+            battleCards: mapIdsToCards(hero.defaultBattleCards),
+            farmSkills: mapIdsToCards(hero.defaultFarmSkills),
+            townCards: mapIdsToCards(hero.townCards),
+            locationCards: mapIdsToCards(hero.locationCards),
+            dungeonCards: mapIdsToCards(hero.dungeonCards),
+            monsterCards: mapIdsToCards(hero.monsterCards),
+            minesGoldCards: mapIdsToCards(hero.minesGoldCards),
+            miningSkillsCards: mapIdsToCards(hero.miningSkillsCards),
+            heroFarmSkillsCards: mapIdsToCards(hero.heroFarmSkillsCards),
+            heroBattleCards: mapIdsToCards(hero.heroBattleCards),
+            heroPassiveSkillsCards: mapIdsToCards(hero.heroPassiveSkillsCards),
+            heroEquipmentCards: mapIdsToCards(hero.heroEquipmentCards),
+            activeSkills: mapIdsToCards(hero.activeSkills)
+        }))
     });
 
     useEffect(() => {
@@ -42,7 +47,7 @@ export const UserStatsProvider = ({ children }) => {
             setUserStats(prevStats => ({
                 ...prevStats,
                 tapIncome: currentHero.baseIncome.goldPerTap,
-                incomePer8Hours: currentHero.baseIncome.goldPer8Hours // Оновлення incomePer8Hours при зміні героя
+                incomePer8Hours: currentHero.baseIncome.goldPer8Hours
             }));
         }
     }, [userStats.currentHeroId, userStats.heroes]);
@@ -155,7 +160,7 @@ export const UserStatsProvider = ({ children }) => {
             updateHeroHeroPassiveSkillsCards,
             updateHeroHeroEquipmentCards,
             updateHeroActiveSkills,
-            levelUpCurrentHero  // Додано новий метод
+            levelUpCurrentHero
         }}>
             {children}
         </UserStatsContext.Provider>

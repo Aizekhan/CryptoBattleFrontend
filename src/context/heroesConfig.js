@@ -31,7 +31,7 @@ const heroesConfig = [
         },
         baseIncome: {
             goldPerTap: 10,
-            goldPer8Hours: 80,  // Додано новий параметр
+            goldPer8Hours: 80,
             commonItemChance: 10,
             rareItemChance: 5,
             epicItemChance: 1,
@@ -47,17 +47,17 @@ const heroesConfig = [
         defaultEquipment: [1, 2],
         defaultBattleCards: [1, 2],
         defaultFarmSkills: [1, 2],
-        townCards: [1, 2],
-        locationCards: [1, 2],
-        dungeonCards: [1, 2],
-        monsterCards: [1, 2],
-        minesGoldCards: [1, 2, 3, 4, 5, 6],
-        miningSkillsCards: [1, 2],
-        heroFarmSkillsCards: [1, 2],
-        heroBattleCards: [1, 2],
-        heroPassiveSkillsCards: [1, 2],
-        heroEquipmentCards: [1, 2],
-        activeSkills: [1, 2]  // Додано активні уміння
+        defaultTownCards: [1, 2],
+        defaultLocationCards: [1, 2],
+        defaultDungeonCards: [1, 2],
+        defaultMonsterCards: [1, 2],
+        defaultMinesGoldCards: [1, 2, 3],
+        defaultMiningSkillsCards: [1, 2],
+        defaultHeroFarmSkillsCards: [1, 2],
+        defaultHeroBattleCards: [1, 2],
+        defaultHeroPassiveSkillsCards: [1, 2],
+        defaultHeroEquipmentCards: [1, 2],
+        defaultActiveSkills: [1, 2]
     },
     {
         id: 'hero_2_id',
@@ -84,7 +84,7 @@ const heroesConfig = [
         },
         baseIncome: {
             goldPerTap: 15,
-            goldPer8Hours: 120,  // Додано новий параметр
+            goldPer8Hours: 120,
             commonItemChance: 15,
             rareItemChance: 7,
             epicItemChance: 2,
@@ -100,17 +100,17 @@ const heroesConfig = [
         defaultEquipment: [3, 4],
         defaultBattleCards: [3, 4],
         defaultFarmSkills: [3, 4],
-        townCards: [3, 4],
-        locationCards: [3, 4],
-        dungeonCards: [3, 4],
-        monsterCards: [3, 4],
-        minesGoldCards: [3, 4],
-        miningSkillsCards: [3, 4],
-        heroFarmSkillsCards: [3, 4],
-        heroBattleCards: [3, 4],
-        heroPassiveSkillsCards: [3, 4],
-        heroEquipmentCards: [3, 4],
-        activeSkills: [3, 4]  // Додано активні уміння
+        defaultTownCards: [3, 4],
+        defaultLocationCards: [3, 4],
+        defaultDungeonCards: [3, 4],
+        defaultMonsterCards: [3, 4],
+        defaultMinesGoldCards: [3, 4],
+        defaultMiningSkillsCards: [3, 4],
+        defaultHeroFarmSkillsCards: [3, 4],
+        defaultHeroBattleCards: [3, 4],
+        defaultHeroPassiveSkillsCards: [3, 4],
+        defaultHeroEquipmentCards: [3, 4],
+        defaultActiveSkills: [3, 4]
     },
     {
         id: 'bot_1_id',
@@ -137,7 +137,7 @@ const heroesConfig = [
         },
         baseIncome: {
             goldPerTap: 0,
-            goldPer8Hours: 0,  // Додано новий параметр
+            goldPer8Hours: 0,
             commonItemChance: 0,
             rareItemChance: 0,
             epicItemChance: 0,
@@ -149,21 +149,21 @@ const heroesConfig = [
             avatar: botAvatar
         },
         level: 1,
-        defaultPassiveSkills: [],
-        defaultEquipment: [],
-        defaultBattleCards: [],
-        defaultFarmSkills: [],
-        townCards: [],
-        locationCards: [],
-        dungeonCards: [],
-        monsterCards: [],
-        minesGoldCards: [],
-        miningSkillsCards: [],
-        heroFarmSkillsCards: [],
-        heroBattleCards: [],
-        heroPassiveSkillsCards: [],
-        heroEquipmentCards: [],
-        activeSkills: []
+        defaultPassiveSkills: [5, 6],
+        defaultEquipment: [5, 6],
+        defaultBattleCards: [5, 6],
+        defaultFarmSkills: [5, 6],
+        defaultTownCards: [5, 6],
+        defaultLocationCards: [5, 6],
+        defaultDungeonCards: [5, 6],
+        defaultMonsterCards: [5, 6],
+        defaultMinesGoldCards: [5, 6],
+        defaultMiningSkillsCards: [5, 6],
+        defaultHeroFarmSkillsCards: [5, 6],
+        defaultHeroBattleCards: [5, 6],
+        defaultHeroPassiveSkillsCards: [5, 6],
+        defaultHeroEquipmentCards: [5, 6],
+        defaultActiveSkills: [5, 6]
     }
 ];
 
