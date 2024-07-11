@@ -1,17 +1,19 @@
 import React from 'react';
 import CardList from '../../Cards/CardList';
-import { useUserStats } from '../../../context/UserStatsContext';
-import cardsConfig from '../../Cards/cardsConfig';
+import { useUserStats } from '../../../.context/UserStatsContext';
+import { getCardListByTag } from '../../Cards/cardUtils';
 
 const HeroEquipment = () => {
     const { userStats } = useUserStats();
-    const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
 
-    const heroEquipment = currentHero && Array.isArray(currentHero.equipment)
-        ? cardsConfig.filter(card => card.tag === 'equip' && currentHero.equipment.includes(card.id))
-        : [];
+    // Отримуємо спорядження поточного героя
+    const heroEquipment = getCardListByTag(userStats, 'equip');
 
-    return <CardList cards={heroEquipment} />;
+    return (
+        <div className="hero-equipment">
+            <CardList cards={heroEquipment} />
+        </div>
+    );
 };
 
 export default HeroEquipment;

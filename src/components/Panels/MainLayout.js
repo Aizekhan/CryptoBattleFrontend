@@ -7,6 +7,7 @@ import questIcon from '../../assets/icons/NavPanel/quests-icon.png';
 import mineIcon from '../../assets/icons/NavPanel/mines-icon.png';
 import battleIcon from '../../assets/icons/NavPanel/battle-icon.png';
 import addFriendsIcon from '../../assets/icons/NavPanel/friends-icon.png';
+import coinIcon from '../../assets/icons/NavPanel/coin-icon.png'; // Додано іконку монети
 import './MainLayout.css';
 import SubNavigation from './SubNavigation';
 import { useUserStats } from '../../context/UserStatsContext';
@@ -19,7 +20,7 @@ const MainLayout = () => {
     const isHeroPage = basePath === 'hero';
     const fullPath = location.pathname;
     const isPvPBattle = fullPath === '/battle/pvp-battle';
-    
+
     const { userStats } = useUserStats();
     const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId) || {};
 
@@ -68,6 +69,10 @@ const MainLayout = () => {
                 <div className="nav-icons-top">
                     <img src={homeIcon} alt="Home" onClick={() => navigate('/home')} className="nav-icon" />
                     <img src={battleIcon} alt="Battle" onClick={() => navigate('/battle')} className="nav-icon" />
+                    <div className="balance-display">
+                        <img src={coinIcon} alt="Coin" className="nav-icon" />
+                        <span>{userStats.balance}</span>
+                    </div>
                 </div>
                 <SubNavigation basePath={`/${basePath}`} subPages={subPages} />
                 <div className={`nav-icon-hero ${isHeroPage ? 'hidden' : ''}`}>

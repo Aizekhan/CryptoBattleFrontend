@@ -1,10 +1,17 @@
 import React from 'react';
+import CardList from '../../Cards/CardList';
+import { useUserStats } from '../../../.context/UserStatsContext';
+import { getCardListByTag } from '../../Cards/cardUtils';
 
 const Monsters = () => {
+    const { userStats } = useUserStats();
+
+    // Отримуємо картки монстрів поточного героя
+    const monsterCards = getCardListByTag(userStats, 'monster');
+
     return (
-        <div>
-            <h1>News Page</h1>
-            <p>Welcome to the Monsters page. Stay updated with the latest news here.</p>
+        <div className="monsters">
+            <CardList cards={monsterCards} />
         </div>
     );
 };

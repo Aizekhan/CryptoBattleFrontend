@@ -1,9 +1,19 @@
 import React from 'react';
 import CardList from '../../Cards/CardList';
-import { farmSkills } from '../../Cards/cardsConfig'; // Імпортуємо named export
+import { useUserStats } from '../../../.context/UserStatsContext';
+import { getCardListByTag } from '../../Cards/cardUtils';
 
-const FarmSkills = () => {
-    return <CardList cards={farmSkills} />;
+const HeroFarmSkills = () => {
+    const { userStats } = useUserStats();
+
+    // Отримуємо фермерські навички поточного героя
+    const heroFarmSkills = getCardListByTag(userStats, 'farmSkill');
+
+    return (
+        <div className="hero-farm-skills">
+            <CardList cards={heroFarmSkills} />
+        </div>
+    );
 };
 
-export default FarmSkills;
+export default HeroFarmSkills;

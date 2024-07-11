@@ -51,7 +51,7 @@ const heroesConfig = [
         locationCards: [1, 2],
         dungeonCards: [1, 2],
         monsterCards: [1, 2],
-        minesGoldCards: [1, 2],
+        minesGoldCards: [1, 2, 3, 4, 5, 6],
         miningSkillsCards: [1, 2],
         heroFarmSkillsCards: [1, 2],
         heroBattleCards: [1, 2],

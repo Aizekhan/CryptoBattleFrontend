@@ -1,17 +1,19 @@
 import React from 'react';
 import CardList from '../../Cards/CardList';
 import { useUserStats } from '../../../context/UserStatsContext';
-import cardsConfig from '../../Cards/cardsConfig';
+import { getCardListByTag } from '../../Cards/cardUtils';
 
 const HeroPassiveSkills = () => {
     const { userStats } = useUserStats();
-    const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
 
-    const heroPassiveSkills = cardsConfig.filter(card => 
-        card.tag === 'heroStat' && currentHero.passiveSkills.includes(card.id)
+    // Отримуємо пасивні навички поточного героя
+    const heroPassiveSkills = getCardListByTag(userStats, 'heroStat');
+
+    return (
+        <div className="hero-passive-skills">
+            <CardList cards={heroPassiveSkills} />
+        </div>
     );
-
-    return <CardList cards={heroPassiveSkills} />;
 };
 
 export default HeroPassiveSkills;
