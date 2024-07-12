@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import userProgress from './userProgress';
 import cardsConfig from '../components/Cards/cardsConfig';
-import saveUserProgress from './saveUserProgress'; // Імпорт функції збереження
+import saveUserProgress from './saveUserProgress';
 
 const UserStatsContext = createContext();
 
@@ -43,37 +43,36 @@ export const UserStatsProvider = ({ children }) => {
         };
     };
 
-    const loadUserStats = async () => {
-        try {
-            const response = await axios.get('http://localhost:3001/userProgress');
-            const userProgressData = response.data;
+    const loadUserStats = () => {
+        const savedStats = localStorage.getItem('userProgress');
+        if (savedStats) {
+            return JSON.parse(savedStats);
+        } else {
             return {
-                username: userProgressData.username,
-                level: userProgressData.level,
-                experience: userProgressData.experience,
-                balance: userProgressData.balance,
-                totalIncomePer8Hours: userProgressData.totalIncomePer8Hours,
-                totalTapIncome: userProgressData.totalTapIncome,
-                currentHeroId: userProgressData.currentHeroId,
-                heroes: userProgressData.heroes.map(initializeHero)
+                username: userProgress.username,
+                level: userProgress.level,
+                experience: userProgress.experience,
+                balance: userProgress.balance,
+                totalIncomePer8Hours: userProgress.totalIncomePer8Hours,
+                totalTapIncome: userProgress.totalTapIncome,
+                currentHeroId: userProgress.currentHeroId,
+                heroes: userProgress.heroes.map(initializeHero)
             };
-        } catch (error) {
-            console.error('Error loading user progress:', error);
-            return null;
         }
     };
 
-    const [userStats, setUserStats] = useState(null);
+    const [userStats, setUserStats] = useState(loadUserStats());
 
     useEffect(() => {
-        const fetchData = async () => {
-            const data = await loadUserStats();
-            if (data) {
-                setUserStats(data);
-            }
-        };
-        fetchData();
-    }, []);
+        const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
+        if (currentHero) {
+            setUserStats(prevStats => ({
+                ...prevStats,
+                tapIncome: currentHero.baseIncome.goldPerTap,
+                incomePer8Hours: currentHero.baseIncome.goldPer8Hours
+            }));
+        }
+    }, [userStats.currentHeroId, userStats.heroes, loadUserStats]);
 
     const updateUserStats = (newStats) => {
         setUserStats(prevStats => {
@@ -181,5 +180,3 @@ export const UserStatsProvider = ({ children }) => {
         </UserStatsContext.Provider>
     );
 };
-
-export default UserStatsProvider;
