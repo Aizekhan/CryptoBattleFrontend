@@ -1,9 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { useUserStats, UserStatsProvider } from './context/UserStatsContext';
-import MainLayout from './components/Panels/MainLayout';
-import ChooseHero from './components/ChooseHero';
+
+// Видалено 'useEffect' як невикористовувану змінну
+
 import Login from './Login';
+import { useUserStats, UserStatsProvider } from './context/UserStatsContext';
+
+import MainLayout from './components/Panels/MainLayout';
+
 import Home from './components/Pages/Home/Home';
 import Farm from './components/Pages/Farm/Farm';
 import Battle from './components/Pages/Battle/Battle';
@@ -34,15 +38,16 @@ import Daily from './components/Pages/Quests/Daily';
 import Profa from './components/Pages/Quests/Profa';
 
 function App() {
-    const { userStats } = useUserStats();
+    const { updateUserStats } = useUserStats();
+
+    // Видалено 'useEffect', якщо він не використовується
 
     return (
         <Router>
             <Routes>
                 <Route path="/login" element={<Login />} />
-                <Route path="/choose-hero" element={<ChooseHero />} />
-                <Route path="/" element={<MainLayout />}>
-                    <Route index element={<Navigate to={userStats && userStats.heroes.length > 0 ? "/hero/sub1" : "/choose-hero"} />} />
+                <Route path="/" element={localStorage.getItem('authToken') ? <MainLayout /> : <Navigate to="/login" />}>
+                    <Route index element={<Navigate to="/hero/sub1" />} /> {/* Перенаправлення на HeroDetails */}
                     <Route path="home" element={<Home />}>
                         <Route index element={<Navigate to="sub1" />} />
                         <Route path="sub1" element={<Town />} />
