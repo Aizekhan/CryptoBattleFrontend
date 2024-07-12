@@ -3,9 +3,9 @@ import { getHeroImages } from './heroImages';
 const userProgress = {
     userId: 'user_1_id',
     username: 'Player',
-    level: 12,
+    level: 0,
     experience: 6000,
-    balance: 700,
+    balance: 1500,
     totalIncomePer8Hours: 300,
     totalTapIncome: 50,
     currentHeroId: 'hero_1_id',
@@ -52,32 +52,32 @@ const userProgress = {
                 { id: 2, level: 0 }
             ],
             equipment: [
-                { id: 3, level: 1 },
-                { id: 4, level: 2 }
+                { id: 1, level: 0 },
+                { id: 2, level: 0 }
             ],
             battleCards: [
-                { id: 3, level: 1 },
-                { id: 4, level: 2 }
+                { id: 1, level: 0 },
+                { id: 2, level: 0 }
             ],
             farmSkills: [
-                { id: 3, level: 1 },
-                { id: 4, level: 2 }
+                { id: 1, level: 0 },
+                { id: 2, level: 0 }
             ],
             townCards: [
-                { id: 3, level: 1 },
-                { id: 4, level: 2 }
+                { id: 1, level: 0 },
+                { id: 2, level: 0 }
             ],
             locationCards: [
-                { id: 3, level: 1 },
-                { id: 4, level: 2 }
+                { id: 1, level: 0 },
+                { id: 2, level: 0 }
             ],
             dungeonCards: [
-                { id: 3, level: 1 },
-                { id: 4, level: 2 }
+                { id: 1, level: 0 },
+                { id: 2, level: 0 }
             ],
             monsterCards: [
-                { id: 3, level: 1 },
-                { id: 4, level: 2 }
+                { id: 1, level: 0 },
+                { id: 2, level: 0 }
             ],
             minesGoldCards: [
                 { id: 1, level: 0 },
@@ -90,12 +90,12 @@ const userProgress = {
                 { id: 8, level: 0 }
             ],
             miningSkillsCards: [
-                { id: 3, level: 1 },
-                { id: 4, level: 2 }
+                { id: 1, level: 0 },
+                { id: 2, level: 0 }
             ],
             activeSkills: [
-                { id: 3, level: 1 },
-                { id: 4, level: 2 }
+                { id: 1, level: 0 },
+                { id: 2, level: 0 }
             ]
         },
         {
