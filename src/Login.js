@@ -1,7 +1,7 @@
 // src/components/Pages/Login.js
 
 import React from 'react';
-import TelegramLogin from '../TelegramLogin';
+import TelegramLogin from './TelegramLogin';
 
 function Login() {
     return (
