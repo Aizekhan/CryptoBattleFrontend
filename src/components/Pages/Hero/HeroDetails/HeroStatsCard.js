@@ -1,24 +1,13 @@
 import React from 'react';
-import hpIcon from '../../../../assets/icons/hp.png';
-import armorIcon from '../../../../assets/icons/armor.png';
-import damageIcon from '../../../../assets/icons/damage.png';
-import attackSpeedIcon from '../../../../assets/icons/attackSpeed.png';
-import blockChanceIcon from '../../../../assets/icons/blockChance.png';
-import penetrationChanceIcon from '../../../../assets/icons/penetrationChance.png';
-import critChanceIcon from '../../../../assets/icons/critChance.png';
-import dodgeChanceIcon from '../../../../assets/icons/dodgeChance.png';
-import critPowerIcon from '../../../../assets/icons/critPower.png';
-import accuracyIcon from '../../../../assets/icons/accuracy.png';
-import statsPanelBackground from '../../../../assets/images/Backgrounds/StatsPanel-background.png';
+import appImages from '../../../../context/appImages'; // ≤мпортуЇмо ≥конки з appImages.js
 import './HeroStatsCard.css';
 
 const HeroStatsCard = ({ stats }) => {
-
     const backgroundStyle = {
-        backgroundImage: `url(${statsPanelBackground})`,
+        backgroundImage: `url(${appImages.icons.statsPanelBackground})`,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center center',
-        backgroundSize: 'cover', // «м≥нюЇмо розм≥р фону, щоб в≥н покривав весь контейнер
+        backgroundSize: 'cover', // «м≥на розм≥ру фону, щоб в≥н покривав весь контейнер
     };
 
     return (
@@ -26,45 +15,45 @@ const HeroStatsCard = ({ stats }) => {
             <div className="stats-container">
                 <div className="stat-column">
                     <div className="stat">
-                        <img src={hpIcon} alt="HP" className="stat-icon" />
+                        <img src={appImages.icons.hp} alt="HP" className="stat-icon" />
                         <span className="stat-value">{stats.hp}</span>
                     </div>
                     <div className="stat">
-                        <img src={armorIcon} alt="Armor" className="stat-icon" />
+                        <img src={appImages.icons.armor} alt="Armor" className="stat-icon" />
                         <span className="stat-value">{stats.armor}</span>
                     </div>
                     <div className="stat">
-                        <img src={damageIcon} alt="Damage" className="stat-icon" />
+                        <img src={appImages.icons.damage} alt="Damage" className="stat-icon" />
                         <span className="stat-value">{stats.damage}</span>
                     </div>
                     <div className="stat">
-                        <img src={attackSpeedIcon} alt="Attack Speed" className="stat-icon" />
+                        <img src={appImages.icons.attackSpeed} alt="Attack Speed" className="stat-icon" />
                         <span className="stat-value">{stats.attackSpeed}</span>
                     </div>
                     <div className="stat">
-                        <img src={blockChanceIcon} alt="Block Chance" className="stat-icon" />
+                        <img src={appImages.icons.blockChance} alt="Block Chance" className="stat-icon" />
                         <span className="stat-value">{stats.blockChance}%</span>
                     </div>
                 </div>
                 <div className="stat-column">
                     <div className="stat">
-                        <img src={penetrationChanceIcon} alt="Penetration Chance" className="stat-icon" />
+                        <img src={appImages.icons.penetrationChance} alt="Penetration Chance" className="stat-icon" />
                         <span className="stat-value">{stats.penetrationChance}%</span>
                     </div>
                     <div className="stat">
-                        <img src={critChanceIcon} alt="Crit Chance" className="stat-icon" />
+                        <img src={appImages.icons.critChance} alt="Crit Chance" className="stat-icon" />
                         <span className="stat-value">{stats.critChance}%</span>
                     </div>
                     <div className="stat">
-                        <img src={dodgeChanceIcon} alt="Dodge Chance" className="stat-icon" />
+                        <img src={appImages.icons.dodgeChance} alt="Dodge Chance" className="stat-icon" />
                         <span className="stat-value">{stats.dodgeChance}%</span>
                     </div>
                     <div className="stat">
-                        <img src={critPowerIcon} alt="Crit Power" className="stat-icon" />
+                        <img src={appImages.icons.critPower} alt="Crit Power" className="stat-icon" />
                         <span className="stat-value">{stats.critPower}%</span>
                     </div>
                     <div className="stat">
-                        <img src={accuracyIcon} alt="Accuracy" className="stat-icon" />
+                        <img src={appImages.icons.accuracy} alt="Accuracy" className="stat-icon" />
                         <span className="stat-value">{stats.accuracy}%</span>
                     </div>
                 </div>

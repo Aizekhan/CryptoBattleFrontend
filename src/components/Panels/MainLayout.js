@@ -1,17 +1,10 @@
 import React from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
-import homeIcon from '../../assets/icons/NavPanel/home-icon.png';
-import farmIcon from '../../assets/icons/NavPanel/farm-icon.png';
-import heroIcon from '../../assets/icons/NavPanel/hero-icon.png';
-import questIcon from '../../assets/icons/NavPanel/quests-icon.png';
-import mineIcon from '../../assets/icons/NavPanel/mines-icon.png';
-import battleIcon from '../../assets/icons/NavPanel/battle-icon.png';
-import addFriendsIcon from '../../assets/icons/NavPanel/friends-icon.png';
-import coinIcon from '../../assets/icons/NavPanel/coin-icon.png'; // Додано іконку монети
+import appImages from '../../context/appImages'; // Імпортуємо іконки з appImages.js
 import './MainLayout.css';
 import SubNavigation from './SubNavigation';
 import { useUserStats } from '../../context/UserStatsContext';
-import HeroStatsCard from '../Pages/Hero/HeroDetails/HeroStatsCard';
+import HeroStatsCard from '../Pages/Hero/HeroDetails/HeroStatsCard'; // Імпортуємо компонент HeroStatsCard
 
 const MainLayout = () => {
     const navigate = useNavigate();
@@ -67,22 +60,22 @@ const MainLayout = () => {
         <div className="main-layout">
             <div className={`nav-icons-wrapper ${isPvPBattle ? 'hidden' : ''}`}>
                 <div className="nav-icons-top">
-                    <img src={homeIcon} alt="Home" onClick={() => navigate('/home')} className="nav-icon" />
+                    <img src={appImages.icons.home} alt="Home" onClick={() => navigate('/home')} className="nav-icon" />
                     <div className="balance-display">
-                        <img src={coinIcon} alt="Coin" className="nav-icon" />
+                        <img src={appImages.icons.coin} alt="Coin" className="nav-icon" />
                         <span>{userStats.balance}</span>
                     </div>
-                    <img src={battleIcon} alt="Battle" onClick={() => navigate('/battle')} className="nav-icon" />
+                    <img src={appImages.icons.battle} alt="Battle" onClick={() => navigate('/battle')} className="nav-icon" />
                 </div>
                 <SubNavigation basePath={`/${basePath}`} subPages={subPages} />
                 <div className={`nav-icon-hero ${isHeroPage ? 'hidden' : ''}`}>
-                    <img src={heroIcon} alt="Hero" onClick={() => navigate('/hero')} className="nav-icon" />
+                    <img src={appImages.icons.hero} alt="Hero" onClick={() => navigate('/hero')} className="nav-icon" />
                 </div>
                 <div className={`nav-icons-bottom ${isHeroPage ? 'move-icons' : ''}`}>
-                    <img src={farmIcon} alt="Farm" onClick={() => navigate('/farm')} className="nav-icon" />
-                    <img src={mineIcon} alt="Mine" onClick={() => navigate('/mines')} className="nav-icon mine-icon" />
-                    <img src={questIcon} alt="Quest" onClick={() => navigate('/quests')} className="nav-icon quest-icon" />
-                    <img src={addFriendsIcon} alt="Add Friends" onClick={() => navigate('/friends')} className="nav-icon" />
+                    <img src={appImages.icons.farm} alt="Farm" onClick={() => navigate('/farm')} className="nav-icon" />
+                    <img src={appImages.icons.mine} alt="Mine" onClick={() => navigate('/mines')} className="nav-icon mine-icon" />
+                    <img src={appImages.icons.quest} alt="Quest" onClick={() => navigate('/quests')} className="nav-icon quest-icon" />
+                    <img src={appImages.icons.addFriends} alt="Add Friends" onClick={() => navigate('/friends')} className="nav-icon" />
                 </div>
             </div>
             <div className="content">

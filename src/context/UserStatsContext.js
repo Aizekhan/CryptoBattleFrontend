@@ -1,44 +1,57 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import heroesConfig from './heroesConfig';
-import cardsConfig from '../components/Cards/cardsConfig'; // Імпортуємо конфігурацію карток
+import userProgress from './userProgress';
+import cardsConfig from '../components/Cards/cardsConfig';
+import saveUserProgress from './saveUserProgress'; // Імпорт функції збереження
 
 const UserStatsContext = createContext();
 
 export const useUserStats = () => useContext(UserStatsContext);
 
 export const UserStatsProvider = ({ children }) => {
-    // Вибраний герой за замовчуванням
-    const currentHero = heroesConfig[0];
+    const calculateCardStats = (card, level) => {
+        const { baseEffect, effectScale } = card;
+        return {
+            ...card,
+            level,
+            effectValue: baseEffect * Math.pow(effectScale, level),
+        };
+    };
 
-    const mapIdsToCards = (ids) => {
-        return ids.map(id => cardsConfig.find(card => card.id === id));
+    const mapCardsWithStats = (cards) => {
+        return cards.map(card => {
+            const baseCard = cardsConfig.find(c => c.id === card.id);
+            return calculateCardStats(baseCard, card.level);
+        });
+    };
+
+    const initializeHero = (hero) => {
+        return {
+            ...hero,
+            passiveSkills: mapCardsWithStats(hero.passiveSkills),
+            equipment: mapCardsWithStats(hero.equipment),
+            battleCards: mapCardsWithStats(hero.battleCards),
+            farmSkills: mapCardsWithStats(hero.farmSkills),
+            townCards: mapCardsWithStats(hero.townCards),
+            locationCards: mapCardsWithStats(hero.locationCards),
+            dungeonCards: mapCardsWithStats(hero.dungeonCards),
+            monsterCards: mapCardsWithStats(hero.monsterCards),
+            minesGoldCards: mapCardsWithStats(hero.minesGoldCards),
+            miningSkillsCards: mapCardsWithStats(hero.miningSkillsCards),
+            activeSkills: mapCardsWithStats(hero.activeSkills),
+            UpgradeCost: hero.UpgradeCost || 100, // Початкова вартість апгрейду
+            UpgradeScale: hero.UpgradeScale || 1.2, // Початковий множник апгрейду
+        };
     };
 
     const [userStats, setUserStats] = useState({
-        username: 'Player',
-        level: 0,
-        tapIncome: currentHero.baseIncome.goldPerTap,
-        incomePer8Hours: currentHero.baseIncome.goldPer8Hours,
-        balance: 500,
-        currentHeroId: currentHero.id,
-        heroes: heroesConfig.map(hero => ({
-            ...hero,
-            passiveSkills: mapIdsToCards(hero.defaultPassiveSkills),
-            equipment: mapIdsToCards(hero.defaultEquipment),
-            battleCards: mapIdsToCards(hero.defaultBattleCards),
-            farmSkills: mapIdsToCards(hero.defaultFarmSkills),
-            townCards: mapIdsToCards(hero.townCards),
-            locationCards: mapIdsToCards(hero.locationCards),
-            dungeonCards: mapIdsToCards(hero.dungeonCards),
-            monsterCards: mapIdsToCards(hero.monsterCards),
-            minesGoldCards: mapIdsToCards(hero.minesGoldCards),
-            miningSkillsCards: mapIdsToCards(hero.miningSkillsCards),
-            heroFarmSkillsCards: mapIdsToCards(hero.heroFarmSkillsCards),
-            heroBattleCards: mapIdsToCards(hero.heroBattleCards),
-            heroPassiveSkillsCards: mapIdsToCards(hero.heroPassiveSkillsCards),
-            heroEquipmentCards: mapIdsToCards(hero.heroEquipmentCards),
-            activeSkills: mapIdsToCards(hero.activeSkills)
-        }))
+        username: userProgress.username,
+        level: userProgress.level,
+        experience: userProgress.experience,
+        balance: userProgress.balance, // Поле балансу
+        totalIncomePer8Hours: userProgress.totalIncomePer8Hours,
+        totalTapIncome: userProgress.totalTapIncome,
+        currentHeroId: userProgress.currentHeroId,
+        heroes: userProgress.heroes.map(initializeHero)
     });
 
     useEffect(() => {
@@ -53,10 +66,11 @@ export const UserStatsProvider = ({ children }) => {
     }, [userStats.currentHeroId, userStats.heroes]);
 
     const updateUserStats = (newStats) => {
-        setUserStats(prevStats => ({
-            ...prevStats,
-            ...newStats
-        }));
+        setUserStats(prevStats => {
+            const updatedStats = { ...prevStats, ...newStats };
+            saveUserProgress(updatedStats); // Збереження оновлених даних
+            return updatedStats;
+        });
     };
 
     const updateHeroStats = (heroId, newStats) => {
@@ -64,79 +78,66 @@ export const UserStatsProvider = ({ children }) => {
             const updatedHeroes = prevStats.heroes.map(hero =>
                 hero.id === heroId ? { ...hero, ...newStats } : hero
             );
-            return { ...prevStats, heroes: updatedHeroes };
+            const updatedStats = { ...prevStats, heroes: updatedHeroes };
+            saveUserProgress(updatedStats); // Збереження оновлених даних
+            return updatedStats;
         });
     };
 
     const setCurrentHero = (heroId) => {
-        setUserStats(prevStats => ({
-            ...prevStats,
-            currentHeroId: heroId
-        }));
+        setUserStats(prevStats => {
+            const updatedStats = { ...prevStats, currentHeroId: heroId };
+            saveUserProgress(updatedStats); // Збереження оновлених даних
+            return updatedStats;
+        });
     };
 
-    const updateHeroPassiveSkills = (heroId, newSkills) => {
-        updateHeroStats(heroId, { passiveSkills: newSkills });
+    const createHeroUpdateFunction = (field) => (heroId, newValues) => {
+        updateHeroStats(heroId, { [field]: newValues });
     };
 
-    const updateHeroEquipment = (heroId, newEquipment) => {
-        updateHeroStats(heroId, { equipment: newEquipment });
-    };
+    const upgradeCard = (heroId, cardId) => {
+        setUserStats(prevStats => {
+            const hero = prevStats.heroes.find(hero => hero.id === heroId);
+            const card = hero.passiveSkills.find(card => card.id === cardId) ||
+                hero.equipment.find(card => card.id === cardId) ||
+                hero.battleCards.find(card => card.id === cardId) ||
+                hero.farmSkills.find(card => card.id === cardId) ||
+                hero.townCards.find(card => card.id === cardId) ||
+                hero.locationCards.find(card => card.id === cardId) ||
+                hero.dungeonCards.find(card => card.id === cardId) ||
+                hero.monsterCards.find(card => card.id === cardId) ||
+                hero.minesGoldCards.find(card => card.id === cardId) ||
+                hero.miningSkillsCards.find(card => card.id === cardId) ||
+                hero.activeSkills.find(card => card.id === cardId);
 
-    const updateHeroBattleCards = (heroId, newBattleCards) => {
-        updateHeroStats(heroId, { battleCards: newBattleCards });
-    };
-
-    const updateHeroFarmSkills = (heroId, newFarmSkills) => {
-        updateHeroStats(heroId, { farmSkills: newFarmSkills });
-    };
-
-    const updateHeroTownCards = (heroId, newTownCards) => {
-        updateHeroStats(heroId, { townCards: newTownCards });
-    };
-
-    const updateHeroLocationCards = (heroId, newLocationCards) => {
-        updateHeroStats(heroId, { locationCards: newLocationCards });
-    };
-
-    const updateHeroDungeonCards = (heroId, newDungeonCards) => {
-        updateHeroStats(heroId, { dungeonCards: newDungeonCards });
-    };
-
-    const updateHeroMonsterCards = (heroId, newMonsterCards) => {
-        updateHeroStats(heroId, { monsterCards: newMonsterCards });
-    };
-
-    const updateHeroMinesGoldCards = (heroId, newMinesGoldCards) => {
-        updateHeroStats(heroId, { minesGoldCards: newMinesGoldCards });
-    };
-
-    const updateHeroMiningSkillsCards = (heroId, newMiningSkillsCards) => {
-        updateHeroStats(heroId, { miningSkillsCards: newMiningSkillsCards });
-    };
-
-    const updateHeroHeroFarmSkillsCards = (heroId, newHeroFarmSkillsCards) => {
-        updateHeroStats(heroId, { heroFarmSkillsCards: newHeroFarmSkillsCards });
-    };
-
-    const updateHeroHeroBattleCards = (heroId, newHeroBattleCards) => {
-        updateHeroStats(heroId, { heroBattleCards: newHeroBattleCards });
-    };
-
-    const updateHeroHeroPassiveSkillsCards = (heroId, newHeroPassiveSkillsCards) => {
-        updateHeroStats(heroId, { heroPassiveSkillsCards: newHeroPassiveSkillsCards });
-    };
-
-    const updateHeroHeroEquipmentCards = (heroId, newHeroEquipmentCards) => {
-        updateHeroStats(heroId, { heroEquipmentCards: newHeroEquipmentCards });
-    };
-
-    const updateHeroActiveSkills = (heroId, newActiveSkills) => {
-        updateHeroStats(heroId, { activeSkills: newActiveSkills });
-    };
-
-    const levelUpCurrentHero = () => {
-        updateHeroStats(userStats.currentHeroId, { level: userStats.heroes.find(hero => hero.id === userStats.currentHeroId).level + 1 });
+            const newLevel = card.level + 1;
+            const updatedCard = calculateCardStats(card, newLevel);
+            const updatedHero = {
+                ...hero,
+                passiveSkills: hero.passiveSkills.map(c => c.id === cardId ? updatedCard : c),
+                equipment: hero.equipment.map(c => c.id === cardId ? updatedCard : c),
+                battleCards: hero.battleCards.map(c => c.id === cardId ? updatedCard : c),
+                farmSkills: hero.farmSkills.map(c => c.id === cardId ? updatedCard : c),
+                townCards: hero.townCards.map(c => c.id === cardId ? updatedCard : c),
+                locationCards: hero.locationCards.map(c => c.id === cardId ? updatedCard : c),
+                dungeonCards: hero.dungeonCards.map(c => c.id === cardId ? updatedCard : c),
+                monsterCards: hero.monsterCards.map(c => c.id === cardId ? updatedCard : c),
+                minesGoldCards: hero.minesGoldCards.map(c => c.id === cardId ? updatedCard : c),
+                miningSkillsCards: hero.miningSkillsCards.map(c => c.id === cardId ? updatedCard : c),
+                activeSkills: hero.activeSkills.map(c => c.id === cardId ? updatedCard : c),
+                UpgradeCost: hero.UpgradeCost * hero.UpgradeScale, // Збільшення вартості апгрейду
+            };
+            const updatedHeroes = prevStats.heroes.map(h => h.id === heroId ? updatedHero : h);
+            const updatedStats = {
+                ...prevStats,
+                heroes: updatedHeroes,
+                level: prevStats.level + 1, // Збільшуємо рівень героя при прокачці картки
+                balance: prevStats.balance - card.upgradeCost // Віднімаємо вартість апгрейду
+            };
+            saveUserProgress(updatedStats); // Збереження оновлених даних
+            return updatedStats;
+        });
     };
 
     return (
@@ -145,22 +146,27 @@ export const UserStatsProvider = ({ children }) => {
             updateUserStats,
             updateHeroStats,
             setCurrentHero,
-            updateHeroPassiveSkills,
-            updateHeroEquipment,
-            updateHeroBattleCards,
-            updateHeroFarmSkills,
-            updateHeroTownCards,
-            updateHeroLocationCards,
-            updateHeroDungeonCards,
-            updateHeroMonsterCards,
-            updateHeroMinesGoldCards,
-            updateHeroMiningSkillsCards,
-            updateHeroHeroFarmSkillsCards,
-            updateHeroHeroBattleCards,
-            updateHeroHeroPassiveSkillsCards,
-            updateHeroHeroEquipmentCards,
-            updateHeroActiveSkills,
-            levelUpCurrentHero
+            updateHeroPassiveSkills: createHeroUpdateFunction('passiveSkills'),
+            updateHeroEquipment: createHeroUpdateFunction('equipment'),
+            updateHeroBattleCards: createHeroUpdateFunction('battleCards'),
+            updateHeroFarmSkills: createHeroUpdateFunction('farmSkills'),
+            updateHeroTownCards: createHeroUpdateFunction('townCards'),
+            updateHeroLocationCards: createHeroUpdateFunction('locationCards'),
+            updateHeroDungeonCards: createHeroUpdateFunction('dungeonCards'),
+            updateHeroMonsterCards: createHeroUpdateFunction('monsterCards'),
+            updateHeroMinesGoldCards: createHeroUpdateFunction('minesGoldCards'),
+            updateHeroMiningSkillsCards: createHeroUpdateFunction('miningSkillsCards'),
+            updateHeroActiveSkills: createHeroUpdateFunction('activeSkills'),
+            upgradeCard,
+            levelUpCurrentHero: () => {
+                const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
+                if (currentHero) {
+                    updateHeroStats(userStats.currentHeroId, {
+                        level: currentHero.level + 1,
+                        UpgradeCost: currentHero.UpgradeCost * currentHero.UpgradeScale // Збільшення вартості апгрейду
+                    });
+                }
+            }
         }}>
             {children}
         </UserStatsContext.Provider>

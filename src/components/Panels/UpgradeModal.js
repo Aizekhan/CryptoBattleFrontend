@@ -1,13 +1,13 @@
 import React from 'react';
 import './UpgradeModal.css'; // Імпортуємо стилі для модального вікна
-import closeIcon from '../../assets/icons/close-icon.png'; // Імпортуємо іконку закриття
+import appImages from '../../context/appImages'; // Імпортуємо іконки з appImages.js
 import UpgradeButton from '../Cards/UpgradeButton'; // Імпортуємо компонент UpgradeButton
 
 const UpgradeModal = ({ card, onClose, canUpgrade }) => {
     return (
         <div className="modal-overlay">
             <div className="modal-content">
-                <img src={closeIcon} alt="Close" className="close-icon" onClick={onClose} />
+                <img src={appImages.icons.close} alt="Close" className="close-icon" onClick={onClose} />
                 <div className="modal-body">
                     <h2>{card.name}</h2>
                     <p>{card.effect}</p>
@@ -18,8 +18,8 @@ const UpgradeModal = ({ card, onClose, canUpgrade }) => {
                             </p>
                         ))}
                     </div>
-                    {!canUpgrade && <p>Conditions not met</p>}
-                    <UpgradeButton card={card} onClose={onClose} /> {/* Використовуємо компонент UpgradeButton */}
+                    {!canUpgrade && <img src={appImages.icons.lock} alt="Conditions not met" className="modal-lock-icon" />}
+                    {canUpgrade && <UpgradeButton card={card} onClose={onClose} />} {/* Використовуємо компонент UpgradeButton */}
                 </div>
             </div>
         </div>

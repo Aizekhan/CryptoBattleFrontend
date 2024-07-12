@@ -1,13 +1,9 @@
-import hero1FullImage from '../assets/images/Heroes/hero1_full.png';
-import hero1Avatar from '../assets/images/Heroes/hero1_avatar.png';
-import hero2FullImage from '../assets/images/Heroes/hero2_full.png';
-import hero2Avatar from '../assets/images/Heroes/hero2_avatar.png';
-import botFullImage from '../assets/images/Heroes/bot_full.png';
-import botAvatar from '../assets/images/Heroes/bot_avatar.png';
+import { getHeroImages } from './heroImages';
 
 const heroesConfig = [
     {
         id: 'hero_1_id',
+        level: 1,
         name: 'Hero 1',
         race: 'Human',
         religion: 'none',
@@ -38,29 +34,24 @@ const heroesConfig = [
             legendaryItemChance: 0.5,
             uniqueItemChance: 0.1
         },
-        img: {
-            full: hero1FullImage,
-            avatar: hero1Avatar
-        },
-        level: 1,
-        defaultPassiveSkills: [1, 2],
-        defaultEquipment: [1, 2],
-        defaultBattleCards: [1, 2],
-        defaultFarmSkills: [1, 2],
-        defaultTownCards: [1, 2],
-        defaultLocationCards: [1, 2],
-        defaultDungeonCards: [1, 2],
-        defaultMonsterCards: [1, 2],
-        defaultMinesGoldCards: [1, 2, 3],
-        defaultMiningSkillsCards: [1, 2],
-        defaultHeroFarmSkillsCards: [1, 2],
-        defaultHeroBattleCards: [1, 2],
-        defaultHeroPassiveSkillsCards: [1, 2],
-        defaultHeroEquipmentCards: [1, 2],
-        defaultActiveSkills: [1, 2]
+        img: getHeroImages('hero1'),
+        defaultCards: {
+            passiveSkills: [1, 2],
+            equipment: [1, 2],
+            battleCards: [1, 2],
+            farmSkills: [1, 2],
+            townCards: [1, 2],
+            locationCards: [1, 2],
+            dungeonCards: [1, 2],
+            monsterCards: [1, 2],
+            minesGoldCards: [1, 2, 3],
+            miningSkillsCards: [1, 2],
+            activeSkills: [1, 2]
+        }
     },
     {
         id: 'hero_2_id',
+        level: 1,
         name: 'Hero 2',
         race: 'Orc',
         religion: 'none',
@@ -91,29 +82,24 @@ const heroesConfig = [
             legendaryItemChance: 1,
             uniqueItemChance: 0.2
         },
-        img: {
-            full: hero2FullImage,
-            avatar: hero2Avatar
-        },
-        level: 1,
-        defaultPassiveSkills: [3, 4],
-        defaultEquipment: [3, 4],
-        defaultBattleCards: [3, 4],
-        defaultFarmSkills: [3, 4],
-        defaultTownCards: [3, 4],
-        defaultLocationCards: [3, 4],
-        defaultDungeonCards: [3, 4],
-        defaultMonsterCards: [3, 4],
-        defaultMinesGoldCards: [3, 4],
-        defaultMiningSkillsCards: [3, 4],
-        defaultHeroFarmSkillsCards: [3, 4],
-        defaultHeroBattleCards: [3, 4],
-        defaultHeroPassiveSkillsCards: [3, 4],
-        defaultHeroEquipmentCards: [3, 4],
-        defaultActiveSkills: [3, 4]
+        img: getHeroImages('hero2'),
+        defaultCards: {
+            passiveSkills: [3, 4],
+            equipment: [3, 4],
+            battleCards: [3, 4],
+            farmSkills: [3, 4],
+            townCards: [3, 4],
+            locationCards: [3, 4],
+            dungeonCards: [3, 4],
+            monsterCards: [3, 4],
+            minesGoldCards: [3, 4],
+            miningSkillsCards: [3, 4],
+            activeSkills: [3, 4]
+        }
     },
     {
         id: 'bot_1_id',
+        level: 1,
         name: 'Bot 1',
         race: 'Robot',
         religion: 'none',
@@ -144,26 +130,20 @@ const heroesConfig = [
             legendaryItemChance: 0,
             uniqueItemChance: 0
         },
-        img: {
-            full: botFullImage,
-            avatar: botAvatar
-        },
-        level: 1,
-        defaultPassiveSkills: [5, 6],
-        defaultEquipment: [5, 6],
-        defaultBattleCards: [5, 6],
-        defaultFarmSkills: [5, 6],
-        defaultTownCards: [5, 6],
-        defaultLocationCards: [5, 6],
-        defaultDungeonCards: [5, 6],
-        defaultMonsterCards: [5, 6],
-        defaultMinesGoldCards: [5, 6],
-        defaultMiningSkillsCards: [5, 6],
-        defaultHeroFarmSkillsCards: [5, 6],
-        defaultHeroBattleCards: [5, 6],
-        defaultHeroPassiveSkillsCards: [5, 6],
-        defaultHeroEquipmentCards: [5, 6],
-        defaultActiveSkills: [5, 6]
+        img: getHeroImages('bot1'),
+        defaultCards: {
+            passiveSkills: [5, 6],
+            equipment: [5, 6],
+            battleCards: [5, 6],
+            farmSkills: [5, 6],
+            townCards: [5, 6],
+            locationCards: [5, 6],
+            dungeonCards: [5, 6],
+            monsterCards: [5, 6],
+            minesGoldCards: [5, 6],
+            miningSkillsCards: [5, 6],
+            activeSkills: [5, 6]
+        }
     }
 ];
 

@@ -3,9 +3,8 @@ import './Card.css';
 import { useUserStats } from '../../context/UserStatsContext';
 import { cardBackgrounds } from './cardsConfig';
 import UpgradeModal from '../Panels/UpgradeModal';
-import upgradeIcon from '../../assets/icons/upgrade-icon.png';
-import lockIcon from '../../assets/images/lock.png';
-import { prerequisitesMet, getCardListByTag } from './cardUtils';
+import appImages from '../../context/appImages';
+import { prerequisitesMet } from './cardUtils';
 
 const Card = ({ card }) => {
     const { userStats } = useUserStats();
@@ -14,10 +13,7 @@ const Card = ({ card }) => {
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
-    const canUpgrade = prerequisitesMet(userStats, card);
-    const cardList = getCardListByTag(userStats, card.tag);
-    const cardData = cardList.find(c => c.id === card.id) || card;
-
+    const canUpgrade = prerequisitesMet(userStats, card) && userStats.balance >= card.upgradeCost;
     const backgroundImage = cardBackgrounds[card.tag] || card.img;
 
     return (
@@ -31,12 +27,12 @@ const Card = ({ card }) => {
                     <img src={card.img} alt={card.name} className="card-img" />
                 </div>
                 <div className="card-header">
-                    <p>Level: {cardData.level}</p>
+                    <p>Level: {card.level}</p>
                     <h3>{card.name}</h3>
                 </div>
                 <div className="card-upgrade-button">
                     <img
-                        src={canUpgrade ? upgradeIcon : lockIcon}
+                        src={canUpgrade ? appImages.icons.upgrade : appImages.icons.lock}
                         alt="Upgrade"
                         onClick={openModal}
                         className="card-upgrade-img-button"
@@ -47,6 +43,7 @@ const Card = ({ card }) => {
                 <UpgradeModal
                     card={card}
                     onClose={closeModal}
+                    canUpgrade={canUpgrade}
                 />
             )}
         </>
