@@ -8,11 +8,11 @@ const userProgress = {
     balance: 700,
     totalIncomePer8Hours: 300,
     totalTapIncome: 50,
-    currentHeroId: 'hero_2_id',
+    currentHeroId: 'hero_1_id',
     heroes: [
         {
             id: 'hero_1_id',
-            level: 6,
+            level: 0,
             experience: 1500,
             UpgradeCost: 150,
             UpgradeScale: 1.2,
@@ -48,8 +48,8 @@ const userProgress = {
             },
             img: getHeroImages('hero1'),
             passiveSkills: [
-                { id: 3, level: 1 },
-                { id: 4, level: 2 }
+                { id: 1, level: 0 },
+                { id: 2, level: 0 }
             ],
             equipment: [
                 { id: 3, level: 1 },
@@ -80,8 +80,14 @@ const userProgress = {
                 { id: 4, level: 2 }
             ],
             minesGoldCards: [
-                { id: 3, level: 1 },
-                { id: 4, level: 2 }
+                { id: 1, level: 0 },
+                { id: 2, level: 0 },
+                { id: 3, level: 0 },
+                { id: 4, level: 0 },
+                { id: 5, level: 0 },
+                { id: 6, level: 0 },
+                { id: 7, level: 0 },
+                { id: 8, level: 0 }
             ],
             miningSkillsCards: [
                 { id: 3, level: 1 },
