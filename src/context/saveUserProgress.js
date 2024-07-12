@@ -1,3 +1,6 @@
+/*
+//Це логіка для збереження даних не через LocalStoragе, а через fs  - це коли буде онлайн бд і сервер і бекенд
+// просто замынити треба буде скрипт активний - на цей що закомінчений, щоб не міняти у всіх функціях UserStatsContext силку на метод сейвуРезультатів
 const fs = require('fs');
 const path = require('path');
 const userProgressPath = path.join(__dirname, 'userProgress.js');
@@ -21,3 +24,11 @@ export default userProgress;
 };
 
 module.exports = saveUserProgress;
+*/
+// saveUserProgress.js
+const saveUserProgress = (newData) => {
+    localStorage.setItem('userProgress', JSON.stringify(newData));
+    console.log('User progress data saved successfully.');
+};
+
+export default saveUserProgress;

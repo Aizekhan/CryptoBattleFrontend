@@ -43,16 +43,25 @@ export const UserStatsProvider = ({ children }) => {
         };
     };
 
-    const [userStats, setUserStats] = useState({
-        username: userProgress.username,
-        level: userProgress.level,
-        experience: userProgress.experience,
-        balance: userProgress.balance, // Поле балансу
-        totalIncomePer8Hours: userProgress.totalIncomePer8Hours,
-        totalTapIncome: userProgress.totalTapIncome,
-        currentHeroId: userProgress.currentHeroId,
-        heroes: userProgress.heroes.map(initializeHero)
-    });
+    const loadUserStats = () => {
+        const savedStats = localStorage.getItem('userProgress');
+        if (savedStats) {
+            return JSON.parse(savedStats);
+        } else {
+            return {
+                username: userProgress.username,
+                level: userProgress.level,
+                experience: userProgress.experience,
+                balance: userProgress.balance,
+                totalIncomePer8Hours: userProgress.totalIncomePer8Hours,
+                totalTapIncome: userProgress.totalTapIncome,
+                currentHeroId: userProgress.currentHeroId,
+                heroes: userProgress.heroes.map(initializeHero)
+            };
+        }
+    };
+
+    const [userStats, setUserStats] = useState(loadUserStats());
 
     useEffect(() => {
         const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
@@ -132,8 +141,7 @@ export const UserStatsProvider = ({ children }) => {
             const updatedStats = {
                 ...prevStats,
                 heroes: updatedHeroes,
-                level: prevStats.level + 1, // Збільшуємо рівень героя при прокачці картки
-                balance: prevStats.balance - card.upgradeCost // Віднімаємо вартість апгрейду
+                level: prevStats.level + 1 // Збільшуємо рівень героя при прокачці картки
             };
             saveUserProgress(updatedStats); // Збереження оновлених даних
             return updatedStats;
