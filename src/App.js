@@ -1,13 +1,9 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import axios from 'axios';
-import jwt_decode from 'jwt-decode';
-
-import Login from './Login';
 import { useUserStats, UserStatsProvider } from './context/UserStatsContext';
 import MainLayout from './components/Panels/MainLayout';
-import ChooseHero from './components/ChooseHero'; // Імпорт компонента вибору героя
-
+import ChooseHero from './components/ChooseHero';
+import Login from './Login';
 import Home from './components/Pages/Home/Home';
 import Farm from './components/Pages/Farm/Farm';
 import Battle from './components/Pages/Battle/Battle';
@@ -38,47 +34,15 @@ import Daily from './components/Pages/Quests/Daily';
 import Profa from './components/Pages/Quests/Profa';
 
 function App() {
-    const { updateUserStats, userStats } = useUserStats();
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const urlParams = new URLSearchParams(window.location.search);
-                const token = urlParams.get('token') || localStorage.getItem('authToken');
-                if (token) {
-                    const decoded = jwt_decode(token);
-                    localStorage.setItem('authToken', token);
-
-                    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/user/${decoded.id}`, {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                            'Content-Type': 'application/json',
-                            'Access-Control-Allow-Origin': '*'
-                        },
-                    });
-
-                    updateUserStats(response.data);
-                } else {
-                    console.error('Decoded token does not contain user ID');
-                }
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-            }
-        };
-
-        fetchData();
-    }, [updateUserStats]);
-
-    if (!userStats) {
-        return <div>Loading...</div>;
-    }
+    const { userStats } = useUserStats();
 
     return (
         <Router>
             <Routes>
                 <Route path="/login" element={<Login />} />
-                <Route path="/" element={userStats.heroes.length > 0 ? <MainLayout /> : <ChooseHero />} >
-                    <Route index element={<Navigate to="/hero/sub1" />} />
+                <Route path="/choose-hero" element={<ChooseHero />} />
+                <Route path="/" element={<MainLayout />}>
+                    <Route index element={<Navigate to={userStats && userStats.heroes.length > 0 ? "/hero/sub1" : "/choose-hero"} />} />
                     <Route path="home" element={<Home />}>
                         <Route index element={<Navigate to="sub1" />} />
                         <Route path="sub1" element={<Town />} />

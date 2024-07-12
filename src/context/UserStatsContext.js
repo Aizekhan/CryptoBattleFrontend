@@ -1,13 +1,15 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import userProgress from './userProgress';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
 import cardsConfig from '../components/Cards/cardsConfig';
-import saveUserProgress from './saveUserProgress';
+import saveUserProgress from './saveUserProgress'; // Імпорт функції збереження
 
 const UserStatsContext = createContext();
 
 export const useUserStats = () => useContext(UserStatsContext);
 
 export const UserStatsProvider = ({ children }) => {
+    const [userStats, setUserStats] = useState(null);
+
     const calculateCardStats = (card, level) => {
         const { baseEffect, effectScale } = card;
         return {
@@ -43,52 +45,44 @@ export const UserStatsProvider = ({ children }) => {
         };
     };
 
-    const loadUserStats = () => {
-        const savedStats = localStorage.getItem('userProgress');
-        if (savedStats) {
-            return JSON.parse(savedStats);
-        } else {
-            return {
-                username: userProgress.username,
-                level: userProgress.level,
-                experience: userProgress.experience,
-                balance: userProgress.balance,
-                totalIncomePer8Hours: userProgress.totalIncomePer8Hours,
-                totalTapIncome: userProgress.totalTapIncome,
-                currentHeroId: userProgress.currentHeroId,
-                heroes: userProgress.heroes.map(initializeHero)
-            };
+    const loadUserStats = useCallback(async () => {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/userProgress`);
+            const userProgressData = response.data;
+            setUserStats({
+                username: userProgressData.username,
+                level: userProgressData.level,
+                experience: userProgressData.experience,
+                balance: userProgressData.balance,
+                totalIncomePer8Hours: userProgressData.totalIncomePer8Hours,
+                totalTapIncome: userProgressData.totalTapIncome,
+                currentHeroId: userProgressData.currentHeroId,
+                heroes: userProgressData.heroes.map(initializeHero),
+            });
+        } catch (error) {
+            console.error('Error fetching user progress:', error);
         }
-    };
-
-    const [userStats, setUserStats] = useState(loadUserStats());
+    }, []);
 
     useEffect(() => {
-        const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
-        if (currentHero) {
-            setUserStats(prevStats => ({
-                ...prevStats,
-                tapIncome: currentHero.baseIncome.goldPerTap,
-                incomePer8Hours: currentHero.baseIncome.goldPer8Hours
-            }));
-        }
-    }, [userStats.currentHeroId, userStats.heroes, loadUserStats]);
+        loadUserStats();
+    }, [loadUserStats]);
 
-    const updateUserStats = (newStats) => {
+    const updateUserStats = async (newStats) => {
         setUserStats(prevStats => {
             const updatedStats = { ...prevStats, ...newStats };
-            saveUserProgress(updatedStats); // Збереження оновлених даних
+            saveUserProgress(updatedStats);
             return updatedStats;
         });
     };
 
-    const updateHeroStats = (heroId, newStats) => {
+    const updateHeroStats = async (heroId, newStats) => {
         setUserStats(prevStats => {
             const updatedHeroes = prevStats.heroes.map(hero =>
                 hero.id === heroId ? { ...hero, ...newStats } : hero
             );
             const updatedStats = { ...prevStats, heroes: updatedHeroes };
-            saveUserProgress(updatedStats); // Збереження оновлених даних
+            saveUserProgress(updatedStats);
             return updatedStats;
         });
     };
@@ -96,7 +90,7 @@ export const UserStatsProvider = ({ children }) => {
     const setCurrentHero = (heroId) => {
         setUserStats(prevStats => {
             const updatedStats = { ...prevStats, currentHeroId: heroId };
-            saveUserProgress(updatedStats); // Збереження оновлених даних
+            saveUserProgress(updatedStats);
             return updatedStats;
         });
     };
