@@ -5,7 +5,6 @@ import axios from 'axios';
 import Login from './Login';
 import { useUserStats, UserStatsProvider } from './context/UserStatsContext';
 import MainLayout from './components/Panels/MainLayout';
-
 import Home from './components/Pages/Home/Home';
 import Farm from './components/Pages/Farm/Farm';
 import Battle from './components/Pages/Battle/Battle';

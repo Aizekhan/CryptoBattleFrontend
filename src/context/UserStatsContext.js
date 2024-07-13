@@ -7,6 +7,20 @@ const UserStatsContext = createContext();
 
 export const useUserStats = () => useContext(UserStatsContext);
 
+const allCardTypes = [
+    'passiveSkills',
+    'equipment',
+    'battleCards',
+    'farmSkills',
+    'townCards',
+    'locationCards',
+    'dungeonCards',
+    'monsterCards',
+    'minesGoldCards',
+    'miningSkillsCards',
+    'activeSkills'
+];
+
 export const UserStatsProvider = ({ children }) => {
     const calculateCardStats = (card, level) => {
         const { baseEffect, effectScale } = card;
@@ -25,22 +39,13 @@ export const UserStatsProvider = ({ children }) => {
     };
 
     const initializeHero = useCallback((hero) => {
-        return {
-            ...hero,
-            passiveSkills: mapCardsWithStats(hero.passiveSkills),
-            equipment: mapCardsWithStats(hero.equipment),
-            battleCards: mapCardsWithStats(hero.battleCards),
-            farmSkills: mapCardsWithStats(hero.farmSkills),
-            townCards: mapCardsWithStats(hero.townCards),
-            locationCards: mapCardsWithStats(hero.locationCards),
-            dungeonCards: mapCardsWithStats(hero.dungeonCards),
-            monsterCards: mapCardsWithStats(hero.monsterCards),
-            minesGoldCards: mapCardsWithStats(hero.minesGoldCards),
-            miningSkillsCards: mapCardsWithStats(hero.miningSkillsCards),
-            activeSkills: mapCardsWithStats(hero.activeSkills),
-            UpgradeCost: hero.UpgradeCost || 100,
-            UpgradeScale: hero.UpgradeScale || 1.2,
-        };
+        const heroWithStats = { ...hero };
+        allCardTypes.forEach(cardType => {
+            if (Array.isArray(hero[cardType])) {
+                heroWithStats[cardType] = mapCardsWithStats(hero[cardType]);
+            }
+        });
+        return heroWithStats;
     }, []);
 
     const loadUserStats = useCallback(async () => {
@@ -51,16 +56,8 @@ export const UserStatsProvider = ({ children }) => {
                 }
             });
             const data = response.data;
-            return {
-                username: data.username,
-                level: data.level,
-                experience: data.experience,
-                balance: data.balance,
-                totalIncomePer8Hours: data.totalIncomePer8Hours,
-                totalTapIncome: data.totalTapIncome,
-                currentHeroId: data.currentHeroId,
-                heroes: data.heroes.map(initializeHero)
-            };
+            data.heroes = data.heroes.map(initializeHero);
+            return data;
         } catch (error) {
             console.error('Error loading user progress:', error);
             return null;
@@ -127,35 +124,18 @@ export const UserStatsProvider = ({ children }) => {
     const upgradeCard = (heroId, cardId) => {
         setUserStats(prevStats => {
             const hero = prevStats.heroes.find(hero => hero.id === heroId);
-            const card = hero.passiveSkills.find(card => card.id === cardId) ||
-                hero.equipment.find(card => card.id === cardId) ||
-                hero.battleCards.find(card => card.id === cardId) ||
-                hero.farmSkills.find(card => card.id === cardId) ||
-                hero.townCards.find(card => card.id === cardId) ||
-                hero.locationCards.find(card => card.id === cardId) ||
-                hero.dungeonCards.find(card => card.id === cardId) ||
-                hero.monsterCards.find(card => card.id === cardId) ||
-                hero.minesGoldCards.find(card => card.id === cardId) ||
-                hero.miningSkillsCards.find(card => card.id === cardId) ||
-                hero.activeSkills.find(card => card.id === card.id);
+            const card = allCardTypes.flatMap(cardType => hero[cardType]).find(card => card.id === cardId);
 
             const newLevel = card.level + 1;
             const updatedCard = calculateCardStats(card, newLevel);
-            const updatedHero = {
-                ...hero,
-                passiveSkills: hero.passiveSkills.map(c => c.id === cardId ? updatedCard : c),
-                equipment: hero.equipment.map(c => c.id === cardId ? updatedCard : c),
-                battleCards: hero.battleCards.map(c => c.id === cardId ? updatedCard : c),
-                farmSkills: hero.farmSkills.map(c => c.id === cardId ? updatedCard : c),
-                townCards: hero.townCards.map(c => c.id === cardId ? updatedCard : c),
-                locationCards: hero.locationCards.map(c => c.id === cardId ? updatedCard : c),
-                dungeonCards: hero.dungeonCards.map(c => c.id === cardId ? updatedCard : c),
-                monsterCards: hero.monsterCards.map(c => c.id === cardId ? updatedCard : c),
-                minesGoldCards: hero.minesGoldCards.map(c => c.id === cardId ? updatedCard : c),
-                miningSkillsCards: hero.miningSkillsCards.map(c => c.id === cardId ? updatedCard : c),
-                activeSkills: hero.activeSkills.map(c => c.id === cardId ? updatedCard : c),
-                UpgradeCost: hero.UpgradeCost * hero.UpgradeScale,
-            };
+            const updatedHero = { ...hero };
+
+            allCardTypes.forEach(cardType => {
+                if (hero[cardType]) {
+                    updatedHero[cardType] = hero[cardType].map(c => c.id === cardId ? updatedCard : c);
+                }
+            });
+
             const updatedHeroes = prevStats.heroes.map(h => h.id === heroId ? updatedHero : h);
             const updatedStats = {
                 ...prevStats,
@@ -173,27 +153,11 @@ export const UserStatsProvider = ({ children }) => {
             updateUserStats,
             updateHeroStats,
             setCurrentHero,
-            updateHeroPassiveSkills: createHeroUpdateFunction('passiveSkills'),
-            updateHeroEquipment: createHeroUpdateFunction('equipment'),
-            updateHeroBattleCards: createHeroUpdateFunction('battleCards'),
-            updateHeroFarmSkills: createHeroUpdateFunction('farmSkills'),
-            updateHeroTownCards: createHeroUpdateFunction('townCards'),
-            updateHeroLocationCards: createHeroUpdateFunction('locationCards'),
-            updateHeroDungeonCards: createHeroUpdateFunction('dungeonCards'),
-            updateHeroMonsterCards: createHeroUpdateFunction('monsterCards'),
-            updateHeroMinesGoldCards: createHeroUpdateFunction('minesGoldCards'),
-            updateHeroMiningSkillsCards: createHeroUpdateFunction('miningSkillsCards'),
-            updateHeroActiveSkills: createHeroUpdateFunction('activeSkills'),
             upgradeCard,
-            levelUpCurrentHero: () => {
-                const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
-                if (currentHero) {
-                    updateHeroStats(userStats.currentHeroId, {
-                        level: currentHero.level + 1,
-                        UpgradeCost: currentHero.UpgradeCost * currentHero.UpgradeScale
-                    });
-                }
-            }
+            ...Object.fromEntries(allCardTypes.map(cardType => [
+                `updateHero${cardType.charAt(0).toUpperCase() + cardType.slice(1)}`,
+                createHeroUpdateFunction(cardType)
+            ]))
         }}>
             {children}
         </UserStatsContext.Provider>
