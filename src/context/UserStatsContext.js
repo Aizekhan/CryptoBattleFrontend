@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import userProgress from './userProgress';
 import cardsConfig from '../components/Cards/cardsConfig';
 import saveUserProgress from './saveUserProgress';
@@ -43,7 +43,7 @@ export const UserStatsProvider = ({ children }) => {
         };
     };
 
-    const loadUserStats = () => {
+    const loadUserStats = useCallback(() => {
         const savedStats = localStorage.getItem('userProgress');
         if (savedStats) {
             return JSON.parse(savedStats);
@@ -59,7 +59,7 @@ export const UserStatsProvider = ({ children }) => {
                 heroes: userProgress.heroes.map(initializeHero)
             };
         }
-    };
+    }, []);
 
     const [userStats, setUserStats] = useState(loadUserStats());
 
@@ -72,7 +72,7 @@ export const UserStatsProvider = ({ children }) => {
                 incomePer8Hours: currentHero.baseIncome.goldPer8Hours
             }));
         }
-    }, [userStats.currentHeroId, userStats.heroes, loadUserStats]);
+    }, [userStats.currentHeroId, userStats.heroes]);
 
     const updateUserStats = (newStats) => {
         setUserStats(prevStats => {
