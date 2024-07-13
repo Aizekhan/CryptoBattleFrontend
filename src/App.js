@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import axios from 'axios';
-import jwt_decode from 'jwt-decode';
 
 import Login from './Login';
 import { useUserStats, UserStatsProvider } from './context/UserStatsContext';
 import MainLayout from './components/Panels/MainLayout';
-import ChooseHero from './components/ChooseHero'; // Р†РјРїРѕСЂС‚ РєРѕРјРїРѕРЅРµРЅС‚Р° РІРёР±РѕСЂСѓ РіРµСЂРѕСЏ
 
 import Home from './components/Pages/Home/Home';
 import Farm from './components/Pages/Farm/Farm';
@@ -36,49 +34,47 @@ import Enemys from './components/Pages/Friends/Enemys';
 import Active from './components/Pages/Quests/Active';
 import Daily from './components/Pages/Quests/Daily';
 import Profa from './components/Pages/Quests/Profa';
+import ChooseHero from './components/Pages/ChooseHero';
 
 function App() {
     const { updateUserStats, userStats } = useUserStats();
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const urlParams = new URLSearchParams(window.location.search);
-                const token = urlParams.get('token') || localStorage.getItem('authToken');
-                if (token) {
-                    const decoded = jwt_decode(token);
-                    localStorage.setItem('authToken', token);
-
-                    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/user/${decoded.id}`, {
+            const token = localStorage.getItem('authToken');
+            if (token) {
+                try {
+                    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/userProgress`, {
                         headers: {
-                            Authorization: `Bearer ${token}`,
-                            'Content-Type': 'application/json',
-                            'Access-Control-Allow-Origin': '*'
-                        },
+                            Authorization: `Bearer ${token}`
+                        }
                     });
-
                     updateUserStats(response.data);
-                } else {
-                    console.error('Decoded token does not contain user ID');
+                } catch (error) {
+                    console.error('Error fetching user data:', error);
                 }
-            } catch (error) {
-                console.error('Error fetching user data:', error);
             }
         };
-
         fetchData();
     }, [updateUserStats]);
 
-    if (!userStats) {
-        return <div>Loading...</div>;
+    if (!userStats.currentHeroId) {
+        return (
+            <Router>
+                <Routes>
+                    <Route path="/choose-hero" element={<ChooseHero />} />
+                    <Route path="*" element={<Navigate to="/choose-hero" />} />
+                </Routes>
+            </Router>
+        );
     }
 
     return (
         <Router>
             <Routes>
                 <Route path="/login" element={<Login />} />
-                <Route path="/" element={userStats.heroes.length > 0 ? <MainLayout /> : <ChooseHero />} >
-                    <Route index element={<Navigate to="/hero/sub1" />} />
+                <Route path="/" element={localStorage.getItem('authToken') ? <MainLayout /> : <Navigate to="/login" />}>
+                    <Route index element={<Navigate to="/hero/sub1" />} /> {/* Перенаправлення на HeroDetails */}
                     <Route path="home" element={<Home />}>
                         <Route index element={<Navigate to="sub1" />} />
                         <Route path="sub1" element={<Town />} />

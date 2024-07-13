@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import userProgress from './userProgress';
+import axios from 'axios';
 import cardsConfig from '../components/Cards/cardsConfig';
 import saveUserProgress from './saveUserProgress';
 
@@ -24,7 +24,7 @@ export const UserStatsProvider = ({ children }) => {
         });
     };
 
-    const initializeHero = (hero) => {
+    const initializeHero = useCallback((hero) => {
         return {
             ...hero,
             passiveSkills: mapCardsWithStats(hero.passiveSkills),
@@ -38,33 +38,52 @@ export const UserStatsProvider = ({ children }) => {
             minesGoldCards: mapCardsWithStats(hero.minesGoldCards),
             miningSkillsCards: mapCardsWithStats(hero.miningSkillsCards),
             activeSkills: mapCardsWithStats(hero.activeSkills),
-            UpgradeCost: hero.UpgradeCost || 100, // Початкова вартість апгрейду
-            UpgradeScale: hero.UpgradeScale || 1.2, // Початковий множник апгрейду
+            UpgradeCost: hero.UpgradeCost || 100,
+            UpgradeScale: hero.UpgradeScale || 1.2,
         };
-    };
-
-    const loadUserStats = useCallback(() => {
-        const savedStats = localStorage.getItem('userProgress');
-        if (savedStats) {
-            return JSON.parse(savedStats);
-        } else {
-            return {
-                username: userProgress.username,
-                level: userProgress.level,
-                experience: userProgress.experience,
-                balance: userProgress.balance,
-                totalIncomePer8Hours: userProgress.totalIncomePer8Hours,
-                totalTapIncome: userProgress.totalTapIncome,
-                currentHeroId: userProgress.currentHeroId,
-                heroes: userProgress.heroes.map(initializeHero)
-            };
-        }
     }, []);
 
-    const [userStats, setUserStats] = useState(loadUserStats());
+    const loadUserStats = useCallback(async () => {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/userProgress`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('authToken')}`
+                }
+            });
+            const data = response.data;
+            return {
+                username: data.username,
+                level: data.level,
+                experience: data.experience,
+                balance: data.balance,
+                totalIncomePer8Hours: data.totalIncomePer8Hours,
+                totalTapIncome: data.totalTapIncome,
+                currentHeroId: data.currentHeroId,
+                heroes: data.heroes.map(initializeHero)
+            };
+        } catch (error) {
+            console.error('Error loading user progress:', error);
+            return null;
+        }
+    }, [initializeHero]);
+
+    const [userStats, setUserStats] = useState(null);
 
     useEffect(() => {
-        const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
+        const fetchData = async () => {
+            const data = await loadUserStats();
+            if (data) {
+                setUserStats(data);
+            } else {
+                // redirect to ChooseHero if no user progress found
+                window.location.href = '/choose-hero';
+            }
+        };
+        fetchData();
+    }, [loadUserStats]);
+
+    useEffect(() => {
+        const currentHero = userStats?.heroes.find(hero => hero.id === userStats.currentHeroId);
         if (currentHero) {
             setUserStats(prevStats => ({
                 ...prevStats,
@@ -72,12 +91,12 @@ export const UserStatsProvider = ({ children }) => {
                 incomePer8Hours: currentHero.baseIncome.goldPer8Hours
             }));
         }
-    }, [userStats.currentHeroId, userStats.heroes]);
+    }, [userStats?.currentHeroId, userStats?.heroes]);
 
     const updateUserStats = (newStats) => {
         setUserStats(prevStats => {
             const updatedStats = { ...prevStats, ...newStats };
-            saveUserProgress(updatedStats); // Збереження оновлених даних
+            saveUserProgress(updatedStats);
             return updatedStats;
         });
     };
@@ -88,7 +107,7 @@ export const UserStatsProvider = ({ children }) => {
                 hero.id === heroId ? { ...hero, ...newStats } : hero
             );
             const updatedStats = { ...prevStats, heroes: updatedHeroes };
-            saveUserProgress(updatedStats); // Збереження оновлених даних
+            saveUserProgress(updatedStats);
             return updatedStats;
         });
     };
@@ -96,7 +115,7 @@ export const UserStatsProvider = ({ children }) => {
     const setCurrentHero = (heroId) => {
         setUserStats(prevStats => {
             const updatedStats = { ...prevStats, currentHeroId: heroId };
-            saveUserProgress(updatedStats); // Збереження оновлених даних
+            saveUserProgress(updatedStats);
             return updatedStats;
         });
     };
@@ -118,7 +137,7 @@ export const UserStatsProvider = ({ children }) => {
                 hero.monsterCards.find(card => card.id === cardId) ||
                 hero.minesGoldCards.find(card => card.id === cardId) ||
                 hero.miningSkillsCards.find(card => card.id === cardId) ||
-                hero.activeSkills.find(card => card.id === cardId);
+                hero.activeSkills.find(card => card.id === card.id);
 
             const newLevel = card.level + 1;
             const updatedCard = calculateCardStats(card, newLevel);
@@ -135,15 +154,15 @@ export const UserStatsProvider = ({ children }) => {
                 minesGoldCards: hero.minesGoldCards.map(c => c.id === cardId ? updatedCard : c),
                 miningSkillsCards: hero.miningSkillsCards.map(c => c.id === cardId ? updatedCard : c),
                 activeSkills: hero.activeSkills.map(c => c.id === cardId ? updatedCard : c),
-                UpgradeCost: hero.UpgradeCost * hero.UpgradeScale, // Збільшення вартості апгрейду
+                UpgradeCost: hero.UpgradeCost * hero.UpgradeScale,
             };
             const updatedHeroes = prevStats.heroes.map(h => h.id === heroId ? updatedHero : h);
             const updatedStats = {
                 ...prevStats,
                 heroes: updatedHeroes,
-                level: prevStats.level + 1 // Збільшуємо рівень героя при прокачці картки
+                level: prevStats.level + 1
             };
-            saveUserProgress(updatedStats); // Збереження оновлених даних
+            saveUserProgress(updatedStats);
             return updatedStats;
         });
     };
@@ -171,7 +190,7 @@ export const UserStatsProvider = ({ children }) => {
                 if (currentHero) {
                     updateHeroStats(userStats.currentHeroId, {
                         level: currentHero.level + 1,
-                        UpgradeCost: currentHero.UpgradeCost * currentHero.UpgradeScale // Збільшення вартості апгрейду
+                        UpgradeCost: currentHero.UpgradeCost * currentHero.UpgradeScale
                     });
                 }
             }
