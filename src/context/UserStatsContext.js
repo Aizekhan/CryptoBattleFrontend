@@ -2,7 +2,6 @@ import React, { createContext, useContext, useState, useEffect, useCallback } fr
 import axios from 'axios';
 import cardsConfig from '../components/Cards/cardsConfig';
 import saveUserProgress from './saveUserProgress';
-import userProgress from './userProgress';
 
 const UserStatsContext = createContext();
 
@@ -45,29 +44,25 @@ export const UserStatsProvider = ({ children }) => {
     }, []);
 
     const loadUserStats = useCallback(async () => {
-        const token = localStorage.getItem('authToken');
-        if (!token) return null;
-
         try {
             const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/userProgress`, {
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${localStorage.getItem('authToken')}`
                 }
             });
-
-            const userProgressData = response.data;
+            const data = response.data;
             return {
-                username: userProgressData.username,
-                level: userProgressData.level,
-                experience: userProgressData.experience,
-                balance: userProgressData.balance,
-                totalIncomePer8Hours: userProgressData.totalIncomePer8Hours,
-                totalTapIncome: userProgressData.totalTapIncome,
-                currentHeroId: userProgressData.currentHeroId,
-                heroes: userProgressData.heroes.map(initializeHero)
+                username: data.username,
+                level: data.level,
+                experience: data.experience,
+                balance: data.balance,
+                totalIncomePer8Hours: data.totalIncomePer8Hours,
+                totalTapIncome: data.totalTapIncome,
+                currentHeroId: data.currentHeroId,
+                heroes: data.heroes.map(initializeHero)
             };
         } catch (error) {
-            console.error('Error fetching user data:', error);
+            console.error('Error loading user progress:', error);
             return null;
         }
     }, [initializeHero]);
@@ -75,15 +70,28 @@ export const UserStatsProvider = ({ children }) => {
     const [userStats, setUserStats] = useState(null);
 
     useEffect(() => {
-        const fetchUserStats = async () => {
-            const savedStats = await loadUserStats();
-            if (savedStats) {
-                setUserStats(savedStats);
+        const fetchData = async () => {
+            const data = await loadUserStats();
+            if (data) {
+                setUserStats(data);
+            } else {
+                // redirect to ChooseHero if no user progress found
+                window.location.href = '/choose-hero';
             }
         };
-
-        fetchUserStats();
+        fetchData();
     }, [loadUserStats]);
+
+    useEffect(() => {
+        const currentHero = userStats?.heroes.find(hero => hero.id === userStats.currentHeroId);
+        if (currentHero) {
+            setUserStats(prevStats => ({
+                ...prevStats,
+                tapIncome: currentHero.baseIncome.goldPerTap,
+                incomePer8Hours: currentHero.baseIncome.goldPer8Hours
+            }));
+        }
+    }, [userStats?.currentHeroId, userStats?.heroes]);
 
     const updateUserStats = (newStats) => {
         setUserStats(prevStats => {
@@ -129,7 +137,7 @@ export const UserStatsProvider = ({ children }) => {
                 hero.monsterCards.find(card => card.id === cardId) ||
                 hero.minesGoldCards.find(card => card.id === cardId) ||
                 hero.miningSkillsCards.find(card => card.id === cardId) ||
-                hero.activeSkills.find(card => card.id === cardId);
+                hero.activeSkills.find(card => card.id === card.id);
 
             const newLevel = card.level + 1;
             const updatedCard = calculateCardStats(card, newLevel);
@@ -158,10 +166,6 @@ export const UserStatsProvider = ({ children }) => {
             return updatedStats;
         });
     };
-
-    if (userStats === null) {
-        return <div>Loading...</div>;
-    }
 
     return (
         <UserStatsContext.Provider value={{
