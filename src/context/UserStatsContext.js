@@ -44,36 +44,46 @@ export const UserStatsProvider = ({ children }) => {
         };
     }, []);
 
-    const loadUserStats = useCallback(() => {
-        const savedStats = localStorage.getItem('userProgress');
-        if (savedStats) {
-            return JSON.parse(savedStats);
-        } else {
+    const loadUserStats = useCallback(async () => {
+        const token = localStorage.getItem('authToken');
+        if (!token) return null;
+
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/userProgress`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            const userProgressData = response.data;
             return {
-                username: userProgress.username,
-                level: userProgress.level,
-                experience: userProgress.experience,
-                balance: userProgress.balance,
-                totalIncomePer8Hours: userProgress.totalIncomePer8Hours,
-                totalTapIncome: userProgress.totalTapIncome,
-                currentHeroId: userProgress.currentHeroId,
-                heroes: userProgress.heroes.map(initializeHero)
+                username: userProgressData.username,
+                level: userProgressData.level,
+                experience: userProgressData.experience,
+                balance: userProgressData.balance,
+                totalIncomePer8Hours: userProgressData.totalIncomePer8Hours,
+                totalTapIncome: userProgressData.totalTapIncome,
+                currentHeroId: userProgressData.currentHeroId,
+                heroes: userProgressData.heroes.map(initializeHero)
             };
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+            return null;
         }
     }, [initializeHero]);
 
-    const [userStats, setUserStats] = useState(loadUserStats());
+    const [userStats, setUserStats] = useState(null);
 
     useEffect(() => {
-        const currentHero = userStats.heroes.find(hero => hero.id === userStats.currentHeroId);
-        if (currentHero) {
-            setUserStats(prevStats => ({
-                ...prevStats,
-                tapIncome: currentHero.baseIncome.goldPerTap,
-                incomePer8Hours: currentHero.baseIncome.goldPer8Hours
-            }));
-        }
-    }, [userStats.currentHeroId, userStats.heroes]);
+        const fetchUserStats = async () => {
+            const savedStats = await loadUserStats();
+            if (savedStats) {
+                setUserStats(savedStats);
+            }
+        };
+
+        fetchUserStats();
+    }, [loadUserStats]);
 
     const updateUserStats = (newStats) => {
         setUserStats(prevStats => {
@@ -148,6 +158,10 @@ export const UserStatsProvider = ({ children }) => {
             return updatedStats;
         });
     };
+
+    if (userStats === null) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <UserStatsContext.Provider value={{

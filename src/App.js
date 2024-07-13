@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-
-// Видалено 'useEffect' як невикористовувану змінну
+import axios from 'axios';
 
 import Login from './Login';
 import { useUserStats, UserStatsProvider } from './context/UserStatsContext';
-
 import MainLayout from './components/Panels/MainLayout';
 
 import Home from './components/Pages/Home/Home';
@@ -36,11 +34,40 @@ import Enemys from './components/Pages/Friends/Enemys';
 import Active from './components/Pages/Quests/Active';
 import Daily from './components/Pages/Quests/Daily';
 import Profa from './components/Pages/Quests/Profa';
+import ChooseHero from './components/Pages/ChooseHero';
 
 function App() {
-    const { updateUserStats } = useUserStats();
+    const { updateUserStats, userStats } = useUserStats();
 
-    // Видалено 'useEffect', якщо він не використовується
+    useEffect(() => {
+        const fetchData = async () => {
+            const token = localStorage.getItem('authToken');
+            if (token) {
+                try {
+                    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/userProgress`, {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    });
+                    updateUserStats(response.data);
+                } catch (error) {
+                    console.error('Error fetching user data:', error);
+                }
+            }
+        };
+        fetchData();
+    }, [updateUserStats]);
+
+    if (!userStats.currentHeroId) {
+        return (
+            <Router>
+                <Routes>
+                    <Route path="/choose-hero" element={<ChooseHero />} />
+                    <Route path="*" element={<Navigate to="/choose-hero" />} />
+                </Routes>
+            </Router>
+        );
+    }
 
     return (
         <Router>
